@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="assetsP/css/bootstrap.min.css">
+        <!-- Animate CSS --> 
+        <link rel="stylesheet" href="assetsP/css/animate.min.css">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="assetsP/css/meanmenu.css">
+        <!-- Boxicons CSS -->
+        <link rel="stylesheet" href="assetsP/css/boxicons.min.css">
+        <!-- Flaticon CSS -->
+        <link rel="stylesheet" href="assetsP/css/flaticon.css">
+        <!-- Odometer CSS -->
+        <link rel="stylesheet" href="assetsP/css/odometer.min.css">
+        <!-- Slick Min CSS -->
+        <link rel="stylesheet" href="assetsP/css/slick.min.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="assetsP/css/nice-select.min.css">
+        <!-- Carousel CSS -->
+        <link rel="stylesheet" href="assetsP/css/owl.carousel.min.css">
+        <!-- Carousel Default CSS -->
+        <link rel="stylesheet" href="assetsP/css/owl.theme.default.min.css">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="assetsP/css/magnific-popup.min.css">
+        <!-- Fancybox CSS -->
+        <link rel="stylesheet" href="assetsP/css/fancybox.min.css">
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="assetsP/css/style.css">
+        <!-- Dark CSS -->
+        <link rel="stylesheet" href="assetsP/css/dark.css">
+        <!-- Responsive CSS -->
+		<link rel="stylesheet" href="assetsP/css/responsive.css">
+        <link rel="icon" type="image/png" href="assetsP/images/favicon.png">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+         <div class="navbar-area">
+            <div class="main-responsive-nav">
+                <div class="container">
+                    <div class="main-responsive-menu">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="assetsP/images/logo.png" class="black-logo" alt="image">
+                                <img src="assetsP/images/logo-2.png" class="white-logo" alt="image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-navbar">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="assetsP/images/logo.png" class="black-logo" alt="image">
+                            <img src="assetsP/images/logo-2.png" class="white-logo" alt="image">
+                        </a>
+
+                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                            <ul class="navbar-nav m-auto">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active">
+                                        Home 
+                                        <i class='bx bx-caret-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="index.html" class="nav-link active">Home Demo - 1</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="index-2.html" class="nav-link">Home Demo - 2</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="index-3.html" class="nav-link">Home Demo - 3</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="index-4.html" class="nav-link">Home Demo - 4</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="index-5.html" class="nav-link">Home Demo - 5</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        Pages 
+                                        <i class='bx bx-caret-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="about.html" class="nav-link">About</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                Coaches 
+                                                <i class='bx bx-caret-down'></i>
+                                            </a>
+        
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="coaches.html" class="nav-link">Coaches</a>
+                                                </li>
+        
+                                                <li class="nav-item">
+                                                    <a href="coaches-details.html" class="nav-link">Coaches Details</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                Events 
+                                                <i class='bx bx-caret-down'></i>
+                                            </a>
+        
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="events.html" class="nav-link">Events</a>
+                                                </li>
+        
+                                                <li class="nav-item">
+                                                    <a href="events-details.html" class="nav-link">Events Details</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="success-story.html" class="nav-link">Success Story</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="purchase-guide.html" class="nav-link">Purchase Guide</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="pricing.html" class="nav-link">Pricing</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="gallery.html" class="nav-link">Gallery</a>
+                                        </li>
+    
+                                        <li class="nav-item">
+                                            <a href="faq.html" class="nav-link">FAQ</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                Users 
+                                                <i class='bx bx-caret-down'></i>
+                                            </a>
+        
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="login.html" class="nav-link">Login</a>
+                                                </li>
+        
+                                                <li class="nav-item">
+                                                    <a href="register.html" class="nav-link">Register</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                Others 
+                                                <i class='bx bx-caret-down'></i>
+                                            </a>
+        
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="online-booking.html" class="nav-link">Online Booking</a>
+                                                </li>
+        
+                                                <li class="nav-item">
+                                                    <a href="book-appointment.html" class="nav-link">Book Appointment</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="error-404.html" class="nav-link">404 Error</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="terms-of-service.html" class="nav-link">Terms of Service</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="coming-soon.html" class="nav-link">Coming Soon</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        Courses 
+                                        <i class='bx bx-caret-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="courses-1.html" class="nav-link">Courses (3 in Row)</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="courses-2.html" class="nav-link">Courses (Full Width)</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="membership-levels.html" class="nav-link">Membership Levels</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="become-coaches.html" class="nav-link">Become Coaches</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="courses-details.html" class="nav-link">Courses Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        Services 
+                                        <i class='bx bx-caret-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="services.html" class="nav-link">Services</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="services-details.html" class="nav-link">Services Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        Shop 
+                                        <i class='bx bx-caret-down'></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="products-grid.html" class="nav-link">Products Grid</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="cart.html" class="nav-link">Cart</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="wishlist.html" class="nav-link">Wishlist</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="checkout.html" class="nav-link">Checkout</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="my-account.html" class="nav-link">My Account</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="products-details.html" class="nav-link">Products Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                
+    
+                                <li class="nav-item">
+                                    <a href="contact.html" class="nav-link">Contact</a>
+                                </li>
+                            </ul>
+
+                            <div class="others-options d-flex align-items-center">
+                                <div class="option-item">
+                                    <div class="cart-btn">
+                                        <a href="cart.html">
+                                            <i class='flaticon-shopping-cart'></i>
+                                            <span>2</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="option-item">
+                                    <div class="search-box">
+                                        <i class='flaticon-search'></i>
+                                    </div>
+                                </div>
+                                {% if not app.user %}
+                                <div class="option-item">
+                                    <div class="navbar-btn">
+                                        <a href="{{ path('app_login') }}" class="default-btn">Login <i class="flaticon-pointer"></i></a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                               {% if not app.user %}
+                                <div class="option-item">
+                                    <div class="navbar-btn">
+                                        <a href="{{ path('app_register') }}" class="default-btn">Register <i class="flaticon-pointer"></i></a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                               {% if app.user %}
+                                <div class="option-item">
+                                    <div class="navbar-btn">
+                                        <a href="#" class="default-btn">My account <i class="flaticon-pointer"></i></a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                               {% if app.user %}
+                                <div class="option-item">
+                                    <div class="navbar-btn">
+                                        <a href="#" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="others-option-for-responsive">
+                <div class="container">
+                    <div class="dot-menu">
+                        <div class="inner">
+                            <div class="circle circle-one"></div>
+                            <div class="circle circle-two"></div>
+                            <div class="circle circle-three"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="option-inner">
+                            <div class="others-options d-flex align-items-center">
+                                {% if app.user %}
+                                <div class="option-item">
+                                    <div class="cart-btn">
+                                        <a href="cart.html">
+                                            <i class='flaticon-shopping-cart'></i>
+                                            <span>2</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="option-item">
+                                    <div class="search-box">
+                                        <i class='flaticon-search'></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="option-item">
+                                    <div class="navbar-btn">
+                                        <a href="online-booking.html" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+         <footer class="footer-area pt-100 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-logo">
+                                <a href="index.html"><img src="assetsP/images/logo-2.png" alt="image"></a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eir mod tempor invidunt ut labore et.</p>
+
+                            <div class="widget-share">
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-facebook'></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-twitter'></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-instagram'></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-linkedin'></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h3>Quick Links</h3>
+
+                            <ul class="quick-links">
+                                <li>
+                                    <a href="index.html"><i class='bx bxs-right-arrow'></i> Home</a>
+                                </li>
+                                <li>
+                                    <a href="about.html"><i class='bx bxs-right-arrow'></i> About</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class='bx bxs-right-arrow'></i> Programs</a>
+                                </li>
+                                <li>
+                                    <a href="services.html"><i class='bx bxs-right-arrow'></i> Services</a>
+                                </li>
+                                <li>
+                                    <a href="blog-3.html"><i class='bx bxs-right-arrow'></i> Blog</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html"><i class='bx bxs-right-arrow'></i> Contacts</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h3>Explore</h3>
+
+                            <ul class="quick-links">
+                                <li>
+                                    <a href="about.html"><i class='bx bxs-right-arrow'></i> About Us</a>
+                                </li>
+                                <li>
+                                    <a href="success-story.html"><i class='bx bxs-right-arrow'></i> Success Story</a>
+                                </li>
+                                <li>
+                                    <a href="membership-levels.html"><i class='bx bxs-right-arrow'></i> Membership</a>
+                                </li>
+                                <li>
+                                    <a href="purchase-guide.html"><i class='bx bxs-right-arrow'></i> Purchase Guide</a>
+                                </li>
+                                <li>
+                                    <a href="privacy-policy.html"><i class='bx bxs-right-arrow'></i> Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="terms-of-service.html"><i class='bx bxs-right-arrow'></i> Terms Of Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h3>Contact Us</h3>
+
+                            <ul class="footer-contact-info">
+                                <li>
+                                    <i class='flaticon-phone-call'></i>
+                                    <span>Phone No:</span>
+                                    <a href="tel:9885394203">+988 5394 203</a>
+                                </li>
+                                <li>
+                                    <i class='flaticon-mail'></i>
+                                    <span>Email Address:</span>
+                                    <a href="/cdn-cgi/l/email-protection#1a727f7676755a6a6963767534797577"><span class="__cf_email__" data-cfemail="3159545d5d5e714142485d5e1f525e5c">[email&#160;protected]</span></a>
+                                </li>
+                                <li>
+                                    <i class='flaticon-placeholder'></i>
+                                    <span>Location:</span>
+                                    3 Edgar Buildings, George Street, England, BA1 2FJ.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </footer>
+         <!-- End Footer Area -->
+
+         <!-- Start Copy Right Area -->
+         <div class="copyright-area">
+            <div class="container">
+                <div class="copyright-area-content">
+                    <p>
+                        Copyright Psylo. All rights reserved By
+                        <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                    </p>
+                </div>
+            </div>
+         </div>
+         <!-- End Copy Right Area -->
+
+         <!-- Start Go Top Area -->
+         <div class="go-top">
+            <i class='flaticon-up-arrow'></i>
+         </div>
+        {% endblock %}
+        <script data-cfasync="false" src="assetsP/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assetsP/js/jquery.min.js"></script>
+        <!-- Bootstrap Bundle JS -->
+        <script src="assetsP/js/bootstrap.bundle.min.js"></script>
+        <!-- Meanmenu JS -->
+        <script src="assetsP/js/jquery.meanmenu.js"></script>
+        <!-- Owl Carousel JS -->
+        <script src="assetsP/js/owl.carousel.min.js"></script>
+        <!-- Jquery Appear JS -->
+        <script src="assetsP/js/jquery.appear.js"></script>
+        <!-- Odometer JS -->
+        <script src="assetsP/js/odometer.min.js"></script>
+        <!-- Slick Min JS -->
+        <script src="assetsP/js/slick.min.js"></script>
+        <!-- Nice Select JS -->
+        <script src="assetsP/js/nice-select.min.js"></script>
+        <!-- Magnific Popup JS -->
+        <script src="assetsP/js/jquery.magnific-popup.min.js"></script>
+        <!-- Fancybox JS -->
+        <script src="assetsP/js/fancybox.min.js"></script>
+        <!-- Ajaxchimp JS -->
+		<script src="assetsP/js/jquery.ajaxchimp.min.js"></script>
+		<!-- Form Validator JS -->
+		<script src="assetsP/js/form-validator.min.js"></script>
+		<!-- Contact JS -->
+        <script src="assetsP/js/contact-form-script.js"></script>
+        <!-- Wow JS -->
+        <script src="assetsP/js/wow.min.js"></script>
+        <!-- Custom JS -->
+        <script src="assetsP/js/main.js"></script>
+    </body>
+</html>
