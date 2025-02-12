@@ -115,6 +115,4 @@ class RegistrationController extends AbstractController
             'agreeTerms' => $form->get('agreeTerms')->createView(),
         ]);
     }
-
-    
 }
