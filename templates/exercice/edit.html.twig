@@ -1,13 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Exercice{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
-    <h1>Edit Exercice</h1>
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="img/loader/loader.svg" alt="loader">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+               
+                <!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="">
+                                <!-- begin page title -->
+                                <div class="d-block d-lg-flex flex-nowrap align-items-center">
+                                    <div class="page-title mr-4 pr-4 border-right">
+                                        <h1>exercice</h1>
+                                    </div>
+                                    <div class="breadcrumb-bar align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb p-0 m-b-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.html"><i class="ti ti-home"></i></a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    exercice
+                                                </li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Default</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                   
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- Notification -->
+                        
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row">
+                            
 
-    {{ include('exercice/_form.html.twig', {'button_label': 'Update'}) }}
+                            <div class="container-fluid py-4">
+                                            <div class="row justify-content-center">
+                                            <div class="col-md-8">
+                                                {{ include('exercice/_form.html.twig', {'button_label': 'Update'}) }}
+                                            </div>
+                                        </div>
+                                        
+                                        {# Delete Section #}
+                                        
+                                    </div>
+                            </div>
+                            
+                
+                            
+                            {% block javascripts %}
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // Delete confirmation handler
+                                const confirmDeleteBtn = document.getElementById('modalConfirmDelete');
+                                if(confirmDeleteBtn) {
+                                    confirmDeleteBtn.addEventListener('click', function() {
+                                        document.getElementById('deleteForm').submit();
+                                    });
+                                }
+                            });
+                            </script>
+                            {% endblock %}
 
-    <a href="{{ path('app_exercice_index') }}">back to list</a>
 
-    {{ include('exercice/_delete_form.html.twig') }}
-{% endblock %}
+
+                            
+                        </div>
+                       
+                        <!-- end row -->
+                        <!-- event Modal -->
+                        
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+
+    <!-- plugins -->
+                            {% endblock %}

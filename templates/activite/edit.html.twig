@@ -1,73 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Activite{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
-<div class="container-fluid py-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <div class="d-flex justify-content-between align-items-center">
-                <h2 class="h4 mb-0">Edit Activity</h2>
-                <a href="{{ path('app_activite_index') }}" class="btn btn-light btn-sm">
-                    <i class="bi bi-arrow-left"></i> Back to List
-                </a>
-            </div>
-        </div>
-
-        <div class="card-body">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    {{ include('activite/_form.html.twig', {'button_label': 'Update'}) }}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="img/loader/loader.svg" alt="loader">
+                    </div>
                 </div>
             </div>
-            
-            {# Delete Section #}
-            <div class="mt-5 border-top pt-4">
-                <div class="alert alert-danger">
-                    <h5 class="alert-heading">Danger Zone</h5>
-                    <p class="mb-2">Once deleted, this activity cannot be recovered.</p>
-                    <button type="button" 
-                            class="btn btn-danger"
-                            data-bs-toggle="modal" 
-                            data-bs-target="#deleteConfirmModal">
-                        <i class="bi bi-trash"></i> Delete Activity
-                    </button>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+               
+                <!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="">
+                                <!-- begin page title -->
+                                <div class="d-block d-lg-flex flex-nowrap align-items-center">
+                                    <div class="page-title mr-4 pr-4 border-right">
+                                        <h1>Activite</h1>
+                                    </div>
+                                    <div class="breadcrumb-bar align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb p-0 m-b-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.html"><i class="ti ti-home"></i></a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    Activite
+                                                </li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Default</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                   
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- Notification -->
+                        
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row">
+                            
+
+                            <div class="container-fluid py-4">
+                                            <div class="row justify-content-center">
+                                            <div class="col-md-8">
+                                                {{ include('activite/_form.html.twig', {'button_label': 'Update'}) }}
+                                            </div>
+                                        </div>
+                                        
+                                        {# Delete Section #}
+                                        
+                                    </div>
+                            </div>
+                            
+                
+                            
+                            {% block javascripts %}
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // Delete confirmation handler
+                                const confirmDeleteBtn = document.getElementById('modalConfirmDelete');
+                                if(confirmDeleteBtn) {
+                                    confirmDeleteBtn.addEventListener('click', function() {
+                                        document.getElementById('deleteForm').submit();
+                                    });
+                                }
+                            });
+                            </script>
+                            {% endblock %}
+
+
+
+                            
+                        </div>
+                       
+                        <!-- end row -->
+                        <!-- event Modal -->
+                        
+                    </div>
+                    <!-- end container-fluid -->
                 </div>
+                <!-- end app-main -->
             </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
         </div>
+        <!-- end app-wrap -->
     </div>
-</div>
+    <!-- end app -->
 
-{# Delete Confirmation Modal #}
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title"><i class="bi bi-exclamation-triangle me-2"></i>Confirm Deletion</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                Are you absolutely sure you want to delete this activity? This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                {{ include('activite/_delete_form.html.twig') }}
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block javascripts %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Delete confirmation handler
-    const confirmDeleteBtn = document.getElementById('modalConfirmDelete');
-    if(confirmDeleteBtn) {
-        confirmDeleteBtn.addEventListener('click', function() {
-            document.getElementById('deleteForm').submit();
-        });
-    }
-});
-</script>
-{% endblock %}
+    <!-- plugins -->
+                            {% endblock %}
