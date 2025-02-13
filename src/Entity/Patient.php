@@ -17,6 +17,7 @@ class Patient
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+    
 
     /**
      * @var Collection<int, Question>

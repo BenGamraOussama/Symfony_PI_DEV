@@ -22,7 +22,7 @@ class Activite
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?string $status = 'not_started';
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;

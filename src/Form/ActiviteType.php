@@ -28,10 +28,19 @@ class ActiviteType extends AbstractType
                 'label' => 'Status',
                 'placeholder' => 'Select status'
             ])
-            ->add('type')
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'MENTALE' => 'mentale',
+                    'RELAXATION' => 'relaxation',
+                    'SOCIALE' => 'sociale'
+                ],
+                'attr' => ['class' => 'form-select'],
+                'label' => 'type',
+                'placeholder' => 'Select type'
+            ])
             ->add('patient', EntityType::class, [
                 'class' => Patient::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
             ])
         ;

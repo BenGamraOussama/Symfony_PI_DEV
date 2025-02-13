@@ -29,7 +29,7 @@ class ExerciceType extends AbstractType
             ])
             ->add('patient', EntityType::class, [
                 'class' => Patient::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
             ])
         ;
