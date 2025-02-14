@@ -64,16 +64,19 @@
                                         </div>
                                     </div>
                                     <form method="post">
-                                    {{ form_start(psychiatreType) }}
+                                    {{ form_start(psychiatreadd) }}
                                     <div class="card-body">
                                         <div class="form-group">
-                                            {{ form_widget(psychiatreType.firstName, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'First Name'} }) }}
+                                            {{ form_widget(psychiatreadd.firstName, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'First Name'} }) }}
                                         </div>
                                         <div class="form-group">
-                                            {{ form_widget(psychiatreType.lastName, { 'attr': {'class': 'form-control form-control', 'placeholder': 'Last Name'} }) }}      
+                                            {{ form_widget(psychiatreadd.lastName, { 'attr': {'class': 'form-control form-control', 'placeholder': 'Last Name'} }) }}      
                                         </div>
                                         <div class="form-group">
-                                            {{ form_widget(psychiatreType.email, { 'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Email'} }) }}
+                                            {{ form_widget(psychiatreadd.email, { 'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Email'} }) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_widget(psychiatreadd.specialite, { 'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Specialite'} }) }}
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">
@@ -81,7 +84,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    {{ form_end(psychiatreType) }}
+                                    {{ form_end(psychiatreadd) }}
                                 </form>
                                 </div>
                             </div>

@@ -20,14 +20,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
             ->add('firstName')
             ->add('lastName')
             ->add('roles', ChoiceType::class, [
@@ -37,7 +29,7 @@ class RegistrationFormType extends AbstractType
                     'Fournisseur' => 'ROLE_FOURNISSEUR',
                 ],
                 'expanded' => false, // Si vous voulez des boutons radio, mettez cela à true
-                'multiple' => true, // Permettre la sélection d'un seul rôle
+                'multiple' => false, // Permettre la sélection d'un seul rôle
                 'attr' => [
                    'class' => 'newcss', // Optionnel: ajoute des classes CSS
                  ],
@@ -59,6 +51,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Ajout du champ spécialité uniquement pour le psychiatre
+
+            // Ajout du champ dossier médical uniquement pour les patients
         ;
     }
 

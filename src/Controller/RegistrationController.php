@@ -6,7 +6,9 @@ use App\Entity\User;
 use App\Entity\Psychiatre;
 use App\Entity\Patient;
 use App\Entity\Fournisseur;
-use App\Form\RegistrationFormType;
+use App\Form\PsychiatreType;
+use App\Form\PatientType;
+use App\Form\FournisseurType;
 use App\Security\SecurityAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,100 +21,71 @@ use Symfony\Component\Routing\Attribute\Route;
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
-    {
-        $user = new Psychiatre();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+public function register(
+    Request $request,
+    UserPasswordHasherInterface $userPasswordHasher,
+    Security $security,
+    EntityManagerInterface $entityManager
+): Response {
+    // Formulaire psychiatre
+    $psychiatre = new Psychiatre();
+    $psychiatreForm = $this->createForm(PsychiatreType::class, $psychiatre);
+    $psychiatreForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+    if ($psychiatreForm->isSubmitted() && $psychiatreForm->isValid()) {
+        /** @var string $plainPassword */
+        $plainPassword = $psychiatreForm->get('plainPassword')->getData();
 
-            $user->setSpecialite('S');
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+        $psychiatre->setRoles(['ROLE_PSYCHIATRE']);
+        $psychiatre->setPassword($userPasswordHasher->hashPassword($psychiatre, $plainPassword));
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+        $entityManager->persist($psychiatre);
+        $entityManager->flush();
 
-            // do anything else you need here, like send an email
-
-            return $security->login($user, SecurityAuthenticator::class, 'main');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-            'firstName' => $form->get('firstName')->createView(),
-            'lastName' => $form->get('lastName')->createView(),
-            'email' => $form->get('email')->createView(),
-            'plainPassword' => $form->get('plainPassword')->createView(),
-            'agreeTerms' => $form->get('agreeTerms')->createView(),
-        ]);
+        return $security->login($psychiatre, SecurityAuthenticator::class, 'main');
     }
 
-    #[Route('/register', name: 'app_register')]
-    public function registerPatient(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
-    {
-        $user = new Patient();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+    // Formulaire Fournisseur
+    $fournisseur = new Fournisseur();
+    $fournisseurForm = $this->createForm(FournisseurType::class, $fournisseur);
+    $fournisseurForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+    if ($fournisseurForm->isSubmitted() && $fournisseurForm->isValid()) {
+        /** @var string $plainPassword */
+        $plainPassword = $fournisseurForm->get('plainPassword')->getData();
 
-            $user->setDossierMedical('doss');
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+        $fournisseur->setRoles(['ROLE_FOURNISSEUR']);
+        $fournisseur->setEtat('true');
+        $fournisseur->setPassword($userPasswordHasher->hashPassword($fournisseur, $plainPassword));
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+        $entityManager->persist($fournisseur);
+        $entityManager->flush();
 
-            // do anything else you need here, like send an email
-
-            return $security->login($user, SecurityAuthenticator::class, 'main');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-            'firstName' => $form->get('firstName')->createView(),
-            'lastName' => $form->get('lastName')->createView(),
-            'email' => $form->get('email')->createView(),
-            'plainPassword' => $form->get('plainPassword')->createView(),
-            'agreeTerms' => $form->get('agreeTerms')->createView(),
-        ]);
+        return $security->login($fournisseur, SecurityAuthenticator::class, 'main');
     }
-    #[Route('/register', name: 'app_register')]
-    public function registerFournisseur(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
-    {
-        $user = new Fournisseur();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+    $patient = new Patient();
+    $patientForm = $this->createForm(PatientType::class, $patient);
+    $patientForm->handleRequest($request);
 
-            $user->setEtat('true');
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+    if ($patientForm->isSubmitted() && $patientForm->isValid()) {
+        /** @var string $plainPassword */
+        $plainPassword = $patientForm->get('plainPassword')->getData();
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+        $patient->setRoles(['ROLE_PATIENT']);
+        $patient->setPassword($userPasswordHasher->hashPassword($patient, $plainPassword));
 
-            // do anything else you need here, like send an email
+        $entityManager->persist($patient);
+        $entityManager->flush();
 
-            return $security->login($user, SecurityAuthenticator::class, 'main');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-            'firstName' => $form->get('firstName')->createView(),
-            'lastName' => $form->get('lastName')->createView(),
-            'email' => $form->get('email')->createView(),
-            'plainPassword' => $form->get('plainPassword')->createView(),
-            'agreeTerms' => $form->get('agreeTerms')->createView(),
-        ]);
+        return $security->login($patient, SecurityAuthenticator::class, 'main');
     }
+
+    // Passer les deux formulaires à la vue Twig
+    return $this->render('registration/register.html.twig', [
+        'psychiatreType' => $psychiatreForm->createView(),
+        'fournissuerType' => $fournisseurForm->createView(),
+        'patientFormType' => $patientForm->createView(),
+    ]);
+}
 }

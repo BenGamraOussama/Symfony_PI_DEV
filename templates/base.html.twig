@@ -476,22 +476,24 @@
                 <ul aria-expanded="false">
                     <li> 
                         <a href='{{path('app_ajouter_psychiatre')}}'>Ajouter Psychiatre</a> </li>
-                    <li> <a href='{{path('app_psychiatres')}}'>List Psychiatre</a> </li>
+                    <li> <a href='{{path('app_psychiatre_index')}}'>List Psychiatre</a> </li>
                         </ul>
             </li>
             <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Fournisseur</span> </a>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <i class="bi bi-people"></i>
+                <span class="nav-title">Fournisseur</span> </a>
                 <ul aria-expanded="false">
-                    <li> <a href="listfournisseur">List Fournisseur</a> </li>
-                    <li> <a href='listAdmin'>List Fournisseur</a> </li>
+                    <li> <a href='{{path('app_fournisseur_new')}}'>Ajouter Fournisseur</a> </li>
+                    <li> <a href='{{path('app_fournisseur_index')}}'>List Fournisseur</a> </li>
                 </ul>
             </li>
             
             <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon ti ti-truck"></i><span class="nav-title">Livreur</span> </a>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Patient</span> </a>
                 <ul aria-expanded="false">
-                    <li> <a href="ajouterlivreur">Ajouter Livreur</a> </li>
-                    <li> <a href="listlivreur">List Livreur</a> </li>
+                    <li> <a href='{{path('app_patient_new')}}'>Ajouter Patient</a> </li>
+                    <li> <a href='{{path('app_patient_index')}}'>List Patient</a> </li>
                 </ul>
             </li>
             <li><a href="listclient" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Client</span></a> </li>
@@ -510,7 +512,7 @@
     {% block body %}
     {% endblock %}
     {% block footer %}
-        <footer class="footer">
+    <div class="footer">
       <div class="row">
         <div class="col-12 col-sm-6 text-center text-sm-left">
             <p>&copy; Copyright 2025. All rights reserved.</p>
@@ -519,7 +521,7 @@
             <p>ShopFlow Developped <i class="fa fa-heart text-danger mx-1"></i> by Oussama Ben Gamra</p>
         </div>
       </div>
-       </footer>
+    </div>
 
     {% endblock %}
     <script src="{{ asset('assets/js/vendors.js')}}"></script>

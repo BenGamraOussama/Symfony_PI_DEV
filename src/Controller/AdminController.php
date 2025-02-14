@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UserRepository;
 use App\Repository\PsychiatreRepository;
+use App\Repository\FournisseurRepository;
+use App\Repository\PatientRepository;
 use App\Entity\User;
 use App\Service\PasswordGenerator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,13 +19,15 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Entity\Patient;
 use App\Entity\Fournisseur;
 use App\Entity\Psychiatre;
-use App\Form\PsychiatreType;
+use App\Form\Psychiatreadd;
+use App\Form\Fournisseuradd;
+use App\Form\Patientadd;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
-
+#[Route('/admin')]
 final class AdminController extends AbstractController{
     
-    #[Route('/admin', name: 'app_admin')]
+    #[Route(name: 'app_admin')]
     public function index(UserRepository $userRepository): Response
     {
         $totalPatients = $userRepository->countPatients();
@@ -33,17 +37,16 @@ final class AdminController extends AbstractController{
         ]);
 
     }
-    #[Route('/admin/psychiatres', name: 'app_psychiatres', methods: ['GET'])]
-    public function list(PsychiatreRepository $psychiatreRepository)
+    //psychiatre
+    #[Route('/listPsychiatre', name: 'app_psychiatre_index', methods: ['GET'])]
+    public function listPsychiatre(PsychiatreRepository $psychiatreRepository): Response
     {
-        $psychiatres = $psychiatreRepository->findAll();
-
-        return $this->render('admin/listPsychiatre.html.twig', [
-            'psychiatres' => $psychiatres,
+        return $this->render('psychiatre/index.html.twig', [
+            'psychiatres' => $psychiatreRepository->findAll(),
         ]);
     }
-    #[Route('/admin/ajouterPsychitare', name: 'app_ajouter_psychiatre')]
-    public function register(
+    #[Route('/ajouterPsychitare', name: 'app_ajouter_psychiatre')]
+    public function addpsychiatre(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
         EntityManagerInterface $entityManager,
@@ -52,7 +55,7 @@ final class AdminController extends AbstractController{
         UserRepository $userRepository // Injecter le repository User
      ): Response {
         $user = new Psychiatre();
-        $form = $this->createForm(PsychiatreType::class, $user);
+        $form = $this->createForm(Psychiatreadd::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si l'email existe déjà
@@ -100,10 +103,187 @@ final class AdminController extends AbstractController{
         }
 
         return $this->render('admin/ajouterPsychiatre.html.twig', [
-            'psychiatreType' => $form,
+            'psychiatreadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
         ]);
     }
+    #[Route('/{id}', name: 'psychiatre_delete', methods: ['POST'])]
+    public function deletepsychiatre(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($psychiatre);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_psychiatre_index', [], Response::HTTP_SEE_OTHER);
+    }
+    //fournisseur
+    #[Route('/listFournisseur', name: 'app_fournisseur_index', methods: ['GET'])]
+    public function listFournisseur(FournisseurRepository $fournisseurRepository): Response
+    {
+        return $this->render('fournisseur/index.html.twig', [
+            'fournisseurs' => $fournisseurRepository->findAll(),
+        ]);
+    }
+    #[Route('/ajouterFournisseur', name: 'app_fournisseur_new', methods: ['GET', 'POST'])]
+    public function addfournisseur(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager,
+        PasswordGenerator $passwordGenerator,
+        MailerInterface $mailer,
+        UserRepository $userRepository // Injecter le repository User
+     ): Response {
+        $user = new Fournisseur();
+        $form = $this->createForm(Fournisseuradd::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si l'email existe déjà
+            $existingUser = $userRepository->findOneBy(['email' => $user->getEmail()]);
+
+            if ($existingUser) {
+                $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
+                return $this->redirectToRoute('app_fournisseur_new');
+            }
+            $user->setEtat('true');
+            // Générer un mot de passe aléatoire
+            $password = $passwordGenerator->generatePassword();
+
+            // Encoder le mot de passe
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $password // <-- Utilisez la variable $password déjà générée
+                )
+            );
+            // Attribuer le rôle ROLE_MEDECIN
+            $user->setRoles(['ROLE_FOURNISSEUR']);
+
+            // Enregistrer l'utilisateur en base de données
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // Envoyer un email avec les informations de connexion
+            $email = (new Email())
+                ->from('oussamagamra52@gmail.com')
+                ->to($user->getEmail())
+                ->subject('Vos informations de connexion')
+                ->html($this->renderView(
+                    'emails/psychiatre_registration.html.twig',
+                    [
+                        'email' => $user->getEmail(),
+                        'password' => $password, // <-- Utilisez $password ici
+                    ]
+                ));
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
+            return $this->redirectToRoute('app_fournisseur_new');
+        }
+
+        return $this->render('admin/ajouterPsychiatre.html.twig', [
+            'fournisseuradd' => $form,
+            'firstName' => $form->get('firstName')->createView(),
+            'lastName' => $form->get('lastName')->createView(),
+            'email' => $form->get('email')->createView(),
+        ]);
+    }
+    #[Route('listFournisseur/{id}', name: 'fournisseur_delete', methods: ['POST'])]
+    public function delete(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$fournisseur->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($fournisseur);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_fournisseur_index', [], Response::HTTP_SEE_OTHER);
+    }
+    //Patient
+    #[Route('/listPatient', name: 'app_patient_index', methods: ['GET'])]
+    public function listPatient(PatientRepository $patientRepository): Response
+    {
+        return $this->render('patient/index.html.twig', [
+            'patients' => $patientRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/ajouterPatient', name: 'app_patient_new', methods: ['GET', 'POST'])]
+    public function addpatient(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager,
+        PasswordGenerator $passwordGenerator,
+        MailerInterface $mailer,
+        UserRepository $userRepository // Injecter le repository User
+     ): Response {
+        $user = new Patient();
+        $form = $this->createForm(Patientadd::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si l'email existe déjà
+            $existingUser = $userRepository->findOneBy(['email' => $user->getEmail()]);
+
+            if ($existingUser) {
+                $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
+                return $this->redirectToRoute('app_ajouter_psychiatre');
+            }
+            // Générer un mot de passe aléatoire
+            $password = $passwordGenerator->generatePassword();
+
+            // Encoder le mot de passe
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $password // <-- Utilisez la variable $password déjà générée
+                )
+            );
+            // Attribuer le rôle ROLE_MEDECIN
+            $user->setRoles(['ROLE_PATIENT']);
+
+            // Enregistrer l'utilisateur en base de données
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // Envoyer un email avec les informations de connexion
+            $email = (new Email())
+                ->from('oussamagamra52@gmail.com')
+                ->to($user->getEmail())
+                ->subject('Vos informations de connexion')
+                ->html($this->renderView(
+                    'emails/psychiatre_registration.html.twig',
+                    [
+                        'email' => $user->getEmail(),
+                        'password' => $password, // <-- Utilisez $password ici
+                    ]
+                ));
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
+            return $this->redirectToRoute('app_ajouter_psychiatre');
+        }
+
+        return $this->render('admin/ajouterPsychiatre.html.twig', [
+            'patientadd' => $form,
+            'firstName' => $form->get('firstName')->createView(),
+            'lastName' => $form->get('lastName')->createView(),
+            'email' => $form->get('email')->createView(),
+        ]);
+    }
+    #[Route('listPatient/{id}', name: 'patient_delete', methods: ['POST'])]
+    public function deletePatient(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$patient->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($patient);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_patient_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
 }

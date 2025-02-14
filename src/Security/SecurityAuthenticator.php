@@ -53,7 +53,7 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('app_admin'));
         }
         if(in_array('ROLE_PATIENT', $user->getRoles(), true)){
-            return new RedirectResponse($this->urlGenerator->generate('app_patient'));
+            return new RedirectResponse($this->urlGenerator->generate('app_home'));
         }
         if(in_array('ROLE_FOURNISSEUR', $user->getRoles(), true)){
             return new RedirectResponse($this->urlGenerator->generate('app_fournisseur'));
@@ -61,7 +61,6 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
         if(in_array('ROLE_PSYCHIATRE', $user->getRoles(), true)){
             return new RedirectResponse($this->urlGenerator->generate('app_psychiatre'));
         }
-        
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
