@@ -29,6 +29,20 @@
         #bglogo {
             background: #7b9dfd;
         }
+        .footer {
+          background: #fff;
+          position: fixed;
+          padding: 1.5rem 2.3rem;
+          z-index: 0;
+          width: calc(100% - 240px);
+          bottom: 0;
+          right: 0;
+          height: 60px;
+          -webkit-box-shadow: 0 0 20px rgba(115, 105, 215, .15);
+          -moz-box-shadow: 0 0 20px rgba(115, 105, 215, .15);
+          box-shadow: 0 0 20px rgba(115, 105, 215, .15);
+          transition: all .3s ease-out
+        }
     </style>
 
     <!-- JavaScripts Block -->
@@ -511,7 +525,7 @@
     {% endblock %}
     {% block body %}
     {% endblock %}
-    {% block footer %}
+    {% block myfooter %}
     <div class="footer">
       <div class="row">
         <div class="col-12 col-sm-6 text-center text-sm-left">
@@ -522,7 +536,6 @@
         </div>
       </div>
     </div>
-
     {% endblock %}
     <script src="{{ asset('assets/js/vendors.js')}}"></script>
     <script src="{{ asset('assets/js/app.js')}}"></script>

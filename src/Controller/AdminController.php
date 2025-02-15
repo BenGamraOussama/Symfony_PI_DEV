@@ -54,44 +54,44 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
-        $user = new Psychiatre();
-        $form = $this->createForm(Psychiatreadd::class, $user);
+        $psychiatre = new Psychiatre();
+        $form = $this->createForm(Psychiatreadd::class, $psychiatre);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si l'email existe déjà
-            $existingUser = $userRepository->findOneBy(['email' => $user->getEmail()]);
+            $existingUser = $userRepository->findOneBy(['email' => $psychiatre->getEmail()]);
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
                 return $this->redirectToRoute('app_ajouter_psychiatre');
             }
-            $user->setSpecialite('S');
+            $psychiatre->setSpecialite('S');
             // Générer un mot de passe aléatoire
             $password = $passwordGenerator->generatePassword();
 
             // Encoder le mot de passe
-            $user->setPassword(
+            $psychiatre->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user,
+                    $psychiatre,
                     $password // <-- Utilisez la variable $password déjà générée
                 )
             );
             // Attribuer le rôle ROLE_MEDECIN
-            $user->setRoles(['ROLE_PSYCHIATRE']);
+            $psychiatre->setRoles(['ROLE_PSYCHIATRE']);
 
             // Enregistrer l'utilisateur en base de données
-            $entityManager->persist($user);
+            $entityManager->persist($psychiatre);
             $entityManager->flush();
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
                 ->from('oussamagamra52@gmail.com')
-                ->to($user->getEmail())
+                ->to($psychiatre->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
                     'emails/psychiatre_registration.html.twig',
                     [
-                        'email' => $user->getEmail(),
+                        'email' => $psychiatre->getEmail(),
                         'password' => $password, // <-- Utilisez $password ici
                     ]
                 ));
@@ -136,44 +136,44 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
-        $user = new Fournisseur();
-        $form = $this->createForm(Fournisseuradd::class, $user);
+        $fournisseur = new Fournisseur();
+        $form = $this->createForm(Fournisseuradd::class, $fournisseur);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si l'email existe déjà
-            $existingUser = $userRepository->findOneBy(['email' => $user->getEmail()]);
+            $existingUser = $userRepository->findOneBy(['email' => $fournisseur->getEmail()]);
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
                 return $this->redirectToRoute('app_fournisseur_new');
             }
-            $user->setEtat('true');
+            $fournisseur->setEtat('true');
             // Générer un mot de passe aléatoire
             $password = $passwordGenerator->generatePassword();
 
             // Encoder le mot de passe
-            $user->setPassword(
+            $fournisseur->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user,
+                    $fournisseur,
                     $password // <-- Utilisez la variable $password déjà générée
                 )
             );
             // Attribuer le rôle ROLE_MEDECIN
-            $user->setRoles(['ROLE_FOURNISSEUR']);
+            $fournisseur->setRoles(['ROLE_FOURNISSEUR']);
 
             // Enregistrer l'utilisateur en base de données
-            $entityManager->persist($user);
+            $entityManager->persist($fournisseur);
             $entityManager->flush();
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
                 ->from('oussamagamra52@gmail.com')
-                ->to($user->getEmail())
+                ->to($fournisseur->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
                     'emails/psychiatre_registration.html.twig',
                     [
-                        'email' => $user->getEmail(),
+                        'email' => $fournisseur->getEmail(),
                         'password' => $password, // <-- Utilisez $password ici
                     ]
                 ));
@@ -219,12 +219,12 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
-        $user = new Patient();
-        $form = $this->createForm(Patientadd::class, $user);
+        $patient = new Patient();
+        $form = $this->createForm(Patientadd::class, $patient);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si l'email existe déjà
-            $existingUser = $userRepository->findOneBy(['email' => $user->getEmail()]);
+            $existingUser = $userRepository->findOneBy(['email' => $patient->getEmail()]);
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
@@ -234,28 +234,28 @@ final class AdminController extends AbstractController{
             $password = $passwordGenerator->generatePassword();
 
             // Encoder le mot de passe
-            $user->setPassword(
+            $patient->setPassword(
                 $userPasswordHasher->hashPassword(
-                    $user,
+                    $patient,
                     $password // <-- Utilisez la variable $password déjà générée
                 )
             );
             // Attribuer le rôle ROLE_MEDECIN
-            $user->setRoles(['ROLE_PATIENT']);
+            $patient->setRoles(['ROLE_PATIENT']);
 
             // Enregistrer l'utilisateur en base de données
-            $entityManager->persist($user);
+            $entityManager->persist($patient);
             $entityManager->flush();
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
                 ->from('oussamagamra52@gmail.com')
-                ->to($user->getEmail())
+                ->to($patient->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
                     'emails/psychiatre_registration.html.twig',
                     [
-                        'email' => $user->getEmail(),
+                        'email' => $patient->getEmail(),
                         'password' => $password, // <-- Utilisez $password ici
                     ]
                 ));
@@ -283,7 +283,4 @@ final class AdminController extends AbstractController{
 
         return $this->redirectToRoute('app_patient_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-
 }
