@@ -21,7 +21,7 @@ use App\Entity\Fournisseur;
 use App\Entity\Psychiatre;
 use App\Form\Psychiatreadd;
 use App\Form\Fournisseuradd;
-use App\Form\Patientadd;
+use App\Form\PatientType;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/admin')]
@@ -202,7 +202,7 @@ final class AdminController extends AbstractController{
         return $this->redirectToRoute('app_fournisseur_index', [], Response::HTTP_SEE_OTHER);
     }
     //Patient
-    #[Route('/listPatient', name: 'app_patient_index', methods: ['GET'])]
+    #[Route('/listPatient', name: 'list_patient_index', methods: ['GET'])]
     public function listPatient(PatientRepository $patientRepository): Response
     {
         return $this->render('patient/index.html.twig', [
@@ -220,7 +220,11 @@ final class AdminController extends AbstractController{
         UserRepository $userRepository // Injecter le repository User
      ): Response {
         $patient = new Patient();
-        $form = $this->createForm(Patientadd::class, $patient);
+        $form = $this->createForm(PatientType::class, $patient, [
+            'is_edit' => false, // L'utilisateur n'est pas en mode édition
+            'is_admin' => true, // L'utilisateur est un administrateur
+            'is_register' => false, // L'utilisateur n'est pas en mode édition
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier si l'email existe déjà

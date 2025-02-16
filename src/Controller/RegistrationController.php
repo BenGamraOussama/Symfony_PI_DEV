@@ -65,7 +65,11 @@ public function register(
     }
 
     $patient = new Patient();
-    $patientForm = $this->createForm(PatientType::class, $patient);
+    $patientForm = $this->createForm(PatientType::class, $patient, [
+        'is_edit' => false, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
+        'is_admin' => true, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
+        'is_register' => true, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
+    ]);
     $patientForm->handleRequest($request);
 
     if ($patientForm->isSubmitted() && $patientForm->isValid()) {

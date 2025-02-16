@@ -9,40 +9,74 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PatientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('email')
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+    {   
+            if ($options['is_admin']) {
+                $builder->add('email')
+                        ->add('lastName')
+                        ->add('firstName')
+                ;
+            }
+            if ($options['is_register']) {
+                $builder->add('gener', ChoiceType::class, [
+                    'label' => 'Genre',
+                    'choices' => [
+                        'Femme' => 'female',
+                        'Homme' => 'male',
+                    ],
+                    'expanded' => true, // Afficher les options sous forme de cases à cocher
+                    'multiple' => false, // Ne permettre qu'une seule sélection
+                    'attr' => [
+                        'class' => 'form-check-input', // Ajouter des classes CSS si nécessaire
+                    ],
+                ])
+                        ->add('birthday')
+                        ->add('birthMonth')
+                        ->add('birthYear')
+                        ->add('adresse')
+                        ->add('phone')
+                        ->add('dossierMedical');
+            }
+            // Ajouter le champ 'plainPassword' uniquement si l'utilisateur n'est pas connecté
+        // Ajouter le champ 'plainPassword' uniquement si l'utilisateur n'est pas connecté
+        if (!$options['is_edit']) {
+            $builder->add('plainPassword', PasswordType::class, [
+                // Ce champ n'est pas mappé directement à l'entité
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
+                        'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
+                        // Longueur maximale autorisée par Symfony pour des raisons de sécurité
                         'max' => 4096,
-                    ]),
-                ],
-            ])
-            ->add('lastName')
-            ->add('firstName')
-            ->add('dossierMedical')
-        ;
+                     ]),
+                  ],
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Patient::class,
+            // Ajouter une option personnalisée pour déterminer si le formulaire est en mode édition
+            'is_edit' => false, // Par défaut, le formulaire n'est pas en mode édition
+            'is_admin' => false, // Par défaut, l'utilisateur n'est pas un administrateur
+            'is_register' => false, // Par défaut, l'utilisateur n'est pas un administrateur
+
         ]);
+
+        // Définir que 'is_edit' est une option autorisée
+        $resolver->setAllowedTypes('is_edit', 'bool');
+        $resolver->setAllowedTypes('is_admin', 'bool');
+        $resolver->setAllowedTypes('is_register', 'bool');
     }
 }

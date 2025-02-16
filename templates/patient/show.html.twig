@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basePatient.html.twig' %}
 
 {% block title %}Patient{% endblock %}
 
@@ -38,9 +38,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_patient_index') }}">back to list</a>
+    <a href="{{ path('app_patient_show', {'id': patient.id}) }}">back to profile</a>
 
-    <a href="{{ path('app_patient_edit', {'id': patient.id}) }}">edit</a>
+    <a href="{{ path('app_profile_edit', {'id': patient.id}) }}">edit</a>
 
     {{ include('patient/_delete_form.html.twig') }}
 {% endblock %}

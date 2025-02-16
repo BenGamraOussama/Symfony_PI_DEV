@@ -293,9 +293,6 @@
                                         </li>
                                     </ul>
                                 </li>
-
-                                
-    
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact</a>
                                 </li>
@@ -331,11 +328,17 @@
                                 </div>
                                 {% endif %}
                                {% if app.user %}
-                                <div class="option-item">
-                                    <div class="navbar-btn">
-                                        <a href="#" class="default-btn">My account <i class="flaticon-pointer"></i></a>
-                                    </div>
-                                </div>
+                                <div class="option-item dropdown">
+    <div class="navbar-btn">
+        <a href="#" class="default-btn dropdown-toggle" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            My Account <i class="flaticon-pointer"></i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+            <li><a class="dropdown-item" href="{{ path('app_patient_show', {'id': app.user.id})}}">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
                                 {% endif %}
                                {% if app.user %}
                                 <div class="option-item">
