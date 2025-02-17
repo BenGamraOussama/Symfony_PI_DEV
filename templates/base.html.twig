@@ -424,8 +424,22 @@
                                         <div class="bg-gradient px-4 py-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="mr-1">
+                                                {% if is_granted('ROLE_FOURNISSEUR') %}
                                                     <h4 class="text-white mb-0">{{user.firstName}} {{user.lastName}}</h4>
                                                     <small class="text-white">{{user.email}}</small>
+                                                {% endif %}
+                                                {% if is_granted('ROLE_PATIENT') %}
+                                                    <h4 class="text-white mb-0">{{user.firstName}} {{user.lastName}}</h4>
+                                                    <small class="text-white">{{user.email}}</small>
+                                                {% endif %}
+                                                {% if is_granted('ROLE_PSYCHIATRE') %}
+                                                    <h4 class="text-white mb-0">{{user.firstName}} {{user.lastName}}</h4>
+                                                    <small class="text-white">{{user.email}}</small>
+                                                {% endif %}
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    <h4 class="text-white mb-0">{{user.firstName}} {{user.lastName}}</h4>
+                                                    <small class="text-white">{{user.email}}</small>
+                                                {% endif %}
                                                 </div>
                                                 <a href="{{ path('app_logout')}}" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i class="zmdi zmdi-power"></i></a>
                                             </div>
