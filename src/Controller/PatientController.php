@@ -78,6 +78,7 @@ final class PatientController extends AbstractController{
             'formP' => $formPassword->createView(),
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_patient_delet', methods: ['POST'])]
     public function delete(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response

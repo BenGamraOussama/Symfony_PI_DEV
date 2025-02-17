@@ -72,7 +72,6 @@ final class AdminController extends AbstractController{
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
                 return $this->redirectToRoute('app_admin_ajouterpsychiatre');
             }
-            $psychiatre->setSpecialite('S');
             // Générer un mot de passe aléatoire
             $password = $passwordGenerator->generatePassword();
 

@@ -20,6 +20,9 @@ class Psychiatreadd extends AbstractType
             ->add('lastName')
             ->add('firstName')
             ->add('specialite')
+            ->add('numLicence')
+            ->add('phone')
+            ->add('adresse')
         ;
     }
 

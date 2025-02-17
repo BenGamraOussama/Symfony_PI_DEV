@@ -15,6 +15,7 @@ class Fournisseuradd extends AbstractType
         ->add('email')
         ->add('firstName')
         ->add('lastName')
+        ->add('adresse')
         ;
     }
 
