@@ -12,15 +12,7 @@
                 </div>
             </div>
         </div>
-        <!-- End Preloader Area -->
-        <!-- Start Top Header Area -->
-        <!-- End Top Header Area -->
-
-        <!-- Start Navbar Area -->
        
-        <!-- End Navbar Area -->
-        
-        <!-- Start Search Layout -->
         <div class="search-overlay">
             <div class="d-table">
                 <div class="d-table-cell">
@@ -42,9 +34,6 @@
                 </div>
             </div>
         </div>
-        <!-- End Search Layout -->
-        
-        <!-- Start Page Banner Area -->
         <div class="page-banner-with-full-image item-bg3">
             <div class="container">
                 <div class="page-banner-content-two">
@@ -68,14 +57,14 @@
 
                     <form method="post">
                         {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+             {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
+         {% if app.user %}
+          <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+         </div>
+         {% endif %}
 
                         <div class="form-group">
                             <label>Email</label>

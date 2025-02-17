@@ -40,10 +40,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-4">
                     <div class="profile-image">
-                    {% if patient.gener == 'homme' %}
+                    {% if patient.gener == 'female' %}
                         <img src="{{ asset('assetsP/images/profile1.png')}}" alt="Profile Image">
                         {% endif %}
-                    {% if patient.gener == 'femme' %}
+                    {% if patient.gener == 'male' %}
                         <img src="{{ asset('assetsP/images/profile2.png')}}" alt="Profile Image">
                        {% endif %}
                     </div>
@@ -127,7 +127,6 @@
                 <h2>Préférences</h2>
                 <p>Personnalisez vos préférences pour une meilleure expérience utilisateur.</p>
             </div>
-
             <div class="row">
                 <div class="col-lg-6">
                     <div class="preferences-content">

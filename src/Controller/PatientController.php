@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/patient')]
 final class PatientController extends AbstractController{
@@ -24,7 +25,7 @@ final class PatientController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Patient $patient, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Patient $patient, EntityManagerInterface $entityManager, SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(PatientType::class, $patient, [
             'is_edit' => true, // L'utilisateur connecté, donc on n'affiche pas le champ de mot de passe
@@ -33,7 +34,8 @@ final class PatientController extends AbstractController{
             'on_register' => true, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
         ]);
         $form->handleRequest($request);
-        $formPassword = $this->createForm(PasswordForm::class, $patient);
+
+        $formPassword = $this->createForm(PasswordForm::class);
         $formPassword->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,7 +61,12 @@ final class PatientController extends AbstractController{
 
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
+
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
+            $newPassword = $formPassword->get('plainPassword')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($patient, $newPassword);
+            $patient->setPassword($hashedPassword);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
