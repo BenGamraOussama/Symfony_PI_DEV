@@ -424,16 +424,21 @@
                                         <div class="bg-gradient px-4 py-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="mr-1">
-                                                    <h4 class="text-white mb-0">Alice Williams</h4>
-                                                    <small class="text-white">Henry@example.com</small>
+                                                    <h4 class="text-white mb-0">{{user.firstName}} {{user.lastName}}</h4>
+                                                    <small class="text-white">{{user.email}}</small>
                                                 </div>
-                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
-                                                                class="zmdi zmdi-power"></i></a>
+                                                <a href="{{ path('app_logout')}}" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i class="zmdi zmdi-power"></i></a>
                                             </div>
                                         </div>
                                         <div class="p-4">
-                                            <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
-                                                <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                        {% if is_granted('ROLE_FOURNISSEUR') %}
+                                          <a class="dropdown-item d-flex nav-link" href="{{ path('app_fournisseur_show', {'id': user.id})}}">
+                                          <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                         {% endif %}
+                                            {% if is_granted('ROLE_PSYCHIATRE') %}
+                                            <a class="dropdown-item d-flex nav-link" href="{{ path('app_psychiatre_show', {'id': user.id})}}">
+                                            <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                            {% endif %}
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
                                                 <i class="fa fa-envelope pr-2 text-primary"></i> Inbox
                                                 <span class="badge badge-primary ml-auto">6</span>
@@ -484,32 +489,37 @@
                 </a>
             </li>
             <li><a href="rendez-vous" aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
             <i class="nav-icon ti ti-user"></i>
             <span class="nav-title">Psychiatre</span></a>
                 <ul aria-expanded="false">
                     <li> 
-                        <a href='{{path('app_ajouter_psychiatre')}}'>Ajouter Psychiatre</a> </li>
-                    <li> <a href='{{path('app_psychiatre_index')}}'>List Psychiatre</a> </li>
+                        <a href='{{path('app_admin_ajouterpsychiatre')}}'>Ajouter Psychiatre</a> </li>
+                    <li> <a href='{{path('app_admin_listpsychiatre')}}'>List Psychiatre</a> </li>
                         </ul>
             </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
             <li>
                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                 <i class="bi bi-people"></i>
                 <span class="nav-title">Fournisseur</span> </a>
                 <ul aria-expanded="false">
-                    <li> <a href='{{path('app_fournisseur_new')}}'>Ajouter Fournisseur</a> </li>
-                    <li> <a href='{{path('app_fournisseur_index')}}'>List Fournisseur</a> </li>
+                    <li> <a href='{{path('app_admin_ajouterfournisseur')}}'>Ajouter Fournisseur</a> </li>
+                    <li> <a href='{{path('app_admin_listfournisseur')}}'>List Fournisseur</a> </li>
                 </ul>
             </li>
-            
+              {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
             <li>
                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Patient</span> </a>
                 <ul aria-expanded="false">
                     <li> <a href='{{path('app_patient_new')}}'>Ajouter Patient</a> </li>
-                    <li> <a href='{{path('app_patient_index')}}'>List Patient</a> </li>
+                    <li> <a href='{{path('list_patient_index')}}'>List Patient</a> </li>
                 </ul>
             </li>
+            {% endif %}
             <li><a href="listclient" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Client</span></a> </li>
             <li><a href="listproduit" aria-expanded="false"><i class="bi bi-shop"></i><span class="nav-title">Produit</span></a> </li>
             <li>

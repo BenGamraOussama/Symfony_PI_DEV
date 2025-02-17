@@ -18,7 +18,6 @@ class Patientadd extends AbstractType
             ->add('email')
             ->add('lastName')
             ->add('firstName')
-            ->add('dossierMedical')
         ;
     }
 

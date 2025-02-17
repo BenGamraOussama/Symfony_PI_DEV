@@ -3,8 +3,6 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/mentor-bootstrap-4-admin-dashboard-template/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Jan 2023 12:27:52 GMT -->
     <!-- begin app -->
     <div class="app">
         <!-- begin app-wrap -->
@@ -13,16 +11,18 @@
             <div class="loader">
                 <div class="h-100 d-flex justify-content-center">
                     <div class="align-self-center">
-                        <img src="{{ asset('assets/img/loader/loader.svg')}}" alt="loader">
+                        <img src="img/loader/loader.svg" alt="loader">
                     </div>
                 </div>
             </div>
             <!-- end pre-loader -->
             <!-- begin app-header -->
+            <header></header>
             <!-- end app-header -->
             <!-- begin app-container -->
             <div class="app-container">
                 <!-- begin app-nabar -->
+               
                 <!-- end app-navbar -->
                 <!-- begin app-main -->
                 <div class="app-main" id="main">
@@ -32,68 +32,116 @@
                         <div class="row">
                             <div class="col-md-12 m-b-30">
                                 <!-- begin page title -->
-                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
-                                    <div class="page-title mb-2 mb-sm-0">
-                                        <h1>List des Psychiatres</h1>
+                                <div class="d-block d-lg-flex flex-nowrap align-items-center">
+                                    <div class="page-title mr-4 pr-4 border-right">
+                                        <h1>Tableau de bord</h1>
                                     </div>
-                                    <div class="ml-auto d-flex align-items-center">
+                                    <div class="breadcrumb-bar align-items-center">
                                         <nav>
                                             <ol class="breadcrumb p-0 m-b-0">
                                                 <li class="breadcrumb-item">
                                                     <a href="index.html"><i class="ti ti-home"></i></a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                    Tables
+                                                    Tableau de bord
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">List des Psychiatres</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Default</li>
                                             </ol>
                                         </nav>
                                     </div>
+                                   
                                 </div>
                                 <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- Notification -->
+                        <div class="row">
+                            <div class="col-md-12">
+                               
                             </div>
                         </div>
                         <!-- end row -->
                         <!-- begin row -->
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-sm-12">
                                 <div class="card card-statistics">
-                                    <div class="card-body">
-                                        <div class="datatable-wrapper table-responsive">
-                                            <table  id="datatable" class="display compact table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
-                                                        <th>Specialite</th>
-                                                        <th>actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for psychiatre in psychiatres %}
-                                                    <tr>
-                                                        <td>{{ psychiatre.id }}</td>
-                                                        <td>{{ psychiatre.email }}</td>
-                                                        <td>{{ psychiatre.lastName }}</td>
-                                                        <td>{{ psychiatre.firstName }}</td>
-                                                        <td>{{ psychiatre.specialite }}</td>
-                                                        <td>
-                                                        <form method="post" action="{{ path('psychiatre_delete', {'id': psychiatre.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ psychiatre.id) }}">
-                                                          <button class="btn btn-danger">Block</button>
-                                                          <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                        </form></td></tr>
-                                                         {% endfor %}
-                                                        </tbody></table>
-                                            <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
+                                    <div class="row no-gutters">
+                                        <div class="col-xxl-3 col-lg-6">
+                                            <div class="p-20 border-lg-right border-bottom border-xxl-bottom-0">
+                                                <div class="d-flex m-b-10">
+                                                    <p class="mb-0 font-regular text-muted font-weight-bold">Total Visits</p>
+                                                    <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
+                                                </div>
+                                                <div class="d-block d-sm-flex h-100 align-items-center">
+                                                    <div class="apexchart-wrapper">
+                                                        <div id="analytics7"></div>
+                                                    </div>
+                                                    <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                        <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> 15,640</h3>
+                                                        <p>Monthly visitor</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-lg-6">
+                                            <div class="p-20 border-xxl-right border-bottom border-xxl-bottom-0">
+                                                <div class="d-flex m-b-10">
+                                                    <p class="mb-0 font-regular text-muted font-weight-bold">Total Cost</p>
+                                                    <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
+                                                </div>
+                                                <div class="d-block d-sm-flex h-100 align-items-center">
+                                                    <div class="apexchart-wrapper">
+                                                        <div id="analytics8"></div>
+                                                    </div>
+                                                    <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                        <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> 16,656</h3>
+                                                        <p>This month</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-lg-6">
+                                            <div class="p-20 border-lg-right border-bottom border-lg-bottom-0">
+                                                <div class="d-flex m-b-10">
+                                                    <p class="mb-0 font-regular text-muted font-weight-bold">Total Sales</p>
+                                                    <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i> </a>
+                                                </div>
+                                                <div class="d-block d-sm-flex h-100 align-items-center">
+                                                    <div class="apexchart-wrapper">
+                                                        <div id="analytics9"></div>
+                                                    </div>
+                                                    <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                        <h3 class="mb-0"><i class="icon-arrow-up-circle"></i>569</h3>
+                                                        <p>Avg. Sales per day</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-lg-6">
+                                            <div class="p-20">
+                                                <div class="d-block d-sm-flex h-100 align-items-center">
+                                                    <div class="apexchart-wrapper">
+                                                        <div id="analytics10"></div>
+                                                    </div>
+                                                    <div class="statistics ml-sm-auto mt-4 mt-sm-0 pr-sm-5">
+                                                        <ul class="list-style-none p-0">
+                                                            <li class="d-flex py-1">
+                                                                <span><i class="fa fa-circle text-primary pr-2"></i> Redirect Visits</span> <span class="pl-2 font-weight-bold">456</span></li>
+                                                            <li class="d-flex py-1"><span><i class="fa fa-circle text-warning pr-2"></i> New Visits</span> <span class="pl-2 font-weight-bold">256</span></li>
+                                                            <li class="d-flex py-1"><span><i class="fa fa-circle text-info pr-2"></i> Direct Visits</span> <span class="pl-2 font-weight-bold">128</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                       
                         <!-- end row -->
+                        <!-- event Modal -->
+                        
                     </div>
                     <!-- end container-fluid -->
                 </div>
@@ -101,9 +149,12 @@
             </div>
             <!-- end app-container -->
             <!-- begin footer -->
+            <footer></footer>
             <!-- end footer -->
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
+    <!-- plugins -->
 {% endblock %}

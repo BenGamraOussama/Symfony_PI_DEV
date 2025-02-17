@@ -3,8 +3,6 @@
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/mentor-bootstrap-4-admin-dashboard-template/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Jan 2023 12:27:52 GMT -->
     <!-- begin app -->
     <div class="app">
         <!-- begin app-wrap -->
@@ -19,10 +17,12 @@
             </div>
             <!-- end pre-loader -->
             <!-- begin app-header -->
+          <app-header></app-header>
             <!-- end app-header -->
             <!-- begin app-container -->
             <div class="app-container">
                 <!-- begin app-nabar -->
+                <app-menu></app-menu>
                 <!-- end app-navbar -->
                 <!-- begin app-main -->
                 <div class="app-main" id="main">
@@ -34,7 +34,7 @@
                                 <!-- begin page title -->
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>List des Psychiatres</h1>
+                                        <h1>Administrateur</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
                                         <nav>
@@ -43,9 +43,9 @@
                                                     <a href="index.html"><i class="ti ti-home"></i></a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                    Tables
+                                                    Forms
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">List des Psychiatres</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Administrateur</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -56,40 +56,36 @@
                         <!-- end row -->
                         <!-- begin row -->
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-md-12">
                                 <div class="card card-statistics">
-                                    <div class="card-body">
-                                        <div class="datatable-wrapper table-responsive">
-                                            <table  id="datatable" class="display compact table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
-                                                        <th>Specialite</th>
-                                                        <th>actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                {% for psychiatre in psychiatres %}
-                                                    <tr>
-                                                        <td>{{ psychiatre.email }}</td>
-                                                        <td>{{ psychiatre.lastName }}</td>
-                                                        <td>{{ psychiatre.firstName }}</td>
-                                                        <td>{{ psychiatre.specialite }}</td>
-                                                        <td>
-                                                        <form method="post" action="{{ path('psychiatre_delete', {'id': psychiatre.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ psychiatre.id) }}">
-                                                          <button class="btn btn-danger">Supprimer</button>
-                                                        </form>
-                                                        </td></tr>
-                                                         {% endfor %}
-                                                        </tbody></table>
-                                            <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
+                                    <div class="card-header">
+                                        <div class="card-heading">
+                                            <h4 class="card-title">Ajouter Psychiatre</h4>
                                         </div>
                                     </div>
+                                    <form method="post">
+                                    {{ form_start(patientadd) }}
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            {{ form_widget(patientadd.firstName, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'First Name'} }) }}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_widget(patientadd.lastName, { 'attr': {'class': 'form-control form-control', 'placeholder': 'Last Name'} }) }}      
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form_widget(patientadd.email, { 'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Email'} }) }}
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">
+                                                Ajouter
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(patientadd) }}
+                                </form>
                                 </div>
                             </div>
+                           
                         </div>
                         <!-- end row -->
                     </div>
@@ -99,9 +95,13 @@
             </div>
             <!-- end app-container -->
             <!-- begin footer -->
+          <app-footer></app-footer>
             <!-- end footer -->
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
+    <!-- plugins -->
+    
 {% endblock %}

@@ -47,10 +47,16 @@ class PasswordForm extends AbstractType
                     'first_options' => [
                         'constraints' => $passwordConstraints,
                         'label' => 'Nouveau mot de passe',
+                        'attr' => [
+                        'class' => 'form-control', // Ajouter des classes CSS si nécessaire
+                    ],
                     ],
                     'second_options' => [
                         'constraints' => $passwordConstraints,
                         'label' => 'Répétez le mot de passe',
+                        'attr' => [
+                        'class' => 'form-control', // Ajouter des classes CSS si nécessaire
+                    ],
                     ],
                     'invalid_message' => 'Les mots de passe doivent correspondre.',
                     'mapped' => false,

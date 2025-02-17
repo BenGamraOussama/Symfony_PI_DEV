@@ -3,6 +3,9 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block body %}
+<style>
+.form-check{position:relative;display:block;padding-left:1.25rem}.form-check-input{position:absolute;margin-top:.3rem;margin-left:-1.25rem}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.form-check-inline{display:inline-flex;align-items:center;padding-left:0;margin-right:.75rem}.form-check-inline .form-check-input{position:static;margin-top:0;margin-right:.3125rem;margin-left:0}
+</style>
         <!-- Start Preloader Area -->
         <div class="preloader-area">
             <div class="spinner">
@@ -72,7 +75,7 @@
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                                 <div class="mb-3">
                                       <div class="form-check">
-                                       {{ form_row(form.gener, {'attr': {'class': 'form-check-input'}}) }}
+                                       {{ form_widget(form.gener, {'attr': {'class': 'form-check'}}) }}
                                       </div>
                                 </div>
             
@@ -111,7 +114,6 @@
                                 </div>
             
                                 <button type="submit" value="Save" class="btn btn-primary">{{ button_label|default('Save') }}</button>
-                          </button>
                             {{ form_end(form) }}
                         </div>
                     </div>
@@ -123,9 +125,6 @@
                             {{ form_start(formP, {'attr': {'id': 'passwordForm', 'novalidate': 'novalidate'}}) }}
                                 <div class="mb-3">
                                     {{ form_widget(formP.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
-                                </div>
-                                <div class="mb-3">
-                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirmation du nouveau mot de passe">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Mettre à jour</button>
                             {{ form_end(formP) }}
@@ -142,14 +141,4 @@
         </section>
 
         <!-- Script pour la validation des mots de passe -->
-        <script>
-            document.getElementById('formP').addEventListener('submit', function (e) {
-                const newPassword = document.querySelector('input[name="formP[new_password]"]').value;
-                const confirmPassword = document.querySelector('input[name="formP[confirm_password]"]').value;
-                if (newPassword !== confirmPassword) {
-                    e.preventDefault();
-                    alert('Les mots de passe ne correspondent pas.');
-                }
-            });
-        </script>
 {% endblock %}

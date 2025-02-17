@@ -22,6 +22,8 @@ use App\Entity\Psychiatre;
 use App\Form\Psychiatreadd;
 use App\Form\Fournisseuradd;
 use App\Form\PatientType;
+use App\Form\PsychiatreType;
+use App\Form\FournisseurType;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/admin')]
@@ -30,22 +32,26 @@ final class AdminController extends AbstractController{
     #[Route(name: 'app_admin')]
     public function index(UserRepository $userRepository): Response
     {
+        $user = $this->getUser();
         $totalPatients = $userRepository->countPatients();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'total'=>$totalPatients,
+            'user' => $user,
         ]);
 
     }
     //psychiatre
-    #[Route('/listPsychiatre', name: 'app_psychiatre_index', methods: ['GET'])]
+    #[Route('/listPsychiatre', name: 'app_admin_listpsychiatre', methods: ['GET'])]
     public function listPsychiatre(PsychiatreRepository $psychiatreRepository): Response
     {
-        return $this->render('psychiatre/index.html.twig', [
+        $user = $this->getUser();
+        return $this->render('admin/listPsychiatre.html.twig', [
             'psychiatres' => $psychiatreRepository->findAll(),
+            'user' => $user,
         ]);
     }
-    #[Route('/ajouterPsychitare', name: 'app_ajouter_psychiatre')]
+    #[Route('/ajouterPsychitare', name: 'app_admin_ajouterpsychiatre')]
     public function addpsychiatre(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -54,6 +60,7 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
+        $user = $this->getUser();
         $psychiatre = new Psychiatre();
         $form = $this->createForm(Psychiatreadd::class, $psychiatre);
         $form->handleRequest($request);
@@ -63,7 +70,7 @@ final class AdminController extends AbstractController{
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
-                return $this->redirectToRoute('app_ajouter_psychiatre');
+                return $this->redirectToRoute('app_admin_ajouterpsychiatre');
             }
             $psychiatre->setSpecialite('S');
             // Générer un mot de passe aléatoire
@@ -99,7 +106,7 @@ final class AdminController extends AbstractController{
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_ajouter_psychiatre');
+            return $this->redirectToRoute('app_admin_ajouterpsychiatre');
         }
 
         return $this->render('admin/ajouterPsychiatre.html.twig', [
@@ -107,9 +114,10 @@ final class AdminController extends AbstractController{
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
+            'user'=>$user,
         ]);
     }
-    #[Route('/{id}', name: 'psychiatre_delete', methods: ['POST'])]
+    #[Route('listPsychiatre/{id}', name: 'psychiatre_delete', methods: ['POST'])]
     public function deletepsychiatre(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
@@ -117,17 +125,19 @@ final class AdminController extends AbstractController{
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_psychiatre_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_listpsychiatre', [], Response::HTTP_SEE_OTHER);
     }
     //fournisseur
-    #[Route('/listFournisseur', name: 'app_fournisseur_index', methods: ['GET'])]
+    #[Route('/listFournisseur', name: 'app_admin_listfournisseur', methods: ['GET'])]
     public function listFournisseur(FournisseurRepository $fournisseurRepository): Response
     {
-        return $this->render('fournisseur/index.html.twig', [
+        $user = $this->getUser();
+        return $this->render('admin/listFournisseur.html.twig', [
             'fournisseurs' => $fournisseurRepository->findAll(),
+            'user' => $user,
         ]);
     }
-    #[Route('/ajouterFournisseur', name: 'app_fournisseur_new', methods: ['GET', 'POST'])]
+    #[Route('/ajouterFournisseur', name: 'app_admin_ajouterfournisseur', methods: ['GET', 'POST'])]
     public function addfournisseur(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -136,6 +146,7 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
+        $user = $this->getUser();
         $fournisseur = new Fournisseur();
         $form = $this->createForm(Fournisseuradd::class, $fournisseur);
         $form->handleRequest($request);
@@ -145,7 +156,7 @@ final class AdminController extends AbstractController{
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
-                return $this->redirectToRoute('app_fournisseur_new');
+                return $this->redirectToRoute('app_admin_ajouterfournisseur');
             }
             $fournisseur->setEtat('true');
             // Générer un mot de passe aléatoire
@@ -181,14 +192,15 @@ final class AdminController extends AbstractController{
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_fournisseur_new');
+            return $this->redirectToRoute('app_admin_ajouterfournisseur');
         }
 
-        return $this->render('admin/ajouterPsychiatre.html.twig', [
+        return $this->render('admin/ajouterFournisseur.html.twig', [
             'fournisseuradd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
+            'user'=>$user,
         ]);
     }
     #[Route('listFournisseur/{id}', name: 'fournisseur_delete', methods: ['POST'])]
@@ -199,14 +211,16 @@ final class AdminController extends AbstractController{
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_fournisseur_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_listfournisseur', [], Response::HTTP_SEE_OTHER);
     }
     //Patient
     #[Route('/listPatient', name: 'list_patient_index', methods: ['GET'])]
     public function listPatient(PatientRepository $patientRepository): Response
     {
-        return $this->render('patient/index.html.twig', [
+        $user = $this->getUser();
+        return $this->render('admin/listFournisseur.html.twig', [
             'patients' => $patientRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -219,9 +233,10 @@ final class AdminController extends AbstractController{
         MailerInterface $mailer,
         UserRepository $userRepository // Injecter le repository User
      ): Response {
+        $user = $this->getUser();
         $patient = new Patient();
         $form = $this->createForm(PatientType::class, $patient, [
-            'is_edit' => false, // L'utilisateur n'est pas en mode édition
+            'is_edit' => true, // L'utilisateur n'est pas en mode édition
             'is_admin' => true, // L'utilisateur est un administrateur
             'is_register' => false, // L'utilisateur n'est pas en mode édition
         ]);
@@ -232,7 +247,7 @@ final class AdminController extends AbstractController{
 
             if ($existingUser) {
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
-                return $this->redirectToRoute('app_ajouter_psychiatre');
+                return $this->redirectToRoute('app_patient_new');
             }
             // Générer un mot de passe aléatoire
             $password = $passwordGenerator->generatePassword();
@@ -267,14 +282,15 @@ final class AdminController extends AbstractController{
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_ajouter_psychiatre');
+            return $this->redirectToRoute('app_patient_new');
         }
 
-        return $this->render('admin/ajouterPsychiatre.html.twig', [
+        return $this->render('admin/ajouterPatient.html.twig', [
             'patientadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
+            'user'=>$user,
         ]);
     }
     #[Route('listPatient/{id}', name: 'patient_delete', methods: ['POST'])]
@@ -284,7 +300,6 @@ final class AdminController extends AbstractController{
             $entityManager->remove($patient);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('app_patient_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('list_patient_index', [], Response::HTTP_SEE_OTHER);
     }
 }

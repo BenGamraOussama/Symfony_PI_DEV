@@ -34,7 +34,7 @@
                                 <!-- begin page title -->
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>List des Psychiatres</h1>
+                                        <h1>List des fournisseurs</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
                                         <nav>
@@ -45,7 +45,7 @@
                                                 <li class="breadcrumb-item">
                                                     Tables
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">List des Psychiatres</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">List des fournisseurs</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -66,20 +66,18 @@
                                                         <th>Email</th>
                                                         <th>Last Name</th>
                                                         <th>Firs tName</th>
-                                                        <th>Specialite</th>
                                                         <th>actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                {% for psychiatre in psychiatres %}
+                                                {% for fournisseur in fournisseurs %}
                                                     <tr>
-                                                        <td>{{ psychiatre.email }}</td>
-                                                        <td>{{ psychiatre.lastName }}</td>
-                                                        <td>{{ psychiatre.firstName }}</td>
-                                                        <td>{{ psychiatre.specialite }}</td>
+                                                        <td>{{ fournisseur.email }}</td>
+                                                        <td>{{ fournisseur.lastName }}</td>
+                                                        <td>{{ fournisseur.firstName }}</td>
                                                         <td>
-                                                        <form method="post" action="{{ path('psychiatre_delete', {'id': psychiatre.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ psychiatre.id) }}">
+                                                        <form method="post" action="{{ path('fournisseur_delete', {'id': fournisseur.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ fournisseur.id) }}">
                                                           <button class="btn btn-danger">Supprimer</button>
                                                         </form>
                                                         </td></tr>

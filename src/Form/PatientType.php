@@ -31,7 +31,7 @@ class PatientType extends AbstractType
                     'expanded' => true, // Afficher les options sous forme de cases à cocher
                     'multiple' => false, // Ne permettre qu'une seule sélection
                     'attr' => [
-                        'class' => 'form-check-input', // Ajouter des classes CSS si nécessaire
+                        'class' => 'form-check', // Ajouter des classes CSS si nécessaire
                     ],
                 ])
                         ->add('birthday')
