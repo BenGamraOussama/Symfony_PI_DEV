@@ -9,7 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PsychiatreType extends AbstractType
 {
@@ -20,7 +21,10 @@ class PsychiatreType extends AbstractType
             ->add('email')
             ->add('lastName')
             ->add('firstName')
-            ->add('specialite');
+            ->add('specialite')
+            ->add('numLicence', TextType::class)
+            ->add('phone', IntegerType::class)
+            ->add('adresse');
             if (!$options['is_edit']) {
                 $builder->add('plainPassword', PasswordType::class, [
                     // Ce champ n'est pas mappé directement à l'entité

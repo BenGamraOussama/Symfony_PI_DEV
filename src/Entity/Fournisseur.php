@@ -11,6 +11,9 @@ class Fournisseur extends User
     #[ORM\Column]
     private ?bool $etat = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
 
     public function isEtat(): ?bool
     {
@@ -20,6 +23,18 @@ class Fournisseur extends User
     public function setEtat(bool $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }

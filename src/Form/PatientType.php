@@ -10,6 +10,11 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class PatientType extends AbstractType
 {
@@ -34,12 +39,28 @@ class PatientType extends AbstractType
                         'class' => 'form-check', // Ajouter des classes CSS si nécessaire
                     ],
                 ])
-                        ->add('birthday')
-                        ->add('birthMonth')
-                        ->add('birthYear')
                         ->add('adresse')
-                        ->add('phone')
-                        ->add('dossierMedical');
+                        ->add('phone', IntegerType::class)
+                        ->add('naissance', DateType::class, [
+                            'widget' => 'single_text',
+                            'attr' => ['class' => 'form-control'],
+                        ]);
+            }
+            if ($options['on_register']) {
+                $builder->add('dossierMedical', FileType::class, [
+                    'label' => 'Dossier Medical (PDF file)',
+                    'mapped' => false,
+                    'required' => false,
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'application/pdf',
+                            ],
+                            'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        ])
+                    ],
+                ]);
             }
             // Ajouter le champ 'plainPassword' uniquement si l'utilisateur n'est pas connecté
         // Ajouter le champ 'plainPassword' uniquement si l'utilisateur n'est pas connecté
@@ -71,6 +92,7 @@ class PatientType extends AbstractType
             'is_edit' => false, // Par défaut, le formulaire n'est pas en mode édition
             'is_admin' => false, // Par défaut, l'utilisateur n'est pas un administrateur
             'is_register' => false, // Par défaut, l'utilisateur n'est pas un administrateur
+            'on_register' => false, // Par défaut, l'utilisateur n'est pas un administrateur
 
         ]);
 
@@ -78,5 +100,6 @@ class PatientType extends AbstractType
         $resolver->setAllowedTypes('is_edit', 'bool');
         $resolver->setAllowedTypes('is_admin', 'bool');
         $resolver->setAllowedTypes('is_register', 'bool');
+        $resolver->setAllowedTypes('on_register', 'bool');
     }
 }

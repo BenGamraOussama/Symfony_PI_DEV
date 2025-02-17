@@ -69,6 +69,7 @@ public function register(
         'is_edit' => false, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
         'is_admin' => true, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
         'is_register' => true, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
+        'on_register' => false, // L'utilisateur n'est pas connecté, donc on affiche le champ de mot de passe
     ]);
     $patientForm->handleRequest($request);
 

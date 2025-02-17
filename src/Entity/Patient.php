@@ -5,27 +5,17 @@ namespace App\Entity;
 use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 class Patient extends User
 {
-   
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $dossierMedical = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $dossierMedicalPath = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $gener = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $birthday = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $birthMonth = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $birthYear = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
@@ -33,20 +23,8 @@ class Patient extends User
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 
-
-
-
-    public function getDossierMedical(): ?string
-    {
-        return $this->dossierMedical;
-    }
-
-    public function setDossierMedical(string $dossierMedical): static
-    {
-        $this->dossierMedical = $dossierMedical;
-
-        return $this;
-    }
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $naissance = null;
 
     public function getGener(): ?string
     {
@@ -59,43 +37,6 @@ class Patient extends User
 
         return $this;
     }
-
-    public function getBirthday(): ?int
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(?int $birthday): static
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    public function getBirthMonth(): ?int
-    {
-        return $this->birthMonth;
-    }
-
-    public function setBirthMonth(?int $birthMonth): static
-    {
-        $this->birthMonth = $birthMonth;
-
-        return $this;
-    }
-
-    public function getBirthYear(): ?int
-    {
-        return $this->birthYear;
-    }
-
-    public function setBirthYear(?int $birthYear): static
-    {
-        $this->birthYear = $birthYear;
-
-        return $this;
-    }
-
     public function getAdresse(): ?string
     {
         return $this->adresse;
@@ -116,6 +57,29 @@ class Patient extends User
     public function setPhone(?int $phone): static
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getNaissance(): ?\DateTimeInterface
+    {
+        return $this->naissance;
+    }
+
+    public function setNaissance(?\DateTimeInterface $naissance): static
+    {
+        $this->naissance = $naissance;
+
+        return $this;
+    }
+    public function getDossierMedicalPath(): ?string
+    {
+        return $this->dossierMedicalPath;
+    }
+
+    public function setDossierMedicalPath(?string $dossierMedicalPath): self
+    {
+        $this->dossierMedicalPath = $dossierMedicalPath;
 
         return $this;
     }
