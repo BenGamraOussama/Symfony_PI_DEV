@@ -31,6 +31,7 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private ?ProduitCategories $categorie = null;
 
+
     public function getCategorie(): ?ProduitCategories
     {
         return $this->categorie;
@@ -93,6 +94,17 @@ class Produit
     {
         $this->disponible = $disponible;
 
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 
