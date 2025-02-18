@@ -63,25 +63,48 @@
                                             <table  id="datatable" class="display compact table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
+                                                        <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
+                                                        <th>N° tel</th>
+                                                        <th>numLicence</th>
                                                         <th>Specialite</th>
-                                                        <th>actions</th>
+                                                        <th>Adresse</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for psychiatre in psychiatres %}
                                                     <tr>
+                                                        <td>{{ psychiatre.lastName }} {{ psychiatre.firstName }}</td>
                                                         <td>{{ psychiatre.email }}</td>
-                                                        <td>{{ psychiatre.lastName }}</td>
-                                                        <td>{{ psychiatre.firstName }}</td>
+                                                        <td>{{ psychiatre.phone }}</td>
+                                                        <td>{{ psychiatre.numLicence }}</td>
                                                         <td>{{ psychiatre.specialite }}</td>
+                                                        <td>{{ psychiatre.adresse }}</td>
                                                         <td>
-                                                        <form method="post" action="{{ path('psychiatre_delete', {'id': psychiatre.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ psychiatre.id) }}">
-                                                          <button class="btn btn-danger">Supprimer</button>
-                                                        </form>
+                                                            <button class="btn btn-danger" data-toggle="modal" data-target="#defaultModal">Supprimer</button>
+                                                            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title">Waring</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                             </div>
+                                                            <div class="modal-body">
+                                                             Are you sure you want to delete {{ psychiatre.firstName }} {{ psychiatre.lastName }} ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <form method="post" action="{{ path('psychiatre_delete', {'id': psychiatre.id}) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ psychiatre.id) }}">
+                                                             <button class="btn btn-danger">Supprimer</button>
+                                                            </form>
+                                                            </div>
+                                                           </div>
+                                                           </div>
+                                                            </div>
                                                         </td></tr>
                                                          {% endfor %}
                                                         </tbody></table>

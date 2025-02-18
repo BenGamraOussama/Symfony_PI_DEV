@@ -41,6 +41,14 @@ final class AdminController extends AbstractController{
         ]);
 
     }
+    #[Route('/profile/{id}', name: 'app_admin_show', methods: ['GET'])]
+    public function show(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('admin/profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
     //psychiatre
     #[Route('/listPsychiatre', name: 'app_admin_listpsychiatre', methods: ['GET'])]
     public function listPsychiatre(PsychiatreRepository $psychiatreRepository): Response
@@ -217,7 +225,7 @@ final class AdminController extends AbstractController{
     public function listPatient(PatientRepository $patientRepository): Response
     {
         $user = $this->getUser();
-        return $this->render('admin/listFournisseur.html.twig', [
+        return $this->render('admin/listPatient.html.twig', [
             'patients' => $patientRepository->findAll(),
             'user' => $user,
         ]);

@@ -23,9 +23,6 @@ class Patient extends User
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $naissance = null;
-
     public function getGener(): ?string
     {
         return $this->gener;

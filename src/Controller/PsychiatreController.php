@@ -37,7 +37,7 @@ final class PsychiatreController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_psychiatre_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager, int $id): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(PsychiatreType::class, $psychiatre, [
@@ -48,7 +48,7 @@ final class PsychiatreController extends AbstractController{
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_psychiatre', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_psychiatre_show', ['id' => $psychiatre->getId()],  Response::HTTP_SEE_OTHER);
         }
         return $this->render('psychiatre/edit.html.twig', [
             'user' => $user,
@@ -65,6 +65,6 @@ final class PsychiatreController extends AbstractController{
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_psychiatre_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

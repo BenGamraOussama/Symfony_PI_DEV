@@ -27,7 +27,7 @@
 
     <style>
         #bglogo {
-            background: #7b9dfd;
+            background: #8e54e9;
         }
         .footer {
           background: #fff;
@@ -451,6 +451,10 @@
                                          {% endif %}
                                             {% if is_granted('ROLE_PSYCHIATRE') %}
                                             <a class="dropdown-item d-flex nav-link" href="{{ path('app_psychiatre_show', {'id': user.id})}}">
+                                            <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                            {% endif %}
+                                             {% if is_granted('ROLE_ADMIN') %}
+                                            <a class="dropdown-item d-flex nav-link" href="{{ path('app_admin_show', {'id': user.id})}}">
                                             <i class="fa fa-user pr-2 text-success"></i> Profile</a>
                                             {% endif %}
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">

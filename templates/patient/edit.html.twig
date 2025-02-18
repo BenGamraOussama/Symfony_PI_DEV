@@ -6,25 +6,6 @@
 <style>
 .form-check{position:relative;display:block;padding-left:1.25rem}.form-check-input{position:absolute;margin-top:.3rem;margin-left:-1.25rem}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.form-check-inline{display:inline-flex;align-items:center;padding-left:0;margin-right:.75rem}.form-check-inline .form-check-input{position:static;margin-top:0;margin-right:.3125rem;margin-left:0}
 </style>
-        <!-- Start Preloader Area -->
-        <div class="preloader-area">
-            <div class="spinner">
-                <div class="inner">
-                    <div class="disc"></div>
-                    <div class="disc"></div>
-                    <div class="disc"></div>
-                </div>
-            </div>
-        </div>
-        <!-- End Preloader Area -->
-
-        <!-- Start Top Header Area -->
-        <!-- End Top Header Area -->
-
-        <!-- Start Navbar Area -->
-        <!-- End Navbar Area -->
-        
-        <!-- Start Search Layout -->
         <div class="search-overlay">
             <div class="d-table">
                 <div class="d-table-cell">
@@ -82,12 +63,21 @@
 
     <div class="mb-3">
         {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.firstName) }}
+        </div>
     </div>
     <div class="mb-3">
         {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.lastName) }}
+        </div>
     </div>
     <div class="mb-3">
         {{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Localité'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.adresse) }}
+        </div>
     </div>
 
     <div class="mb-3 d-flex">
@@ -95,15 +85,21 @@
             <option>+216</option>
         </select>
         {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de mobile'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.phone) }}
+        </div>
     </div>
     <div class="mb-3">
         {{ form_widget(form.dossierMedical, {'attr': {'class': 'form-control', 'placeholder': 'Dossier Medical'}}) }}
-    </div>
-    <div class="mb-3">
-        {{ form_widget(form.naissance, {'attr': {'class': 'form-control', 'placeholder': 'Date de naissance'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.dossierMedical) }}
+        </div>
     </div>
     <div class="mb-3">
         {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.email) }}
+        </div>
     </div>
 
     <button type="submit" value="Save" class="btn btn-primary">{{ button_label|default('Save') }}</button>
@@ -118,15 +114,12 @@
                             {{ form_start(formP, {'attr': {'id': 'passwordForm', 'novalidate': 'novalidate'}}) }}
                                 <div class="mb-3">
                                     {{ form_widget(formP.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
+                                    <div class="text-danger">
+                                        {{ form_errors(formP.plainPassword) }}
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Mettre à jour</button>
                             {{ form_end(formP) }}
-                        </div>
-                        <div class="mt-3">
-                            <form method="post" action="{{ path('app_patient_delet', {'id': patient.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?');">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ patient.id) }}">
-                                <button type="submit" class="btn btn-danger">Supprimer mon compte</button>
-                            </form>
                         </div>
                     </div>
                 </div>

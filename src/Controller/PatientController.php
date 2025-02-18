@@ -25,7 +25,7 @@ final class PatientController extends AbstractController{
     }
 
     #[Route('/{id}/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Patient $patient, EntityManagerInterface $entityManager, SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher): Response
+    public function edit(Request $request, Patient $patient, EntityManagerInterface $entityManager, SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher, int $id): Response
     {
         $form = $this->createForm(PatientType::class, $patient, [
             'is_edit' => true, // L'utilisateur connecté, donc on n'affiche pas le champ de mot de passe
@@ -69,7 +69,7 @@ final class PatientController extends AbstractController{
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_patient_show', ['id' => $psychiatre->getId()],  Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('patient/edit.html.twig', [
@@ -78,8 +78,6 @@ final class PatientController extends AbstractController{
             'formP' => $formPassword->createView(),
         ]);
     }
-    
-
     #[Route('/{id}', name: 'app_patient_delet', methods: ['POST'])]
     public function delete(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response
     {
@@ -87,7 +85,6 @@ final class PatientController extends AbstractController{
             $entityManager->remove($patient);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Psychiatre{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
 
@@ -28,7 +28,7 @@
                                 <!-- begin page title -->
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>My Account</h1>
+                                        <h1>Account Settings</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
                                         <nav>
@@ -63,8 +63,7 @@
                                                                 <img src="{{ asset('assets/img/avtar/01.jpg')}}" class="img-fluid" alt="users-avatar">
                                                             </div>
                                                             <div class="profile pt-4">
-                                                                <h4 class="mb-1">{{ psychiatre.firstName }} {{ psychiatre.lastName }}</h4>
-                                                                <p>{{ psychiatre.specialite }}</p>
+                                                                <h4 class="mb-1">{{ user.firstName }} {{ user.lastName }}</h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -92,42 +91,22 @@
                                                                 </div>
                                                             </li>
                                                         </ul>
-                                                    </div>
+                                                    </div>                              
                                                 </div>
                                             </div>
                                             <div class="col-xl-5 col-md-6 col-12 border-t border-right">
                                                 <div class="page-account-form">
-                                                    <div class="form-titel border-bottom p-3">
-                                                        <h5 class="mb-0 py-2">Edit Your Personal Settings</h5>
-                                                    </div>
+                                                    
                                                     <div class="p-4">
                                                         <form>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-12">
                                                                     <label for="name1">Email</label>
                                                                     <ul>
-                                                                     <li>{{ psychiatre.email }}</li></ul>
+                                                                     <li>{{ user.email }}</li></ul>
                                                                 </div>
-                                                                 
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="name1">numLicence</label>
-                                                                    <ul>
-                                                                     <li>{{ psychiatre.numLicence }}</li></ul>
-                                                                </div>
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="name1">Adresse</label>
-                                                                    <ul>
-                                                                     <li>{{ psychiatre.adresse }}</li></ul>
-                                                                </div>
-                                                                <div class="form-group col-md-12">
-                                                                    <label for="name1">N° tel</label>
-                                                                    <ul>
-                                                                     <li>{{ psychiatre.phone }}</li></ul>
-                                                                </div>
-                                                                
                                                                 
                                                             </div>
-                                                            <button class="btn btn-primary"><a href="{{ path('app_psychiatre_edit', {'id': psychiatre.id}) }}">Update Information</a></button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -153,43 +132,4 @@
     <!-- end app -->
 
     <!-- plugins -->
-    <h1>Psychiatre</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ psychiatre.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ psychiatre.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ psychiatre.roles ? psychiatre.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ psychiatre.password }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ psychiatre.lastName }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ psychiatre.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Specialite</th>
-                <td>{{ psychiatre.specialite }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_psychiatre') }}">back to home</a>
-
-
-    {{ include('psychiatre/_delete_form.html.twig') }}
 {% endblock %}

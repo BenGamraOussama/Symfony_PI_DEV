@@ -17,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\DiscriminatorColumn(name: 'discr', type: 'string')] // Colonne discriminatrice
 #[ORM\DiscriminatorMap([
     'user' => User::class,
+    'admin' => Admin::class,
     'patient' => Patient::class,
     'psychiatre' => Psychiatre::class,
     'fournisseur' => Fournisseur::class,
