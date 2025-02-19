@@ -1,0 +1,136 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}My Activities{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">Your Activities</h2>
+    
+    <div class="row g-4">
+        {% for activity in patientActivities %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow activity-card" 
+                 data-bs-toggle="modal" 
+                 data-bs-target="#activityModal"
+                 data-activity-id="{{ activity.id }}"
+                 data-title="{{ activity.titre }}"
+                 data-description="{{ activity.description }}"
+                 data-status="{{ activity.status }}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ activity.titre }}
+                        <span class="badge float-end 
+                            {% if activity.status == 'not_started' %}bg-secondary
+                            {% elseif activity.status == 'in_progress' %}bg-warning text-dark
+                            {% elseif activity.status == 'completed' %}bg-success
+                            {% endif %}">
+                            {{ activity.status|replace({'_': ' '})|title }}
+                        </span>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">No activities assigned yet.</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# Activity Modal #}
+    <div class="modal fade" id="activityModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="activityModalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <h6>Description</h6>
+                        <p id="activityModalDescription" class="text-muted"></p>
+                    </div>
+
+                    <form id="statusUpdateForm" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Update Status</label>
+                            <select name="status" class="form-select" id="statusSelect">
+                                <option value="not_started">Not Started</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="activity_id" id="activityId">
+                        <input type="hidden" name="_token" value="{{ csrf_token('update_status') }}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateStatus()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('activityModal');
+    
+    modal.addEventListener('show.bs.modal', function(event) {
+        const card = event.relatedTarget;
+        document.getElementById('activityModalTitle').textContent = card.dataset.title;
+        document.getElementById('activityModalDescription').textContent = card.dataset.description;
+        document.getElementById('statusSelect').value = card.dataset.status;
+        document.getElementById('activityId').value = card.dataset.activityId;
+    });
+});
+
+function updateStatus() {
+    const formData = new FormData(document.getElementById('statusUpdateForm'));
+    
+    fetch('{{ path("patient_update_activity_status") }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if(response.ok) {
+            const activityId = document.getElementById('activityId').value;
+            const newStatus = document.getElementById('statusSelect').value;
+            const badge = document.querySelector(`[data-activity-id="${activityId}"] .badge`);
+            
+            badge.textContent = newStatus.replace('_', ' ').toTitleCase();
+            badge.className = `badge float-end ${
+                newStatus === 'not_started' ? 'bg-secondary' :
+                newStatus === 'in_progress' ? 'bg-warning text-dark' :
+                'bg-success'
+            }`;
+            
+            bootstrap.Modal.getInstance(document.getElementById('activityModal')).hide();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Helper function to title case
+String.prototype.toTitleCase = function() {
+    return this.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+</script>
+
+<style>
+.activity-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.activity-card:hover {
+    transform: translateY(-5px);
+}
+.badge {
+    font-size: 0.8rem;
+    padding: 0.5em 0.75em;
+}
+</style>
+{% endblock %}
