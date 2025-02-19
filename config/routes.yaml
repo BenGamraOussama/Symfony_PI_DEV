@@ -3,6 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
 #app_error:
     #path: /error
     #controller: App\Controller\ErrorController::show
@@ -23,4 +24,3 @@ app_patient_show:
         _format: html
     requirements:
         id: \d+
-

@@ -8,6 +8,7 @@ parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads'
 
 services:
+    App\Enum\ExerciceStatus: ~
     # Configuration par défaut pour les services définis dans ce fichier
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

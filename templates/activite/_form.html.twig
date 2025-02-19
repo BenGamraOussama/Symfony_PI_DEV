@@ -32,8 +32,27 @@
 
                 {# Status & Type Row #}
                 <div class="row mb-4">
+<<<<<<< HEAD
                    
                     
+=======
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{ form_label(form.status, 'Status', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-check-circle"></i>
+                                </span>
+                                {{ form_widget(form.status, {'attr': {
+                                    'class': 'form-select' ~ (form.status.vars.valid ? '' : ' is-invalid')
+                                }}) }}
+                            </div>
+                            <div class="invalid-feedback">
+                                {{ form_errors(form.status) }}
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ form_label(form.type, 'Type', {'label_attr': {'class': 'form-label fw-bold'}}) }}
@@ -42,8 +61,12 @@
                                     <i class="bi bi-tag"></i>
                                 </span>
                                 {{ form_widget(form.type, {'attr': {
+<<<<<<< HEAD
                                     'class': 'form-select' ~ (form.type.vars.valid ? '' : ' is-invalid'),
                                     'id': 'activity_type'
+=======
+                                    'class': 'form-select' ~ (form.type.vars.valid ? '' : ' is-invalid')
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2
                                 }}) }}
                             </div>
                             <div class="invalid-feedback">
@@ -53,6 +76,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 {# Exercise Question Field (Conditional) #}
                 <div id="exercise-section" style="display: none;">
                     <div class="mb-4">
@@ -76,6 +100,8 @@
                     </div>
                 </div>
 
+=======
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2
                 {# Patients Field #}
                 <div class="mb-4">
                     <div class="form-group">
@@ -83,15 +109,25 @@
                             <i class="bi bi-person-heart me-2"></i>
                             Associated Patients
                         </label>
+<<<<<<< HEAD
                         {{ form_widget(form.patients, {
                             'attr': {
                                 'class': 'form-select' ~ (form.patients.vars.valid ? '' : ' is-invalid'),
+=======
+                        {{ form_widget(form.patient, {
+                            'attr': {
+                                'class': 'form-select' ~ (form.patient.vars.valid ? '' : ' is-invalid'),
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2
                                 'data-choices': true
                             }
                         }) }}
                         <small class="form-text text-muted">Select patient(s) for this activity</small>
                         <div class="invalid-feedback">
+<<<<<<< HEAD
                             {{ form_errors(form.patients) }}
+=======
+                            {{ form_errors(form.patient) }}
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2
                         </div>
                     </div>
                 </div>
@@ -110,6 +146,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 {{ form_end(form) }}
 
 {% block javascripts %}
@@ -137,3 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
+=======
+{{ form_end(form) }}
+>>>>>>> bf730cce94568781e4baedc39506148b6bdf8db2

@@ -2,27 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Exercice;
+use App\Entity\Commande;
+use App\Entity\LigneCommande;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ExerciceType extends AbstractType
+class LigneCommandeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('question', TextareaType::class, [
-                'label' => 'Exercise Question',
-                'attr' => ['rows' => 5]
-            ]);
+            ->add('quantite')
+            ->add('prix_unitaire')
+          ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Exercice::class,
+            'data_class' => LigneCommande::class,
         ]);
     }
 }
