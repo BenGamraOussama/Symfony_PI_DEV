@@ -84,6 +84,7 @@
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="dossier_medical_directory">C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev/public/uploads/dossier_medical</parameter>
+    <parameter key="uploads_directory">C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev/public/uploads</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -353,6 +354,17 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Enum" class="App\Enum" abstract="true">
+      <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
+    </service>
+    <service id="App\Command\CreateTestPatientCommand" class="App\Command\CreateTestPatientCommand" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <call method="setName">
+        <argument>app:create-test-patient</argument>
+      </call>
+    </service>
     <service id="App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" autoconfigure="true">
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
@@ -438,6 +450,20 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\PatientController"/>
       </call>
     </service>
+    <service id="App\Controller\ProduitCategoriesController" class="App\Controller\ProduitCategoriesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\ProduitCategoriesController"/>
+      </call>
+    </service>
+    <service id="App\Controller\ProduitController" class="App\Controller\ProduitController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\ProduitController"/>
+      </call>
+    </service>
     <service id="App\Controller\PsychiatreController" class="App\Controller\PsychiatreController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -503,12 +529,6 @@
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\TraitementController"/>
       </call>
     </service>
-    <service id="App\Enum\Status" class="App\Enum\Status" autowire="true" autoconfigure="true">
-      <tag name="container.error" message="The autoloader expected class &quot;App\Enum\Status&quot; to be defined in file &quot;C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\composer/../../src\Enum\Status.php&quot;. The file was found but the class was not in it, the class name or namespace probably has a typo."/>
-    </service>
-    <service id="App\Enum\Type" class="App\Enum\Type" autowire="true" autoconfigure="true">
-      <tag name="container.error" message="The autoloader expected class &quot;App\Enum\Type&quot; to be defined in file &quot;C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\composer/../../src\Enum\Type.php&quot;. The file was found but the class was not in it, the class name or namespace probably has a typo."/>
-    </service>
     <service id="App\Form\ActiviteType" class="App\Form\ActiviteType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -534,6 +554,12 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\Patientadd" class="App\Form\Patientadd" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ProduitCategoriesType" class="App\Form\ProduitCategoriesType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\PsychiatreType" class="App\Form\PsychiatreType" autowire="true" autoconfigure="true">
@@ -580,11 +606,15 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\FournisseurRepository" class="App\Repository\FournisseurRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\PatientRepository" class="App\Repository\PatientRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\PatientRepository" class="App\Repository\PatientRepository" autowire="true" autoconfigure="true">
+    <service id="App\Repository\ProduitCategoriesRepository" class="App\Repository\ProduitCategoriesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -647,7 +677,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.QqLSGsA"/>
+      <argument type="service" id=".service_locator.6YVn74x"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1558,6 +1588,8 @@
         <argument>App\Form\PasswordForm</argument>
         <argument>App\Form\PatientType</argument>
         <argument>App\Form\Patientadd</argument>
+        <argument>App\Form\ProduitCategoriesType</argument>
+        <argument>App\Form\ProduitType</argument>
         <argument>App\Form\PsychiatreType</argument>
         <argument>App\Form\Psychiatreadd</argument>
         <argument>App\Form\QuestionType</argument>
@@ -3569,7 +3601,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.QqLSGsA"/>
+      <argument type="service" id=".service_locator.6YVn74x"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4058,7 +4090,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.V97Si3t"/>
+      <argument type="service" id=".service_locator.WQbiumU"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -5203,7 +5235,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.FGELUCn"/>
+      <argument type="service" id=".service_locator.5wz97Sn"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7442,6 +7474,8 @@
       <argument>3600</argument>
       <argument>3600</argument>
     </service>
+    <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CreateTestPatientCommand" class="App\Command\CreateTestPatientCommand" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Command\CreateTestPatientCommand" class="App\Command\CreateTestPatientCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ActiviteController" class="App\Controller\ActiviteController" autowire="true" abstract="true"/>
@@ -7477,6 +7511,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PatientController" class="App\Controller\PatientController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PatientController" class="App\Controller\PatientController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PatientController" class="App\Controller\PatientController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProduitCategoriesController" class="App\Controller\ProduitCategoriesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProduitCategoriesController" class="App\Controller\ProduitCategoriesController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ProduitCategoriesController" class="App\Controller\ProduitCategoriesController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ProduitController" class="App\Controller\ProduitController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PsychiatreController" class="App\Controller\PsychiatreController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PsychiatreController" class="App\Controller\PsychiatreController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PsychiatreController" class="App\Controller\PsychiatreController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7522,6 +7562,10 @@
     <service id=".abstract.instanceof.App\Form\PatientType" class="App\Form\PatientType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Patientadd" class="App\Form\Patientadd" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Patientadd" class="App\Form\Patientadd" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProduitCategoriesType" class="App\Form\ProduitCategoriesType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ProduitCategoriesType" class="App\Form\ProduitCategoriesType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ProduitType" class="App\Form\ProduitType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\PsychiatreType" class="App\Form\PsychiatreType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PsychiatreType" class="App\Form\PsychiatreType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Psychiatreadd" class="App\Form\Psychiatreadd" autowire="true" abstract="true"/>
@@ -7548,10 +7592,12 @@
     <service id=".abstract.instanceof.App\Repository\ConsultationRepository" class="App\Repository\ConsultationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FournisseurRepository" class="App\Repository\FournisseurRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\FournisseurRepository" class="App\Repository\FournisseurRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PatientRepository" class="App\Repository\PatientRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PatientRepository" class="App\Repository\PatientRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitCategoriesRepository" class="App\Repository\ProduitCategoriesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ProduitCategoriesRepository" class="App\Repository\ProduitCategoriesRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ProduitRepository" class="App\Repository\ProduitRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PsychiatreRepository" class="App\Repository\PsychiatreRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\PsychiatreRepository" class="App\Repository\PsychiatreRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\QuestionRepository" class="App\Repository\QuestionRepository" autowire="true" abstract="true"/>
@@ -8049,10 +8095,13 @@
         <argument key="psychiatre" type="service_closure" id=".errored..service_locator.3eSJxWD.App\Entity\Psychiatre"/>
       </argument>
     </service>
-    <service id=".service_locator.WZwGqEX" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".errored.VOJFHnp" class="App\Repository\FournisseurRepository">
+      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\AdminController::listFournisseur()&quot;: the $fournisseurRepository argument is type-hinted with the non-existent class or interface: &quot;App\Repository\FournisseurRepository&quot;."/>
+    </service>
+    <service id=".service_locator.XR8uqJt" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="fournisseurRepository" type="service_closure" id="App\Repository\FournisseurRepository"/>
+        <argument key="fournisseurRepository" type="service_closure" id=".errored.VOJFHnp"/>
       </argument>
     </service>
     <service id=".service_locator.RalIsqi" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8147,6 +8196,26 @@
       <argument type="collection">
         <argument key="activity" type="service_closure" id=".errored..service_locator.NsszSph.App\Entity\Activite"/>
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.28EXb3I" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="produitCategoriesRepository" type="service_closure" id="App\Repository\ProduitCategoriesRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.LNwsF6h" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="slugger" type="service_closure" id="slugger"/>
+      </argument>
+    </service>
+    <service id=".service_locator.EO0FbVW" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="produitCategorie" type="service_closure" id=".errored..service_locator.EO0FbVW.App\Entity\ProduitCategories"/>
       </argument>
     </service>
     <service id=".service_locator.3I2a0DQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8263,7 +8332,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.QqLSGsA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6YVn74x" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8279,7 +8348,7 @@
         <argument key="App\Controller\AdminController::deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController::deletepsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController::index" type="service_closure" id=".service_locator.kPUOGb8"/>
-        <argument key="App\Controller\AdminController::listFournisseur" type="service_closure" id=".service_locator.WZwGqEX"/>
+        <argument key="App\Controller\AdminController::listFournisseur" type="service_closure" id=".service_locator.XR8uqJt"/>
         <argument key="App\Controller\AdminController::listPatient" type="service_closure" id=".service_locator.3LKzslB"/>
         <argument key="App\Controller\AdminController::listPsychiatre" type="service_closure" id=".service_locator.2lIoHht"/>
         <argument key="App\Controller\ConsultationController::delete" type="service_closure" id=".service_locator.jn8jUFJ"/>
@@ -8300,9 +8369,22 @@
         <argument key="App\Controller\PatientActivityController::updateStatus" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientController::delete" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\PatientController::edit" type="service_closure" id=".service_locator.nHVKLtO"/>
+        <argument key="App\Controller\PatientController::getProduit" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\PatientController::indexPatient" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController::show" type="service_closure" id=".service_locator.FM7hU.l"/>
+        <argument key="App\Controller\PatientController::showProduit" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController::updateActivityStatus" type="service_closure" id=".service_locator.NsszSph"/>
         <argument key="App\Controller\PatientController::viewActivities" type="service_closure" id=".service_locator.G_6iG_b"/>
+        <argument key="App\Controller\ProduitCategoriesController::ajouterCategorie" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitCategoriesController::delete" type="service_closure" id=".service_locator.EO0FbVW"/>
+        <argument key="App\Controller\ProduitCategoriesController::edit" type="service_closure" id=".service_locator.EO0FbVW"/>
+        <argument key="App\Controller\ProduitCategoriesController::index" type="service_closure" id=".service_locator.28EXb3I"/>
+        <argument key="App\Controller\ProduitCategoriesController::show" type="service_closure" id=".service_locator.28EXb3I"/>
+        <argument key="App\Controller\ProduitController::add" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitController::delete" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ProduitController::edit" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ProduitController::show" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PsychiatreController::delete" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\PsychiatreController::edit" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\PsychiatreController::index" type="service_closure" id=".service_locator.kPUOGb8"/>
@@ -8346,7 +8428,7 @@
         <argument key="App\Controller\AdminController:deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController:deletepsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController:index" type="service_closure" id=".service_locator.kPUOGb8"/>
-        <argument key="App\Controller\AdminController:listFournisseur" type="service_closure" id=".service_locator.WZwGqEX"/>
+        <argument key="App\Controller\AdminController:listFournisseur" type="service_closure" id=".service_locator.XR8uqJt"/>
         <argument key="App\Controller\AdminController:listPatient" type="service_closure" id=".service_locator.3LKzslB"/>
         <argument key="App\Controller\AdminController:listPsychiatre" type="service_closure" id=".service_locator.2lIoHht"/>
         <argument key="App\Controller\ConsultationController:delete" type="service_closure" id=".service_locator.jn8jUFJ"/>
@@ -8367,9 +8449,22 @@
         <argument key="App\Controller\PatientActivityController:updateStatus" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientController:delete" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\PatientController:edit" type="service_closure" id=".service_locator.nHVKLtO"/>
+        <argument key="App\Controller\PatientController:getProduit" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\PatientController:indexPatient" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController:show" type="service_closure" id=".service_locator.FM7hU.l"/>
+        <argument key="App\Controller\PatientController:showProduit" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController:updateActivityStatus" type="service_closure" id=".service_locator.NsszSph"/>
         <argument key="App\Controller\PatientController:viewActivities" type="service_closure" id=".service_locator.G_6iG_b"/>
+        <argument key="App\Controller\ProduitCategoriesController:ajouterCategorie" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitCategoriesController:delete" type="service_closure" id=".service_locator.EO0FbVW"/>
+        <argument key="App\Controller\ProduitCategoriesController:edit" type="service_closure" id=".service_locator.EO0FbVW"/>
+        <argument key="App\Controller\ProduitCategoriesController:index" type="service_closure" id=".service_locator.28EXb3I"/>
+        <argument key="App\Controller\ProduitCategoriesController:show" type="service_closure" id=".service_locator.28EXb3I"/>
+        <argument key="App\Controller\ProduitController:add" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitController:delete" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ProduitController:edit" type="service_closure" id=".service_locator.LNwsF6h"/>
+        <argument key="App\Controller\ProduitController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\ProduitController:show" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PsychiatreController:delete" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\PsychiatreController:edit" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\PsychiatreController:index" type="service_closure" id=".service_locator.kPUOGb8"/>
@@ -8557,7 +8652,7 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.V97Si3t" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.WQbiumU" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ActiviteType" type="service_closure" id="App\Form\ActiviteType"/>
@@ -8569,6 +8664,8 @@
         <argument key="App\Form\PasswordForm" type="service_closure" id="App\Form\PasswordForm"/>
         <argument key="App\Form\PatientType" type="service_closure" id="App\Form\PatientType"/>
         <argument key="App\Form\Patientadd" type="service_closure" id="App\Form\Patientadd"/>
+        <argument key="App\Form\ProduitCategoriesType" type="service_closure" id="App\Form\ProduitCategoriesType"/>
+        <argument key="App\Form\ProduitType" type="service_closure" id="App\Form\ProduitType"/>
         <argument key="App\Form\PsychiatreType" type="service_closure" id="App\Form\PsychiatreType"/>
         <argument key="App\Form\Psychiatreadd" type="service_closure" id="App\Form\Psychiatreadd"/>
         <argument key="App\Form\QuestionType" type="service_closure" id="App\Form\QuestionType"/>
@@ -8681,7 +8778,7 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.FGELUCn" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.5wz97Sn" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\ActiviteRepository" type="service_closure" id="App\Repository\ActiviteRepository"/>
@@ -8689,8 +8786,9 @@
         <argument key="App\Repository\AdministrateurRepository" type="service_closure" id="App\Repository\AdministrateurRepository"/>
         <argument key="App\Repository\ConsultationRepository" type="service_closure" id="App\Repository\ConsultationRepository"/>
         <argument key="App\Repository\ExerciceRepository" type="service_closure" id="App\Repository\ExerciceRepository"/>
-        <argument key="App\Repository\FournisseurRepository" type="service_closure" id="App\Repository\FournisseurRepository"/>
         <argument key="App\Repository\PatientRepository" type="service_closure" id="App\Repository\PatientRepository"/>
+        <argument key="App\Repository\ProduitCategoriesRepository" type="service_closure" id="App\Repository\ProduitCategoriesRepository"/>
+        <argument key="App\Repository\ProduitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
         <argument key="App\Repository\PsychiatreRepository" type="service_closure" id="App\Repository\PsychiatreRepository"/>
         <argument key="App\Repository\QuestionRepository" type="service_closure" id="App\Repository\QuestionRepository"/>
         <argument key="App\Repository\RDVRepository" type="service_closure" id="App\Repository\RDVRepository"/>
@@ -9137,6 +9235,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\ProduitCategoriesController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProduitCategoriesController"/>
+      <argument>App\Controller\ProduitCategoriesController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\ProduitController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProduitController"/>
+      <argument>App\Controller\ProduitController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\PsychiatreController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\PsychiatreController"/>
       <argument>App\Controller\PsychiatreController</argument>
@@ -9372,6 +9482,8 @@
           <argument>App\Controller\HomeController</argument>
           <argument>App\Controller\PatientActivityController</argument>
           <argument>App\Controller\PatientController</argument>
+          <argument>App\Controller\ProduitCategoriesController</argument>
+          <argument>App\Controller\ProduitController</argument>
           <argument>App\Controller\PsychiatreController</argument>
           <argument>App\Controller\QuestionController</argument>
           <argument>App\Controller\RDVController</argument>
@@ -9619,6 +9731,9 @@
     </service>
     <service id=".errored..service_locator.NsszSph.App\Entity\Activite" class="App\Entity\Activite">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.NsszSph&quot;: it needs an instance of &quot;App\Entity\Activite&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    </service>
+    <service id=".errored..service_locator.EO0FbVW.App\Entity\ProduitCategories" class="App\Entity\ProduitCategories">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.EO0FbVW&quot;: it needs an instance of &quot;App\Entity\ProduitCategories&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.3I2a0DQ.App\Entity\Psychiatre" class="App\Entity\Psychiatre">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.3I2a0DQ&quot;: it needs an instance of &quot;App\Entity\Psychiatre&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -10326,8 +10441,9 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.JcEiH_n"/>
+      <argument type="service" id=".service_locator.7NWddxT"/>
       <argument type="collection">
+        <argument key="app:create-test-patient">App\Command\CreateTestPatientCommand</argument>
         <argument key="app:drop-fk">App\Command\DropForeignKeyCommand</argument>
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -10447,9 +10563,10 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator.JcEiH_n" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.7NWddxT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Command\CreateTestPatientCommand" type="service_closure" id="App\Command\CreateTestPatientCommand"/>
         <argument key="App\Command\DropForeignKeyCommand" type="service_closure" id="App\Command\DropForeignKeyCommand"/>
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
         <argument key="console.command.assets_install" type="service_closure" id=".console.command.assets_install.lazy"/>
@@ -10841,7 +10958,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.QqLSGsA"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.6YVn74x"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -10871,6 +10988,7 @@
     <service id=".service_locator._ScEuGu" alias=".service_locator.BMqRrkB"/>
     <service id=".service_locator.IjLAl66" alias=".service_locator.0NP03bD"/>
     <service id=".service_locator.gh7CNQv" alias=".service_locator.nHVKLtO"/>
+    <service id=".service_locator.PyvJesv" alias=".service_locator.EO0FbVW"/>
     <service id=".service_locator.KPV0MsR" alias=".service_locator.Fk8aPoM"/>
     <service id=".service_locator.gMpfJT2" alias=".service_locator.hCjLFs3"/>
     <service id=".service_locator.rcGyx7i" alias=".service_locator.HL0I6eV"/>
@@ -10879,9 +10997,9 @@
     <service id=".service_locator.PFeenAx" alias=".service_locator.0488DqB"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.BxacJHM" alias=".service_locator.QqLSGsA"/>
+    <service id=".service_locator.F0w5pWZ" alias=".service_locator.6YVn74x"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.7dOqvK_" alias=".service_locator.V97Si3t"/>
+    <service id=".service_locator.TY1C8ig" alias=".service_locator.WQbiumU"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.jUv.zyj" alias=".service_locator.O2p6Lk7"/>
@@ -10914,7 +11032,6 @@
     <service id=".service_locator.LDTgNM8" alias=".service_locator.2lIoHht"/>
     <service id=".service_locator.wWpgpUd" alias=".service_locator.hlEC4eP"/>
     <service id=".service_locator.bWpsLHc" alias=".service_locator.3eSJxWD"/>
-    <service id=".service_locator.VG5hlDB" alias=".service_locator.WZwGqEX"/>
     <service id=".service_locator.qeHuYrT" alias=".service_locator.RalIsqi"/>
     <service id=".service_locator.VJ3gNC_" alias=".service_locator.3LKzslB"/>
     <service id=".service_locator.CIHmcfL" alias=".service_locator.BMqRrkB"/>
@@ -10929,6 +11046,9 @@
     <service id=".service_locator.DRs7aTa" alias=".service_locator.nHVKLtO"/>
     <service id=".service_locator.WBmZoV_" alias=".service_locator.G_6iG_b"/>
     <service id=".service_locator.tJcwKky" alias=".service_locator.NsszSph"/>
+    <service id=".service_locator.vTMyopO" alias=".service_locator.28EXb3I"/>
+    <service id=".service_locator.lUJI3Z8" alias=".service_locator.LNwsF6h"/>
+    <service id=".service_locator.fe9GlNf" alias=".service_locator.EO0FbVW"/>
     <service id=".service_locator.ihvKClf" alias=".service_locator.3I2a0DQ"/>
     <service id=".service_locator.wFbPO_v" alias=".service_locator.vYWALu7"/>
     <service id=".service_locator.Ye3IgC1" alias=".service_locator.4xIyKvd"/>

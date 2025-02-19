@@ -16,3 +16,11 @@ aapp_activite_update_status:
     controller: App\Controller\YourController::updateStatus
     methods: POST
 
+app_patient_show:
+    path: /patient/{id}
+    controller: App\Controller\PatientController::show
+    defaults:
+        _format: html
+    requirements:
+        id: \d+
+
