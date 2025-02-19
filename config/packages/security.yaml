@@ -4,17 +4,22 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
+<<<<<<< HEAD
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
                 property: email
+=======
+        users_in_memory: { memory: null }
+>>>>>>> c5a8582 (Add webapp packages)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
+<<<<<<< HEAD
             provider: app_user_provider
             custom_authenticator: App\Security\SecurityAuthenticator
             logout:
@@ -27,6 +32,9 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
+=======
+            provider: users_in_memory
+>>>>>>> c5a8582 (Add webapp packages)
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -37,10 +45,16 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+<<<<<<< HEAD
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/patient, roles: ROLE_PATIENT }
         - { path: ^/psychiatre, roles: ROLE_PSY }
         - { path: ^/fournissur, roles: ROLE_FOURNISSEUR }
+=======
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+
+>>>>>>> c5a8582 (Add webapp packages)
 when@test:
     security:
         password_hashers:

@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "doctrine/doctrine-bundle": {
         "version": "2.13",
         "recipe": {
@@ -56,8 +59,11 @@
             "./importmap.php"
         ]
     },
+<<<<<<< HEAD
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/console": {
         "version": "6.4",
         "recipe": {
@@ -71,6 +77,9 @@
         ]
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/debug-bundle": {
         "version": "6.4",
         "recipe": {
@@ -83,8 +92,11 @@
             "./config/packages/debug.yaml"
         ]
     },
+<<<<<<< HEAD
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/flex": {
         "version": "2.4",
         "recipe": {
@@ -118,6 +130,7 @@
         ]
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     "symfony/google-mailer": {
         "version": "6.4",
         "recipe": {
@@ -127,6 +140,8 @@
             "ref": "f8fd4ddb9b477510f8f4bce2b9c054ab428c0120"
         }
     },
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/mailer": {
         "version": "6.4",
         "recipe": {
@@ -172,6 +187,21 @@
             "./config/packages/monolog.yaml"
         ]
     },
+<<<<<<< HEAD
+=======
+    "symfony/notifier": {
+        "version": "6.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "178877daf79d2dbd62129dd03612cb1a2cb407cc"
+        },
+        "files": [
+            "./config/packages/notifier.yaml"
+        ]
+    },
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/phpunit-bridge": {
         "version": "7.2",
         "recipe": {
@@ -187,8 +217,11 @@
             "./tests/bootstrap.php"
         ]
     },
+<<<<<<< HEAD
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     "symfony/routing": {
         "version": "6.4",
         "recipe": {
@@ -202,6 +235,9 @@
             "./config/routes.yaml"
         ]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     },
     "symfony/security-bundle": {
         "version": "6.4",
@@ -290,6 +326,7 @@
             "./config/routes/web_profiler.yaml"
         ]
     },
+<<<<<<< HEAD
     "symfonycasts/reset-password-bundle": {
         "version": "1.23",
         "recipe": {
@@ -306,5 +343,9 @@
         "version": "v3.18.0"
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+    "twig/extra-bundle": {
+        "version": "v3.18.0"
+>>>>>>> c5a8582 (Add webapp packages)
     }
 }

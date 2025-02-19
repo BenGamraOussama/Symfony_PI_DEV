@@ -8,6 +8,9 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.13",
         "doctrine/doctrine-migrations-bundle": "^3.4",
@@ -16,6 +19,7 @@
         "phpstan/phpdoc-parser": "^2.0",
         "symfony/asset": "6.4.*",
         "symfony/asset-mapper": "6.4.*",
+<<<<<<< HEAD
         "symfony/console": "6.4.*",
         "symfony/doctrine-messenger": "6.4.*",
         "symfony/dotenv": "6.4.*",
@@ -47,15 +51,44 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
 =======
+=======
+>>>>>>> c5a8582 (Add webapp packages)
         "symfony/console": "6.4.*",
+        "symfony/doctrine-messenger": "6.4.*",
         "symfony/dotenv": "6.4.*",
+        "symfony/expression-language": "6.4.*",
         "symfony/flex": "^2",
+        "symfony/form": "6.4.*",
         "symfony/framework-bundle": "6.4.*",
+        "symfony/http-client": "6.4.*",
+        "symfony/intl": "6.4.*",
+        "symfony/mailer": "6.4.*",
+        "symfony/mime": "6.4.*",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/notifier": "6.4.*",
+        "symfony/process": "6.4.*",
+        "symfony/property-access": "6.4.*",
+        "symfony/property-info": "6.4.*",
         "symfony/runtime": "6.4.*",
+<<<<<<< HEAD
         "symfony/yaml": "6.4.*"
     },
     "require-dev": {
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+        "symfony/security-bundle": "6.4.*",
+        "symfony/serializer": "6.4.*",
+        "symfony/stimulus-bundle": "^2.22",
+        "symfony/string": "6.4.*",
+        "symfony/translation": "6.4.*",
+        "symfony/twig-bundle": "6.4.*",
+        "symfony/ux-turbo": "^2.22",
+        "symfony/validator": "6.4.*",
+        "symfony/web-link": "6.4.*",
+        "symfony/yaml": "6.4.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
+>>>>>>> c5a8582 (Add webapp packages)
     },
     "config": {
         "allow-plugins": {
@@ -88,11 +121,16 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd"
 =======
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
+>>>>>>> c5a8582 (Add webapp packages)
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -110,6 +148,9 @@
             "require": "6.4.*"
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -120,7 +161,10 @@
         "symfony/phpunit-bridge": "^7.2",
         "symfony/stopwatch": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"
+<<<<<<< HEAD
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+>>>>>>> c5a8582 (Add webapp packages)
     }
 }

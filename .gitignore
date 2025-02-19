@@ -9,6 +9,9 @@
 /vendor/
 ###< symfony/framework-bundle ###
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c5a8582 (Add webapp packages)
 
 ###> phpunit/phpunit ###
 /phpunit.xml
@@ -24,5 +27,8 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+<<<<<<< HEAD
 =======
 >>>>>>> 5f40180 (Add initial set of files)
+=======
+>>>>>>> c5a8582 (Add webapp packages)
