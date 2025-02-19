@@ -543,6 +543,7 @@ class __TwigTemplate_d4bc8312e25237e6ab271a6e152beafb extends Template
      </div>
      <!-- end app-wrap -->
  </div>
- {% endblock %}", "psychiatre/edit.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\psychiatre\\edit.html.twig");
+ {% endblock %}
+", "psychiatre/edit.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\psychiatre\\edit.html.twig");
     }
 }

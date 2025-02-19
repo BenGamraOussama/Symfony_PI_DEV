@@ -19,6 +19,9 @@ class Exercice
     #[ORM\JoinColumn(nullable: false)]
     private ?Activite $activite = null;
 
+    #[ORM\ManyToMany(targetEntity: Patient::class, mappedBy: 'exercices')]
+    private Collection $patients;
+
     #[ORM\Column(type: 'text')]
     private string $question;
 
@@ -28,6 +31,7 @@ class Exercice
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
+        $this->patients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +81,28 @@ class Exercice
             if ($reponse->getExercice() === $this) {
                 $reponse->setExercice(null);
             }
+        }
+        return $this;
+    }
+
+    public function getPatients(): Collection
+    {
+        return $this->patients;
+    }
+
+    public function addPatient(Patient $patient): self
+    {
+        if (!$this->patients->contains($patient)) {
+            $this->patients->add($patient);
+            $patient->addExercice($this);
+        }
+        return $this;
+    }
+
+    public function removePatient(Patient $patient): self
+    {
+        if ($this->patients->removeElement($patient)) {
+            $patient->removeExercice($this);
         }
         return $this;
     }

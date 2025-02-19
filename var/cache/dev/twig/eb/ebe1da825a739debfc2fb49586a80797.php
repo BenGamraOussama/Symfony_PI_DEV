@@ -396,6 +396,7 @@ class __TwigTemplate_8912d710fd3282bf2e834f0f2a2e1969 extends Template
 <div class=\"go-top\">
     <i class='flaticon-up-arrow'></i>
 </div>
-{% endblock %}", "reset_password/request.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\request.html.twig");
+{% endblock %}
+", "reset_password/request.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\request.html.twig");
     }
 }

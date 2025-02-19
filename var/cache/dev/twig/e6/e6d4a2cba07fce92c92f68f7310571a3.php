@@ -160,9 +160,9 @@ class __TwigTemplate_ad3d294be83a64c964ce07c14c8c1d48 extends Template
                                             <table  id=\"datatable\" class=\"display compact table table-striped table-bordered\">
                                                 <thead>
                                                     <tr>
+                                                        <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
+                                                        <th>Adresse</th>
                                                         <th>actions</th>
                                                     </tr>
                                                 </thead>
@@ -176,15 +176,17 @@ class __TwigTemplate_ad3d294be83a64c964ce07c14c8c1d48 extends Template
             yield "                                                    <tr>
                                                         <td>";
             // line 75
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "email", [], "any", false, false, false, 75), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "lastName", [], "any", false, false, false, 75), "html", null, true);
+            yield " ";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "firstName", [], "any", false, false, false, 75), "html", null, true);
             yield "</td>
                                                         <td>";
             // line 76
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "lastName", [], "any", false, false, false, 76), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "email", [], "any", false, false, false, 76), "html", null, true);
             yield "</td>
                                                         <td>";
             // line 77
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "firstName", [], "any", false, false, false, 77), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["fournisseur"], "adresse", [], "any", false, false, false, 77), "html", null, true);
             yield "</td>
                                                         <td>
                                                             <button class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#defaultModal\">Supprimer</button>
@@ -279,7 +281,7 @@ class __TwigTemplate_ad3d294be83a64c964ce07c14c8c1d48 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  231 => 104,  216 => 95,  212 => 94,  203 => 90,  187 => 77,  183 => 76,  179 => 75,  176 => 74,  172 => 73,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  233 => 104,  218 => 95,  214 => 94,  205 => 90,  189 => 77,  185 => 76,  179 => 75,  176 => 74,  172 => 73,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -349,18 +351,18 @@ class __TwigTemplate_ad3d294be83a64c964ce07c14c8c1d48 extends Template
                                             <table  id=\"datatable\" class=\"display compact table table-striped table-bordered\">
                                                 <thead>
                                                     <tr>
+                                                        <th>Name</th>
                                                         <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
+                                                        <th>Adresse</th>
                                                         <th>actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for fournisseur in fournisseurs %}
                                                     <tr>
+                                                        <td>{{ fournisseur.lastName }} {{ fournisseur.firstName }}</td>
                                                         <td>{{ fournisseur.email }}</td>
-                                                        <td>{{ fournisseur.lastName }}</td>
-                                                        <td>{{ fournisseur.firstName }}</td>
+                                                        <td>{{ fournisseur.adresse }}</td>
                                                         <td>
                                                             <button class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#defaultModal\">Supprimer</button>
                                                             <div class=\"modal fade\" id=\"defaultModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"defaultModal\" aria-hidden=\"true\">

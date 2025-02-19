@@ -145,13 +145,13 @@ class __TwigTemplate_e6b1f73a87d14c63f6ed9adfcc533393 extends Template
         // line 98
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["firstName"]) || array_key_exists("firstName", $context) ? $context["firstName"] : (function () { throw new RuntimeError('Variable "firstName" does not exist.', 98, $this->source); })()), "html", null, true);
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((isset($context["lastName"]) || array_key_exists("lastName", $context) ? $context["lastName"] : (function () { throw new RuntimeError('Variable "lastName" does not exist.', 98, $this->source); })()), "html", null, true);
-        yield "<br /><br />
-            <p>To reset your password, please visit the following link</p><strong>Now!</strong><br />
+        yield "<br/><br/>
+            <p>To reset your password, please visit the following link : <strong>Now!</strong></p><br/>
             <p>Cliquez sur le bouton ci-dessous pour reset votre mot de passe :</p>
             <a href=\"";
         // line 101
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("app_reset_password", ["token" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["resetToken"]) || array_key_exists("resetToken", $context) ? $context["resetToken"] : (function () { throw new RuntimeError('Variable "resetToken" does not exist.', 101, $this->source); })()), "token", [], "any", false, false, false, 101)]), "html", null, true);
-        yield "\" class=\"button\">Reset Password</a>
+        yield "\" class=\"button\">Reset Password</a><br>
             <strong>This link will expire in ";
         // line 102
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(CoreExtension::getAttribute($this->env, $this->source, (isset($context["resetToken"]) || array_key_exists("resetToken", $context) ? $context["resetToken"] : (function () { throw new RuntimeError('Variable "resetToken" does not exist.', 102, $this->source); })()), "expirationMessageKey", [], "any", false, false, false, 102), CoreExtension::getAttribute($this->env, $this->source, (isset($context["resetToken"]) || array_key_exists("resetToken", $context) ? $context["resetToken"] : (function () { throw new RuntimeError('Variable "resetToken" does not exist.', 102, $this->source); })()), "expirationMessageData", [], "any", false, false, false, 102), "ResetPasswordBundle"), "html", null, true);
@@ -161,7 +161,7 @@ class __TwigTemplate_e6b1f73a87d14c63f6ed9adfcc533393 extends Template
 
         <!-- Pied de page -->
         <div class=\"footer\">
-            <p>Si vous n'avez pas créé ce compte, veuillez nous contacter immédiatement à <a href=\"mailto:support@HopeNest.com\">support@HopeNest.com</a>.</p>
+            <p>Si vous avez un probleme, veuillez nous contacter immédiatement à <a href=\"mailto:support@HopeNest.com\">support@HopeNest.com</a>.</p>
             <p>&copy; ";
         // line 109
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "Y"), "html", null, true);
@@ -169,7 +169,8 @@ class __TwigTemplate_e6b1f73a87d14c63f6ed9adfcc533393 extends Template
         </div>
     </div>
 </body>
-</html>";
+</html>
+";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -302,21 +303,22 @@ class __TwigTemplate_e6b1f73a87d14c63f6ed9adfcc533393 extends Template
 
         <!-- Contenu principal -->
         <div class=\"content\">
-            </span>Hi! {{firstName}}{{lastName}}<br /><br />
-            <p>To reset your password, please visit the following link</p><strong>Now!</strong><br />
+            </span>Hi! {{firstName}}{{lastName}}<br/><br/>
+            <p>To reset your password, please visit the following link : <strong>Now!</strong></p><br/>
             <p>Cliquez sur le bouton ci-dessous pour reset votre mot de passe :</p>
-            <a href=\"{{url('app_reset_password', {token: resetToken.token})}}\" class=\"button\">Reset Password</a>
+            <a href=\"{{url('app_reset_password', {token: resetToken.token})}}\" class=\"button\">Reset Password</a><br>
             <strong>This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</strong>
             <p>Si vous avez des questions, n'hésitez pas à nous contacter à <a href=\"mailto:support@HopeNest.com\">support@HopeNest.com</a>.</p>
         </div>
 
         <!-- Pied de page -->
         <div class=\"footer\">
-            <p>Si vous n'avez pas créé ce compte, veuillez nous contacter immédiatement à <a href=\"mailto:support@HopeNest.com\">support@HopeNest.com</a>.</p>
+            <p>Si vous avez un probleme, veuillez nous contacter immédiatement à <a href=\"mailto:support@HopeNest.com\">support@HopeNest.com</a>.</p>
             <p>&copy; {{ \"now\"|date(\"Y\") }} HopeNest. Tous droits réservés.</p>
         </div>
     </div>
 </body>
-</html>", "reset_password/email.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\email.html.twig");
+</html>
+", "reset_password/email.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\email.html.twig");
     }
 }

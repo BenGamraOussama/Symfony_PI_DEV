@@ -353,6 +353,14 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="doctrine.dbal.default_connection"/>
+      <call method="setName">
+        <argument>app:drop-fk</argument>
+      </call>
+    </service>
     <service id="App\Controller\ActiviteController" class="App\Controller\ActiviteController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -5861,6 +5869,9 @@
         <argument type="service" id="turbo.twig.extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="twig.extension.string"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
       </call>
       <call method="addGlobal">
@@ -6279,6 +6290,9 @@
       <argument>null</argument>
     </service>
     <service id="twig.missing_extension_suggestor" class="Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor"/>
+    <service id="twig.extension.string" class="Twig\Extra\String\StringExtension">
+      <tag name="twig.extension"/>
+    </service>
     <service id="security.authorization_checker" class="Symfony\Component\Security\Core\Authorization\AuthorizationChecker">
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="debug.security.access.decision_manager"/>
@@ -7428,6 +7442,8 @@
       <argument>3600</argument>
       <argument>3600</argument>
     </service>
+    <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Command\DropForeignKeyCommand" class="App\Command\DropForeignKeyCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ActiviteController" class="App\Controller\ActiviteController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ActiviteController" class="App\Controller\ActiviteController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ActiviteController" class="App\Controller\ActiviteController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -10310,8 +10326,9 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator..lR.FSG"/>
+      <argument type="service" id=".service_locator.JcEiH_n"/>
       <argument type="collection">
+        <argument key="app:drop-fk">App\Command\DropForeignKeyCommand</argument>
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
         <argument key="cache:clear">console.command.cache_clear</argument>
@@ -10430,9 +10447,10 @@
         <argument key="make:webhook">maker.auto_command.make_webhook</argument>
       </argument>
     </service>
-    <service id=".service_locator..lR.FSG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.JcEiH_n" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Command\DropForeignKeyCommand" type="service_closure" id="App\Command\DropForeignKeyCommand"/>
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
         <argument key="console.command.assets_install" type="service_closure" id=".console.command.assets_install.lazy"/>
         <argument key="console.command.cache_clear" type="service_closure" id=".console.command.cache_clear.lazy"/>

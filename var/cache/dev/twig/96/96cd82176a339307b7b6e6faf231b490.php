@@ -97,12 +97,7 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<style>
-.text-danger {
-    color: red;
-}
-</style>
-    <!-- begin app -->
+        yield "    <!-- begin app -->
     <div class=\"app\">
         <!-- begin app-wrap -->
         <div class=\"app-wrap\">
@@ -111,7 +106,7 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
                 <div class=\"h-100 d-flex justify-content-center\">
                     <div class=\"align-self-center\">
                         <img src=\"";
-        // line 19
+        // line 14
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/loader/loader.svg"), "html", null, true);
         yield "\" alt=\"loader\">
                     </div>
@@ -166,55 +161,55 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
                                         </div>
                                     </div>
                                     ";
-        // line 71
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 71, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
+        // line 66
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 66, $this->source); })()), 'form_start', ["attr" => ["novalidate" => "novalidate"]]);
         yield "
                                     <div class=\"card-body\">
                                         <div class=\"form-group\">
                                             ";
-        // line 74
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 74, $this->source); })()), "firstName", [], "any", false, false, false, 74), 'widget', ["attr" => ["class" => "form-control form-control-lg", "placeholder" => "First Name"]]);
+        // line 69
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 69, $this->source); })()), "firstName", [], "any", false, false, false, 69), 'widget', ["attr" => ["class" => "form-control form-control-lg", "placeholder" => "First Name"]]);
         yield "
                                             <div class=\"text-danger\">
                                                 ";
-        // line 76
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 76, $this->source); })()), "firstName", [], "any", false, false, false, 76), 'errors');
+        // line 71
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 71, $this->source); })()), "firstName", [], "any", false, false, false, 71), 'errors');
         yield "
                                             </div>
                                         </div>
                                         <div class=\"form-group\">
                                             ";
-        // line 80
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 80, $this->source); })()), "lastName", [], "any", false, false, false, 80), 'widget', ["attr" => ["class" => "form-control form-control", "placeholder" => "Last Name"]]);
+        // line 75
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 75, $this->source); })()), "lastName", [], "any", false, false, false, 75), 'widget', ["attr" => ["class" => "form-control form-control", "placeholder" => "Last Name"]]);
         yield "
                                             <div class=\"text-danger\">
                                                 ";
-        // line 82
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 82, $this->source); })()), "lastName", [], "any", false, false, false, 82), 'errors');
+        // line 77
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 77, $this->source); })()), "lastName", [], "any", false, false, false, 77), 'errors');
         yield "
                                             </div>
                                         </div>
                                         <div class=\"form-group\">
                                             ";
-        // line 86
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 86, $this->source); })()), "email", [], "any", false, false, false, 86), 'widget', ["attr" => ["class" => "form-control form-control-sm", "placeholder" => "Email"]]);
+        // line 81
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 81, $this->source); })()), "email", [], "any", false, false, false, 81), 'widget', ["attr" => ["class" => "form-control form-control-sm", "placeholder" => "Email"]]);
         yield "
                                             <div class=\"text-danger\">
                                                 ";
-        // line 88
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 88, $this->source); })()), "email", [], "any", false, false, false, 88), 'errors');
+        // line 83
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 83, $this->source); })()), "email", [], "any", false, false, false, 83), 'errors');
         yield "
                                             </div>
                                         </div>
                                         <div class=\"form-group\">
                                             ";
-        // line 92
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 92, $this->source); })()), "adresse", [], "any", false, false, false, 92), 'widget', ["attr" => ["class" => "form-control form-control", "placeholder" => "Adresse"]]);
+        // line 87
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 87, $this->source); })()), "adresse", [], "any", false, false, false, 87), 'widget', ["attr" => ["class" => "form-control form-control", "placeholder" => "Adresse"]]);
         yield "
                                             <div class=\"text-danger\">
                                                 ";
-        // line 94
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 94, $this->source); })()), "adresse", [], "any", false, false, false, 94), 'errors');
+        // line 89
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 89, $this->source); })()), "adresse", [], "any", false, false, false, 89), 'errors');
         yield "
                                             </div>
                                         </div>
@@ -225,8 +220,8 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
                                         </div>
                                     </div>
                                     ";
-        // line 103
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 103, $this->source); })()), 'form_end');
+        // line 98
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["fournisseuradd"]) || array_key_exists("fournisseuradd", $context) ? $context["fournisseuradd"] : (function () { throw new RuntimeError('Variable "fournisseuradd" does not exist.', 98, $this->source); })()), 'form_end');
         yield "
                                 </div>
                             </div>
@@ -279,7 +274,7 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  229 => 103,  217 => 94,  212 => 92,  205 => 88,  200 => 86,  193 => 82,  188 => 80,  181 => 76,  176 => 74,  170 => 71,  115 => 19,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  224 => 98,  212 => 89,  207 => 87,  200 => 83,  195 => 81,  188 => 77,  183 => 75,  176 => 71,  171 => 69,  165 => 66,  110 => 14,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -289,11 +284,6 @@ class __TwigTemplate_7ae49780fd473758bb5dd2be179d850c extends Template
 {% block title %}Admin{% endblock %}
 
 {% block body %}
-<style>
-.text-danger {
-    color: red;
-}
-</style>
     <!-- begin app -->
     <div class=\"app\">
         <!-- begin app-wrap -->

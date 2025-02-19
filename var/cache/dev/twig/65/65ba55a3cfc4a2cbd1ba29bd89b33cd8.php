@@ -170,12 +170,12 @@ class __TwigTemplate_0851909445f316a35a734948b30962bc extends Template
         // line 69
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patientadd"]) || array_key_exists("patientadd", $context) ? $context["patientadd"] : (function () { throw new RuntimeError('Variable "patientadd" does not exist.', 69, $this->source); })()), "firstName", [], "any", false, false, false, 69), 'widget', ["attr" => ["class" => "form-control form-control-lg", "placeholder" => "First Name"]]);
         yield "
-                                            <small class=\"text-danger\">
+                                            <div class=\"text-danger\">
                                                 ";
         // line 71
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patientadd"]) || array_key_exists("patientadd", $context) ? $context["patientadd"] : (function () { throw new RuntimeError('Variable "patientadd" does not exist.', 71, $this->source); })()), "firstName", [], "any", false, false, false, 71), 'errors');
         yield "
-                                            </small>
+                                            </div>
                                         </div>
                                         <div class=\"form-group\">
                                             ";
@@ -336,9 +336,9 @@ class __TwigTemplate_0851909445f316a35a734948b30962bc extends Template
                                     <div class=\"card-body\">
                                         <div class=\"form-group\">
                                             {{ form_widget(patientadd.firstName, { 'attr': {'class': 'form-control form-control-lg', 'placeholder': 'First Name'} }) }}
-                                            <small class=\"text-danger\">
+                                            <div class=\"text-danger\">
                                                 {{ form_errors(patientadd.firstName) }}
-                                            </small>
+                                            </div>
                                         </div>
                                         <div class=\"form-group\">
                                             {{ form_widget(patientadd.lastName, { 'attr': {'class': 'form-control form-control', 'placeholder': 'Last Name'} }) }}

@@ -127,12 +127,12 @@ class __TwigTemplate_d065553129b5b79c8b248f8b24ff7a69 extends Template
         <div class=\"page-banner-with-full-image item-bg1\">
             <div class=\"container\">
                 <div class=\"page-banner-content-two\">
-                    <h2>Mon Compte</h2>
+                    <h2>Account Settings</h2>
                     <ul>
                         <li>
                             <a href=\"index.html\">Accueil</a>
                         </li>
-                        <li>Mon Compte</li>
+                        <li>Account Settings</li>
                     </ul>
                 </div>
             </div>
@@ -352,12 +352,12 @@ class __TwigTemplate_d065553129b5b79c8b248f8b24ff7a69 extends Template
         <div class=\"page-banner-with-full-image item-bg1\">
             <div class=\"container\">
                 <div class=\"page-banner-content-two\">
-                    <h2>Mon Compte</h2>
+                    <h2>Account Settings</h2>
                     <ul>
                         <li>
                             <a href=\"index.html\">Accueil</a>
                         </li>
-                        <li>Mon Compte</li>
+                        <li>Account Settings</li>
                     </ul>
                 </div>
             </div>
@@ -446,6 +446,7 @@ class __TwigTemplate_d065553129b5b79c8b248f8b24ff7a69 extends Template
         </section>
 
         <!-- Script pour la validation des mots de passe -->
-{% endblock %}", "patient/edit.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\patient\\edit.html.twig");
+{% endblock %}
+", "patient/edit.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\patient\\edit.html.twig");
     }
 }

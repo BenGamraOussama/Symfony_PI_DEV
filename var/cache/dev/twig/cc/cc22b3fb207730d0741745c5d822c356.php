@@ -113,46 +113,43 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
     <div class=\"page-banner-with-full-image item-bg4\">
     <div class=\"container\">
         <div class=\"page-banner-content-two\">
-            <h2>Register</h2>
+            <h2>My Account</h2>
             <ul>
                 <li>
-                    <a href=\"index.html\">Home</a>
+                    <a href=\"";
+        // line 25
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
+        yield "\">Home</a>
                 </li>
                 <li>Profile</li>
             </ul>
         </div>
     </div>
 </div>
-    <!-- End Top Header Area -->
-
-    <!-- Start Navbar Area -->
-    <!-- End Navbar Area -->
-
-    <!-- Start Profile Section -->
     <section class=\"profile-area pt-90 pb-40\">
         <div class=\"container\">
             <div class=\"row align-items-center\">
                 <div class=\"col-lg-4\">
                     <div class=\"profile-image\">
                     ";
-        // line 43
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 43, $this->source); })()), "gener", [], "any", false, false, false, 43) == "female")) {
-            // line 44
+        // line 37
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 37, $this->source); })()), "gener", [], "any", false, false, false, 37) == "female")) {
+            // line 38
             yield "                        <img src=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/profile1.png"), "html", null, true);
             yield "\" alt=\"Profile Image\">
                         ";
         }
-        // line 46
+        // line 40
         yield "                    ";
-        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 46, $this->source); })()), "gener", [], "any", false, false, false, 46) == "male")) {
-            // line 47
+        if ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 40, $this->source); })()), "gener", [], "any", false, false, false, 40) == "male")) {
+            // line 41
             yield "                        <img src=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/profile2.png"), "html", null, true);
             yield "\" alt=\"Profile Image\">
                        ";
         }
-        // line 49
+        // line 43
         yield "                    </div>
                 </div>
 
@@ -165,43 +162,40 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
                             <h3>Informations Personnelles</h3>
                             <ul>
                                 <li><strong>Nom:</strong> ";
-        // line 60
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 60, $this->source); })()), "firstName", [], "any", false, false, false, 60), "html", null, true);
+        // line 54
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 54, $this->source); })()), "firstName", [], "any", false, false, false, 54), "html", null, true);
         yield " ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 60, $this->source); })()), "lastName", [], "any", false, false, false, 60), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 54, $this->source); })()), "lastName", [], "any", false, false, false, 54), "html", null, true);
         yield "</li>
                                 <li><strong>Email:</strong> ";
-        // line 61
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 61, $this->source); })()), "email", [], "any", false, false, false, 61), "html", null, true);
+        // line 55
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 55, $this->source); })()), "email", [], "any", false, false, false, 55), "html", null, true);
         yield "</li>
                                 <li><strong>Téléphone:</strong> +216 ";
-        // line 62
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 62, $this->source); })()), "phone", [], "any", false, false, false, 62), "html", null, true);
+        // line 56
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 56, $this->source); })()), "phone", [], "any", false, false, false, 56), "html", null, true);
         yield "</li>
                                 <li><strong>Adresse:</strong> ";
-        // line 63
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 63, $this->source); })()), "adresse", [], "any", false, false, false, 63), "html", null, true);
+        // line 57
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 57, $this->source); })()), "adresse", [], "any", false, false, false, 57), "html", null, true);
         yield "</li>
                             </ul>
                         </div>
                         <div class=\"profile-actions\">
                             <a href=\"";
-        // line 67
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 67, $this->source); })()), "id", [], "any", false, false, false, 67)]), "html", null, true);
-        yield "\" class=\"default-btn\">Modifier les informations <i class=\"flaticon-edit\"></i></a>
+        // line 61
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 61, $this->source); })()), "id", [], "any", false, false, false, 61)]), "html", null, true);
+        yield "\" class=\"default-btn\">Modifier les informations</a>
                             <a href=\"";
-        // line 68
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 68, $this->source); })()), "id", [], "any", false, false, false, 68)]), "html", null, true);
-        yield "\" class=\"default-btn\">Changer le mot de passe <i class=\"flaticon-lock\"></i></a>
+        // line 62
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_profile_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["patient"]) || array_key_exists("patient", $context) ? $context["patient"] : (function () { throw new RuntimeError('Variable "patient" does not exist.', 62, $this->source); })()), "id", [], "any", false, false, false, 62)]), "html", null, true);
+        yield "\" class=\"default-btn\">Changer le mot de passe</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Profile Section -->
-
-    <!-- Start Recent Activities Section -->
     <section class=\"activities-area ptb-100\">
         <div class=\"container\">
             <div class=\"section-title\">
@@ -310,7 +304,7 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  194 => 68,  190 => 67,  183 => 63,  179 => 62,  175 => 61,  169 => 60,  156 => 49,  150 => 47,  147 => 46,  141 => 44,  139 => 43,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  191 => 62,  187 => 61,  180 => 57,  176 => 56,  172 => 55,  166 => 54,  153 => 43,  147 => 41,  144 => 40,  138 => 38,  136 => 37,  121 => 25,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -336,22 +330,16 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
     <div class=\"page-banner-with-full-image item-bg4\">
     <div class=\"container\">
         <div class=\"page-banner-content-two\">
-            <h2>Register</h2>
+            <h2>My Account</h2>
             <ul>
                 <li>
-                    <a href=\"index.html\">Home</a>
+                    <a href=\"{{ path('app_home')}}\">Home</a>
                 </li>
                 <li>Profile</li>
             </ul>
         </div>
     </div>
 </div>
-    <!-- End Top Header Area -->
-
-    <!-- Start Navbar Area -->
-    <!-- End Navbar Area -->
-
-    <!-- Start Profile Section -->
     <section class=\"profile-area pt-90 pb-40\">
         <div class=\"container\">
             <div class=\"row align-items-center\">
@@ -381,17 +369,14 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
                             </ul>
                         </div>
                         <div class=\"profile-actions\">
-                            <a href=\"{{ path('app_profile_edit', {'id': patient.id}) }}\" class=\"default-btn\">Modifier les informations <i class=\"flaticon-edit\"></i></a>
-                            <a href=\"{{ path('app_profile_edit', {'id': patient.id}) }}\" class=\"default-btn\">Changer le mot de passe <i class=\"flaticon-lock\"></i></a>
+                            <a href=\"{{ path('app_profile_edit', {'id': patient.id}) }}\" class=\"default-btn\">Modifier les informations</a>
+                            <a href=\"{{ path('app_profile_edit', {'id': patient.id}) }}\" class=\"default-btn\">Changer le mot de passe</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Profile Section -->
-
-    <!-- Start Recent Activities Section -->
     <section class=\"activities-area ptb-100\">
         <div class=\"container\">
             <div class=\"section-title\">
@@ -469,6 +454,7 @@ class __TwigTemplate_c0fbff9b07ab494d0beb3d7cded24bd3 extends Template
     <!-- End Footer Area -->
 
     <!-- Jquery Slim JS -->
-{% endblock %}", "patient/show.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\patient\\show.html.twig");
+{% endblock %}
+", "patient/show.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\patient\\show.html.twig");
     }
 }

@@ -212,6 +212,7 @@ class __TwigTemplate_ccd1fccade2ac8fa140e6b8c44965e04 extends Template
         <div class=\"go-top\">
             <i class='flaticon-up-arrow'></i>
         </div>
-{% endblock %}", "reset_password/check_email.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\check_email.html.twig");
+{% endblock %}
+", "reset_password/check_email.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\reset_password\\check_email.html.twig");
     }
 }

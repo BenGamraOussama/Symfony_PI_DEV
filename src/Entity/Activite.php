@@ -56,12 +56,11 @@ class Activite
     // Supprimer la contrainte Assert\Choice
     private ?string $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Patient::class, inversedBy: 'activites')]
-    #[Assert\Count(
-        min: 1,
-        minMessage: "Vous devez sélectionner au moins un patient"
-    )]
+    #[ORM\ManyToMany(targetEntity: Patient::class, mappedBy: 'activites')]
     private Collection $patients;
+
+
+
 
     #[ORM\OneToOne(mappedBy: 'activite', targetEntity: Exercice::class, cascade: ['persist', 'remove'])]
     private ?Exercice $exercice = null;
@@ -131,15 +130,20 @@ class Activite
     {
         if (!$this->patients->contains($patient)) {
             $this->patients->add($patient);
+            $patient->addActivite($this);
         }
         return $this;
     }
 
+
     public function removePatient(Patient $patient): self
     {
-        $this->patients->removeElement($patient);
+        if ($this->patients->removeElement($patient)) {
+            $patient->removeActivite($this);
+        }
         return $this;
     }
+
 
     public function getExercice(): ?Exercice
     {

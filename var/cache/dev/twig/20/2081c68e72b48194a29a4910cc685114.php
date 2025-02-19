@@ -122,7 +122,7 @@ class __TwigTemplate_06a2f2363313be59d2ae91f88f094e7c extends Template
                                 <!-- begin page title -->
                                 <div class=\"d-block d-sm-flex flex-nowrap align-items-center\">
                                     <div class=\"page-title mb-2 mb-sm-0\">
-                                        <h1>Account Settings</h1>
+                                        <h1>My Account</h1>
                                     </div>
                                     <div class=\"ml-auto d-flex align-items-center\">
                                         <nav>
@@ -329,14 +329,26 @@ class __TwigTemplate_06a2f2363313be59d2ae91f88f094e7c extends Template
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href=\"";
-        // line 191
+        // line 192
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_psychiatre");
         yield "\">back to home</a>
 
+=======
+    <a href=\"";
+        // line 195
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_psychiatre_index");
+        yield "\">back to list</a>
+
+    <a href=\"";
+        // line 197
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_psychiatre_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["psychiatre"]) || array_key_exists("psychiatre", $context) ? $context["psychiatre"] : (function () { throw new RuntimeError('Variable "psychiatre" does not exist.', 197, $this->source); })()), "id", [], "any", false, false, false, 197)]), "html", null, true);
+        yield "\">edit</a>
+>>>>>>> 9bd41d03ceb5065df5944360abcef9615ca32490
 
     ";
-        // line 194
+        // line 200
         yield Twig\Extension\CoreExtension::include($this->env, $context, "psychiatre/_delete_form.html.twig");
         yield "
 ";
@@ -370,7 +382,7 @@ class __TwigTemplate_06a2f2363313be59d2ae91f88f094e7c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  340 => 194,  334 => 191,  326 => 186,  319 => 182,  312 => 178,  305 => 174,  298 => 170,  291 => 166,  284 => 162,  249 => 130,  241 => 125,  233 => 120,  225 => 115,  216 => 109,  171 => 67,  165 => 66,  159 => 63,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  352 => 200,  346 => 197,  341 => 195,  335 => 192,  326 => 186,  319 => 182,  312 => 178,  305 => 174,  298 => 170,  291 => 166,  284 => 162,  249 => 130,  241 => 125,  233 => 120,  225 => 115,  216 => 109,  171 => 67,  165 => 66,  159 => 63,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -405,7 +417,7 @@ class __TwigTemplate_06a2f2363313be59d2ae91f88f094e7c extends Template
                                 <!-- begin page title -->
                                 <div class=\"d-block d-sm-flex flex-nowrap align-items-center\">
                                     <div class=\"page-title mb-2 mb-sm-0\">
-                                        <h1>Account Settings</h1>
+                                        <h1>My Account</h1>
                                     </div>
                                     <div class=\"ml-auto d-flex align-items-center\">
                                         <nav>
@@ -565,8 +577,14 @@ class __TwigTemplate_06a2f2363313be59d2ae91f88f094e7c extends Template
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href=\"{{ path('app_psychiatre') }}\">back to home</a>
 
+=======
+    <a href=\"{{ path('app_psychiatre_index') }}\">back to list</a>
+
+    <a href=\"{{ path('app_psychiatre_edit', {'id': psychiatre.id}) }}\">edit</a>
+>>>>>>> 9bd41d03ceb5065df5944360abcef9615ca32490
 
     {{ include('psychiatre/_delete_form.html.twig') }}
 {% endblock %}
