@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\Exercice;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,25 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/activite')]
 final class ActiviteController extends AbstractController
 {
-    #[Route(name: 'app_activite_index', methods: ['GET'])]
+    #[Route('/', name: 'app_activite_index', methods: ['GET'])]
     public function index(Request $request, ActiviteRepository $activiteRepository): Response
     {
-        // Get the selected filter from the request
         $typeFilter = $request->query->get('type');
 
-        // If a filter is provided, fetch activities based on the type
-        if ($typeFilter) {
-            $activites = $activiteRepository->findBy(['type' => $typeFilter]);
-        } else {
-            $activites = $activiteRepository->findAll();
-        }
+        $activites = $activiteRepository->findByFilters($typeFilter);
 
-        // Pass the filter and activities to the view
         return $this->render('activite/index.html.twig', [
             'activites' => $activites,
-            'typeFilter' => $typeFilter,  // To keep track of the selected filter
+            'typeFilter' => $typeFilter
         ]);
     }
+        
+    #[Route('/update-status', name: 'app_activite_update_status', methods: ['POST'])]
+public function updateStatus(
+    Request $request,
+    EntityManagerInterface $em
+): Response {
+    $activites = $em->getRepository(Activite::class)->find($request->request->get('activity_id'));
+
+    if ($activites) {
+        $activites->setStatus($request->request->get('status'));
+        $em->flush();
+    }
+
+    return new Response(null, 204);
+}
 
     #[Route('/new', name: 'app_activite_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -42,23 +51,34 @@ final class ActiviteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($activite);
-            $entityManager->flush();
+            try {
+                // Handle exercise relationship
+                if ($activite->getType() === 'exercise') {
+                    $exerciseData = $form->get('exercice')->getData();
+                    
+                    if (!$exerciseData || empty($exerciseData->getQuestion())) {
+                        throw new \Exception('Exercise question is required.');
+                    }
 
-            return $this->redirectToRoute('app_activite_index', [], Response::HTTP_SEE_OTHER);
+                    $exercise = new Exercice();
+                    $exercise->setQuestion($exerciseData->getQuestion());
+                    $exercise->setActivite($activite);
+                    $entityManager->persist($exercise);
+                }
+
+                $entityManager->persist($activite);
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Activity created successfully!');
+                return $this->redirectToRoute('app_activite_index', [], Response::HTTP_SEE_OTHER);
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+            }
         }
 
         return $this->render('activite/new.html.twig', [
             'activite' => $activite,
             'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_activite_show', methods: ['GET'])]
-    public function show(Activite $activite): Response
-    {
-        return $this->render('activite/show.html.twig', [
-            'activite' => $activite,
         ]);
     }
 
@@ -69,9 +89,36 @@ final class ActiviteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            try {
+                $originalExercise = $activite->getExercice();
+                
+                if ($activite->getType() === 'exercise') {
+                    $exerciseData = $form->get('exercice')->getData();
+                    
+                    if (!$exerciseData || empty($exerciseData->getQuestion())) {
+                        throw new \Exception('Exercise question is required.');
+                    }
 
-            return $this->redirectToRoute('app_activite_index', [], Response::HTTP_SEE_OTHER);
+                    if ($originalExercise) {
+                        $originalExercise->setQuestion($exerciseData->getQuestion());
+                    } else {
+                        $exercise = new Exercice();
+                        $exercise->setQuestion($exerciseData->getQuestion());
+                        $exercise->setActivite($activite);
+                        $entityManager->persist($exercise);
+                    }
+                } else {
+                    if ($originalExercise) {
+                        $entityManager->remove($originalExercise);
+                    }
+                }
+
+                $entityManager->flush();
+                $this->addFlash('success', 'Activity updated successfully!');
+                return $this->redirectToRoute('app_activite_index', [], Response::HTTP_SEE_OTHER);
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+            }
         }
 
         return $this->render('activite/edit.html.twig', [
@@ -84,10 +131,34 @@ final class ActiviteController extends AbstractController
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$activite->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($activite);
-            $entityManager->flush();
+            try {
+                // Remove associated exercise if exists
+                if ($exercise = $activite->getExercice()) {
+                    $entityManager->remove($exercise);
+                }
+                
+                $entityManager->remove($activite);
+                $entityManager->flush();
+                $this->addFlash('success', 'Activity deleted successfully!');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Error deleting activity: '.$e->getMessage());
+            }
         }
 
         return $this->redirectToRoute('app_activite_index', [], Response::HTTP_SEE_OTHER);
     }
+   #[Route('/{id}', name: 'app_activite_show', methods: ['GET'])]
+public function show(Activite $activite): Response
+{
+    // Check if it's an exercise type activity
+    if ($activite->getType() === 'exercise' && $activite->getExercice()) {
+        return $this->redirectToRoute('app_exercice_show', [
+            'id' => $activite->getExercice()->getId()
+        ]);
+    }
+
+    return $this->render('activite/show.html.twig', [
+        'activite' => $activite,
+    ]);
+}   
 }

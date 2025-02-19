@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Activite;
-use App\Entity\Administrateur;
 use App\Entity\Patient;
+use App\Form\ExerciceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,32 +18,29 @@ class ActiviteType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('status', ChoiceType::class, [
-                'choices' => [
-                    'Not Started' => 'not_started',
-                    'In Progress' => 'in_progress',
-                    'Completed' => 'completed'
-                ],
-                'attr' => ['class' => 'form-select'],
-                'label' => 'Status',
-                'placeholder' => 'Select status'
-            ])
+            
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'MENTALE' => 'mentale',
                     'RELAXATION' => 'relaxation',
-                    'SOCIALE' => 'sociale'
+                    'SOCIALE' => 'sociale',
+                    'EXERCISE' => 'exercise'
                 ],
                 'attr' => ['class' => 'form-select'],
-                'label' => 'type',
+                'label' => 'Type',
                 'placeholder' => 'Select type'
             ])
-            ->add('patient', EntityType::class, [
+            ->add('patients', EntityType::class, [
                 'class' => Patient::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false
             ])
-        ;
+            ->add('exercice', ExerciceType::class, [
+                'label' => 'Exercise Details',
+                'required' => false,
+                'mapped' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

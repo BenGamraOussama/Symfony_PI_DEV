@@ -6,6 +6,9 @@ use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Question;
+use App\Entity\Exercice;
+use App\Entity\Activite;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 class Patient
@@ -39,11 +42,25 @@ class Patient
     #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'patient')]
     private Collection $activites;
 
+    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'patient')]
+    private Collection $reponses;
+
+    #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->exercices = new ArrayCollection();
         $this->activites = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
+
+    }
+
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
     }
 
     public function getId(): ?int
@@ -155,4 +172,11 @@ class Patient
 
         return $this;
     }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+    
 }

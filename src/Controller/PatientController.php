@@ -57,4 +57,6 @@ public function index(): Response
             'status' => $activity->getStatus(),
         ]);
     }
+
+    
 }

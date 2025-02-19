@@ -1,14 +1,6 @@
 {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': true}}) }}
 <div class="card shadow">
-    <div class="card-header bg-primary text-white">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">
-                <i class="bi bi-activity me-2"></i>
-                {{ button_label|default('New Activity') }}
-            </h5>
-            
-        </div>
-    </div>
+   
 
     <div class="card-body">
         <div class="row">
@@ -40,22 +32,8 @@
 
                 {# Status & Type Row #}
                 <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            {{ form_label(form.status, 'Status', {'label_attr': {'class': 'form-label fw-bold'}}) }}
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="bi bi-check-circle"></i>
-                                </span>
-                                {{ form_widget(form.status, {'attr': {
-                                    'class': 'form-select' ~ (form.status.vars.valid ? '' : ' is-invalid')
-                                }}) }}
-                            </div>
-                            <div class="invalid-feedback">
-                                {{ form_errors(form.status) }}
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ form_label(form.type, 'Type', {'label_attr': {'class': 'form-label fw-bold'}}) }}
@@ -64,12 +42,36 @@
                                     <i class="bi bi-tag"></i>
                                 </span>
                                 {{ form_widget(form.type, {'attr': {
-                                    'class': 'form-select' ~ (form.type.vars.valid ? '' : ' is-invalid')
+                                    'class': 'form-select' ~ (form.type.vars.valid ? '' : ' is-invalid'),
+                                    'id': 'activity_type'
                                 }}) }}
                             </div>
                             <div class="invalid-feedback">
                                 {{ form_errors(form.type) }}
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {# Exercise Question Field (Conditional) #}
+                <div id="exercise-section" style="display: none;">
+                    <div class="mb-4">
+                        <div class="form-group">
+                            {{ form_label(form.exercice.question, 'Exercise Question', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-question-circle"></i>
+                                </span>
+                                {{ form_widget(form.exercice.question, {'attr': {
+                                    'class': 'form-control' ~ (form.exercice.question.vars.valid ? '' : ' is-invalid'),
+                                    'rows': 3,
+                                    'placeholder': 'Enter the exercise question'
+                                }}) }}
+                            </div>
+                            <div class="invalid-feedback">
+                                {{ form_errors(form.exercice.question) }}
+                            </div>
+                            <small class="form-text text-muted">Required for exercise-type activities</small>
                         </div>
                     </div>
                 </div>
@@ -81,15 +83,15 @@
                             <i class="bi bi-person-heart me-2"></i>
                             Associated Patients
                         </label>
-                        {{ form_widget(form.patient, {
+                        {{ form_widget(form.patients, {
                             'attr': {
-                                'class': 'form-select' ~ (form.patient.vars.valid ? '' : ' is-invalid'),
+                                'class': 'form-select' ~ (form.patients.vars.valid ? '' : ' is-invalid'),
                                 'data-choices': true
                             }
                         }) }}
                         <small class="form-text text-muted">Select patient(s) for this activity</small>
                         <div class="invalid-feedback">
-                            {{ form_errors(form.patient) }}
+                            {{ form_errors(form.patients) }}
                         </div>
                     </div>
                 </div>
@@ -109,3 +111,29 @@
     </div>
 </div>
 {{ form_end(form) }}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typeSelect = document.getElementById('activity_type');
+    const exerciseSection = document.getElementById('exercise-section');
+    const questionInput = document.getElementById('{{ form.exercice.question.vars.id }}');
+
+    function toggleExerciseFields() {
+        if (typeSelect.value === 'exercise') {
+            exerciseSection.style.display = 'block';
+            questionInput.required = true;
+        } else {
+            exerciseSection.style.display = 'none';
+            questionInput.required = false;
+        }
+    }
+
+    // Initial state check
+    toggleExerciseFields();
+    
+    // Event listener for type changes
+    typeSelect.addEventListener('change', toggleExerciseFields);
+});
+</script>
+{% endblock %}

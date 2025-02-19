@@ -15,16 +15,19 @@ class ActiviteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Activite::class);
     }
-    public function findByType(?string $type): array
-{
-    $qb = $this->createQueryBuilder('a');
+    public function findByFilters(?string $type): array
+    {
+        $qb = $this->createQueryBuilder('a');
 
-    if ($type) {
-        $qb->andWhere('a.type = :type')
-           ->setParameter('type', $type);
+        if ($type) {
+            $qb->andWhere('a.type = :type')
+               ->setParameter('type', $type);
+        }
+
+        return $qb->orderBy('a.id', 'DESC')
+                 ->getQuery()
+                 ->getResult();
     }
-
-    return $qb->getQuery()->getResult();
 }
 
 
@@ -52,4 +55,3 @@ class ActiviteRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

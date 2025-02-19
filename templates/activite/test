@@ -48,17 +48,41 @@
                         <!-- begin row -->
                         <div class="row">
                             
-
-
-                            <h1>Edit Exercice</h1>
-
-                            {{ include('exercice/_form.html.twig', {'button_label': 'Update'}) }}
-                        
-                            <a href="{{ path('app_exercice_index') }}">back to list</a>
-                        
-                            {{ include('exercice/_delete_form.html.twig') }}
-
-
+                            <div class="container my-5">
+                                <div class="card shadow">
+                                    <div class="card-header bg-primary text-white">
+                                        <h2 class="h4 mb-0">{{ activite.titre }}</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <dl class="row">
+                                            <dt class="col-sm-3">Description</dt>
+                                            <dd class="col-sm-9">{{ activite.description }}</dd>
+                            
+                                            <dt class="col-sm-3">Status</dt>
+                                            <dd class="col-sm-9">
+                                                <span class="badge 
+                                                    {% if activite.status == 'not_started' %}bg-secondary
+                                                    {% elseif activite.status == 'in_progress' %}bg-warning text-dark
+                                                    {% elseif activite.status == 'completed' %}bg-success
+                                                    {% endif %}">
+                                                    {{ activite.status|replace({'_': ' '})|title }}
+                                                </span>
+                                            </dd>
+                            
+                                            <dt class="col-sm-3">Type</dt>
+                                            <dd class="col-sm-9">{{ activite.type|capitalize }}</dd>
+                                        </dl>
+                            
+                                        {% if activite.type == 'exercise' and activite.exercice %}
+                                            <div class="alert alert-info">
+                                                This is an exercise activity. <a href="{{ path('app_exercice_show', {'id': activite.exercice.id}) }}">
+                                                    View exercise details
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                             
                         </div>
                        

@@ -15,24 +15,19 @@ class Exercice
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    #[ORM\OneToOne(targetEntity: Activite::class, inversedBy: 'exercice')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Activite $activite = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    #[ORM\Column(type: 'text')]
+    private string $question;
 
-    /**
-     * @var Collection<int, Patient>
-     */
-    #[ORM\ManyToMany(targetEntity: Patient::class, inversedBy: 'exercices')]
-    private Collection $patient;
-
-    #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'exercice', orphanRemoval: true)]
+    private Collection $reponses;
 
     public function __construct()
     {
-        $this->patient = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -40,70 +35,49 @@ class Exercice
         return $this->id;
     }
 
-    public function setId(int $id): static
+    public function getActivite(): ?Activite
     {
-        $this->id = $id;
+        return $this->activite;
+    }
 
+    public function setActivite(Activite $activite): self
+    {
+        $this->activite = $activite;
         return $this;
     }
 
-    public function getTitre(): ?string
+    public function getQuestion(): string
     {
-        return $this->titre;
+        return $this->question;
     }
 
-    public function setTitre(string $titre): static
+    public function setQuestion(string $question): self
     {
-        $this->titre = $titre;
-
+        $this->question = $question;
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getReponses(): Collection
     {
-        return $this->description;
+        return $this->reponses;
     }
 
-    public function setDescription(string $description): static
+    public function addReponse(Reponse $reponse): self
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Patient>
-     */
-    public function getPatient(): Collection
-    {
-        return $this->patient;
-    }
-
-    public function addPatient(Patient $patient): static
-    {
-        if (!$this->patient->contains($patient)) {
-            $this->patient->add($patient);
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->setExercice($this);
         }
-
         return $this;
     }
 
-    public function removePatient(Patient $patient): static
+    public function removeReponse(Reponse $reponse): self
     {
-        $this->patient->removeElement($patient);
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): static
-    {
-        $this->status = $status;
-
+        if ($this->reponses->removeElement($reponse)) {
+            if ($reponse->getExercice() === $this) {
+                $reponse->setExercice(null);
+            }
+        }
         return $this;
     }
 }

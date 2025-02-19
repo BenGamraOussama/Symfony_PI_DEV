@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Patient::class)]
+    private ?Patient $patient = null;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -142,5 +144,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->firstName = $firstName;
 
         return $this;
+    }
+    
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
     }
 }
