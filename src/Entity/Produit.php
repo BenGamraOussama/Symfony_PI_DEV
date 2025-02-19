@@ -6,8 +6,7 @@ use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
     #[ORM\Id]
@@ -15,34 +14,45 @@ class Produit
     #[ORM\Column(type: "integer")]
     private ?int $id = null;
 
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "Le nom du produit ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 3,
+        max: 255,
+        minMessage: "Le nom du produit doit faire au moins {{ limit }} caractères.",
+        maxMessage: "Le nom du produit ne peut pas dépasser {{ limit }} caractères."
+    )]
+    private $nom;
 
     #[ORM\Column(type: "string", length: 255)]
-    private $nom;
-    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
     private $description;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "Le prix ne peut pas être vide.")]
+    #[Assert\Regex(
+        pattern: "/^\d+(\.\d{1,2})?$/",
+        message: "Le prix doit être un nombre valide avec maximum deux décimales."
+    )]
     private $prix;
 
     #[ORM\Column(type: "boolean")]
     private $disponible;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    // Relation ManyToOne avec ProduitCategories
+    #[ORM\ManyToOne(targetEntity: ProduitCategories::class)]
+    #[ORM\JoinColumn(name: "categorie_id", referencedColumnName: "id", nullable: false)]
     private ?ProduitCategories $categorie = null;
 
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    #[Assert\File(
+        maxSize: "5M",
+        mimeTypes: ["image/jpeg", "image/png", "image/gif"],
+        mimeTypesMessage: "Veuillez télécharger une image valide (JPEG, PNG, GIF)."
+    )]
+    private ?string $image = null;
 
-    public function getCategorie(): ?ProduitCategories
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?ProduitCategories $categorie): static
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -97,15 +107,27 @@ class Produit
         return $this;
     }
 
+    public function getCategorie(): ?ProduitCategories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?ProduitCategories $categorie): static
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
     public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(?string $image): static
     {
         $this->image = $image;
+
         return $this;
     }
-
 }

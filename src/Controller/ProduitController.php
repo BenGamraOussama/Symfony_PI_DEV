@@ -8,11 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 final class ProduitController extends AbstractController
 {
-    #[Route('produit', name: 'produit_index', methods: ['GET'])]
+    #[Route('/produit', name: 'produit_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
         $produits = $entityManager->getRepository(Produit::class)->findAll();
@@ -21,37 +23,102 @@ final class ProduitController extends AbstractController
             'produits' => $produits,
         ]);
     }
-    #[Route('/produit/new', name: 'produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+
+    #[Route('/produit/add', name: 'produit_add', methods: ['GET', 'POST'])]
+    public function add(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    throw new \Exception('Impossible de déplacer l\'image.');
+                }
+
+                $produit->setImage($newFilename);
+            }
+
             $entityManager->persist($produit);
             $entityManager->flush();
-    
-            return $this->redirectToRoute('produit_index'); // Redirection vers la liste des produits
+
+            return $this->redirectToRoute('produit_index');
         }
-    
+
         return $this->render('produit/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/produit/{id}/edit', name: 'produit_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, int $id, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    {
+        $produit = $entityManager->getRepository(Produit::class)->find($id);
+
+        if (!$produit) {
+            throw $this->createNotFoundException('Produit non trouvé.');
+        }
+
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    throw new \Exception('Impossible de déplacer l\'image.');
+                }
+
+                if ($produit->getImage()) {
+                    $oldImagePath = $this->getParameter('uploads_directory') . '/' . $produit->getImage();
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $produit->setImage($newFilename);
+            }
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('produit_index');
+        }
+
+        return $this->render('produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form->createView(),
         ]);
     }
-    
 
-    
+    #[Route('/produit/{id}', name: 'produit_show', methods: ['GET'])]
+    public function show(int $id, EntityManagerInterface $entityManager): Response
+    {
+        $produit = $entityManager->getRepository(Produit::class)->find($id);
 
-    
-
-    #[Route('produit/{id}', name: 'produit_show', methods: ['GET'])]
-      public function show(Produit $produit): Response    {
-        {
-            return $this->render('produit/show.html.twig', [
-                'produit' => $produit,
-            ]);
+        if (!$produit) {
+            throw $this->createNotFoundException('Produit non trouvé.');
         }
 
         return $this->render('produit/show.html.twig', [
@@ -59,8 +126,8 @@ final class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('produit/{id}/edit', name: 'produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, int $id, EntityManagerInterface $entityManager): Response
+    #[Route('/produit/{id}/delete', name: 'produit_delete', methods: ['POST'])]
+    public function delete(int $id, EntityManagerInterface $entityManager): Response
     {
         $produit = $entityManager->getRepository(Produit::class)->find($id);
 
@@ -68,46 +135,17 @@ final class ProduitController extends AbstractController
             throw $this->createNotFoundException('Produit non trouvé.');
         }
 
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump("Le formulaire est soumis !");  
-        }
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump("Le formulaire est valide !");
-            $entityManager->persist($produit);
-            dump($produit); // Vérifier les données avant flush()
-           $entityManager->persist($produit);
-            $entityManager->flush();
-            dump("Produit enregistré !");
-            exit();
-            
-            return $this->redirectToRoute('produit_index');
-        }
-        
-        dump("Le formulaire n'est pas soumis ou invalide !");
-        return $this->render('produit/edit.html.twig', [
-            'produit' => $produit,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('produit/{id}/delete', name: 'produit_delete', methods: ['POST'])]
-    public function delete(Request $request, int $id, EntityManagerInterface $entityManager): Response
-    {
-        $produit = $entityManager->getRepository(Produit::class)->find($id);
-
-        if (!$produit) {
-            throw $this->createNotFoundException('Produit non trouvé.');
+        // Supprimer l'image du produit
+        if ($produit->getImage()) {
+            $imagePath = $this->getParameter('uploads_directory') . '/' . $produit->getImage();
+            if (file_exists($imagePath)) {
+                unlink($imagePath);  // Supprimer l'image
+            }
         }
 
-        if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($produit);
-            $entityManager->flush();
-        }
+        $entityManager->remove($produit);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('produit_index');
     }
 }
-

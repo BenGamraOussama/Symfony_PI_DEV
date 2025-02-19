@@ -13,7 +13,7 @@ final class PatientController extends AbstractController
 {
 
 
-    #[Route('/produit', name: 'produit_index_patient', methods: ['GET'])]
+    #[Route('/patient', name: 'produit_index_patient', methods: ['GET'])]
     public function indexproduit(EntityManagerInterface $entityManager): Response
     {
         $produits = $entityManager->getRepository(Produit::class)->findAll();
@@ -23,5 +23,17 @@ final class PatientController extends AbstractController
         ]);
     }
 
+    #[Route('/produit/{id}', name: 'produit_show_patient', methods: ['GET'])]
+    public function showProduit(EntityManagerInterface $em, $id): Response
+    {
+        $produit = $em->getRepository(Produit::class)->find($id);
 
+        if (!$produit) {
+            throw $this->createNotFoundException('Produit introuvable');
+        }
+
+        return $this->render('produit/show_patient.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
 }
