@@ -291,7 +291,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
         yield "
         </div>
     </div>
-    <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+    <button type=\"submit\">Register Now</button>
     <div class=\"col-12 mt-3\">
         <p>Already have an account? <a href=\"";
         // line 157
@@ -415,7 +415,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
         yield "
         </div>
     </div>
-                          <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+                          <button type=\"submit\">Register Now</button>
                           <div class=\"col-12 mt-3\">
                             <p>Already have an account? <a href=\"";
         // line 224
@@ -461,7 +461,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
                             </div>
                         </div>
                          <div class=\"form-group\">
-                            <label>Last Name</label>
+                            <label>Adresse</label>
                             ";
         // line 248
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["fournissuerType"]) || array_key_exists("fournissuerType", $context) ? $context["fournissuerType"] : (function () { throw new RuntimeError('Variable "fournissuerType" does not exist.', 248, $this->source); })()), "adresse", [], "any", false, false, false, 248), 'widget', ["attr" => ["class" => "form-control", "placeholder" => "Adresse", "required" => "required"]]);
@@ -499,7 +499,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
         yield "
                             </div>
                         </div>
-                        <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+                        <button type=\"submit\">Register Now</button>
                         <div class=\"col-12 mt-3\">
                             <p>Already have an account? <a href=\"";
         // line 269
@@ -706,7 +706,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
             {{ form_errors(patientFormType.adresse) }}
         </div>
     </div>
-    <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+    <button type=\"submit\">Register Now</button>
     <div class=\"col-12 mt-3\">
         <p>Already have an account? <a href=\"{{ path('app_login') }}\">Sign In</a></p>
     </div>
@@ -773,7 +773,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
             {{ form_errors(psychiatreType.adresse) }}
         </div>
     </div>
-                          <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+                          <button type=\"submit\">Register Now</button>
                           <div class=\"col-12 mt-3\">
                             <p>Already have an account? <a href=\"{{ path('app_login') }}\">Sign In</a></p>
                           </div>
@@ -798,7 +798,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
                             </div>
                         </div>
                          <div class=\"form-group\">
-                            <label>Last Name</label>
+                            <label>Adresse</label>
                             {{ form_widget(fournissuerType.adresse, { 'attr': {'class': 'form-control', 'placeholder': 'Adresse', 'required': 'required'} }) }}
                             <div class=\"text-danger mb-3\">
                                 {{ form_errors(fournissuerType.adresse) }}
@@ -818,7 +818,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
                                 {{ form_errors(fournissuerType.plainPassword) }}
                             </div>
                         </div>
-                        <button type=\"submit\" class=\"btn btn-warning\">Register Now</button>
+                        <button type=\"submit\">Register Now</button>
                         <div class=\"col-12 mt-3\">
                             <p>Already have an account? <a href=\"{{ path('app_login') }}\">Sign In</a></p>
                         </div>
@@ -829,6 +829,7 @@ class __TwigTemplate_baf65d201639af62c19110885785e475 extends Template
         </div>
     </div>
 </section>
-{% endblock %}", "registration/register.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\registration\\register.html.twig");
+{% endblock %}
+", "registration/register.html.twig", "C:\\Users\\OUSSAMA BEN GAMRA\\OneDrive\\Desktop\\symfony\\symfony_pi_dev\\templates\\registration\\register.html.twig");
     }
 }

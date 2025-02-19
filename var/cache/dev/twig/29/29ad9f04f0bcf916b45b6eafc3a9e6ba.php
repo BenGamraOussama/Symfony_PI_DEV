@@ -150,7 +150,10 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</p>
     
                         <div class=\"banner-btn\">
-                            <a href=\"online-booking.html\" class=\"default-btn\">Book Online Session <i class=\"flaticon-pointer\"></i></a>
+                            <a href=\"";
+        // line 59
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
+        yield "\" class=\"default-btn\">Book Online Session <i class=\"flaticon-pointer\"></i></a>
                             <a href=\"services.html\" class=\"optional-btn\">Our Services <i class=\"flaticon-repairing-service\"></i></a>
                         </div>
                     </div>
@@ -209,45 +212,69 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"row align-items-center\">
                     <div class=\"col-lg-6\">
                         <div class=\"about-main-image\">
+<<<<<<< HEAD
                             <img src=\"";
-        // line 118
+        // line 119
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/about-1.jpg"), "html", null, true);
         yield "\" alt=\"image\">
 
                             <div class=\"about-shape\">
                                 <div class=\"shape-1\">
                                     <img src=\"";
-        // line 122
+        // line 123
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/shape-1.png"), "html", null, true);
         yield "\" alt=\"image\">
                                 </div>
 
                                 <div class=\"shape-2\">
                                     <img src=\"";
-        // line 126
+        // line 127
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/shape-2.png"), "html", null, true);
         yield "\" alt=\"image\">
                                 </div>
 
                                 <div class=\"shape-3\">
                                     <img src=\"";
-        // line 130
+        // line 131
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/shape-3.png"), "html", null, true);
         yield "\" alt=\"image\">
                                 </div>
 
                                 <div class=\"shape-4\">
                                     <img src=\"";
-        // line 134
+        // line 135
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/shape-4.png"), "html", null, true);
         yield "\" alt=\"image\">
                                 </div>
 
                                 <div class=\"shape-5\">
                                     <img src=\"";
-        // line 138
+        // line 139
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/shape-5.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/about/about-1.jpg\" alt=\"image\">
+
+                            <div class=\"about-shape\">
+                                <div class=\"shape-1\">
+                                    <img src=\"assetsP/images/about/shape-1.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-2\">
+                                    <img src=\"assetsP/images/about/shape-2.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-3\">
+                                    <img src=\"assetsP/images/about/shape-3.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-4\">
+                                    <img src=\"assetsP/images/about/shape-4.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-5\">
+                                    <img src=\"assetsP/images/about/shape-5.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -258,10 +285,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                             <h3>Know About Us</h3>
 
                             <div class=\"about-content-image\">
+<<<<<<< HEAD
                                 <img src=\"";
-        // line 149
+        // line 174
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/about-2.jpg"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                                <img src=\"assetsP/images/about/about-2.jpg\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <h4 class=\"sub-title\">Hanna Emeli</h4>
 
@@ -299,10 +330,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"about-main-shape\">
+<<<<<<< HEAD
                 <img src=\"";
-        // line 187
+        // line 216
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/about/line-shape.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/about/line-shape.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End About Area -->
@@ -312,45 +347,69 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             <div class=\"container\">
                 <div class=\"partner-slides owl-carousel owl-theme\">
                     <div class=\"single-partner\">
+<<<<<<< HEAD
                         <a href=\"about.html\"><img src=\"";
-        // line 197
+        // line 230
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-1.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                     </div>
 
                     <div class=\"single-partner style-two\">
                         <a href=\"about.html\"><img src=\"";
-        // line 201
+        // line 234
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-2.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                     </div>
 
                     <div class=\"single-partner\">
                         <a href=\"about.html\"><img src=\"";
-        // line 205
+        // line 238
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-3.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                     </div>
 
                     <div class=\"single-partner style-two\">
                         <a href=\"about.html\"><img src=\"";
-        // line 209
+        // line 242
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-4.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                     </div>
 
                     <div class=\"single-partner\">
                         <a href=\"about.html\"><img src=\"";
-        // line 213
+        // line 246
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-5.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                     </div>
 
                     <div class=\"single-partner style-two\">
                         <a href=\"about.html\"><img src=\"";
-        // line 217
+        // line 250
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/partner/partner-6.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-1.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-2.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-3.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-4.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-5.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-6.png\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                     </div>
                 </div>
             </div>
@@ -432,10 +491,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"col-lg-6\">
                         <div class=\"offer-image\">
+<<<<<<< HEAD
                             <img src=\"";
-        // line 299
+        // line 356
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/offer/offer-1.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/offer/offer-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                         </div>
                     </div>
                 </div>
@@ -449,10 +512,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"row align-items-end\">
                     <div class=\"col-lg-6\">
                         <div class=\"reviews-image\">
+<<<<<<< HEAD
                             <img src=\"";
-        // line 313
+        // line 374
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/reviews-1.jpg"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/reviews/reviews-1.jpg\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                         </div>
                     </div>
 
@@ -537,10 +604,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 398
+        // line 463
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-1.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-1.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -551,10 +622,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 409
+        // line 478
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-2.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-2.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -565,10 +640,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 420
+        // line 493
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-3.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-3.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -579,10 +658,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 431
+        // line 508
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-4.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-4.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -593,10 +676,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 442
+        // line 523
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-5.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-5.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -607,10 +694,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"";
-        // line 453
+        // line 538
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/images-6.jpg"), "html", null, true);
         yield "\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-6.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                 </div>
@@ -621,10 +712,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"reviews-main-shape\">
+<<<<<<< HEAD
                 <img src=\"";
-        // line 464
+        // line 553
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/reviews/shape-1.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/reviews/shape-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Reviews Area -->
@@ -653,10 +748,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"";
-        // line 493
+        // line 586
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/philosophy/philosophy-1.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -682,10 +781,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"";
-        // line 519
+        // line 616
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/philosophy/philosophy-2.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-2.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -711,10 +814,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"";
-        // line 545
+        // line 646
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/philosophy/philosophy-3.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-3.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -723,10 +830,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"philosophy-main-shape\">
+<<<<<<< HEAD
                 <img src=\"";
-        // line 554
+        // line 659
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/philosophy/line-shape.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/philosophy/line-shape.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Philosophy Area -->
@@ -742,10 +853,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"products-slides owl-carousel owl-theme\">
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 570
+        // line 679
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-1.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -759,12 +874,19 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                             <span>\$140 - \$150</span>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class=\"products-item\">
                         <div class=\"products-image\">
                             <a href=\"products-details.html\"><img src=\"";
-        // line 586
+        // line 699
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-2.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+
+                    <div class=\"products-item\">
+                        <div class=\"products-image\">
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -781,10 +903,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 603
+        // line 723
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-3.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -801,10 +927,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 620
+        // line 744
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-4.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-4.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -821,10 +951,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 637
+        // line 765
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-5.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-5.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -841,10 +975,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 654
+        // line 786
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-6.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-6.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -861,10 +999,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 671
+        // line 807
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-1.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -881,10 +1023,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 688
+        // line 828
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-2.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -901,10 +1047,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 705
+        // line 849
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-3.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -921,10 +1071,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 722
+        // line 870
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-4.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-4.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -941,10 +1095,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 739
+        // line 891
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-5.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-5.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -961,10 +1119,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"";
-        // line 756
+        // line 912
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/products-6.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-6.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -986,10 +1148,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"products-main-shape\">
+<<<<<<< HEAD
                 <img src=\"";
-        // line 778
+        // line 938
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/products/shape-1.png"), "html", null, true);
         yield "\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/products/shape-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Products Area -->
@@ -1032,10 +1198,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"";
-        // line 821
+        // line 985
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/blog/blog-1.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">13th <span>Jan</span></div>
                             </div>
@@ -1054,10 +1224,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"";
-        // line 840
+        // line 1008
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/blog/blog-2.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">14th <span>Jan</span></div>
                             </div>
@@ -1076,10 +1250,14 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"";
-        // line 859
+        // line 1031
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/blog/blog-3.jpg"), "html", null, true);
         yield "\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">14th <span>Jan</span></div>
                             </div>
@@ -1135,7 +1313,7 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  1081 => 859,  1059 => 840,  1037 => 821,  991 => 778,  966 => 756,  946 => 739,  926 => 722,  906 => 705,  886 => 688,  866 => 671,  846 => 654,  826 => 637,  806 => 620,  786 => 603,  766 => 586,  747 => 570,  728 => 554,  716 => 545,  687 => 519,  658 => 493,  626 => 464,  612 => 453,  598 => 442,  584 => 431,  570 => 420,  556 => 409,  542 => 398,  454 => 313,  437 => 299,  352 => 217,  345 => 213,  338 => 209,  331 => 205,  324 => 201,  317 => 197,  304 => 187,  263 => 149,  249 => 138,  242 => 134,  235 => 130,  228 => 126,  221 => 122,  214 => 118,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  1256 => 1031,  1230 => 1008,  1204 => 985,  1154 => 938,  1125 => 912,  1101 => 891,  1077 => 870,  1053 => 849,  1029 => 828,  1005 => 807,  981 => 786,  957 => 765,  933 => 744,  909 => 723,  882 => 699,  859 => 679,  836 => 659,  820 => 646,  787 => 616,  754 => 586,  718 => 553,  700 => 538,  682 => 523,  664 => 508,  646 => 493,  628 => 478,  610 => 463,  518 => 374,  497 => 356,  388 => 250,  381 => 246,  374 => 242,  367 => 238,  360 => 234,  353 => 230,  336 => 216,  291 => 174,  253 => 139,  246 => 135,  239 => 131,  232 => 127,  225 => 123,  218 => 119,  155 => 59,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1198,7 +1376,7 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</p>
     
                         <div class=\"banner-btn\">
-                            <a href=\"online-booking.html\" class=\"default-btn\">Book Online Session <i class=\"flaticon-pointer\"></i></a>
+                            <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online Session <i class=\"flaticon-pointer\"></i></a>
                             <a href=\"services.html\" class=\"optional-btn\">Our Services <i class=\"flaticon-repairing-service\"></i></a>
                         </div>
                     </div>
@@ -1257,6 +1435,7 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"row align-items-center\">
                     <div class=\"col-lg-6\">
                         <div class=\"about-main-image\">
+<<<<<<< HEAD
                             <img src=\"{{ asset('assetsP/images/about/about-1.jpg')}}\" alt=\"image\">
 
                             <div class=\"about-shape\">
@@ -1278,6 +1457,29 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                                 <div class=\"shape-5\">
                                     <img src=\"{{ asset('assetsP/images/about/shape-5.png')}}\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/about/about-1.jpg\" alt=\"image\">
+
+                            <div class=\"about-shape\">
+                                <div class=\"shape-1\">
+                                    <img src=\"assetsP/images/about/shape-1.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-2\">
+                                    <img src=\"assetsP/images/about/shape-2.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-3\">
+                                    <img src=\"assetsP/images/about/shape-3.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-4\">
+                                    <img src=\"assetsP/images/about/shape-4.png\" alt=\"image\">
+                                </div>
+
+                                <div class=\"shape-5\">
+                                    <img src=\"assetsP/images/about/shape-5.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -1288,7 +1490,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                             <h3>Know About Us</h3>
 
                             <div class=\"about-content-image\">
+<<<<<<< HEAD
                                 <img src=\"{{ asset('assetsP/images/about/about-2.jpg')}}\" alt=\"image\">
+=======
+                                <img src=\"assetsP/images/about/about-2.jpg\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <h4 class=\"sub-title\">Hanna Emeli</h4>
 
@@ -1326,7 +1532,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"about-main-shape\">
+<<<<<<< HEAD
                 <img src=\"{{ asset('assetsP/images/about/line-shape.png')}}\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/about/line-shape.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End About Area -->
@@ -1336,6 +1546,7 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             <div class=\"container\">
                 <div class=\"partner-slides owl-carousel owl-theme\">
                     <div class=\"single-partner\">
+<<<<<<< HEAD
                         <a href=\"about.html\"><img src=\"{{ asset('assetsP/images/partner/partner-1.png')}}\" alt=\"image\"></a>
                     </div>
 
@@ -1357,6 +1568,29 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"single-partner style-two\">
                         <a href=\"about.html\"><img src=\"{{ asset('assetsP/images/partner/partner-6.png')}}\" alt=\"image\"></a>
+=======
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-1.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-2.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-3.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-4.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-5.png\" alt=\"image\"></a>
+                    </div>
+
+                    <div class=\"single-partner style-two\">
+                        <a href=\"about.html\"><img src=\"assetsP/images/partner/partner-6.png\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                     </div>
                 </div>
             </div>
@@ -1438,7 +1672,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"col-lg-6\">
                         <div class=\"offer-image\">
+<<<<<<< HEAD
                             <img src=\"{{ asset('assetsP/images/offer/offer-1.png')}}\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/offer/offer-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                         </div>
                     </div>
                 </div>
@@ -1452,7 +1690,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"row align-items-end\">
                     <div class=\"col-lg-6\">
                         <div class=\"reviews-image\">
+<<<<<<< HEAD
                             <img src=\"{{ asset('assetsP/images/reviews/reviews-1.jpg')}}\" alt=\"image\">
+=======
+                            <img src=\"assetsP/images/reviews/reviews-1.jpg\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                         </div>
                     </div>
 
@@ -1537,7 +1779,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-1.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-1.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -1548,7 +1794,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-2.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-2.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -1559,7 +1809,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-3.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-3.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -1570,7 +1824,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-4.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-4.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -1581,7 +1839,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-5.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-5.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                     
@@ -1592,7 +1854,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                                         </div>
 
                                         <div class=\"img-fill\">
+<<<<<<< HEAD
                                             <img src=\"{{ asset('assetsP/images/reviews/images-6.jpg')}}\" alt=\"client\">
+=======
+                                            <img src=\"assetsP/images/reviews/images-6.jpg\" alt=\"client\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                         </div>
                                     </div>
                                 </div>
@@ -1603,7 +1869,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"reviews-main-shape\">
+<<<<<<< HEAD
                 <img src=\"{{ asset('assetsP/images/reviews/shape-1.png')}}\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/reviews/shape-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Reviews Area -->
@@ -1632,7 +1902,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"{{ asset('assetsP/images/philosophy/philosophy-1.png')}}\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -1658,7 +1932,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"{{ asset('assetsP/images/philosophy/philosophy-2.png')}}\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-2.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -1684,7 +1962,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                             <div class=\"col-lg-6\">
                                 <div class=\"philosophy-image\">
+<<<<<<< HEAD
                                     <img src=\"{{ asset('assetsP/images/philosophy/philosophy-3.png')}}\" alt=\"image\">
+=======
+                                    <img src=\"assetsP/images/philosophy/philosophy-3.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
                                 </div>
                             </div>
                         </div>
@@ -1693,7 +1975,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"philosophy-main-shape\">
+<<<<<<< HEAD
                 <img src=\"{{ asset('assetsP/images/philosophy/line-shape.png')}}\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/philosophy/line-shape.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Philosophy Area -->
@@ -1709,7 +1995,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                 <div class=\"products-slides owl-carousel owl-theme\">
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-1.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1723,9 +2013,16 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                             <span>\$140 - \$150</span>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class=\"products-item\">
                         <div class=\"products-image\">
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-2.jpg')}}\" alt=\"image\"></a>
+=======
+
+                    <div class=\"products-item\">
+                        <div class=\"products-image\">
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1742,7 +2039,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-3.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1759,7 +2060,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-4.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-4.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1776,7 +2081,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-5.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-5.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1793,7 +2102,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-6.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-6.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1810,7 +2123,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-1.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1827,7 +2144,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-2.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1844,7 +2165,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-3.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1861,7 +2186,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-4.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-4.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1878,7 +2207,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-5.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-5.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1895,7 +2228,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
 
                     <div class=\"products-item\">
                         <div class=\"products-image\">
+<<<<<<< HEAD
                             <a href=\"products-details.html\"><img src=\"{{ asset('assetsP/images/products/products-6.jpg')}}\" alt=\"image\"></a>
+=======
+                            <a href=\"products-details.html\"><img src=\"assetsP/images/products/products-6.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                             <div class=\"action-btn\">
                                 <a href=\"cart.html\" class=\"default-btn\">Add To Cart<i class=\"flaticon-shopping-cart\"></i></a>
@@ -1917,7 +2254,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
             </div>
 
             <div class=\"products-main-shape\">
+<<<<<<< HEAD
                 <img src=\"{{ asset('assetsP/images/products/shape-1.png')}}\" alt=\"image\">
+=======
+                <img src=\"assetsP/images/products/shape-1.png\" alt=\"image\">
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
             </div>
         </section>
         <!-- End Products Area -->
@@ -1960,7 +2301,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"{{ asset('assetsP/images/blog/blog-1.jpg')}}\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-1.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">13th <span>Jan</span></div>
                             </div>
@@ -1979,7 +2324,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"{{ asset('assetsP/images/blog/blog-2.jpg')}}\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-2.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">14th <span>Jan</span></div>
                             </div>
@@ -1998,7 +2347,11 @@ class __TwigTemplate_62c7dd18bae7cfbd7b8f9e1564fc847d extends Template
                     <div class=\"col-lg-4 col-md-6\">
                         <div class=\"single-blog\">
                             <div class=\"blog-image\">
+<<<<<<< HEAD
                                 <a href=\"blog-details.html\"><img src=\"{{ asset('assetsP/images/blog/blog-3.jpg')}}\" alt=\"image\"></a>
+=======
+                                <a href=\"blog-details.html\"><img src=\"assetsP/images/blog/blog-3.jpg\" alt=\"image\"></a>
+>>>>>>> b87540e56a65582ead53ebdab03c756860bd97ba
 
                                 <div class=\"tag\">14th <span>Jan</span></div>
                             </div>

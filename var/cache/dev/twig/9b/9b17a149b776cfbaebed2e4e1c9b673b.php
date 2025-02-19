@@ -155,13 +155,13 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
         ";
         // line 47
         yield from $this->unwrap()->yieldBlock('header', $context, $blocks);
-        // line 436
+        // line 302
         yield "        ";
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 437
+        // line 303
         yield "        ";
         yield from $this->unwrap()->yieldBlock('footer', $context, $blocks);
-        // line 565
+        // line 431
         yield "        <script data-cfasync=\"false\" src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"), "html", null, true);
         yield "\"></script><script src=\"";
@@ -169,72 +169,72 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
         yield "\"></script>
         <!-- Bootstrap Bundle JS -->
         <script src=\"";
-        // line 567
+        // line 433
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/bootstrap.bundle.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Meanmenu JS -->
         <script src=\"";
-        // line 569
+        // line 435
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.meanmenu.js"), "html", null, true);
         yield "\"></script>
         <!-- Owl Carousel JS -->
         <script src=\"";
-        // line 571
+        // line 437
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/owl.carousel.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Jquery Appear JS -->
         <script src=\"";
-        // line 573
+        // line 439
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.appear.js"), "html", null, true);
         yield "\"></script>
         <!-- Odometer JS -->
         <script src=\"";
-        // line 575
+        // line 441
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/odometer.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Slick Min JS -->
         <script src=\"";
-        // line 577
+        // line 443
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/slick.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Nice Select JS -->
         <script src=\"";
-        // line 579
+        // line 445
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/nice-select.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Magnific Popup JS -->
         <script src=\"";
-        // line 581
+        // line 447
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.magnific-popup.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Fancybox JS -->
         <script src=\"";
-        // line 583
+        // line 449
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/fancybox.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Ajaxchimp JS -->
 \t\t<script src=\"";
-        // line 585
+        // line 451
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.ajaxchimp.min.js"), "html", null, true);
         yield "\"></script>
 \t\t<!-- Form Validator JS -->
 \t\t<script src=\"";
-        // line 587
+        // line 453
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/form-validator.min.js"), "html", null, true);
         yield "\"></script>
 \t\t<!-- Contact JS -->
         <script src=\"";
-        // line 589
+        // line 455
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/contact-form-script.js"), "html", null, true);
         yield "\"></script>
         <!-- Wow JS -->
         <script src=\"";
-        // line 591
+        // line 457
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/wow.min.js"), "html", null, true);
         yield "\"></script>
         <!-- Custom JS -->
         <script src=\"";
-        // line 593
+        // line 459
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/main.js"), "html", null, true);
         yield "\"></script>
     </body>
@@ -397,149 +397,20 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                         <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
                             <ul class=\"navbar-nav m-auto\">
                                 <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link active\">
+                                    <a href=\"";
+        // line 73
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
+        yield "\" class=\"nav-link active\">
                                         Home 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"index.html\" class=\"nav-link active\">Home Demo - 1</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-2.html\" class=\"nav-link\">Home Demo - 2</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-3.html\" class=\"nav-link\">Home Demo - 3</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-4.html\" class=\"nav-link\">Home Demo - 4</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-5.html\" class=\"nav-link\">Home Demo - 5</a>
-                                        </li>
-                                    </ul>
+                                    </a> 
                                 </li>
-
                                 <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Pages 
-                                        <i class='bx bx-caret-down'></i>
+                                    <a href=\"";
+        // line 78
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("patient_activity_index");
+        yield "\" class=\"nav-link\">
+                                        Activities 
                                     </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"about.html\" class=\"nav-link\">About</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Coaches 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"coaches.html\" class=\"nav-link\">Coaches</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"coaches-details.html\" class=\"nav-link\">Coaches Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Events 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"events.html\" class=\"nav-link\">Events</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"events-details.html\" class=\"nav-link\">Events Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"success-story.html\" class=\"nav-link\">Success Story</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"purchase-guide.html\" class=\"nav-link\">Purchase Guide</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"pricing.html\" class=\"nav-link\">Pricing</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"gallery.html\" class=\"nav-link\">Gallery</a>
-                                        </li>
-    
-                                        <li class=\"nav-item\">
-                                            <a href=\"faq.html\" class=\"nav-link\">FAQ</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Users 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"login.html\" class=\"nav-link\">Login</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"register.html\" class=\"nav-link\">Register</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Others 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"online-booking.html\" class=\"nav-link\">Online Booking</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"book-appointment.html\" class=\"nav-link\">Book Appointment</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"error-404.html\" class=\"nav-link\">404 Error</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"terms-of-service.html\" class=\"nav-link\">Terms of Service</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"privacy-policy.html\" class=\"nav-link\">Privacy Policy</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"coming-soon.html\" class=\"nav-link\">Coming Soon</a>
-                                        </li>
-                                    </ul>
                                 </li>
 
                                 <li class=\"nav-item\">
@@ -641,37 +512,37 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                     </div>
                                 </div>
                                 ";
-        // line 316
-        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 316, $this->source); })()), "user", [], "any", false, false, false, 316)) {
-            // line 317
+        // line 181
+        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 181, $this->source); })()), "user", [], "any", false, false, false, 181)) {
+            // line 182
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"";
-            // line 319
+            // line 184
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"default-btn\">Login <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                                 ";
         }
-        // line 323
+        // line 188
         yield "                               ";
-        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 323, $this->source); })()), "user", [], "any", false, false, false, 323)) {
-            // line 324
+        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 188, $this->source); })()), "user", [], "any", false, false, false, 188)) {
+            // line 189
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"";
-            // line 326
+            // line 191
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             yield "\" class=\"default-btn\">Register <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                                 ";
         }
-        // line 330
+        // line 195
         yield "                               ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_FOURNISSEUR")) {
-            // line 331
+            // line 196
             yield "                                  <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
                                     <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
@@ -679,11 +550,11 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                      </a>
                                      <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 337
+            // line 202
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_fournisseur");
             yield "\">Profile</a></li>
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 338
+            // line 203
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
                                     </ul>
@@ -691,10 +562,10 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                   </div>
                                 ";
         }
-        // line 343
+        // line 208
         yield "                                ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-            // line 344
+            // line 209
             yield "                                  <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
                                     <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
@@ -702,11 +573,11 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                      </a>
                                      <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 350
+            // line 215
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin");
             yield "\">Profile</a></li>
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 351
+            // line 216
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
                                     </ul>
@@ -714,10 +585,10 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                   </div>
                                 ";
         }
-        // line 356
+        // line 221
         yield "                                ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PSYCHIATRE")) {
-            // line 357
+            // line 222
             yield "                                  <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
                                     <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
@@ -725,11 +596,11 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                      </a>
                                      <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 363
+            // line 228
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_psychiatre");
             yield "\">Profile</a></li>
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 364
+            // line 229
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
                                     </ul>
@@ -737,10 +608,10 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                   </div>
                                 ";
         }
-        // line 369
+        // line 234
         yield "                                ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PATIENT")) {
-            // line 370
+            // line 235
             yield "                                  <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
                                     <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
@@ -748,11 +619,11 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                      </a>
                                      <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 376
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_patient_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 376, $this->source); })()), "user", [], "any", false, false, false, 376), "id", [], "any", false, false, false, 376)]), "html", null, true);
+            // line 241
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_patient_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 241, $this->source); })()), "user", [], "any", false, false, false, 241), "id", [], "any", false, false, false, 241)]), "html", null, true);
             yield "\">Profile</a></li>
                                      <li><a class=\"dropdown-item\" href=\"";
-            // line 377
+            // line 242
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
                                     </ul>
@@ -760,18 +631,21 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                   </div>
                                 ";
         }
-        // line 382
+        // line 247
         yield "                               ";
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 382, $this->source); })()), "user", [], "any", false, false, false, 382)) {
-            // line 383
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 247, $this->source); })()), "user", [], "any", false, false, false, 247)) {
+            // line 248
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
-                                        <a href=\"#\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
+                                        <a href=\"";
+            // line 250
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
+            yield "\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                                 ";
         }
-        // line 389
+        // line 254
         yield "                            </div>
                         </div>
                     </nav>
@@ -792,9 +666,9 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                         <div class=\"option-inner\">
                             <div class=\"others-options d-flex align-items-center\">
                                 ";
-        // line 408
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 408, $this->source); })()), "user", [], "any", false, false, false, 408)) {
-            // line 409
+        // line 273
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 273, $this->source); })()), "user", [], "any", false, false, false, 273)) {
+            // line 274
             yield "                                <div class=\"option-item\">
                                     <div class=\"cart-btn\">
                                         <a href=\"cart.html\">
@@ -805,7 +679,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                 </div>
                                 ";
         }
-        // line 418
+        // line 283
         yield "                                <div class=\"option-item\">
                                     <div class=\"search-box\">
                                         <i class='flaticon-search'></i>
@@ -814,7 +688,11 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                 
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
-                                        <a href=\"online-booking.html\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
+
+                                        <a href=\"";
+        // line 292
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
+        yield "\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -833,7 +711,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
         yield from [];
     }
 
-    // line 436
+    // line 302
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -855,7 +733,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
         yield from [];
     }
 
-    // line 437
+    // line 303
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -868,7 +746,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 438
+        // line 304
         yield "         <footer class=\"footer-area pt-100 pb-70\">
             <div class=\"container\">
                 <div class=\"row\">
@@ -876,7 +754,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                         <div class=\"single-footer-widget\">
                             <div class=\"widget-logo\">
                                 <a href=\"index.html\"><img src=\"";
-        // line 444
+        // line 310
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo-2.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                             </div>
@@ -1029,7 +907,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  880 => 444,  872 => 438,  859 => 437,  837 => 436,  809 => 418,  798 => 409,  796 => 408,  775 => 389,  767 => 383,  764 => 382,  756 => 377,  752 => 376,  744 => 370,  741 => 369,  733 => 364,  729 => 363,  721 => 357,  718 => 356,  710 => 351,  706 => 350,  698 => 344,  695 => 343,  687 => 338,  683 => 337,  675 => 331,  672 => 330,  665 => 326,  661 => 324,  658 => 323,  651 => 319,  647 => 317,  645 => 316,  393 => 67,  389 => 66,  375 => 55,  371 => 54,  363 => 48,  350 => 47,  327 => 42,  316 => 43,  313 => 42,  300 => 41,  289 => 39,  276 => 38,  253 => 4,  238 => 593,  233 => 591,  228 => 589,  223 => 587,  218 => 585,  213 => 583,  208 => 581,  203 => 579,  198 => 577,  193 => 575,  188 => 573,  183 => 571,  178 => 569,  173 => 567,  165 => 565,  162 => 437,  159 => 436,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
+        return array (  758 => 310,  750 => 304,  737 => 303,  715 => 302,  694 => 292,  683 => 283,  672 => 274,  670 => 273,  649 => 254,  642 => 250,  638 => 248,  635 => 247,  627 => 242,  623 => 241,  615 => 235,  612 => 234,  604 => 229,  600 => 228,  592 => 222,  589 => 221,  581 => 216,  577 => 215,  569 => 209,  566 => 208,  558 => 203,  554 => 202,  546 => 196,  543 => 195,  536 => 191,  532 => 189,  529 => 188,  522 => 184,  518 => 182,  516 => 181,  410 => 78,  402 => 73,  393 => 67,  389 => 66,  375 => 55,  371 => 54,  363 => 48,  350 => 47,  327 => 42,  316 => 43,  313 => 42,  300 => 41,  289 => 39,  276 => 38,  253 => 4,  238 => 459,  233 => 457,  228 => 455,  223 => 453,  218 => 451,  213 => 449,  208 => 447,  203 => 445,  198 => 443,  193 => 441,  188 => 439,  183 => 437,  178 => 435,  173 => 433,  165 => 431,  162 => 303,  159 => 302,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1106,149 +984,14 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                         <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
                             <ul class=\"navbar-nav m-auto\">
                                 <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link active\">
+                                    <a href=\"{{ path('app_home')}}\" class=\"nav-link active\">
                                         Home 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"index.html\" class=\"nav-link active\">Home Demo - 1</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-2.html\" class=\"nav-link\">Home Demo - 2</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-3.html\" class=\"nav-link\">Home Demo - 3</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-4.html\" class=\"nav-link\">Home Demo - 4</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"index-5.html\" class=\"nav-link\">Home Demo - 5</a>
-                                        </li>
-                                    </ul>
+                                    </a> 
                                 </li>
-
                                 <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Pages 
-                                        <i class='bx bx-caret-down'></i>
+                                    <a href=\"{{ path('patient_activity_index')}}\" class=\"nav-link\">
+                                        Activities 
                                     </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"about.html\" class=\"nav-link\">About</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Coaches 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"coaches.html\" class=\"nav-link\">Coaches</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"coaches-details.html\" class=\"nav-link\">Coaches Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Events 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"events.html\" class=\"nav-link\">Events</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"events-details.html\" class=\"nav-link\">Events Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"success-story.html\" class=\"nav-link\">Success Story</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"purchase-guide.html\" class=\"nav-link\">Purchase Guide</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"pricing.html\" class=\"nav-link\">Pricing</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"gallery.html\" class=\"nav-link\">Gallery</a>
-                                        </li>
-    
-                                        <li class=\"nav-item\">
-                                            <a href=\"faq.html\" class=\"nav-link\">FAQ</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Users 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"login.html\" class=\"nav-link\">Login</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"register.html\" class=\"nav-link\">Register</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"#\" class=\"nav-link\">
-                                                Others 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class=\"dropdown-menu\">
-                                                <li class=\"nav-item\">
-                                                    <a href=\"online-booking.html\" class=\"nav-link\">Online Booking</a>
-                                                </li>
-        
-                                                <li class=\"nav-item\">
-                                                    <a href=\"book-appointment.html\" class=\"nav-link\">Book Appointment</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"error-404.html\" class=\"nav-link\">404 Error</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"terms-of-service.html\" class=\"nav-link\">Terms of Service</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"privacy-policy.html\" class=\"nav-link\">Privacy Policy</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"coming-soon.html\" class=\"nav-link\">Coming Soon</a>
-                                        </li>
-                                    </ul>
                                 </li>
 
                                 <li class=\"nav-item\">
@@ -1418,7 +1161,7 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                {% if app.user %}
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
-                                        <a href=\"#\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
+                                        <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -1459,7 +1202,8 @@ class __TwigTemplate_82cff95cfb4f91762d53f1684a2a7a3b extends Template
                                 
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
-                                        <a href=\"online-booking.html\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
+
+                                        <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
                             </div>

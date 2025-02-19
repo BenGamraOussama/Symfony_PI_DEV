@@ -6,3 +6,13 @@ controllers:
 #app_error:
     #path: /error
     #controller: App\Controller\ErrorController::show
+app_reponse_new:
+    path: /response/exercise/{id}/new
+    controller: App\Controller\ReponseController::new
+    methods: POST
+
+aapp_activite_update_status:
+    path: /activite/update-status/{id}
+    controller: App\Controller\YourController::updateStatus
+    methods: POST
+

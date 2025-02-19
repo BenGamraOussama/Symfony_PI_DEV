@@ -129,18 +129,18 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
         // line 495
         yield "    ";
         yield from $this->unwrap()->yieldBlock('sidebar', $context, $blocks);
-        // line 554
+        // line 561
         yield "    ";
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 556
+        // line 563
         yield "    ";
         yield from $this->unwrap()->yieldBlock('myfooter', $context, $blocks);
-        // line 568
+        // line 575
         yield "    <script src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/vendors.js"), "html", null, true);
         yield "\"></script>
     <script src=\"";
-        // line 569
+        // line 576
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/app.js"), "html", null, true);
         yield "\"></script>
     </body>
@@ -833,69 +833,80 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
     
                 </a>
             </li>
-            <li><a href=\"rendez-vous\" aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Rendez-vous</span></a> </li>
             ";
-        // line 510
+        // line 509
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+            // line 510
+            yield "            <li><a href='";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rendez__vous_admin");
+            yield "' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Rendez-vous</span></a> </li>
+            <li><a href='";
             // line 511
-            yield "            <li><a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\">
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_traitement_index");
+            yield "' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Traitement</span></a> </li>
+            <li><a href='";
+            // line 512
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_consultation_index");
+            yield "' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Consultation</span></a> </li>
+
+            <li><a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\">
             <i class=\"nav-icon ti ti-user\"></i>
             <span class=\"nav-title\">Psychiatre</span></a>
                 <ul aria-expanded=\"false\">
                     <li> 
                         <a href='";
-            // line 516
+            // line 519
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_ajouterpsychiatre");
             yield "'>Ajouter Psychiatre</a> </li>
                     <li> <a href='";
-            // line 517
+            // line 520
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_listpsychiatre");
             yield "'>List Psychiatre</a> </li>
                         </ul>
             </li>
                     ";
         }
-        // line 521
+        // line 524
         yield "                    ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-            // line 522
+            // line 525
             yield "            <li>
                 <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\">
                 <i class=\"bi bi-people\"></i>
                 <span class=\"nav-title\">Fournisseur</span> </a>
                 <ul aria-expanded=\"false\">
                     <li> <a href='";
-            // line 527
+            // line 530
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_ajouterfournisseur");
             yield "'>Ajouter Fournisseur</a> </li>
                     <li> <a href='";
-            // line 528
+            // line 531
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_listfournisseur");
             yield "'>List Fournisseur</a> </li>
                 </ul>
             </li>
               ";
         }
-        // line 532
+        // line 535
         yield "            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-            // line 533
+            // line 536
             yield "            <li>
                 <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Patient</span> </a>
                 <ul aria-expanded=\"false\">
                     <li> <a href='";
-            // line 536
+            // line 539
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_patient_new");
             yield "'>Ajouter Patient</a> </li>
                     <li> <a href='";
-            // line 537
+            // line 540
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("list_patient_index");
             yield "'>List Patient</a> </li>
                 </ul>
             </li>
             ";
         }
-        // line 541
+        // line 544
         yield "            <li><a href=\"listclient\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Client</span></a> </li>
             <li><a href=\"listproduit\" aria-expanded=\"false\"><i class=\"bi bi-shop\"></i><span class=\"nav-title\">Produit</span></a> </li>
             <li>
@@ -903,7 +914,14 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
             </li>
             <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>           
             <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>        
+                <li><a href=\"";
+        // line 551
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_activite_index");
+        yield "\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Activities & Exercices</span> </a></li>
+               
+            </li>
         </ul>
+       
     </div>
     <!-- end sidebar-nav -->
   </aside>
@@ -918,7 +936,7 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
         yield from [];
     }
 
-    // line 554
+    // line 561
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -931,7 +949,7 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 555
+        // line 562
         yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -942,7 +960,7 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
         yield from [];
     }
 
-    // line 556
+    // line 563
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -955,7 +973,7 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "myfooter"));
 
-        // line 557
+        // line 564
         yield "    <div class=\"footer\">
       <div class=\"row\">
         <div class=\"col-12 col-sm-6 text-center text-sm-left\">
@@ -997,7 +1015,7 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  959 => 557,  946 => 556,  935 => 555,  922 => 554,  899 => 541,  892 => 537,  888 => 536,  883 => 533,  880 => 532,  873 => 528,  869 => 527,  862 => 522,  859 => 521,  852 => 517,  848 => 516,  841 => 511,  839 => 510,  823 => 496,  810 => 495,  765 => 460,  758 => 457,  755 => 456,  748 => 453,  745 => 452,  738 => 449,  736 => 448,  729 => 444,  726 => 443,  721 => 441,  714 => 440,  711 => 439,  706 => 437,  699 => 436,  696 => 435,  691 => 433,  684 => 432,  681 => 431,  676 => 429,  669 => 428,  667 => 427,  657 => 420,  517 => 283,  501 => 270,  485 => 257,  469 => 244,  453 => 231,  437 => 218,  281 => 65,  277 => 64,  267 => 56,  254 => 55,  231 => 50,  220 => 51,  217 => 50,  204 => 49,  182 => 26,  159 => 5,  144 => 569,  139 => 568,  136 => 556,  133 => 554,  130 => 495,  128 => 55,  123 => 52,  121 => 49,  97 => 27,  95 => 26,  89 => 23,  85 => 22,  68 => 8,  62 => 5,  56 => 1,);
+        return array (  977 => 564,  964 => 563,  953 => 562,  940 => 561,  919 => 551,  910 => 544,  903 => 540,  899 => 539,  894 => 536,  891 => 535,  884 => 531,  880 => 530,  873 => 525,  870 => 524,  863 => 520,  859 => 519,  849 => 512,  845 => 511,  840 => 510,  838 => 509,  823 => 496,  810 => 495,  765 => 460,  758 => 457,  755 => 456,  748 => 453,  745 => 452,  738 => 449,  736 => 448,  729 => 444,  726 => 443,  721 => 441,  714 => 440,  711 => 439,  706 => 437,  699 => 436,  696 => 435,  691 => 433,  684 => 432,  681 => 431,  676 => 429,  669 => 428,  667 => 427,  657 => 420,  517 => 283,  501 => 270,  485 => 257,  469 => 244,  453 => 231,  437 => 218,  281 => 65,  277 => 64,  267 => 56,  254 => 55,  231 => 50,  220 => 51,  217 => 50,  204 => 49,  182 => 26,  159 => 5,  144 => 576,  139 => 575,  136 => 563,  133 => 561,  130 => 495,  128 => 55,  123 => 52,  121 => 49,  97 => 27,  95 => 26,  89 => 23,  85 => 22,  68 => 8,  62 => 5,  56 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1510,8 +1528,11 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
     
                 </a>
             </li>
-            <li><a href=\"rendez-vous\" aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Rendez-vous</span></a> </li>
             {% if is_granted('ROLE_ADMIN') %}
+            <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Rendez-vous</span></a> </li>
+            <li><a href='{{path('app_traitement_index')}}' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Traitement</span></a> </li>
+            <li><a href='{{path('app_consultation_index')}}' aria-expanded=\"false\"><i class=\"bi bi-calendar-check\"></i><span class=\"nav-title\">Consultation</span></a> </li>
+
             <li><a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\">
             <i class=\"nav-icon ti ti-user\"></i>
             <span class=\"nav-title\">Psychiatre</span></a>
@@ -1549,7 +1570,11 @@ class __TwigTemplate_6769a76d4217b2be97040d35b906cdcd extends Template
             </li>
             <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>           
             <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>        
+                <li><a href=\"{{ path('app_activite_index') }}\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Activities & Exercices</span> </a></li>
+               
+            </li>
         </ul>
+       
     </div>
     <!-- end sidebar-nav -->
   </aside>
