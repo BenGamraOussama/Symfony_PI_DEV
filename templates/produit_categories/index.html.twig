@@ -7,36 +7,31 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-            {% for produit_categorie in produit_categories %}
-                <tr>
-                    <td>{{ produit_categorie.id }}</td>
-                    <td>{{ produit_categorie.nom }}</td>
-                    <td>
-                        <a href="{{ path('produit_categorie_show', {'id': produit_categorie.id}) }}" class="btn btn-info btn-sm">Voir</a>
-                        <a href="{{ path('produit_categories_edit', {'id': produit_categorie.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
-                        <form method="post" action="{{ path('produit_categories_delete', {'id': produit_categorie.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit_categorie.id) }}">
-                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">Aucune catégorie trouvée</td>
-                </tr>
-            {% endfor %}
+        {% for produit_categorie in produit_categories %}
+            <tr>
+                <td>{{ produit_categorie.id }}</td>
+                <td>{{ produit_categorie.nom }}</td>
+                <td>
+                    <a href="{{ path('produit_categorie_show', {'id': produit_categorie.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                    <a href="{{ path('produit_categories_edit', {'id': produit_categorie.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    <form method="post" action="{{ path('produit_categories_delete', {'id': produit_categorie.id}) }}" style="display:inline;" onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit_categorie.id) }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune catégorie trouvée</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-
-
-
-
 {% endblock %}

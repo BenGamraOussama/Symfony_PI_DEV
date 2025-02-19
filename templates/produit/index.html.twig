@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Centre le tableau horizontalement */
+        table.table {
+            margin: 0 auto;
+        }
+    </style>
+{% endblock %}
+
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
@@ -29,7 +39,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- begin page title -->
-                                <div class="d-block d-lg-flex flex-nowrap align-items-center" style="margin-bottom: 10px;">
+                                <div class="d-block d-lg-flex flex-nowrap align-items-center justify-content-center" style="margin-bottom: 10px;">
                                     <div class="page-title mr-2 pr-2 border-right">
                                         <h1 style="font-size: 1.5rem;">Tableau de bord</h1>
                                     </div>
@@ -52,9 +62,9 @@
                         </div>
 
                         <!-- begin row -->
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-10">
+                                <table class="table text-center">
                                     <thead>
                                     <tr>
                                         <th>Id</th>
@@ -100,7 +110,9 @@
                                     </tbody>
                                 </table>
 
-                                <a href="{{ path('produit_add') }}" class="btn btn-primary">Créer un produit</a>
+                                <div class="text-center">
+                                    <a href="{{ path('produit_add') }}" class="btn btn-primary">Créer un produit</a>
+                                </div>
                             </div>
                         </div>
                         <!-- end row -->
