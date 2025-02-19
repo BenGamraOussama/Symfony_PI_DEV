@@ -506,8 +506,11 @@
     
                 </a>
             </li>
-            <li><a href="rendez-vous" aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
             {% if is_granted('ROLE_ADMIN') %}
+            <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
+            <li><a href='{{path('app_traitement_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Traitement</span></a> </li>
+            <li><a href='{{path('app_consultation_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Consultation</span></a> </li>
+
             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
             <i class="nav-icon ti ti-user"></i>
             <span class="nav-title">Psychiatre</span></a>

@@ -34,7 +34,6 @@ final class FournisseurController extends AbstractController{
             'fournisseur' => $fournisseur,
             'user' => $user,
             'id' => $id,
-
         ]);
     }
 
@@ -57,6 +56,7 @@ final class FournisseurController extends AbstractController{
             'fournisseur' => $fournisseur,
             'form' => $form,
             'user' => $user,
+
         ]);
     }
 

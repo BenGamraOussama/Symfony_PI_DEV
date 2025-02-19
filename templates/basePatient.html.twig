@@ -70,34 +70,10 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
+                                    <a href="{{ path('app_home')}}" class="nav-link active">
                                         Home 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="index.html" class="nav-link active">Home Demo - 1</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="index-2.html" class="nav-link">Home Demo - 2</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="index-3.html" class="nav-link">Home Demo - 3</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="index-4.html" class="nav-link">Home Demo - 4</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="index-5.html" class="nav-link">Home Demo - 5</a>
-                                        </li>
-                                    </ul>
+                                    </a> 
                                 </li>
-
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         Pages 
@@ -188,11 +164,11 @@
         
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a href="online-booking.html" class="nav-link">Online Booking</a>
+                                                    <a href="{{ path('app_rdv_index') }}" class="nav-link">Online Booking</a>
                                                 </li>
         
                                                 <li class="nav-item">
-                                                    <a href="book-appointment.html" class="nav-link">Book Appointment</a>
+                                                    <a href="{{ path('app_rdv_index') }}" class="nav-link">Book Appointment</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -382,7 +358,7 @@
                                {% if app.user %}
                                 <div class="option-item">
                                     <div class="navbar-btn">
-                                        <a href="#" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
+                                        <a href="{{ path('app_rdv_index') }}" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -423,7 +399,8 @@
                                 
                                 <div class="option-item">
                                     <div class="navbar-btn">
-                                        <a href="online-booking.html" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
+
+                                        <a href="{{ path('app_rdv_index') }}" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
                                     </div>
                                 </div>
                             </div>

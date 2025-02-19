@@ -42,8 +42,18 @@ class Patient extends User
     public function setAdresse(?string $adresse): static
     {
         $this->adresse = $adresse;
-
         return $this;
+    }
+
+    /**
+     * @var Collection<int, RDV>
+     */
+    #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
+    private Collection $rdvs;
+
+    public function __construct()
+    {
+        $this->rdvs = new ArrayCollection();
     }
 
     public function getPhone(): ?int
@@ -54,21 +64,23 @@ class Patient extends User
     public function setPhone(?int $phone): static
     {
         $this->phone = $phone;
-
         return $this;
     }
-
-    public function getNaissance(): ?\DateTimeInterface
+    /**
+     * @return Collection<int, RDV>
+     */
+    public function getRdvs(): Collection
     {
-        return $this->naissance;
+        return $this->rdvs;
     }
 
-    public function setNaissance(?\DateTimeInterface $naissance): static
+    public function addRdv(RDV $rdv): static
     {
-        $this->naissance = $naissance;
-
-        return $this;
-    }
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs->add($rdv);
+            $rdv->setPatient($this);
+        }
+    } 
     public function getDossierMedicalPath(): ?string
     {
         return $this->dossierMedicalPath;
@@ -80,4 +92,18 @@ class Patient extends User
 
         return $this;
     }
+    public function removeRdv(RDV $rdv): static
+    {
+        if ($this->rdvs->removeElement($rdv)) {
+            // set the owning side to null (unless already changed)
+            if ($rdv->getPatient() === $this) {
+                $rdv->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 }

@@ -14,7 +14,6 @@ class Fournisseur extends User
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-
     public function isEtat(): ?bool
     {
         return $this->etat;
@@ -26,7 +25,6 @@ class Fournisseur extends User
 
         return $this;
     }
-
     public function getAdresse(): ?string
     {
         return $this->adresse;

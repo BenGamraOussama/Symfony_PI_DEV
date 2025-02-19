@@ -22,6 +22,19 @@ class Psychiatre extends User
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
+    #[ORM\ManyToOne(inversedBy: 'psychiatre')]
+    private ?Consultation $consultation = null;
+
+    /**
+     * @var Collection<int, RDV>
+     */
+    #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'psychiatre')]
+    private Collection $drvs;
+
+    public function __construct()
+    {
+        $this->drvs = new ArrayCollection();
+    }
 
     public function getSpecialite(): ?string
     {
@@ -43,6 +56,17 @@ class Psychiatre extends User
     public function setNumLicence(string $numLicence): static
     {
         $this->numLicence = $numLicence;
+        return $this;
+    }    
+
+    public function getConsultation(): ?Consultation
+    {
+        return $this->consultation;
+    }
+
+    public function setConsultation(?Consultation $consultation): static
+    {
+        $this->consultation = $consultation;
 
         return $this;
     }
@@ -52,9 +76,25 @@ class Psychiatre extends User
         return $this->phone;
     }
 
-    public function setPhone(int $phone): static
+    public function setPhone(?int $phone): static
     {
         $this->phone = $phone;
+        return $this;
+    }
+    /**
+     * @return Collection<int, RDV>
+     */
+    public function getDrvs(): Collection
+    {
+        return $this->drvs;
+    }
+
+    public function addDrv(RDV $drv): static
+    {
+        if (!$this->drvs->contains($drv)) {
+            $this->drvs->add($drv);
+            $drv->setPsychiatre($this);
+        }
 
         return $this;
     }
@@ -70,4 +110,18 @@ class Psychiatre extends User
 
         return $this;
     }
+    public function removeDrv(RDV $drv): static
+    {
+        if ($this->drvs->removeElement($drv)) {
+            // set the owning side to null (unless already changed)
+            if ($drv->getPsychiatre() === $this) {
+                $drv->setPsychiatre(null);
+            }
+        }
+
+        return $this;
+    }
+
+  
+
 }

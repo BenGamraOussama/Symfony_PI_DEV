@@ -24,6 +24,7 @@ use App\Form\Fournisseuradd;
 use App\Form\PatientType;
 use App\Form\PsychiatreType;
 use App\Form\FournisseurType;
+use App\Form\Patientadd;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/admin')]
@@ -60,6 +61,7 @@ final class AdminController extends AbstractController{
         ]);
     }
     #[Route('/ajouterPsychitare', name: 'app_admin_ajouterpsychiatre')]
+
     public function addpsychiatre(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -114,6 +116,7 @@ final class AdminController extends AbstractController{
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
             return $this->redirectToRoute('app_admin_ajouterpsychiatre');
+
         }
 
         return $this->render('admin/ajouterPsychiatre.html.twig', [
