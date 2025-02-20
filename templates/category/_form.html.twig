@@ -1,0 +1,19 @@
+
+
+{% block title %}Create New Category{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+
+        <div class="card p-4 shadow-sm">
+            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                {{ form_row(form.name) }}
+                
+                {{ form_row(form.description) }}
+                {{ form_row(form.image) }}
+            {{ form_end(form) }}
+        </div>
+
+        <a href="{{ path('app_category_index') }}" class="btn btn-secondary mt-3">Back to list</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Category List{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Modern color palette */
+        :root {
+            --primary-color: #6c63ff; /* Purple */
+            --secondary-color: #ff6584; /* Pink */
+            --background-color: #f8f9fa; /* Light gray */
+            --text-color: #333333; /* Dark gray */
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: #856404;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+
+        .text-secondary {
+            color: var(--secondary-color) !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="app">
+        <div class="app-wrap">
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <!-- Loader content -->
+                </div>
+            </div>
+            <br/><br/><br/>
+            <div class="app-container">
+                <div class="app-main" id="main">
+                    <div class="container py-5 fade-in">
+                        <h1 class="mb-4 text-primary fw-bold text-center">Category List</h1>
+                        <!-- Categories Grid -->
+                        <div class="row">
+                            {% for category in categories %}
+                                <div class="col-md-4 mb-4">
+                                    <div class="card shadow-lg border-0 rounded-3">
+                                        <!-- Category Image -->
+                                        <img src="{{ asset(category.image) }}" class="card-img-top" alt="{{ category.name }}">
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ category.name }}</h5>
+                                            <p class="card-text">{{ category.description|slice(0, 100) ~ '...' }}</p>
+
+                                            <p class="text-secondary small">
+                                                <i class="fas fa-calendar-alt"></i> 
+                                                {{ category.createdAt ? category.createdAt|date('Y-m-d H:i') : 'No date' }}
+                                            </p>
+
+                                            <!-- Action Buttons -->
+                                            <div class="d-flex justify-content-between">
+                                                <a href="{{ path('app_articles_by_category_front', {'id': category.id}) }}" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye"></i> View
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col-12 text-center">
+                                    <div class="alert alert-warning">No categories found.</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

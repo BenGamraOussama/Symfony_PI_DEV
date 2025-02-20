@@ -1,0 +1,172 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Articles in {{ category.name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Modern color palette */
+        :root {
+            --primary-color: #6c63ff; /* Purple */
+            --secondary-color: #ff6584; /* Pink */
+            --background-color: #f8f9fa; /* Light gray */
+            --text-color: #333333; /* Dark gray */
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: darken(var(--secondary-color), 10%);
+            border-color: darken(var(--secondary-color), 10%);
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: #856404;
+        }
+
+        .text-primary {
+            color: var(--primary-color) !important;
+        }
+
+        .text-secondary {
+            color: var(--secondary-color) !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <!-- Loader content -->
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- Page Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="container py-5 fade-in">
+                                    <h1 class="text-primary fw-bold text-center">Articles in {{ category.name }}</h1>
+
+                                    <!-- Back to Categories Button -->
+                                    <div class="text-center mb-4">
+                                        <a href="{{ path('app_category_front') }}" class="btn btn-secondary px-4 py-2">
+                                            <i class="fas fa-arrow-left"></i> Back to Categories
+                                        </a>
+                                    </div>
+
+                                    <!-- Articles List -->
+                                    <div class="row">
+                                        {% for article in articles %}
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card shadow-lg border-0 rounded-3 p-3">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ article.title }}</h5>
+                                                        <p class="card-text">{{ article.content|slice(0, 100) ~ '...' }}</p>
+
+                                                        <p class="text-secondary small">
+                                                            <i class="fas fa-calendar-alt"></i> 
+                                                            {{ article.publishedAt ? article.publishedAt|date('Y-m-d H:i') : 'Not Published' }}
+                                                        </p>
+
+                                                        <!-- Action Buttons -->
+                                                        <div class="d-flex justify-content-between">
+                                                            <a class="btn btn-sm btn-outline-primary" href="{{ path('app_article_show_front', {'id': article.id}) }}">
+                                                                <i class="fas fa-eye"></i> View
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="col-12 text-center">
+                                                <div class="alert alert-warning">No articles found in this category.</div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="container py-5">
+                                    <h1 class="text-primary fw-bold text-center">{{ article.title }}</h1>
+
+                                    <!-- Article Details -->
+                                    <div class="card shadow-lg border-0 rounded-3 p-4">
+                                        {% if article.mediaPath %}
+                                            {% set fileExtension = article.mediaPath|split('.')|last %}
+                                            {% if fileExtension in ['jpg', 'jpeg', 'png', 'gif', 'bmp'] %}
+                                                <!-- Image Rendering -->
+                                                <img src="{{ asset(article.mediaPath) }}" alt="{{ article.title }}" class="img-fluid rounded">
+                                            {% elseif fileExtension == 'pdf' %}
+                                                <!-- PDF Rendering -->
+                                                <embed src="{{ asset(article.mediaPath) }}" type="application/pdf" width="100%" height="600px">
+                                            {% elseif fileExtension in ['mp4', 'webm', 'ogg'] %}
+                                                <!-- Video Rendering -->
+                                                <video controls class="img-fluid rounded">
+                                                    <source src="{{ asset(article.mediaPath) }}" type="video/{{ fileExtension }}">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            {% endif %}
+                                        {% endif %}
+                                        
+                                        <div class="card-body">
+                                            <h5 class="card-title text-dark fw-semibold">{{ article.title }}</h5>
+                                            <p class="text-muted">{{ article.content }}</p>
+
+                                            <p class="text-secondary small">
+                                                <i class="fas fa-calendar-alt"></i> 
+                                                {{ article.publishedAt ? article.publishedAt|date('Y-m-d H:i') : 'Not Published' }}
+                                            </p>
+
+                                            <p class="text-secondary">
+                                                <strong>Category:</strong> {{ article.category.name }}
+                                            </p>
+
+                                            <p class="text-secondary">
+                                                <strong>Author:</strong> {{ article.user ? article.user.username : 'Unknown' }}
+                                            </p>
+
+                                            <!-- Action Buttons -->
+                                            <div class="d-flex justify-content-between mt-4">
+                                                <a href="{{ path('app_articles_by_category_front', {'id': article.category.id}) }}" class="btn btn-secondary">
+                                                    <i class="fas fa-arrow-left"></i> Back
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+{% endblock %}

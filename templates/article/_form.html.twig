@@ -1,0 +1,43 @@
+{% block title %}Create New Article{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control' ~ (form.title.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
+        <div class="invalid-feedback" style="color: red;">
+            {{ form_errors(form.title) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control' ~ (form.content.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
+        <div class="invalid-feedback" style="color: red;">
+            {{ form_errors(form.content) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-control' ~ (form.category.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
+        <div class="invalid-feedback" style="color: red;">
+            {{ form_errors(form.category) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(form.mediaPath) }}
+        {{ form_widget(form.mediaPath, {'attr': {'class': 'form-control' ~ (form.mediaPath.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
+        <div class="invalid-feedback" style="color: red;">
+            {{ form_errors(form.mediaPath) }}
+        </div>
+    </div>
+    
+    <div class="form-group">
+        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    </div>
+    
+    {{ form_end(form) }}
+{% endblock %}

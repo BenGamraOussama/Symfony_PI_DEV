@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Custom Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        /* Card Styles */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-outline-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(149, 165, 166, 0.3);
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb-item a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #2980b9;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+
+            <div class="app-container">
+                <div class="app-main" id="main">
+                    <div class="container-fluid py-5">
+                        <!-- Page Header -->
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row mb-4">
+                            <div class="col-md-10 mx-auto">
+                                <h1 class="mb-3 text-center">Create New Article</h1>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb bg-white p-2 rounded shadow-sm">
+                                        <li class="breadcrumb-item">
+                                            <a href="{{ path('app_article_index') }}" class="text-decoration-none">Articles</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">New Article</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <!-- Form Section -->
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card shadow-lg p-4 border-0 rounded-3 fade-in">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-center text-dark mb-4 fw-semibold">Fill in the Article Details</h4>
+                                        {{ include('article/_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Back Button -->
+                        <div class="row mt-5">
+                            <div class="col-md-12 text-center">
+                                <a href="{{ path('app_article_index') }}" class="btn btn-outline-secondary px-4 py-2">
+                                    <i class="fas fa-arrow-left"></i> Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-light py-3 text-center mt-5 border-top">
+                <p class="mb-0 text-muted">© 2025 YourApp. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+{% endblock %}
