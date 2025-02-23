@@ -6,3 +6,7 @@ controllers:
 #app_error:
     #path: /error
     #controller: App\Controller\ErrorController::show
+    # config/routes.yaml
+motivation:
+    path: /motivation
+    controller: App\Controller\MotivationController::showMotivationalMessage

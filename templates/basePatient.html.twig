@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="{{ asset('assetsP/css/dark.css') }}">
         <!-- Responsive CSS -->
 		<link rel="stylesheet" href="{{ asset('assetsP/css/responsive.css') }}">
-        <link rel="icon" type="image/png" href="{{ asset('assetsP/images/favicon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('assetsP/images/favicon.png') }}">        
         {% block stylesheets %}
         {% endblock %}
 
@@ -410,7 +410,8 @@
             </div>
          </div>
         {% endblock %}
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
         {% block footer %}
          <footer class="footer-area pt-100 pb-70">
             <div class="container">
