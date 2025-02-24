@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Fournisseur;
+use App\Service\DeepSeekMotivationalMessageService;
 use App\Form\FournisseurType;
 use App\Repository\FournisseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,26 +15,37 @@ use App\Repository\UserRepository;
 use App\Entity\User;
 
 #[Route('/fournisseur')]
-final class FournisseurController extends AbstractController{
+final class FournisseurController extends AbstractController
+{
+    private $motivationalMessageService;
+
+    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService)
+    {
+        $this->motivationalMessageService = $motivationalMessageService;
+    }
+
     #[Route(name: 'app_fournisseur')]
     public function index(UserRepository $userRepository): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/index.html.twig', [
             'controller_name' => 'FournisseurController',
             'user' => $user,
+            'message' => $message,
         ]);
-
     }
     
     #[Route('/{id}', name: 'app_fournisseur_show', methods: ['GET'])]
     public function show(Fournisseur $fournisseur, int $id): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/show.html.twig', [
             'fournisseur' => $fournisseur,
             'user' => $user,
             'id' => $id,
+            'message' => $message,
         ]);
     }
 
@@ -42,21 +54,21 @@ final class FournisseurController extends AbstractController{
     {
         $user = $this->getUser();
         $form = $this->createForm(FournisseurType::class, $fournisseur, [
-            'is_edit' => true, // L'utilisateur connecté, donc on n'affiche pas le champ de mot de passe
+            'is_edit' => true,
         ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
             return $this->redirectToRoute('app_fournisseur_show', ['id' => $fournisseur->getId()], Response::HTTP_SEE_OTHER);
         }
 
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/edit.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form,
             'user' => $user,
-
+            'message' => $message,
         ]);
     }
 

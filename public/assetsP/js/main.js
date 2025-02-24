@@ -402,7 +402,6 @@ jQuery(function ($) {
 	});
 
 	// Buy Now Btn
-    $('body').append("<button type='button' class='buy-now-btn' data-toggle='modal' data-target='#motivationModal'>Motivation</button>");
 
 
 	// Switch Btn

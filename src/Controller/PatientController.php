@@ -6,6 +6,7 @@ use App\Entity\Patient;
 use App\Form\PatientType;
 use App\Form\PasswordForm;
 use App\Repository\PatientRepository;
+use App\Service\DeepSeekMotivationalMessageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,14 +15,26 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
 #[Route('/patient')]
-final class PatientController extends AbstractController{
+final class PatientController extends AbstractController
+{
+    private $motivationalMessageService;
+
+    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService)
+    {
+        $this->motivationalMessageService = $motivationalMessageService;
+    }
+
     #[Route('/{id}', name: 'app_patient_show', methods: ['GET'])]
     public function show(Patient $patient): Response
     {
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('patient/show.html.twig', [
             'patient' => $patient,
+            'message' => $message,
         ]);
+
     }
 
     #[Route('/{id}/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
@@ -72,11 +85,14 @@ final class PatientController extends AbstractController{
             return $this->redirectToRoute('app_patient_show', ['id' => $psychiatre->getId()],  Response::HTTP_SEE_OTHER);
         }
 
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('patient/edit.html.twig', [
             'patient' => $patient,
             'form' => $form->createView(),
             'formP' => $formPassword->createView(),
+            'message' => $message,
         ]);
+
     }
     #[Route('/{id}', name: 'app_patient_delet', methods: ['POST'])]
     public function delete(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response

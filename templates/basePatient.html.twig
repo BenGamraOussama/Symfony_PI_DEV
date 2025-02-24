@@ -43,6 +43,49 @@
         {% endblock %}
     </head>
     <body>
+    <style>
+        /* Style du header */
+
+        /* Style du bouton */
+        .btn-modal {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style du modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenu du modal */
+        .modal-content {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            margin: 15% auto;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Bouton de fermeture */
+        .close {
+            color: red;
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
     
         {% block header %}
          <div class="navbar-area">
@@ -272,6 +315,10 @@
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" id="openModal">Motivation</a>
+                                </li>
+                               
                             </ul>
 
                             <div class="others-options d-flex align-items-center">
@@ -410,6 +457,7 @@
             </div>
          </div>
         {% endblock %}
+
         {% block body %}
         {% endblock %}
         {% block footer %}
@@ -540,6 +588,36 @@
             <i class='flaticon-up-arrow'></i>
          </div>
         {% endblock %}
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closeModal">Test</span>
+            <p>{{ message }}</p>
+          </div>
+        </div>
+
+     <script>
+        // Sélection des éléments
+        const modal = document.getElementById("myModal");
+        const openModal = document.getElementById("openModal");
+        const closeModal = document.getElementById("closeModal");
+
+        // Afficher le modal
+        openModal.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Fermer le modal
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Fermer en cliquant en dehors du modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+     </script>
         <script data-cfasync="false" src="{{ asset('assetsP/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}"></script><script src="{{ asset('assetsP/js/jquery.min.js')}}"></script>
         <!-- Bootstrap Bundle JS -->
         <script src="{{ asset('assetsP/js/bootstrap.bundle.min.js')}}"></script>

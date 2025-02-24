@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\DeepSeekMotivationalMessageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UserRepository;
@@ -28,37 +30,54 @@ use App\Form\Patientadd;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/admin')]
-final class AdminController extends AbstractController{
+final class AdminController extends AbstractController
+{
+    private $motivationalMessageService;
+
+    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService)
+    {
+        $this->motivationalMessageService = $motivationalMessageService;
+    }
+
     
     #[Route(name: 'app_admin')]
     public function index(UserRepository $userRepository): Response
     {
         $user = $this->getUser();
         $totalPatients = $userRepository->countPatients();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'total'=>$totalPatients,
             'user' => $user,
+            'message' => $message,
         ]);
+
 
     }
     #[Route('/profile/{id}', name: 'app_admin_show', methods: ['GET'])]
     public function show(): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/profile.html.twig', [
             'user' => $user,
+            'message' => $message,
         ]);
+
     }
     //psychiatre
     #[Route('/listPsychiatre', name: 'app_admin_listpsychiatre', methods: ['GET'])]
     public function listPsychiatre(PsychiatreRepository $psychiatreRepository): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listPsychiatre.html.twig', [
             'psychiatres' => $psychiatreRepository->findAll(),
             'user' => $user,
+            'message' => $message,
         ]);
+
     }
     #[Route('/ajouterPsychitare', name: 'app_admin_ajouterpsychiatre')]
 
@@ -119,13 +138,16 @@ final class AdminController extends AbstractController{
 
         }
 
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterPsychiatre.html.twig', [
             'psychiatreadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
             'user'=>$user,
+            'message' => $message,
         ]);
+
     }
     #[Route('listPsychiatre/{id}', name: 'psychiatre_delete', methods: ['POST'])]
     public function deletepsychiatre(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
@@ -142,10 +164,13 @@ final class AdminController extends AbstractController{
     public function listFournisseur(FournisseurRepository $fournisseurRepository): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listFournisseur.html.twig', [
             'fournisseurs' => $fournisseurRepository->findAll(),
             'user' => $user,
+            'message' => $message,
         ]);
+
     }
     #[Route('/ajouterFournisseur', name: 'app_admin_ajouterfournisseur', methods: ['GET', 'POST'])]
     public function addfournisseur(
@@ -205,13 +230,16 @@ final class AdminController extends AbstractController{
             return $this->redirectToRoute('app_admin_ajouterfournisseur');
         }
 
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterFournisseur.html.twig', [
             'fournisseuradd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
             'user'=>$user,
+            'message' => $message,
         ]);
+
     }
     #[Route('listFournisseur/{id}', name: 'fournisseur_delete', methods: ['POST'])]
     public function delete(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
@@ -228,10 +256,13 @@ final class AdminController extends AbstractController{
     public function listPatient(PatientRepository $patientRepository): Response
     {
         $user = $this->getUser();
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listPatient.html.twig', [
             'patients' => $patientRepository->findAll(),
             'user' => $user,
+            'message' => $message,
         ]);
+
     }
 
     #[Route('/ajouterPatient', name: 'app_patient_new', methods: ['GET', 'POST'])]
@@ -295,13 +326,16 @@ final class AdminController extends AbstractController{
             return $this->redirectToRoute('app_patient_new');
         }
 
+        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterPatient.html.twig', [
             'patientadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
             'user'=>$user,
+            'message' => $message,
         ]);
+
     }
     #[Route('listPatient/{id}', name: 'patient_delete', methods: ['POST'])]
     public function deletePatient(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response

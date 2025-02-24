@@ -18,7 +18,7 @@ class MotivationController extends AbstractController
     {
         $message = $this->motivationalMessageService->getMotivationalMessage();
 
-        return $this->render('motivation/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'message' => $message,
         ]);
     }
