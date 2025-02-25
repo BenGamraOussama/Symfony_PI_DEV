@@ -69,11 +69,11 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         yield "\">
 
     <!-- Bootstrap -->
-    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" 
-          integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" 
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
+          integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\"
           crossorigin=\"anonymous\">
-    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css\" 
-          integrity=\"sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD\" 
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css\"
+          integrity=\"sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD\"
           crossorigin=\"anonymous\">
 
     <!-- Google Fonts -->
@@ -129,18 +129,18 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         // line 495
         yield "    ";
         yield from $this->unwrap()->yieldBlock('sidebar', $context, $blocks);
-        // line 599
+        // line 598
         yield "    ";
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 601
+        // line 600
         yield "    ";
         yield from $this->unwrap()->yieldBlock('myfooter', $context, $blocks);
-        // line 611
+        // line 610
         yield "    <script src=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/vendors.js"), "html", null, true);
         yield "\"></script>
     <script src=\"";
-        // line 612
+        // line 611
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/js/app.js"), "html", null, true);
         yield "\"></script>
     </body>
@@ -830,7 +830,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                 <a href=\"admin\" aria-expanded=\"false\">
                     <i class=\"nav-icon ti ti-home\"></i>
                     <span class=\"nav-title\">Tableau de bord</span>
-    
+
                 </a>
             </li>
             ";
@@ -853,7 +853,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
             <i class=\"nav-icon ti ti-user\"></i>
             <span class=\"nav-title\">Psychiatre</span></a>
                 <ul aria-expanded=\"false\">
-                    <li> 
+                    <li>
                         <a href='";
             // line 519
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_ajouterpsychiatre");
@@ -884,7 +884,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin_listfournisseur");
             yield "'>List Fournisseur</a> </li>
                 </ul>
-                
+
             </li>
               ";
         }
@@ -892,7 +892,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         yield "            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
             // line 537
-            yield "           
+            yield "
             <li>
                 <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Patient</span> </a>
                 <ul aria-expanded=\"false\">
@@ -910,68 +910,67 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         }
         // line 546
         yield "            <li><a href=\"listclient\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Client</span></a> </li>
-           
+
                 <li>
-                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">produit_categorie</span> </a>
+                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Produit</span> </a>
                     <ul aria-expanded=\"false\">
-                        
-                       
+
+
                             <li class=\"nav-item\">
                                 <a class=\"nav-link\" href=\"";
         // line 554
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index");
         yield "\">
-                                    Liste categorie
+                                    Liste Produit
                                 </a>
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link\" href=\"";
         // line 559
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ajouter_categorie");
-        yield "\">
-                                    Ajouter categorie
-                                </a>
-                            
-                       
-                    </ul>
-                </li>
-                
-                <li>
-                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">produit</span> </a>
-                    <ul aria-expanded=\"false\">
-                        
-                       
-                            <li class=\"nav-item\">
-                                <a class=\"nav-link\" href=\"";
-        // line 573
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index");
-        yield "\">
-                                    Liste produit
-                                </a>
-                            </li>
-                            <li class=\"nav-item\">
-                                <a class=\"nav-link\" href=\"";
-        // line 578
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_add");
         yield "\">
-                                    Ajouter produit
+                                    Ajouter Produit
                                 </a>
-                            
-                       
+
+
                     </ul>
                 </li>
+            <li>
+                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">ProduitCategory</span> </a>
+                <ul aria-expanded=\"false\">
+
+
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"";
+        // line 572
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
+        yield "\">
+                            List category
+                        </a>
+                    </li>
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"";
+        // line 577
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ajouter_categorie");
+        yield "\">
+                            new category
+                        </a>
+
+
+                </ul>
+            </li>
                 <a href=\"listcolis\" aria-expanded=\"false\"><i class=\"bi bi-box\"></i> <span class=\"nav-title\">Colis</span></a>
             </li>
-            <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>           
-            <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>        
+            <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>
+            <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>
                 <li><a href=\"";
-        // line 589
+        // line 588
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_activite_index");
         yield "\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Activities & Exercices</span> </a></li>
-               
+
             </li>
         </ul>
-       
+
     </div>
     <!-- end sidebar-nav -->
   </aside>
@@ -986,7 +985,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         yield from [];
     }
 
-    // line 599
+    // line 598
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -999,7 +998,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 600
+        // line 599
         yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -1010,7 +1009,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         yield from [];
     }
 
-    // line 601
+    // line 600
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -1023,7 +1022,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "myfooter"));
 
-        // line 602
+        // line 601
         yield "    <div class=\"footer\">
       <div class=\"row\">
         <div class=\"col-12 col-sm-6 text-center text-sm-left\">
@@ -1063,7 +1062,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  1027 => 602,  1014 => 601,  1003 => 600,  990 => 599,  969 => 589,  955 => 578,  947 => 573,  930 => 559,  922 => 554,  912 => 546,  905 => 542,  901 => 541,  895 => 537,  892 => 536,  884 => 531,  880 => 530,  873 => 525,  870 => 524,  863 => 520,  859 => 519,  849 => 512,  845 => 511,  840 => 510,  838 => 509,  823 => 496,  810 => 495,  765 => 460,  758 => 457,  755 => 456,  748 => 453,  745 => 452,  738 => 449,  736 => 448,  729 => 444,  726 => 443,  721 => 441,  714 => 440,  711 => 439,  706 => 437,  699 => 436,  696 => 435,  691 => 433,  684 => 432,  681 => 431,  676 => 429,  669 => 428,  667 => 427,  657 => 420,  517 => 283,  501 => 270,  485 => 257,  469 => 244,  453 => 231,  437 => 218,  281 => 65,  277 => 64,  267 => 56,  254 => 55,  231 => 50,  220 => 51,  217 => 50,  204 => 49,  182 => 26,  159 => 5,  144 => 612,  139 => 611,  136 => 601,  133 => 599,  130 => 495,  128 => 55,  123 => 52,  121 => 49,  97 => 27,  95 => 26,  89 => 23,  85 => 22,  68 => 8,  62 => 5,  56 => 1,);
+        return array (  1026 => 601,  1013 => 600,  1002 => 599,  989 => 598,  968 => 588,  954 => 577,  946 => 572,  930 => 559,  922 => 554,  912 => 546,  905 => 542,  901 => 541,  895 => 537,  892 => 536,  884 => 531,  880 => 530,  873 => 525,  870 => 524,  863 => 520,  859 => 519,  849 => 512,  845 => 511,  840 => 510,  838 => 509,  823 => 496,  810 => 495,  765 => 460,  758 => 457,  755 => 456,  748 => 453,  745 => 452,  738 => 449,  736 => 448,  729 => 444,  726 => 443,  721 => 441,  714 => 440,  711 => 439,  706 => 437,  699 => 436,  696 => 435,  691 => 433,  684 => 432,  681 => 431,  676 => 429,  669 => 428,  667 => 427,  657 => 420,  517 => 283,  501 => 270,  485 => 257,  469 => 244,  453 => 231,  437 => 218,  281 => 65,  277 => 64,  267 => 56,  254 => 55,  231 => 50,  220 => 51,  217 => 50,  204 => 49,  182 => 26,  159 => 5,  144 => 611,  139 => 610,  136 => 600,  133 => 598,  130 => 495,  128 => 55,  123 => 52,  121 => 49,  97 => 27,  95 => 26,  89 => 23,  85 => 22,  68 => 8,  62 => 5,  56 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1078,11 +1077,11 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
     <link rel=\"shortcut icon\" href=\"{{ asset('assets/img/favicon.ico') }}\">
 
     <!-- Bootstrap -->
-    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" 
-          integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" 
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
+          integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\"
           crossorigin=\"anonymous\">
-    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css\" 
-          integrity=\"sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD\" 
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css\"
+          integrity=\"sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD\"
           crossorigin=\"anonymous\">
 
     <!-- Google Fonts -->
@@ -1573,7 +1572,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                 <a href=\"admin\" aria-expanded=\"false\">
                     <i class=\"nav-icon ti ti-home\"></i>
                     <span class=\"nav-title\">Tableau de bord</span>
-    
+
                 </a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}
@@ -1585,7 +1584,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
             <i class=\"nav-icon ti ti-user\"></i>
             <span class=\"nav-title\">Psychiatre</span></a>
                 <ul aria-expanded=\"false\">
-                    <li> 
+                    <li>
                         <a href='{{path('app_admin_ajouterpsychiatre')}}'>Ajouter Psychiatre</a> </li>
                     <li> <a href='{{path('app_admin_listpsychiatre')}}'>List Psychiatre</a> </li>
                         </ul>
@@ -1600,11 +1599,11 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                     <li> <a href='{{path('app_admin_ajouterfournisseur')}}'>Ajouter Fournisseur</a> </li>
                     <li> <a href='{{path('app_admin_listfournisseur')}}'>List Fournisseur</a> </li>
                 </ul>
-                
+
             </li>
               {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-           
+
             <li>
                 <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Patient</span> </a>
                 <ul aria-expanded=\"false\">
@@ -1614,53 +1613,52 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
             </li>
             {% endif %}
             <li><a href=\"listclient\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Client</span></a> </li>
-           
+
                 <li>
-                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">produit_categorie</span> </a>
+                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Produit</span> </a>
                     <ul aria-expanded=\"false\">
-                        
-                       
-                            <li class=\"nav-item\">
-                                <a class=\"nav-link\" href=\"{{ path('produit_categories_index') }}\">
-                                    Liste categorie
-                                </a>
-                            </li>
-                            <li class=\"nav-item\">
-                                <a class=\"nav-link\" href=\"{{ path('ajouter_categorie') }}\">
-                                    Ajouter categorie
-                                </a>
-                            
-                       
-                    </ul>
-                </li>
-                
-                <li>
-                    <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">produit</span> </a>
-                    <ul aria-expanded=\"false\">
-                        
-                       
+
+
                             <li class=\"nav-item\">
                                 <a class=\"nav-link\" href=\"{{ path('produit_index') }}\">
-                                    Liste produit
+                                    Liste Produit
                                 </a>
                             </li>
                             <li class=\"nav-item\">
                                 <a class=\"nav-link\" href=\"{{ path('produit_add') }}\">
-                                    Ajouter produit
+                                    Ajouter Produit
                                 </a>
-                            
-                       
+
+
                     </ul>
                 </li>
+            <li>
+                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">ProduitCategory</span> </a>
+                <ul aria-expanded=\"false\">
+
+
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"{{ path('produit_categories_index') }}\">
+                            List category
+                        </a>
+                    </li>
+                    <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"{{ path('ajouter_categorie') }}\">
+                            new category
+                        </a>
+
+
+                </ul>
+            </li>
                 <a href=\"listcolis\" aria-expanded=\"false\"><i class=\"bi bi-box\"></i> <span class=\"nav-title\">Colis</span></a>
             </li>
-            <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>           
-            <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>        
+            <li><a href=\"affcom\" aria-expanded=\"false\"><i class=\"bi bi-command\"></i><span class=\"nav-title\">Commandes</span></a></li>
+            <li><a href=\"listcontact\" aria-expanded=\"false\"><i class=\"nav-icon ti ti-email\"></i><span class=\"nav-title\">Reclamation</span></a></li>
                 <li><a href=\"{{ path('app_activite_index') }}\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">Activities & Exercices</span> </a></li>
-               
+
             </li>
         </ul>
-       
+
     </div>
     <!-- end sidebar-nav -->
   </aside>

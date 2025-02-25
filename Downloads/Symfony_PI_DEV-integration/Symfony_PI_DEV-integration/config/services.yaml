@@ -1,0 +1,33 @@
+# Ce fichier est le point d'entrée pour configurer vos services.
+# Les fichiers dans le sous-dossier packages/ configurent vos dépendances.
+
+# Ajoutez ici les paramètres qui ne changent pas d'une machine à l'autre
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    dossier_medical_directory: '%kernel.project_dir%/public/uploads/dossier_medical'
+    uploads_directory: '%kernel.project_dir%/public/uploads'
+
+services:
+    App\Enum\ExerciceStatus: ~
+    # Configuration par défaut pour les services définis dans ce fichier
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    #App\Controller\ErrorController:
+      #  tags: ['controller.service_arguments']
+
+    # Rend les classes du dossier src/ disponibles en tant que services
+    # Cela crée un service par classe avec son nom de classe complet comme identifiant
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Enum/'
+
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    App\Service\PasswordGenerator:
+        autowire: true

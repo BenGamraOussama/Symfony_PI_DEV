@@ -152,6 +152,9 @@
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -172,6 +175,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -189,7 +198,10 @@
       <option name="presentableId" value="Default" />
       <updated>1740490908819</updated>
       <workItem from="1740490914725" duration="4498000" />
-      <workItem from="1740498361629" duration="3646000" />
+      <workItem from="1740498361629" duration="5078000" />
+      <workItem from="1740505761262" duration="419000" />
+      <workItem from="1740506189431" duration="4024000" />
+      <workItem from="1740512403933" duration="7908000" />
     </task>
     <servers />
   </component>

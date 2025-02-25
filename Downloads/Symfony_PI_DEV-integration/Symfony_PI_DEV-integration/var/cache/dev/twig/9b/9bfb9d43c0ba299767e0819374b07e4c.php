@@ -79,91 +79,9 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
         yield from $this->yieldParentBlock("stylesheets", $context, $blocks);
         yield "
     <style>
-        /* Style du tableau */
-        .table {
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background: #fff;
-        }
-
-        /* En-tête du tableau */
-        .table thead {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .table th, .table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        /* Pour la colonne Quantité */
-        .table td:nth-child(7), .table th:nth-child(7) {
-            background-color: #f0f8ff;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        /* Alternance des couleurs pour les lignes */
-        .table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Boutons actions */
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.9rem;
-            border-radius: 5px;
-        }
-
-        /* Espacement des boutons */
-        td > a, td > form {
-            margin-right: 5px;
-        }
-
-        /* Image des produits */
-        .table img {
-            border-radius: 5px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Conteneur principal */
-        .container-fluid {
-            padding: 20px;
-        }
-
-        /* Titre de la page */
-        .page-title h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #333;
-            text-align: center; /* Centrer le titre */
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* Bouton Ajouter un produit */
-        .text-center .btn-primary {
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            border: none;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .text-center .btn-primary:hover {
-            background: linear-gradient(135deg, #0056b3, #003d80);
-        }
-
-        /* Ajouter un espacement entre la table et les boutons */
-        .text-center .btn-primary {
-            margin-top: 20px;
+        /* Centre le tableau horizontalement */
+        table.table {
+            margin: 0 auto;
         }
     </style>
 ";
@@ -176,7 +94,7 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
         yield from [];
     }
 
-    // line 95
+    // line 13
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -199,7 +117,7 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
         yield from [];
     }
 
-    // line 97
+    // line 15
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -212,126 +130,180 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 98
-        yield "
-    <div class=\"container-fluid\" style=\"margin-left: 100px;\">
-        <div class=\"row justify-content-center\">
-            <div class=\"col-12 col-md-10\">
-                <h1 class=\"page-title\">📦 Liste des Produits</h1> <!-- Espacement ajouté autour du titre -->
-                
-                <table class=\"table text-center\">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Image</th>
-                            <th>Nom</th>
-                            <th>Description</th>
-                            <th>Prix (€)</th>
-                            <th>Disponible</th>
-                            <th>Quantité</th> <!-- Nouvelle colonne pour la quantité -->
-                            <th>Catégorie</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ";
-        // line 119
+        // line 16
+        yield "    <!-- begin app -->
+    <div class=\"app\">
+        <!-- begin app-wrap -->
+        <div class=\"app-wrap\">
+            <!-- begin pre-loader -->
+            <div class=\"loader\">
+                <div class=\"h-100 d-flex justify-content-center\">
+                    <div class=\"align-self-center\">
+                        <img src=\"assets/img/loader/loader.svg\" alt=\"loader\">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class=\"app-container\">
+                <!-- begin app-main -->
+                <div class=\"app-main\" id=\"main\">
+                    <!-- begin container-fluid -->
+                    <div class=\"container-fluid\">
+                        <!-- begin row -->
+                        <div class=\"row\">
+                            <div class=\"col-md-12\">
+                                <!-- begin page title -->
+                                <div class=\"d-block d-lg-flex flex-nowrap align-items-center justify-content-center\" style=\"margin-bottom: 10px;\">
+                                    <div class=\"page-title mr-2 pr-2 border-right\">
+                                        <h1 style=\"font-size: 1.5rem;\">Tableau de bord</h1>
+                                    </div>
+                                    <div class=\"breadcrumb-bar align-items-center\" style=\"margin-left: 10px;\">
+                                        <nav>
+                                            <ol class=\"breadcrumb p-0 m-0\">
+                                                <li class=\"breadcrumb-item\">
+                                                    <a href=\"index.html\"><i class=\"ti ti-home\"></i></a>
+                                                </li>
+                                                <li class=\"breadcrumb-item\">
+                                                    Liste des produits
+                                                </li>
+                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">Default</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+
+                        <!-- begin row -->
+                        <div class=\"row justify-content-center\">
+                            <div class=\"col-12 col-md-10\">
+                                <table class=\"table text-center\">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Image</th>
+                                        <th>Nom</th>
+                                        <th>Description</th>
+                                        <th>Prix</th>
+                                        <th>Disponible</th>
+                                        <th>Catégorie</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    ";
+        // line 81
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 119, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 81, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 120
-            yield "                            <tr>
-                                <td>";
-            // line 121
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 121), "html", null, true);
+            // line 82
+            yield "                                        <tr>
+                                            <td>";
+            // line 83
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 83), "html", null, true);
             yield "</td>
-                                <td>
-                                    ";
-            // line 123
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 123)) {
-                // line 124
-                yield "                                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 124))), "html", null, true);
+                                            <td>
+                                                ";
+            // line 85
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 85)) {
+                // line 86
+                yield "                                                    <img src=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 86))), "html", null, true);
                 yield "\" alt=\"Image du produit\" width=\"80\">
-                                    ";
+                                                ";
             } else {
-                // line 126
-                yield "                                        Pas d'image
-                                    ";
+                // line 88
+                yield "                                                    Pas d'image
+                                                ";
             }
-            // line 128
-            yield "                                </td>
-                                <td>";
-            // line 129
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 129), "html", null, true);
+            // line 90
+            yield "                                            </td>
+                                            <td>";
+            // line 91
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 91), "html", null, true);
             yield "</td>
-                                <td>";
-            // line 130
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 130), "html", null, true);
+                                            <td>";
+            // line 92
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 92), "html", null, true);
             yield "</td>
-                                <td>";
-            // line 131
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 131), "html", null, true);
+                                            <td>";
+            // line 93
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 93), "html", null, true);
             yield "</td>
-                                <td>";
-            // line 132
-            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 132)) ? ("Oui") : ("Non"));
+                                            <td>";
+            // line 94
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 94)) ? ("Oui") : ("Non"));
             yield "</td>
-                                <td>";
-            // line 133
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "quantite", [], "any", false, false, false, 133), "html", null, true);
-            yield "</td> <!-- Affichage de la quantité -->
-                                <td>";
-            // line 134
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "categorie", [], "any", false, false, false, 134), "nom", [], "any", false, false, false, 134), "html", null, true);
+                                            <td>";
+            // line 95
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "categorie", [], "any", false, false, false, 95), "nom", [], "any", false, false, false, 95), "html", null, true);
             yield "</td>
-                                <td>
-                                    <a href=\"";
-            // line 136
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 136)]), "html", null, true);
+                                            <td>
+                                                <a href=\"";
+            // line 97
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 97)]), "html", null, true);
             yield "\" class=\"btn btn-info btn-sm\">Voir</a>
-                                    <a href=\"";
-            // line 137
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 137)]), "html", null, true);
+                                                <a href=\"";
+            // line 98
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 98)]), "html", null, true);
             yield "\" class=\"btn btn-warning btn-sm\">Éditer</a>
-                                    <form method=\"post\" action=\"";
-            // line 138
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 138)]), "html", null, true);
+                                                <form method=\"post\" action=\"";
+            // line 99
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 99)]), "html", null, true);
             yield "\" style=\"display:inline;\" onsubmit=\"return confirm('Voulez-vous vraiment supprimer ce produit ?');\">
-                                        <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 139
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 139))), "html", null, true);
+                                                    <input type=\"hidden\" name=\"_token\" value=\"";
+            // line 100
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 100))), "html", null, true);
             yield "\">
-                                        <button type=\"submit\" class=\"btn btn-danger btn-sm\">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        ";
+                                                    <button type=\"submit\" class=\"btn btn-danger btn-sm\">Supprimer</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 145
-            yield "                            <tr>
-                                <td colspan=\"9\">Aucun enregistrement trouvé</td>
-                            </tr>
-                        ";
+            // line 106
+            yield "                                        <tr>
+                                            <td colspan=\"8\">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['produit'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 149
-        yield "                    </tbody>
-                </table>
-                <div class=\"text-center\">
-                    <a href=\"";
-        // line 152
+        // line 110
+        yield "                                    </tbody>
+                                </table>
+
+                                <div class=\"text-center\">
+                                    <a href=\"";
+        // line 114
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_add");
-        yield "\" class=\"btn btn-primary\">➕ Créer un produit</a>
+        yield "\" class=\"btn btn-primary\">Créer un produit</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container-fluid -->
                 </div>
+                <!-- end app-main -->
             </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
         </div>
+        <!-- end app-wrap -->
     </div>
+    <!-- end app -->
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -363,7 +335,7 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  329 => 152,  324 => 149,  315 => 145,  304 => 139,  300 => 138,  296 => 137,  292 => 136,  287 => 134,  283 => 133,  279 => 132,  275 => 131,  271 => 130,  267 => 129,  264 => 128,  260 => 126,  254 => 124,  252 => 123,  247 => 121,  244 => 120,  239 => 119,  216 => 98,  203 => 97,  180 => 95,  78 => 4,  65 => 3,  42 => 1,);
+        return array (  288 => 114,  282 => 110,  273 => 106,  262 => 100,  258 => 99,  254 => 98,  250 => 97,  245 => 95,  241 => 94,  237 => 93,  233 => 92,  229 => 91,  226 => 90,  222 => 88,  216 => 86,  214 => 85,  209 => 83,  206 => 82,  201 => 81,  134 => 16,  121 => 15,  98 => 13,  78 => 4,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -373,91 +345,9 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        /* Style du tableau */
-        .table {
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background: #fff;
-        }
-
-        /* En-tête du tableau */
-        .table thead {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .table th, .table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        /* Pour la colonne Quantité */
-        .table td:nth-child(7), .table th:nth-child(7) {
-            background-color: #f0f8ff;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        /* Alternance des couleurs pour les lignes */
-        .table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Boutons actions */
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.9rem;
-            border-radius: 5px;
-        }
-
-        /* Espacement des boutons */
-        td > a, td > form {
-            margin-right: 5px;
-        }
-
-        /* Image des produits */
-        .table img {
-            border-radius: 5px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Conteneur principal */
-        .container-fluid {
-            padding: 20px;
-        }
-
-        /* Titre de la page */
-        .page-title h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #333;
-            text-align: center; /* Centrer le titre */
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* Bouton Ajouter un produit */
-        .text-center .btn-primary {
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            border: none;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .text-center .btn-primary:hover {
-            background: linear-gradient(135deg, #0056b3, #003d80);
-        }
-
-        /* Ajouter un espacement entre la table et les boutons */
-        .text-center .btn-primary {
-            margin-top: 20px;
+        /* Centre le tableau horizontalement */
+        table.table {
+            margin: 0 auto;
         }
     </style>
 {% endblock %}
@@ -465,65 +355,122 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
-
-    <div class=\"container-fluid\" style=\"margin-left: 100px;\">
-        <div class=\"row justify-content-center\">
-            <div class=\"col-12 col-md-10\">
-                <h1 class=\"page-title\">📦 Liste des Produits</h1> <!-- Espacement ajouté autour du titre -->
-                
-                <table class=\"table text-center\">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Image</th>
-                            <th>Nom</th>
-                            <th>Description</th>
-                            <th>Prix (€)</th>
-                            <th>Disponible</th>
-                            <th>Quantité</th> <!-- Nouvelle colonne pour la quantité -->
-                            <th>Catégorie</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for produit in produits %}
-                            <tr>
-                                <td>{{ produit.id }}</td>
-                                <td>
-                                    {% if produit.image %}
-                                        <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"Image du produit\" width=\"80\">
-                                    {% else %}
-                                        Pas d'image
-                                    {% endif %}
-                                </td>
-                                <td>{{ produit.nom }}</td>
-                                <td>{{ produit.description }}</td>
-                                <td>{{ produit.prix }}</td>
-                                <td>{{ produit.disponible ? 'Oui' : 'Non' }}</td>
-                                <td>{{ produit.quantite }}</td> <!-- Affichage de la quantité -->
-                                <td>{{ produit.categorie.nom }}</td>
-                                <td>
-                                    <a href=\"{{ path('produit_show', {'id': produit.id}) }}\" class=\"btn btn-info btn-sm\">Voir</a>
-                                    <a href=\"{{ path('produit_edit', {'id': produit.id}) }}\" class=\"btn btn-warning btn-sm\">Éditer</a>
-                                    <form method=\"post\" action=\"{{ path('produit_delete', {'id': produit.id}) }}\" style=\"display:inline;\" onsubmit=\"return confirm('Voulez-vous vraiment supprimer ce produit ?');\">
-                                        <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ produit.id) }}\">
-                                        <button type=\"submit\" class=\"btn btn-danger btn-sm\">Supprimer</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan=\"9\">Aucun enregistrement trouvé</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <div class=\"text-center\">
-                    <a href=\"{{ path('produit_add') }}\" class=\"btn btn-primary\">➕ Créer un produit</a>
+    <!-- begin app -->
+    <div class=\"app\">
+        <!-- begin app-wrap -->
+        <div class=\"app-wrap\">
+            <!-- begin pre-loader -->
+            <div class=\"loader\">
+                <div class=\"h-100 d-flex justify-content-center\">
+                    <div class=\"align-self-center\">
+                        <img src=\"assets/img/loader/loader.svg\" alt=\"loader\">
+                    </div>
                 </div>
             </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class=\"app-container\">
+                <!-- begin app-main -->
+                <div class=\"app-main\" id=\"main\">
+                    <!-- begin container-fluid -->
+                    <div class=\"container-fluid\">
+                        <!-- begin row -->
+                        <div class=\"row\">
+                            <div class=\"col-md-12\">
+                                <!-- begin page title -->
+                                <div class=\"d-block d-lg-flex flex-nowrap align-items-center justify-content-center\" style=\"margin-bottom: 10px;\">
+                                    <div class=\"page-title mr-2 pr-2 border-right\">
+                                        <h1 style=\"font-size: 1.5rem;\">Tableau de bord</h1>
+                                    </div>
+                                    <div class=\"breadcrumb-bar align-items-center\" style=\"margin-left: 10px;\">
+                                        <nav>
+                                            <ol class=\"breadcrumb p-0 m-0\">
+                                                <li class=\"breadcrumb-item\">
+                                                    <a href=\"index.html\"><i class=\"ti ti-home\"></i></a>
+                                                </li>
+                                                <li class=\"breadcrumb-item\">
+                                                    Liste des produits
+                                                </li>
+                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">Default</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+
+                        <!-- begin row -->
+                        <div class=\"row justify-content-center\">
+                            <div class=\"col-12 col-md-10\">
+                                <table class=\"table text-center\">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Image</th>
+                                        <th>Nom</th>
+                                        <th>Description</th>
+                                        <th>Prix</th>
+                                        <th>Disponible</th>
+                                        <th>Catégorie</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for produit in produits %}
+                                        <tr>
+                                            <td>{{ produit.id }}</td>
+                                            <td>
+                                                {% if produit.image %}
+                                                    <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"Image du produit\" width=\"80\">
+                                                {% else %}
+                                                    Pas d'image
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ produit.nom }}</td>
+                                            <td>{{ produit.description }}</td>
+                                            <td>{{ produit.prix }}</td>
+                                            <td>{{ produit.disponible ? 'Oui' : 'Non' }}</td>
+                                            <td>{{ produit.categorie.nom }}</td>
+                                            <td>
+                                                <a href=\"{{ path('produit_show', {'id': produit.id}) }}\" class=\"btn btn-info btn-sm\">Voir</a>
+                                                <a href=\"{{ path('produit_edit', {'id': produit.id}) }}\" class=\"btn btn-warning btn-sm\">Éditer</a>
+                                                <form method=\"post\" action=\"{{ path('produit_delete', {'id': produit.id}) }}\" style=\"display:inline;\" onsubmit=\"return confirm('Voulez-vous vraiment supprimer ce produit ?');\">
+                                                    <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ produit.id) }}\">
+                                                    <button type=\"submit\" class=\"btn btn-danger btn-sm\">Supprimer</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan=\"8\">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                                <div class=\"text-center\">
+                                    <a href=\"{{ path('produit_add') }}\" class=\"btn btn-primary\">Créer un produit</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
         </div>
+        <!-- end app-wrap -->
     </div>
+    <!-- end app -->
 {% endblock %}
 ", "produit/index.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit\\index.html.twig");
     }

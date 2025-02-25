@@ -31,7 +31,6 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
 
         $this->blocks = [
             'body' => [$this, 'block_body'],
-            'footer' => [$this, 'block_footer'],
         ];
     }
 
@@ -89,7 +88,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
 
                 <div class=\"search-overlay-form\">
                     <form>
-                        <input type=\"text\" class=\"input-search\" placeholder=\"Rechercher ici...\">
+                        <input type=\"text\" class=\"input-search\" placeholder=\"Search here...\">
                         <button type=\"submit\"><i class='flaticon-search'></i></button>
                     </form>
                 </div>
@@ -102,38 +101,38 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
     <div class=\"page-banner-with-full-image\">
         <div class=\"container\">
             <div class=\"page-banner-content-two\">
-                <h2>Produits</h2>
+                <h2>Courses (Three in Row)</h2>
                 <ul>
-                    <li><a href=\"";
-        // line 34
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
-        yield "\">Accueil</a></li>
-                    <li>Produits</li>
+                    <li>
+                        <a href=\"index.html\">Home</a>
+                    </li>
+                    <li>Courses (3 in Row)</li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- End Page Banner Area -->
 
-    <!-- Start Products Area -->
-    <section class=\"products-area ptb-100\">
+    <!-- Start Courses Area -->
+    <section class=\"courses-area ptb-100\">
         <div class=\"container\">
             <div class=\"psylo-grid-sorting row align-items-center\">
                 <div class=\"col-lg-6 col-md-6 result-count\">
-                    <p>Nous avons trouvé <span class=\"count\">";
-        // line 47
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 47, $this->source); })())), "html", null, true);
-        yield "</span> produits disponibles</p>
+                    <p>We found <span class=\"count\">";
+        // line 49
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["pagination"]) || array_key_exists("pagination", $context) ? $context["pagination"] : (function () { throw new RuntimeError('Variable "pagination" does not exist.', 49, $this->source); })()), "getTotalItemCount", [], "method", false, false, false, 49), "html", null, true);
+        yield "</span> courses available for you</p>
                 </div>
 
                 <div class=\"col-lg-6 col-md-6 ordering\">
                     <div class=\"select-box\">
-                        <label>Trier par :</label>
+                        <label>Sort By:</label>
                         <select>
-                            <option>Par défaut</option>
-                            <option>Popularité</option>
-                            <option>Prix : bas au haut</option>
-                            <option>Prix : haut au bas</option>
+                            <option>Default</option>
+                            <option>Popularity</option>
+                            <option>Latest</option>
+                            <option>Price: low to high</option>
+                            <option>Price: high to low</option>
                         </select>
                     </div>
                 </div>
@@ -141,85 +140,53 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
 
             <div class=\"row\">
                 ";
-        // line 64
+        // line 67
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 64, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["pagination"]) || array_key_exists("pagination", $context) ? $context["pagination"] : (function () { throw new RuntimeError('Variable "pagination" does not exist.', 67, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
-            // line 65
-            yield "                    <div class=\"col-lg-4 col-md-6\">
-                        <div class=\"single-product-box\">
-                            <div class=\"product-image\">
-                                <a href=\"";
             // line 68
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 68)]), "html", null, true);
-            yield "\">
+            yield "                    <div class=\"col-lg-4 col-md-6\">
+                        <div class=\"single-courses-box\">
+                            <div class=\"courses-image\">
+                                <a href=\"courses-details.html\">
                                     <img src=\"";
-            // line 69
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 69))), "html", null, true);
+            // line 72
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "image", [], "any", false, false, false, 72))), "html", null, true);
             yield "\" alt=\"image\">
                                 </a>
                                 <div class=\"price\">";
-            // line 71
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 71), "html", null, true);
+            // line 74
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 74), "html", null, true);
             yield " €</div>
                             </div>
-                            <div class=\"product-content\">
+                            <div class=\"courses-content\">
+                                <div class=\"course-author d-flex align-items-center\">
+                                </div>
                                 <h3>
-                                    <a href=\"";
-            // line 75
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 75)]), "html", null, true);
-            yield "\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 75), "html", null, true);
+                                    <a href=\"courses-details.html\">";
+            // line 80
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 80), "html", null, true);
             yield "</a>
                                 </h3>
-
-                                <!-- Display Quantity and Availability -->
-                                <div class=\"product-info\">
-                                    <button class=\"btn btn-sm btn-outline-secondary\">Quantité: ";
-            // line 80
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 80), "html", null, true);
-            yield "</button>
-                                    <button class=\"btn btn-sm ";
-            // line 81
-            yield (((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 81) > 0)) ? ("btn-success") : ("btn-danger"));
-            yield "\">
-                                        ";
+                                <p>";
             // line 82
-            yield (((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 82) > 0)) ? ("Disponible") : ("Indisponible"));
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 82), "html", null, true);
+            yield "</p>
+                                <ul class=\"courses-box-footer d-flex justify-content-between align-items-center\">
+                                    <li>
+                                        <i class='bx bxs-book'></i> ";
+            // line 85
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 85), "html", null, true);
             yield "
-                                    </button>
-                                </div>
-
-                                <!-- Command Button and Description Link -->
-                                <div class=\"product-actions mt-2\">
-                                    ";
-            // line 88
-            if ((CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "disponible", [], "any", false, false, false, 88) > 0)) {
-                // line 89
-                yield "                                        <a href=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_commande_add_ligne_de_commande", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 89)]), "html", null, true);
-                yield "\" class=\"btn btn-primary btn-block\">Commander</a>
-                                    ";
-            } else {
-                // line 91
-                yield "                                        <button class=\"btn btn-outline-secondary btn-block\" disabled>Épuisé</button>
-                                    ";
-            }
-            // line 93
-            yield "                                    <a href=\"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 93)]), "html", null, true);
-            yield "\" class=\"btn btn-link\">Voir plus de détails</a>
-                                </div>
-
-                                <!-- Add to Cart Button with Cart Icon -->
-                                <div class=\"add-to-cart mt-2 text-center\">
-                                    <button class=\"btn btn-warning add-to-cart-btn\" data-id=\"";
-            // line 98
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 98), "html", null, true);
-            yield "\">
-                                        <i class=\"fas fa-cart-plus\"></i> Ajouter au panier
-                                    </button>
-                                </div>
+                                        <button class=\"btn btn-outline-primary\">commander</button>
+                                    </li>
+                                    <li>
+                                        <a href=\"";
+            // line 89
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_show_patient", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 89)]), "html", null, true);
+            yield "\">Voir les détails</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -228,100 +195,45 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['produit'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 106
+        // line 96
         yield "            </div>
 
-            <div class=\"navigation\" style=\"margin-top: 40px\">
+            <div class=\"pagination\">
                 ";
-        // line 109
-        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 109, $this->source); })()));
+        // line 99
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["pagination"]) || array_key_exists("pagination", $context) ? $context["pagination"] : (function () { throw new RuntimeError('Variable "pagination" does not exist.', 99, $this->source); })()));
         yield "
             </div>
         </div>
     </section>
-    <!-- End Products Area -->
-";
-        
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+    <!-- End Courses Area -->
 
-        
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
-
-        yield from [];
-    }
-
-    // line 116
-    /**
-     * @return iterable<null|scalar|\Stringable>
-     */
-    public function block_footer(array $context, array $blocks = []): iterable
-    {
-        $macros = $this->macros;
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
-
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
-
-        // line 117
-        yield "    <!-- Start Footer Area -->
-    <footer class=\"footer-area\">
+    <!-- Start Subscribe Area -->
+    <div class=\"subscribe-area bg-top\">
         <div class=\"container\">
-            <div class=\"footer-logo\">
-                <a href=\"#\">My Shop</a>
-            </div>
+            <div class=\"subscribe-inner-box\">
+                <div class=\"subscribe-content\">
+                    <h2>Subscribe Our Newsletter</h2>
+                    <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua.</p>
 
-            <!-- Panier icône -->
-            <div class=\"cart-icon\">
-                <a href=\"";
-        // line 126
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
-        yield "\">
-                    <i class=\"fas fa-shopping-cart\"></i>
-                    <span class=\"cart-counter\">0</span> <!-- Le nombre d'articles sera mis à jour par JS -->
-                </a>
+                    <form class=\"newsletter-form\" data-bs-toggle=\"validator\">
+                        <div class=\"row\">
+                            <div class=\"col-lg-8 col-md-6\">
+                                <input type=\"email\" class=\"input-newsletter\" placeholder=\"Enter your email\" name=\"EMAIL\" required=\"\" autocomplete=\"off\">
+                            </div>
+
+                            <div class=\"col-lg-4 col-md-6\">
+                                <button type=\"submit\">Subscribe Now <i class=\"flaticon-paper-plane\"></i></button>
+                                <div id=\"validator-newsletter\" class=\"form-result\"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </footer>
-    <!-- End Footer Area -->
+    </div>
+    <!-- End Subscribe Area -->
 
-    <script>
-        document.addEventListener(\"DOMContentLoaded\", function() {
-            document.querySelectorAll(\".add-to-cart-btn\").forEach(button => {
-                button.addEventListener(\"click\", function() {
-                    let productId = this.getAttribute(\"data-id\");
-
-                    fetch(\"";
-        // line 141
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier_ajouter");
-        yield "\", {
-                        method: \"POST\",
-                        headers: {
-                            \"Content-Type\": \"application/json\",
-                            \"X-Requested-With\": \"XMLHttpRequest\"
-                        },
-                        body: JSON.stringify({ id: productId })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            let cartCounter = document.querySelector(\".cart-counter\");
-                            if (cartCounter) {
-                                cartCounter.textContent = data.total; // Met à jour le compteur d'articles
-                            }
-                            alert(\"Produit ajouté au panier !\");
-                        } else {
-                            alert(\"Erreur lors de l'ajout au panier.\");
-                        }
-                    })
-                    .catch(error => {
-                        console.error(\"Erreur :\", error);
-                        alert(\"Une erreur s'est produite. Veuillez réessayer.\");
-                    });
-                });
-            });
-        });
-    </script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -353,7 +265,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  296 => 141,  278 => 126,  267 => 117,  254 => 116,  237 => 109,  232 => 106,  218 => 98,  209 => 93,  205 => 91,  199 => 89,  197 => 88,  188 => 82,  184 => 81,  180 => 80,  170 => 75,  163 => 71,  158 => 69,  154 => 68,  149 => 65,  145 => 64,  125 => 47,  109 => 34,  77 => 4,  64 => 3,  41 => 1,);
+        return array (  204 => 99,  199 => 96,  186 => 89,  179 => 85,  173 => 82,  168 => 80,  159 => 74,  154 => 72,  148 => 68,  144 => 67,  123 => 49,  76 => 4,  63 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -376,7 +288,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
 
                 <div class=\"search-overlay-form\">
                     <form>
-                        <input type=\"text\" class=\"input-search\" placeholder=\"Rechercher ici...\">
+                        <input type=\"text\" class=\"input-search\" placeholder=\"Search here...\">
                         <button type=\"submit\"><i class='flaticon-search'></i></button>
                     </form>
                 </div>
@@ -389,143 +301,105 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
     <div class=\"page-banner-with-full-image\">
         <div class=\"container\">
             <div class=\"page-banner-content-two\">
-                <h2>Produits</h2>
+                <h2>Courses (Three in Row)</h2>
                 <ul>
-                    <li><a href=\"{{ path('produit_index_patient') }}\">Accueil</a></li>
-                    <li>Produits</li>
+                    <li>
+                        <a href=\"index.html\">Home</a>
+                    </li>
+                    <li>Courses (3 in Row)</li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- End Page Banner Area -->
 
-    <!-- Start Products Area -->
-    <section class=\"products-area ptb-100\">
+    <!-- Start Courses Area -->
+    <section class=\"courses-area ptb-100\">
         <div class=\"container\">
             <div class=\"psylo-grid-sorting row align-items-center\">
                 <div class=\"col-lg-6 col-md-6 result-count\">
-                    <p>Nous avons trouvé <span class=\"count\">{{ produits|length }}</span> produits disponibles</p>
+                    <p>We found <span class=\"count\">{{ pagination.getTotalItemCount() }}</span> courses available for you</p>
                 </div>
 
                 <div class=\"col-lg-6 col-md-6 ordering\">
                     <div class=\"select-box\">
-                        <label>Trier par :</label>
+                        <label>Sort By:</label>
                         <select>
-                            <option>Par défaut</option>
-                            <option>Popularité</option>
-                            <option>Prix : bas au haut</option>
-                            <option>Prix : haut au bas</option>
+                            <option>Default</option>
+                            <option>Popularity</option>
+                            <option>Latest</option>
+                            <option>Price: low to high</option>
+                            <option>Price: high to low</option>
                         </select>
                     </div>
                 </div>
             </div>
 
             <div class=\"row\">
-                {% for produit in produits %}
+                {% for produit in pagination %}
                     <div class=\"col-lg-4 col-md-6\">
-                        <div class=\"single-product-box\">
-                            <div class=\"product-image\">
-                                <a href=\"{{ path('produit_show', {'id': produit.id}) }}\">
+                        <div class=\"single-courses-box\">
+                            <div class=\"courses-image\">
+                                <a href=\"courses-details.html\">
                                     <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"image\">
                                 </a>
                                 <div class=\"price\">{{ produit.prix }} €</div>
                             </div>
-                            <div class=\"product-content\">
+                            <div class=\"courses-content\">
+                                <div class=\"course-author d-flex align-items-center\">
+                                </div>
                                 <h3>
-                                    <a href=\"{{ path('produit_show', {'id': produit.id}) }}\">{{ produit.nom }}</a>
+                                    <a href=\"courses-details.html\">{{ produit.nom }}</a>
                                 </h3>
-
-                                <!-- Display Quantity and Availability -->
-                                <div class=\"product-info\">
-                                    <button class=\"btn btn-sm btn-outline-secondary\">Quantité: {{ produit.disponible }}</button>
-                                    <button class=\"btn btn-sm {{ produit.disponible > 0 ? 'btn-success' : 'btn-danger' }}\">
-                                        {{ produit.disponible > 0 ? 'Disponible' : 'Indisponible' }}
-                                    </button>
-                                </div>
-
-                                <!-- Command Button and Description Link -->
-                                <div class=\"product-actions mt-2\">
-                                    {% if produit.disponible > 0 %}
-                                        <a href=\"{{ path('app_commande_add_ligne_de_commande', {'id': produit.id}) }}\" class=\"btn btn-primary btn-block\">Commander</a>
-                                    {% else %}
-                                        <button class=\"btn btn-outline-secondary btn-block\" disabled>Épuisé</button>
-                                    {% endif %}
-                                    <a href=\"{{ path('produit_show', {'id': produit.id}) }}\" class=\"btn btn-link\">Voir plus de détails</a>
-                                </div>
-
-                                <!-- Add to Cart Button with Cart Icon -->
-                                <div class=\"add-to-cart mt-2 text-center\">
-                                    <button class=\"btn btn-warning add-to-cart-btn\" data-id=\"{{ produit.id }}\">
-                                        <i class=\"fas fa-cart-plus\"></i> Ajouter au panier
-                                    </button>
-                                </div>
+                                <p>{{ produit.description }}</p>
+                                <ul class=\"courses-box-footer d-flex justify-content-between align-items-center\">
+                                    <li>
+                                        <i class='bx bxs-book'></i> {{ produit.disponible }}
+                                        <button class=\"btn btn-outline-primary\">commander</button>
+                                    </li>
+                                    <li>
+                                        <a href=\"{{ path('produit_show_patient', {'id': produit.id}) }}\">Voir les détails</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
 
-            <div class=\"navigation\" style=\"margin-top: 40px\">
-                {{ knp_pagination_render(produits) }}
+            <div class=\"pagination\">
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </section>
-    <!-- End Products Area -->
-{% endblock %}
+    <!-- End Courses Area -->
 
-{% block footer %}
-    <!-- Start Footer Area -->
-    <footer class=\"footer-area\">
+    <!-- Start Subscribe Area -->
+    <div class=\"subscribe-area bg-top\">
         <div class=\"container\">
-            <div class=\"footer-logo\">
-                <a href=\"#\">My Shop</a>
-            </div>
+            <div class=\"subscribe-inner-box\">
+                <div class=\"subscribe-content\">
+                    <h2>Subscribe Our Newsletter</h2>
+                    <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua.</p>
 
-            <!-- Panier icône -->
-            <div class=\"cart-icon\">
-                <a href=\"{{ path('app_panier') }}\">
-                    <i class=\"fas fa-shopping-cart\"></i>
-                    <span class=\"cart-counter\">0</span> <!-- Le nombre d'articles sera mis à jour par JS -->
-                </a>
+                    <form class=\"newsletter-form\" data-bs-toggle=\"validator\">
+                        <div class=\"row\">
+                            <div class=\"col-lg-8 col-md-6\">
+                                <input type=\"email\" class=\"input-newsletter\" placeholder=\"Enter your email\" name=\"EMAIL\" required=\"\" autocomplete=\"off\">
+                            </div>
+
+                            <div class=\"col-lg-4 col-md-6\">
+                                <button type=\"submit\">Subscribe Now <i class=\"flaticon-paper-plane\"></i></button>
+                                <div id=\"validator-newsletter\" class=\"form-result\"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </footer>
-    <!-- End Footer Area -->
+    </div>
+    <!-- End Subscribe Area -->
 
-    <script>
-        document.addEventListener(\"DOMContentLoaded\", function() {
-            document.querySelectorAll(\".add-to-cart-btn\").forEach(button => {
-                button.addEventListener(\"click\", function() {
-                    let productId = this.getAttribute(\"data-id\");
-
-                    fetch(\"{{ path('app_panier_ajouter') }}\", {
-                        method: \"POST\",
-                        headers: {
-                            \"Content-Type\": \"application/json\",
-                            \"X-Requested-With\": \"XMLHttpRequest\"
-                        },
-                        body: JSON.stringify({ id: productId })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            let cartCounter = document.querySelector(\".cart-counter\");
-                            if (cartCounter) {
-                                cartCounter.textContent = data.total; // Met à jour le compteur d'articles
-                            }
-                            alert(\"Produit ajouté au panier !\");
-                        } else {
-                            alert(\"Erreur lors de l'ajout au panier.\");
-                        }
-                    })
-                    .catch(error => {
-                        console.error(\"Erreur :\", error);
-                        alert(\"Une erreur s'est produite. Veuillez réessayer.\");
-                    });
-                });
-            });
-        });
-    </script>
 {% endblock %}
 ", "produit/index_patient.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit\\index_patient.html.twig");
     }

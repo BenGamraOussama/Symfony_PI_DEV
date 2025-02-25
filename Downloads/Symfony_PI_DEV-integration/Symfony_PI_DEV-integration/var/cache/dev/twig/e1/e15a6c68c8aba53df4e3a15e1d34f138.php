@@ -97,73 +97,80 @@ class __TwigTemplate_0ee848656bff0c503c9f6be225cf147a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "    <div class=\"container-fluid d-flex justify-content-center align-items-center min-vh-100\">
-        <div class=\"col-md-8\">
-            <h1 class=\"text-center mb-4\">Détails de la catégorie</h1>
+        yield "    <div class=\"container-fluid\" style=\"display: flex; justify-content: center; align-items: center; height: 100vh; padding: 0;\">
+        <div style=\"max-width: 900px; width: 100%; padding: 20px; box-sizing: border-box; text-align: center;\">
+            <h1 class=\"mb-4\">ProduitCategorie</h1>
 
-            ";
-        // line 10
-        if (array_key_exists("produit_categorie", $context)) {
-            // line 11
-            yield "                <div class=\"card shadow\">
-                    <div class=\"card-body\">
-                        <table class=\"table table-bordered table-striped\">
-                            <tbody>
-                                <tr>
-                                    <th class=\"w-25\">ID</th>
-                                    <td>";
-            // line 17
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 17, $this->source); })()), "id", [], "any", false, false, false, 17), "html", null, true);
-            yield "</td>
-                                </tr>
-                                <tr>
-                                    <th>Nom</th>
-                                    <td>";
-            // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 21, $this->source); })()), "nom", [], "any", false, false, false, 21), "html", null, true);
-            yield "</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <table class=\"table table-bordered table-striped mx-auto\" style=\"width: 80%;\">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>";
+        // line 14
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 14, $this->source); })()), "id", [], "any", false, false, false, 14), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>";
+        // line 18
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 18, $this->source); })()), "name", [], "any", false, false, false, 18), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>String</th>
+                    <td>";
+        // line 22
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 22, $this->source); })()), "string", [], "any", false, false, false, 22), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>";
+        // line 26
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 26, $this->source); })()), "prix", [], "any", false, false, false, 26), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>";
+        // line 30
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 30, $this->source); })()), "nom", [], "any", false, false, false, 30), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>";
+        // line 34
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 34, $this->source); })()), "description", [], "any", false, false, false, 34), "html", null, true);
+        yield "</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>";
+        // line 38
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 38, $this->source); })()), "image", [], "any", false, false, false, 38), "html", null, true);
+        yield "</td>
+                </tr>
+                </tbody>
+            </table>
 
-                        <div class=\"d-flex justify-content-center gap-2 mt-4\">
-                            <a href=\"";
-            // line 27
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
-            yield "\" class=\"btn btn-primary\">
-                                <i class=\"bi bi-arrow-left\"></i> Retour à la liste
-                            </a>
-                            <a href=\"";
-            // line 30
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 30, $this->source); })()), "id", [], "any", false, false, false, 30)]), "html", null, true);
-            yield "\" 
-                               class=\"btn btn-warning\">
-                                <i class=\"bi bi-pencil\"></i> Modifier
-                            </a>
-                        </div>
-
-                        ";
-            // line 36
-            yield Twig\Extension\CoreExtension::include($this->env, $context, "produit_categorie/_delete_form.html.twig");
-            yield "
-                    </div>
-                </div>
-            ";
-        } else {
-            // line 40
-            yield "                <div class=\"alert alert-danger text-center\">
-                    <i class=\"bi bi-exclamation-triangle\"></i> Catégorie introuvable
-                </div>
+            <div class=\"text-center mt-4\">
                 <a href=\"";
-            // line 43
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
-            yield "\" class=\"btn btn-outline-primary mt-3\">
-                    <i class=\"bi bi-arrow-left\"></i> Retour
-                </a>
+        // line 44
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_categorie_index");
+        yield "\" class=\"btn btn-primary\">Retour à la liste</a>
+                <a href=\"";
+        // line 45
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_categorie_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit_categorie"]) || array_key_exists("produit_categorie", $context) ? $context["produit_categorie"] : (function () { throw new RuntimeError('Variable "produit_categorie" does not exist.', 45, $this->source); })()), "id", [], "any", false, false, false, 45)]), "html", null, true);
+        yield "\" class=\"btn btn-warning\">Modifier</a>
+            </div>
+
             ";
-        }
-        // line 47
-        yield "        </div>
+        // line 48
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "produit_categorie/_delete_form.html.twig");
+        yield "
+        </div>
     </div>
 ";
         
@@ -196,7 +203,7 @@ class __TwigTemplate_0ee848656bff0c503c9f6be225cf147a extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  166 => 47,  159 => 43,  154 => 40,  147 => 36,  138 => 30,  132 => 27,  123 => 21,  116 => 17,  108 => 11,  106 => 10,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  171 => 48,  165 => 45,  161 => 44,  152 => 38,  145 => 34,  138 => 30,  131 => 26,  124 => 22,  117 => 18,  110 => 14,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -206,49 +213,52 @@ class __TwigTemplate_0ee848656bff0c503c9f6be225cf147a extends Template
 {% block title %}ProduitCategorie{% endblock %}
 
 {% block body %}
-    <div class=\"container-fluid d-flex justify-content-center align-items-center min-vh-100\">
-        <div class=\"col-md-8\">
-            <h1 class=\"text-center mb-4\">Détails de la catégorie</h1>
+    <div class=\"container-fluid\" style=\"display: flex; justify-content: center; align-items: center; height: 100vh; padding: 0;\">
+        <div style=\"max-width: 900px; width: 100%; padding: 20px; box-sizing: border-box; text-align: center;\">
+            <h1 class=\"mb-4\">ProduitCategorie</h1>
 
-            {% if produit_categorie is defined %}
-                <div class=\"card shadow\">
-                    <div class=\"card-body\">
-                        <table class=\"table table-bordered table-striped\">
-                            <tbody>
-                                <tr>
-                                    <th class=\"w-25\">ID</th>
-                                    <td>{{ produit_categorie.id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nom</th>
-                                    <td>{{ produit_categorie.nom }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            <table class=\"table table-bordered table-striped mx-auto\" style=\"width: 80%;\">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ produit_categorie.id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ produit_categorie.name }}</td>
+                </tr>
+                <tr>
+                    <th>String</th>
+                    <td>{{ produit_categorie.string }}</td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>{{ produit_categorie.prix }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ produit_categorie.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ produit_categorie.description }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>{{ produit_categorie.image }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-                        <div class=\"d-flex justify-content-center gap-2 mt-4\">
-                            <a href=\"{{ path('produit_categories_index') }}\" class=\"btn btn-primary\">
-                                <i class=\"bi bi-arrow-left\"></i> Retour à la liste
-                            </a>
-                            <a href=\"{{ path('produit_categories_edit', {'id': produit_categorie.id}) }}\" 
-                               class=\"btn btn-warning\">
-                                <i class=\"bi bi-pencil\"></i> Modifier
-                            </a>
-                        </div>
+            <div class=\"text-center mt-4\">
+                <a href=\"{{ path('app_produit_categorie_index') }}\" class=\"btn btn-primary\">Retour à la liste</a>
+                <a href=\"{{ path('app_produit_categorie_edit', {'id': produit_categorie.id}) }}\" class=\"btn btn-warning\">Modifier</a>
+            </div>
 
-                        {{ include('produit_categorie/_delete_form.html.twig') }}
-                    </div>
-                </div>
-            {% else %}
-                <div class=\"alert alert-danger text-center\">
-                    <i class=\"bi bi-exclamation-triangle\"></i> Catégorie introuvable
-                </div>
-                <a href=\"{{ path('produit_categories_index') }}\" class=\"btn btn-outline-primary mt-3\">
-                    <i class=\"bi bi-arrow-left\"></i> Retour
-                </a>
-            {% endif %}
+            {{ include('produit_categorie/_delete_form.html.twig') }}
         </div>
     </div>
-{% endblock %}", "produit_categories/show.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit_categories\\show.html.twig");
+{% endblock %}
+", "produit_categories/show.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit_categories\\show.html.twig");
     }
 }

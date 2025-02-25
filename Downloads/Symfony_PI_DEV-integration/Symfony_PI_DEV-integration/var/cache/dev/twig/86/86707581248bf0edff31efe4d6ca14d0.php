@@ -99,7 +99,7 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
         // line 6
         yield "    <div class=\"container d-flex justify-content-center align-items-center vh-100\"> <!-- Centrage vertical et horizontal -->
         <div class=\"col-md-6\"> <!-- Réduction de la largeur -->
-            <h1 class=\"text-center mt-4 mb-4\">🆕 Ajouter un Produit</h1> <!-- Ajout de mt-4 pour espacer -->
+            <h1 class=\"text-center mb-4\">🆕 Ajouter un Produit</h1>
 
             <div class=\"card shadow-sm p-3\"> <!-- Réduction du padding interne -->
                 ";
@@ -196,33 +196,17 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
         yield "
                 </div>
 
-                <!-- Ajout du champ quantité -->
-                <div class=\"mb-2\">
-                    ";
-        // line 57
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 57, $this->source); })()), "quantite", [], "any", false, false, false, 57), 'label', ["label" => "Quantité"]);
-        yield "
-                    ";
-        // line 58
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 58, $this->source); })()), "quantite", [], "any", false, false, false, 58), 'widget', ["attr" => ["class" => "form-control"]]);
-        yield "
-                    ";
-        // line 59
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 59, $this->source); })()), "quantite", [], "any", false, false, false, 59), 'errors');
-        yield "
-                </div>
-
                 <div class=\"d-flex justify-content-between mt-3\"> <!-- Alignement plus compact des boutons -->
                     <a href=\"";
-        // line 63
+        // line 56
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index");
         yield "\" class=\"btn btn-secondary\">↩ Retour</a>
                     <button type=\"submit\" class=\"btn btn-success\">💾 Enregistrer</button>
                 </div>
 
                 ";
-        // line 67
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 67, $this->source); })()), 'form_end');
+        // line 60
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 60, $this->source); })()), 'form_end');
         yield "
             </div>
         </div>
@@ -258,7 +242,7 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  225 => 67,  218 => 63,  211 => 59,  207 => 58,  203 => 57,  195 => 52,  191 => 51,  187 => 50,  179 => 45,  175 => 44,  171 => 43,  164 => 39,  160 => 38,  153 => 34,  149 => 33,  145 => 32,  138 => 28,  134 => 27,  130 => 26,  123 => 22,  119 => 21,  115 => 20,  110 => 17,  107 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  209 => 60,  202 => 56,  195 => 52,  191 => 51,  187 => 50,  179 => 45,  175 => 44,  171 => 43,  164 => 39,  160 => 38,  153 => 34,  149 => 33,  145 => 32,  138 => 28,  134 => 27,  130 => 26,  123 => 22,  119 => 21,  115 => 20,  110 => 17,  107 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -270,7 +254,7 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
 {% block body %}
     <div class=\"container d-flex justify-content-center align-items-center vh-100\"> <!-- Centrage vertical et horizontal -->
         <div class=\"col-md-6\"> <!-- Réduction de la largeur -->
-            <h1 class=\"text-center mt-4 mb-4\">🆕 Ajouter un Produit</h1> <!-- Ajout de mt-4 pour espacer -->
+            <h1 class=\"text-center mb-4\">🆕 Ajouter un Produit</h1>
 
             <div class=\"card shadow-sm p-3\"> <!-- Réduction du padding interne -->
                 {# Ajout de l'attribut enctype pour gérer l'upload #}
@@ -315,13 +299,6 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
                     {{ form_label(form.image, 'Image du Produit') }}
                     {{ form_widget(form.image, {'attr': {'class': 'form-control', 'accept': 'image/*'}}) }}
                     {{ form_errors(form.image) }}
-                </div>
-
-                <!-- Ajout du champ quantité -->
-                <div class=\"mb-2\">
-                    {{ form_label(form.quantite, 'Quantité') }}
-                    {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
-                    {{ form_errors(form.quantite) }}
                 </div>
 
                 <div class=\"d-flex justify-content-between mt-3\"> <!-- Alignement plus compact des boutons -->
