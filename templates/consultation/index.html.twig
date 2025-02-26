@@ -53,6 +53,18 @@
                                                         <button class="btn btn-danger btn-action" data-toggle="modal" data-target="#deleteModal{{ consultation.id }}">
                                                             <i class="dripicons dripicons-trash"></i> Supprimer
                                                         </button>
+
+<a class="btn btn-primary btn-action" href="{{ path('app_traitement_new', {'consultation_id': consultation.id}) }}">
+
+                                                            <i class="dripicons dripicons-plus"></i>
+ Add Traittement
+                                                        </a>
+
+
+<a class="btn btn-warning btn-action" href="{{ path('app_traitement_index', {'consultation_id': consultation.id}) }}">
+
+                                                            <i class="dripicons dripicons-pencil"></i> List Traittements
+                                                        </a>
                                                 </td>
                                             </tr>
 

@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Form;
 
 use App\Enum\EtatEnum;
 use App\Entity\Consultation;
+use App\Entity\Traitement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
 
@@ -54,6 +56,19 @@ class ConsultationType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'L\'état ne peut pas être vide.']),
                 ],
+            ])
+            ->add('traitement', CollectionType::class, [
+                'entry_type' => EntityType::class,
+                'entry_options' => [
+                    'class' => Traitement::class,
+                    'choice_label' => function(Traitement $traitement) {
+                        return $traitement->getType(); // Use treatment type for display
+                    },
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => false
             ]);
     }
 

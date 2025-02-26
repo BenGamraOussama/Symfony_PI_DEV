@@ -9,59 +9,83 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TimeType; // Use TimeType for time input
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class RDVType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('heure', TimeType::class, [ // Use TimeType for time input
-                'widget' => 'single_text', // Render as a single input (HTML5 time input)
-                'label' => 'Time',
-                'required' => true,
+            ->add('patient', TextType::class, [
+                'label' => 'Patient Name',
+                'constraints' => [
+                    new NotBlank(['message' => 'Patient name cannot be empty.']),
+                    new Length([
+                        'min' => 2,
+                        'max' => 100,
+                        'minMessage' => 'Patient name must be at least {{ limit }} characters long.',
+                        'maxMessage' => 'Patient name cannot be longer than {{ limit }} characters.',
+                    ]),
+                ],
                 'attr' => [
-                    'class' => 'form-control', // Add Bootstrap class
+                    'class' => 'form-control',
+                    'placeholder' => 'Patient Name',
+                ],
+            ])
+            ->add('psychiatre', EntityType::class, [
+                'class' => Psychiatre::class,
+                'choice_label' => 'firstName',
+                'label' => 'Psychiatre',
+                'constraints' => [
+                    new NotBlank(['message' => 'Psychiatre must be selected.']),
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Psychiatre',
+                ],
+            ])
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Date cannot be empty.']),
+                ],
+                'attr' => [
+                    'class' => 'form-control form-control-lg bg-light fs-6',
+                    'placeholder' => 'Date',
+                ],
+            ])
+            ->add('heure', TimeType::class, [
+                'widget' => 'single_text',
+                'html5' => true,
+                'constraints' => [
+                    new NotBlank(['message' => 'Time cannot be empty.']),
+                ],
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Heure',
                 ],
             ])
             ->add('priorite', ChoiceType::class, [
                 'choices' => [
                     'En attente' => 'En_attente',
-                    'Payé' => 'PAYE',
-                    'Annulé' => 'ANNULE',
-                    'Remboursé' => 'REMBOURSE',
+                   
                 ],
-                'label' => 'Priority',
-                'required' => true,
-                'attr' => [
-                    'class' => 'form-control', // Add Bootstrap class
+                'label' => 'Priorité',
+                'constraints' => [
+                    new NotBlank(['message' => 'Priority cannot be empty.']),
                 ],
-            ])
-            ->add('patient', EntityType::class, [
-                'class' => Patient::class,
-                'choice_label' => 'firstName', // Ensure this matches a property in the Patient entity
-                'label' => 'Patient',
-                'required' => true,
                 'attr' => [
-                    'class' => 'form-control', // Add Bootstrap class
-                ],
-            ])
-            ->add('psychiatre', EntityType::class, [
-                'class' => Psychiatre::class,
-                'choice_label' => 'firstName', // Ensure this matches a property in the Psychiatre entity
-                'label' => 'Psychiatrist',
-                'required' => true,
-                'attr' => [
-                    'class' => 'form-control', // Add Bootstrap class
+                    'class' => 'form-control',
+                    'placeholder' => 'Priorite',
                 ],
             ]);
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => RDV::class,
-        ]);
     }
 }

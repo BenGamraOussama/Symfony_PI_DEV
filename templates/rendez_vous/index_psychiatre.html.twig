@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RDV index{% endblock %}
+
+{% block body %}
+
+<style>
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-action {
+    margin: 2px;
+}
+</style>
+
+<div class="app">
+    <div class="app-wrap">
+        <!-- Contenu de l'application -->
+        <div class="app-container">
+            <div class="app-main" id="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card container shadow">
+                            <h5 class="card-header">List RDVs</h5>
+
+                            <!-- Tableau des RDVs -->
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Psychiatre</th>
+                                            <th>Patient</th>
+                                            <th>Heure</th>
+                                            <th>Priorité</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        {% for rdv in rdvs %}
+                                            <tr>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ rdv.psychiatre.firstName }}</strong></td>
+
+
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ rdv.patient }}</strong></td>
+                                                <td>{{ rdv.heure ? rdv.heure|date('H:i:s') : '' }}</td>
+                                                <td><span class="{% if rdv.priorite == 'Accepted' %}bg-success text-white{% elseif rdv.priorite == 'En attente' or rdv.priorite == 'En_attente' %}bg-danger text-white{% endif %} p-1 rounded">{{ rdv.priorite }}</span></td>
+
+
+
+
+                                                <td>
+                                                    <!-- Accept Button (visible only if priority is "En attente" or "En_attente") -->
+
+                                                    {% if rdv.priorite == 'En attente' or rdv.priorite == 'En_attente' %}
+
+                                                        <form method="post" action="{{ path('app_rdv_accept', {'id': rdv.id}) }}" style="display: inline;">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('accept' ~ rdv.id) }}">
+                                                            <button type="submit" class="btn btn-success btn-action">
+                                                                <i class="dripicons dripicons-checkmark"></i> Accepter
+                                                            </button>
+                                                        </form>
+                                                    {% endif %}
+
+                                                    <!-- Cancel Button (visible only if priority is "En attente", "Payé", or "En_attente") -->
+                                                    {% if rdv.priorite == 'En attente' or rdv.priorite == 'Payé' or rdv.priorite == 'En_attente' %}
+
+                                                        <form method="post" action="{{ path('app_rdv_cancel', {'id': rdv.id}) }}" style="display: inline;">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('cancel' ~ rdv.id) }}">
+                                                            <button type="submit" class="btn btn-danger btn-action">
+                                                                <i class="dripicons dripicons-cross"></i> Annuler
+                                                            </button>
+                                                        </form>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="4">Aucun RDV trouvé</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inclure jQuery (si ce n'est pas déjà fait) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Script pour gérer les modals -->
+<script>
+    $(document).ready(function() {
+        // Ouvrir la modal d'ajout ou de confirmation lorsque le bouton est cliqué
+        $('[data-toggle="modal"]').on('click', function() {
+            var target = $(this).data('target'); // Récupère l'ID de la modal
+            $(target).modal('show'); // Ouvre la modal
+        });
+
+        // Fermer la modal lorsque le bouton "Close" est cliqué
+        $('[data-dismiss="modal"]').on('click', function() {
+            $(this).closest('.modal').modal('hide'); // Ferme la modal
+        });
+
+        // Fermer la modal lorsque l'utilisateur clique en dehors de la modal
+        $('.modal').on('click', function(event) {
+            if ($(event.target).hasClass('modal')) {
+                $(this).modal('hide'); // Ferme la modal
+            }
+        });
+
+        // Soumettre le formulaire de suppression lorsque l'utilisateur confirme
+        $('.confirm-delete').on('click', function() {
+            var form = $(this).closest('.modal').find('form'); // Récupère le formulaire associé
+            form.submit(); // Soumet le formulaire
+        });
+    });
+</script>
+
+{% endblock %}

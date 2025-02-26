@@ -17,10 +17,11 @@ final class ConsultationController extends AbstractController
     #[Route(name: 'app_consultation_index')]
     public function index(ConsultationRepository $consultationRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
-
+        $user = $this->getUser();
         $consultation = new Consultation();
         $form = $this->createForm(ConsultationType::class, $consultation);
         $form->handleRequest($request);
+        
         
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -34,6 +35,8 @@ final class ConsultationController extends AbstractController
             'consultations' => $consultationRepository->findAll(),
             'consultation' => $consultation,
             'form' => $form,
+            'user' => $user,
+
         ]);
 
     }
@@ -55,6 +58,8 @@ final class ConsultationController extends AbstractController
         return $this->render('consultation/index.html.twig', [
             'consultation' => $consultation,
             'form' => $form,
+            'user' => $user,
+
         ]);
         
     }
@@ -64,6 +69,8 @@ final class ConsultationController extends AbstractController
     {
         return $this->render('consultation/show.html.twig', [
             'consultation' => $consultation,
+            'user' => $user,
+
         ]);
     }
 
@@ -82,6 +89,8 @@ final class ConsultationController extends AbstractController
         return $this->render('consultation/edit.html.twig', [
             'consultation' => $consultation,
             'form' => $form,
+            'user' => $user,
+
         ]);
     }
 
@@ -95,4 +104,5 @@ final class ConsultationController extends AbstractController
 
         return $this->redirectToRoute('app_consultation_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

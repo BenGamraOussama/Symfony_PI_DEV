@@ -6,6 +6,7 @@ use App\Repository\RDVRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Psychiatre;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RDVRepository::class)]
@@ -19,12 +20,17 @@ class RDV
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heure = null;
 
+    
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     #[ORM\Column(length: 255)]
     private ?string $priorite = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rdvs')]
-    private ?Patient $patient = null;
-
+    
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $patient = null;
+    
     #[ORM\ManyToOne(inversedBy: 'drvs')]
     private ?Psychiatre $psychiatre = null;
 
@@ -57,16 +63,20 @@ class RDV
 
         return $this;
     }
+    public function __construct()
+{
+    $this->priorite = 'En attente'; // Initialize the priorite property
+}
 
-    public function getPatient(): ?Patient
+    public function getPatient(): ?string
     {
         return $this->patient;
     }
-
-    public function setPatient(?Patient $patient): static
+    
+    public function setPatient(?string $patient): self
     {
         $this->patient = $patient;
-
+    
         return $this;
     }
 
@@ -78,6 +88,18 @@ class RDV
     public function setPsychiatre(?Psychiatre $psychiatre): static
     {
         $this->psychiatre = $psychiatre;
+
+        return $this;
+    }
+    
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

@@ -3,47 +3,64 @@
 namespace App\Controller;
 
 use App\Entity\Traitement;
+use App\Entity\Consultation;
 use App\Form\TraitementType;
 use App\Repository\TraitementRepository;
+use App\Repository\ConsultationRepository; // Corrected namespace
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/traitement')]
 final class TraitementController extends AbstractController
 {
-    #[Route(name: 'app_traitement_index')]
-    public function index(TraitementRepository $traitementRepository, EntityManagerInterface $entityManager, Request $request): Response
+    private ConsultationRepository $consultationRepository;
+
+    public function __construct(ConsultationRepository $consultationRepository)
     {
+        $this->consultationRepository = $consultationRepository;
+    }
 
-        $traitement = new Traitement();
-        $form = $this->createForm(TraitementType::class, $traitement);
-        $form->handleRequest($request);
-        
+    #[Route('/traitement', name: 'app_traitement_indexx')]
+    public function indexx(): Response
+    {
+        $consultations = $this->consultationRepository->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        return $this->render('traitement/index.html.twig', [
+            'consultations' => $consultations,
+        ]);
+    }
 
-            $entityManager->persist($traitement);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_traitement_index', [], Response::HTTP_SEE_OTHER);
+    #[Route('/consultation/{consultation_id}/traitement', name: 'app_traitement_index')]
+    public function index(TraitementRepository $traitementRepository, int $consultation_id): Response
+    {
+        $user = $this->getUser();
+        $consultation = $this->consultationRepository->find($consultation_id);
+        if (!$consultation) {
+            throw $this->createNotFoundException("Consultation introuvable.");
         }
 
         return $this->render('traitement/index.html.twig', [
-            'traitement' => $traitement,
-            'form' => $form,
-            'traitements' => $traitementRepository->findAll(),
+            'consultation' => $consultation,
+            'traitements' => $traitementRepository->findBy(['consultation' => $consultation]),
+            'user' => $user,
         ]);
-
-        
     }
 
-    #[Route('/new', name: 'app_traitement_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/consultation/{consultation_id}/traitement/new', name: 'app_traitement_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, int $consultation_id): Response
     {
+        $user = $this->getUser();
+        $consultation = $entityManager->getRepository(Consultation::class)->find($consultation_id);
+        
+        if (!$consultation) {
+            throw $this->createNotFoundException("Consultation avec l'ID $consultation_id non trouvée.");
+        }
+
         $traitement = new Traitement();
+        $traitement->setConsultation($consultation);
+
         $form = $this->createForm(TraitementType::class, $traitement);
         $form->handleRequest($request);
 
@@ -51,49 +68,65 @@ final class TraitementController extends AbstractController
             $entityManager->persist($traitement);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_traitement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_consultation_index', ['consultation_id' => $consultation_id]);
         }
 
         return $this->render('traitement/new.html.twig', [
             'traitement' => $traitement,
             'form' => $form,
+            'consultation' => $consultation,
+            'user' => $user,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_traitement_show', methods: ['GET'])]
-    public function show(Traitement $traitement): Response
+    #[Route('/consultation/{consultation_id}/traitement/{id}', name: 'app_traitement_show', methods: ['GET'])]
+    public function show(int $consultation_id, Traitement $traitement, EntityManagerInterface $entityManager): Response
     {
+        $consultation = $entityManager->getRepository(Consultation::class)->find($consultation_id);
+        if (!$consultation) {
+            throw $this->createNotFoundException("Consultation avec l'ID $consultation_id non trouvée.");
+        }
+
         return $this->render('traitement/show.html.twig', [
             'traitement' => $traitement,
+            'consultation' => $consultation,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_traitement_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Traitement $traitement, EntityManagerInterface $entityManager): Response
+    #[Route('/consultation/{consultation_id}/traitement/{id}/edit', name: 'app_traitement_edit')]
+    public function edit(Request $request, int $consultation_id, Traitement $traitement, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+        $consultation = $this->consultationRepository->find($consultation_id);
+        if (!$consultation) {
+            throw $this->createNotFoundException("Consultation introuvable.");
+        }
+
         $form = $this->createForm(TraitementType::class, $traitement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_traitement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_traitement_index', ['consultation_id' => $consultation_id]);
         }
 
         return $this->render('traitement/edit.html.twig', [
             'traitement' => $traitement,
-            'form' => $form,
+            'form' => $form->createView(),
+            'consultation' => $consultation,
+            'user' => $user,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_traitement_delete', methods: ['POST'])]
-    public function delete(Request $request, Traitement $traitement, EntityManagerInterface $entityManager): Response
+    #[Route('/consultation/{consultation_id}/traitement/{id}/delete', name: 'app_traitement_delete', methods: ['POST'])]
+    public function delete(Request $request, int $consultation_id, Traitement $traitement, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$traitement->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($traitement);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_traitement_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_traitement_index', ['consultation_id' => $consultation_id]);
     }
 }

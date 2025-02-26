@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Rendez-vous{% endblock %}
 
 {% block body %}
     <style>
@@ -35,7 +34,7 @@
             <h2><i class="bx bx-edit"></i> Edit Rendez-vous</h2>
         </div>
         <div class="card-body">
-            {{ form_start(form, {'attr': {'novaliheure': 'novaliheure'}}) }}
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                 <div class="form-group">
                     {{ form_label(form.heure) }}
                     {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
@@ -44,20 +43,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form_label(form.priorite) }}
-                    {{ form_widget(form.priorite, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.date) }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
                     <div class="text-danger">
-                        {{ form_errors(form.priorite) }}
+                        {{ form_errors(form.date) }}
                     </div>
                 </div>
-               
                 
-                <button heure="submit" class="btn btn-primary form-control">
-                    <i class="bx bx-save"></i> {{ button_label|default('Upheure') }}
+                <button type="submit" class="btn btn-primary form-control">
+                    <i class="bx bx-save"></i> {{ button_label|default('Update') }}
                 </button>
             {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}
-
-
