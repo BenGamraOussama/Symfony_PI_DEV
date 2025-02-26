@@ -24,3 +24,6 @@ app_patient_show:
         _format: html
     requirements:
         id: \d+
+app_ajouter_panier:
+    path: /ajouter-panier/{id}
+    controller: App\Controller\ProduitController::ajouterPanier

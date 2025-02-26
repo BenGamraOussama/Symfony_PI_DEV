@@ -52,6 +52,11 @@ class Produit
     )]
     private ?string $image = null;
 
+    // Nouvel attribut quantite
+    #[ORM\Column(type: "integer")]
+    #[Assert\GreaterThanOrEqual(value: 0, message: "La quantité doit être supérieure ou égale à zéro.")]
+    private int $quantite;
+
     // Getters et Setters
 
     public function getId(): ?int
@@ -127,6 +132,19 @@ class Produit
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    // Getter et Setter pour quantite
+    public function getQuantite(): int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): static
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

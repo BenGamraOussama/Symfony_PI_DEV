@@ -54,192 +54,111 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         // line 1
         yield "<!DOCTYPE html>
 <html>
-    <head>
-        <title>";
+<head>
+    <title>";
         // line 4
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         yield "</title>
-        <meta charset=\"utf-8\">
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-        <!-- Bootstrap CSS --> 
-        <link rel=\"stylesheet\" href=\"";
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
+    <!-- Bootstrap CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 8
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/bootstrap.min.css"), "html", null, true);
         yield "\">
-        <!-- Animate CSS --> 
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Animate CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 10
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/animate.min.css"), "html", null, true);
         yield "\">
-        <!-- Meanmenu CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Meanmenu CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 12
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/meanmenu.css"), "html", null, true);
         yield "\">
-        <!-- Boxicons CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Boxicons CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 14
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/boxicons.min.css"), "html", null, true);
         yield "\">
-        <!-- Flaticon CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Flaticon CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 16
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/flaticon.css"), "html", null, true);
         yield "\">
-        <!-- Odometer CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Odometer CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 18
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/odometer.min.css"), "html", null, true);
         yield "\">
-        <!-- Slick Min CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Slick Min CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 20
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/slick.min.css"), "html", null, true);
         yield "\">
-        <!-- Nice Select CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Nice Select CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 22
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/nice-select.min.css"), "html", null, true);
         yield "\">
-        <!-- Carousel CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Carousel CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 24
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/owl.carousel.min.css"), "html", null, true);
         yield "\">
-        <!-- Carousel Default CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Carousel Default CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 26
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/owl.theme.default.min.css"), "html", null, true);
         yield "\">
-        <!-- Magnific Popup CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Magnific Popup CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 28
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/magnific-popup.min.css"), "html", null, true);
         yield "\">
-        <!-- Fancybox CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Fancybox CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/fancybox.min.css"), "html", null, true);
         yield "\">
-        <!-- Style CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Style CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 32
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/style.css"), "html", null, true);
         yield "\">
-        <!-- Dark CSS -->
-        <link rel=\"stylesheet\" href=\"";
+    <!-- Dark CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 34
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/dark.css"), "html", null, true);
         yield "\">
-        <!-- Responsive CSS -->
-\t\t<link rel=\"stylesheet\" href=\"";
+    <!-- Responsive CSS -->
+    <link rel=\"stylesheet\" href=\"";
         // line 36
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/css/responsive.css"), "html", null, true);
         yield "\">
-        <link rel=\"icon\" type=\"image/png\" href=\"";
+    <link rel=\"icon\" type=\"image/png\" href=\"";
         // line 37
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/favicon.png"), "html", null, true);
         yield "\">
-        ";
+    ";
         // line 38
         yield from $this->unwrap()->yieldBlock('stylesheets', $context, $blocks);
         // line 40
         yield "
-        ";
+    ";
         // line 41
         yield from $this->unwrap()->yieldBlock('javascripts', $context, $blocks);
         // line 44
-        yield "    </head>
-    <body>
-    
-        ";
+        yield "</head>
+<body>
+
+";
         // line 47
         yield from $this->unwrap()->yieldBlock('header', $context, $blocks);
-        // line 295
-        yield "        ";
+        // line 293
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 296
-        yield "        ";
+        // line 294
         yield from $this->unwrap()->yieldBlock('footer', $context, $blocks);
-        // line 424
-        yield "        <script data-cfasync=\"false\" src=\"";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"), "html", null, true);
-        yield "\"></script><script src=\"";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Bootstrap Bundle JS -->
-        <script src=\"";
-        // line 426
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/bootstrap.bundle.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Meanmenu JS -->
-        <script src=\"";
-        // line 428
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.meanmenu.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Owl Carousel JS -->
-        <script src=\"";
-        // line 430
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/owl.carousel.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Jquery Appear JS -->
-        <script src=\"";
-        // line 432
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.appear.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Odometer JS -->
-        <script src=\"";
-        // line 434
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/odometer.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Slick Min JS -->
-        <script src=\"";
-        // line 436
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/slick.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Nice Select JS -->
-        <script src=\"";
-        // line 438
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/nice-select.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Magnific Popup JS -->
-        <script src=\"";
-        // line 440
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.magnific-popup.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Fancybox JS -->
-        <script src=\"";
-        // line 442
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/fancybox.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Ajaxchimp JS -->
-\t\t<script src=\"";
-        // line 444
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/jquery.ajaxchimp.min.js"), "html", null, true);
-        yield "\"></script>
-\t\t<!-- Form Validator JS -->
-\t\t<script src=\"";
-        // line 446
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/form-validator.min.js"), "html", null, true);
-        yield "\"></script>
-\t\t<!-- Contact JS -->
-        <script src=\"";
-        // line 448
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/contact-form-script.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Wow JS -->
-        <script src=\"";
-        // line 450
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/wow.min.js"), "html", null, true);
-        yield "\"></script>
-        <!-- Custom JS -->
-        <script src=\"";
-        // line 452
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/js/main.js"), "html", null, true);
-        yield "\"></script>
-    </body>
-</html>
-";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -286,7 +205,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 39
-        yield "        ";
+        yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -310,10 +229,10 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
         // line 42
-        yield "          ";
+        yield "        ";
         yield from $this->unwrap()->yieldBlock('importmap', $context, $blocks);
         // line 43
-        yield "        ";
+        yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -360,347 +279,369 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
         // line 48
-        yield "         <div class=\"navbar-area\">
-            <div class=\"main-responsive-nav\">
-                <div class=\"container\">
-                    <div class=\"main-responsive-menu\">
-                        <div class=\"logo\">
-                            <a href=\"index.html\">
-                                <img src=\"";
+        yield "    <div class=\"navbar-area\">
+        <div class=\"main-responsive-nav\">
+            <div class=\"container\">
+                <div class=\"main-responsive-menu\">
+                    <div class=\"logo\">
+                        <a href=\"index.html\">
+                            <img src=\"";
         // line 54
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo.png"), "html", null, true);
         yield "\" class=\"black-logo\" alt=\"image\">
-                                <img src=\"";
+                            <img src=\"";
         // line 55
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo-2.png"), "html", null, true);
         yield "\" class=\"white-logo\" alt=\"image\">
-                            </a>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class=\"main-navbar\">
-                <div class=\"container\">
-                    <nav class=\"navbar navbar-expand-md navbar-light\">
-                        <a class=\"navbar-brand\" href=\"index.html\">
-                            <img src=\"";
+        <div class=\"main-navbar\">
+            <div class=\"container\">
+                <nav class=\"navbar navbar-expand-md navbar-light\">
+                    <a class=\"navbar-brand\" href=\"index.html\">
+                        <img src=\"";
         // line 66
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo.png"), "html", null, true);
         yield "\" class=\"black-logo\" alt=\"image\">
-                            <img src=\"";
+                        <img src=\"";
         // line 67
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo-2.png"), "html", null, true);
         yield "\" class=\"white-logo\" alt=\"image\">
-                        </a>
+                    </a>
 
-                        <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
-                            <ul class=\"navbar-nav m-auto\">
-                                <li class=\"nav-item\">
-                                    <a href=\"";
+                    <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav m-auto\">
+                            <li class=\"nav-item\">
+                                <a href=\"";
         // line 73
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_home");
         yield "\" class=\"nav-link active\">
-                                        Home 
-                                    </a> 
-                                </li>
-                                <li class=\"nav-item\">
-                                    <a href=\"";
+                                    Home
+                                </a>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a href=\"";
         // line 78
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("patient_activity_index");
         yield "\" class=\"nav-link\">
-                                        Activities 
-                                    </a>
-                                </li>
+                                    Activities
+                                </a>
+                            </li>
 
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Produit
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Produit
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
 
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"";
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"";
         // line 91
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
         yield "\" class=\"nav-link\">Listes des Produits </a>
-                                        </li>
-
-
-                                    </ul>
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"";
-        // line 98
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"";
+        // line 94
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
         yield "\" class=\"nav-link\">Détail du produit </a>
-                                        </li>
+                                    </li>
+                                </ul>
+                            </li>
 
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Services
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
 
-                                    </ul>
-                                </li>
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"services.html\" class=\"nav-link\">Services</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"services-details.html\" class=\"nav-link\">Services Details</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Services 
-                                        <i class='bx bx-caret-down'></i>
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Shop
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
+
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"products-grid.html\" class=\"nav-link\">Products Grid</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"cart.html\" class=\"nav-link\">Cart</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"wishlist.html\" class=\"nav-link\">Wishlist</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"checkout.html\" class=\"nav-link\">Checkout</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"my-account.html\" class=\"nav-link\">My Account</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"products-details.html\" class=\"nav-link\">Products Details</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a href=\"contact.html\" class=\"nav-link\">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class=\"others-options d-flex align-items-center\">
+                            <div class=\"option-item\">
+                                <div class=\"cart-btn\">
+
+                                        <a href=\"";
+        // line 151
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_panier");
+        yield "\">
+                                        <i class='flaticon-shopping-cart'></i>
+                                        <span>";
+        // line 153
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier_service"]) || array_key_exists("panier_service", $context) ? $context["panier_service"] : (function () { throw new RuntimeError('Variable "panier_service" does not exist.', 153, $this->source); })()), "getPanierUtilisateur", [], "method", false, false, false, 153)), "html", null, true);
+        yield "</span>
                                     </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"services.html\" class=\"nav-link\">Services</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"services-details.html\" class=\"nav-link\">Services Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Shop 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"products-grid.html\" class=\"nav-link\">Products Grid</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"cart.html\" class=\"nav-link\">Cart</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"wishlist.html\" class=\"nav-link\">Wishlist</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"checkout.html\" class=\"nav-link\">Checkout</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"my-account.html\" class=\"nav-link\">My Account</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"products-details.html\" class=\"nav-link\">Products Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class=\"nav-item\">
-                                    <a href=\"contact.html\" class=\"nav-link\">Contact</a>
-                                </li>
-                            </ul>
-
-                            <div class=\"others-options d-flex align-items-center\">
-                                <div class=\"option-item\">
-                                    <div class=\"cart-btn\">
-                                        <a href=\"cart.html\">
-                                            <i class='flaticon-shopping-cart'></i>
-                                            <span>2</span>
-                                        </a>
+                                    <div class=\"panier-dropdown\">
+                                        <h3></h3>
+                                        <ul>
+                                            ";
+        // line 158
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier_service"]) || array_key_exists("panier_service", $context) ? $context["panier_service"] : (function () { throw new RuntimeError('Variable "panier_service" does not exist.', 158, $this->source); })()), "getPanierUtilisateur", [], "method", false, false, false, 158));
+        $context['_iterated'] = false;
+        foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
+            // line 159
+            yield "
+                                            ";
+            $context['_iterated'] = true;
+        }
+        if (!$context['_iterated']) {
+            // line 161
+            yield "                                                <li>Votre panier est vide.</li>
+                                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['item'], $context['_parent'], $context['_iterated']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 163
+        yield "                                        </ul>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class=\"option-item\">
-                                    <div class=\"search-box\">
-                                        <i class='flaticon-search'></i>
-                                    </div>
+                            <div class=\"option-item\">
+                                <div class=\"search-box\">
+                                    <i class='flaticon-search'></i>
                                 </div>
-                                ";
-        // line 174
-        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 174, $this->source); })()), "user", [], "any", false, false, false, 174)) {
-            // line 175
+                            </div>
+                            ";
+        // line 173
+        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 173, $this->source); })()), "user", [], "any", false, false, false, 173)) {
+            // line 174
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"";
-            // line 177
+            // line 176
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             yield "\" class=\"default-btn\">Login <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                ";
+                            ";
         }
-        // line 181
-        yield "                               ";
-        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 181, $this->source); })()), "user", [], "any", false, false, false, 181)) {
-            // line 182
+        // line 180
+        yield "                            ";
+        if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 180, $this->source); })()), "user", [], "any", false, false, false, 180)) {
+            // line 181
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"";
-            // line 184
+            // line 183
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             yield "\" class=\"default-btn\">Register <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                ";
+                            ";
         }
-        // line 188
-        yield "                               ";
+        // line 187
+        yield "                            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_FOURNISSEUR")) {
-            // line 189
-            yield "                                  <div class=\"option-item dropdown\">
+            // line 188
+            yield "                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 195
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 194
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_fournisseur");
             yield "\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 196
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 195
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
-                                    </ul>
+                                        </ul>
                                     </div>
-                                  </div>
-                                ";
+                                </div>
+                            ";
         }
-        // line 201
-        yield "                                ";
+        // line 200
+        yield "                            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-            // line 202
-            yield "                                  <div class=\"option-item dropdown\">
+            // line 201
+            yield "                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 208
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 207
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_admin");
             yield "\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 209
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 208
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
-                                    </ul>
+                                        </ul>
                                     </div>
-                                  </div>
-                                ";
+                                </div>
+                            ";
         }
-        // line 214
-        yield "                                ";
+        // line 213
+        yield "                            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PSYCHIATRE")) {
-            // line 215
-            yield "                                  <div class=\"option-item dropdown\">
+            // line 214
+            yield "                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 221
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 220
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_psychiatre");
             yield "\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 222
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 221
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
-                                    </ul>
+                                        </ul>
                                     </div>
-                                  </div>
-                                ";
+                                </div>
+                            ";
         }
-        // line 227
-        yield "                                ";
+        // line 226
+        yield "                            ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PATIENT")) {
-            // line 228
-            yield "                                  <div class=\"option-item dropdown\">
+            // line 227
+            yield "                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 234
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_patient_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 234, $this->source); })()), "user", [], "any", false, false, false, 234), "id", [], "any", false, false, false, 234)]), "html", null, true);
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 233
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_patient_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 233, $this->source); })()), "user", [], "any", false, false, false, 233), "id", [], "any", false, false, false, 233)]), "html", null, true);
             yield "\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"";
-            // line 235
+                                            <li><a class=\"dropdown-item\" href=\"";
+            // line 234
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             yield "\">Logout</a></li>
-                                    </ul>
+                                        </ul>
                                     </div>
-                                  </div>
-                                ";
+                                </div>
+                            ";
         }
-        // line 240
-        yield "                               ";
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 240, $this->source); })()), "user", [], "any", false, false, false, 240)) {
-            // line 241
+        // line 239
+        yield "                            ";
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 239, $this->source); })()), "user", [], "any", false, false, false, 239)) {
+            // line 240
             yield "                                <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"";
-            // line 243
+            // line 242
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
             yield "\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                ";
+                            ";
         }
-        // line 247
-        yield "                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-
-            <div class=\"others-option-for-responsive\">
-                <div class=\"container\">
-                    <div class=\"dot-menu\">
-                        <div class=\"inner\">
-                            <div class=\"circle circle-one\"></div>
-                            <div class=\"circle circle-two\"></div>
-                            <div class=\"circle circle-three\"></div>
-                        </div>
+        // line 246
+        yield "                        </div>
                     </div>
-                    
-                    <div class=\"container\">
-                        <div class=\"option-inner\">
-                            <div class=\"others-options d-flex align-items-center\">
-                                ";
-        // line 266
-        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 266, $this->source); })()), "user", [], "any", false, false, false, 266)) {
-            // line 267
+                </nav>
+            </div>
+        </div>
+
+        <div class=\"others-option-for-responsive\">
+            <div class=\"container\">
+                <div class=\"dot-menu\">
+                    <div class=\"inner\">
+                        <div class=\"circle circle-one\"></div>
+                        <div class=\"circle circle-two\"></div>
+                        <div class=\"circle circle-three\"></div>
+                    </div>
+                </div>
+
+                <div class=\"container\">
+                    <div class=\"option-inner\">
+                        <div class=\"others-options d-flex align-items-center\">
+                            ";
+        // line 265
+        if (CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 265, $this->source); })()), "user", [], "any", false, false, false, 265)) {
+            // line 266
             yield "                                <div class=\"option-item\">
                                     <div class=\"cart-btn\">
                                         <a href=\"cart.html\">
                                             <i class='flaticon-shopping-cart'></i>
-                                            <span>2</span>
+                                            <span>";
+            // line 270
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, (isset($context["panier_service"]) || array_key_exists("panier_service", $context) ? $context["panier_service"] : (function () { throw new RuntimeError('Variable "panier_service" does not exist.', 270, $this->source); })()), "getPanierUtilisateur", [], "method", false, false, false, 270)), "html", null, true);
+            yield "</span>
                                         </a>
                                     </div>
                                 </div>
-                                ";
+                            ";
         }
-        // line 276
-        yield "                                <div class=\"option-item\">
-                                    <div class=\"search-box\">
-                                        <i class='flaticon-search'></i>
-                                    </div>
+        // line 275
+        yield "                            <div class=\"option-item\">
+                                <div class=\"search-box\">
+                                    <i class='flaticon-search'></i>
                                 </div>
-                                
-                                <div class=\"option-item\">
-                                    <div class=\"navbar-btn\">
+                            </div>
 
-                                        <a href=\"";
-        // line 285
+                            <div class=\"option-item\">
+                                <div class=\"navbar-btn\">
+                                    <a href=\"";
+        // line 283
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
         yield "\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-         </div>
-        ";
+        </div>
+    </div>
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -710,7 +651,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         yield from [];
     }
 
-    // line 295
+    // line 293
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -732,7 +673,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         yield from [];
     }
 
-    // line 296
+    // line 294
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -745,137 +686,137 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 297
-        yield "         <footer class=\"footer-area pt-100 pb-70\">
-            <div class=\"container\">
-                <div class=\"row\">
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <div class=\"widget-logo\">
-                                <a href=\"index.html\"><img src=\"";
-        // line 303
+        // line 295
+        yield "    <footer class=\"footer-area pt-100 pb-70\">
+        <div class=\"container\">
+            <div class=\"row\">
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <div class=\"widget-logo\">
+                            <a href=\"index.html\"><img src=\"";
+        // line 301
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo-2.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eir mod tempor invidunt ut labore et.</p>
-
-                            <div class=\"widget-share\">
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-facebook'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-twitter'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-instagram'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-linkedin'></i>
-                                </a>
-                            </div>
                         </div>
-                    </div>
+                        <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eir mod tempor invidunt ut labore et.</p>
 
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Quick Links</h3>
-
-                            <ul class=\"quick-links\">
-                                <li>
-                                    <a href=\"index.html\"><i class='bx bxs-right-arrow'></i> Home</a>
-                                </li>
-                                <li>
-                                    <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About</a>
-                                </li>
-                                <li>
-                                    <a href=\"#\"><i class='bx bxs-right-arrow'></i> Programs</a>
-                                </li>
-                                <li>
-                                    <a href=\"services.html\"><i class='bx bxs-right-arrow'></i> Services</a>
-                                </li>
-                                <li>
-                                    <a href=\"blog-3.html\"><i class='bx bxs-right-arrow'></i> Blog</a>
-                                </li>
-                                <li>
-                                    <a href=\"contact.html\"><i class='bx bxs-right-arrow'></i> Contacts</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Explore</h3>
-
-                            <ul class=\"quick-links\">
-                                <li>
-                                    <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About Us</a>
-                                </li>
-                                <li>
-                                    <a href=\"success-story.html\"><i class='bx bxs-right-arrow'></i> Success Story</a>
-                                </li>
-                                <li>
-                                    <a href=\"membership-levels.html\"><i class='bx bxs-right-arrow'></i> Membership</a>
-                                </li>
-                                <li>
-                                    <a href=\"purchase-guide.html\"><i class='bx bxs-right-arrow'></i> Purchase Guide</a>
-                                </li>
-                                <li>
-                                    <a href=\"privacy-policy.html\"><i class='bx bxs-right-arrow'></i> Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href=\"terms-of-service.html\"><i class='bx bxs-right-arrow'></i> Terms Of Services</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Contact Us</h3>
-
-                            <ul class=\"footer-contact-info\">
-                                <li>
-                                    <i class='flaticon-phone-call'></i>
-                                    <span>Phone No:</span>
-                                    <a href=\"tel:9885394203\">+988 5394 203</a>
-                                </li>
-                                <li>
-                                    <i class='flaticon-mail'></i>
-                                    <span>Email Address:</span>
-                                    <a href=\"/cdn-cgi/l/email-protection#1a727f7676755a6a6963767534797577\"><span class=\"__cf_email__\" data-cfemail=\"3159545d5d5e714142485d5e1f525e5c\">[email&#160;protected]</span></a>
-                                </li>
-                                <li>
-                                    <i class='flaticon-placeholder'></i>
-                                    <span>Location:</span>
-                                    3 Edgar Buildings, George Street, England, BA1 2FJ.
-                                </li>
-                            </ul>
+                        <div class=\"widget-share\">
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-instagram'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-         </footer>
-         <!-- End Footer Area -->
 
-         <!-- Start Copy Right Area -->
-         <div class=\"copyright-area\">
-            <div class=\"container\">
-                <div class=\"copyright-area-content\">
-                    <p>
-                        Copyright Psylo. All rights reserved By
-                        <a href=\"https://envytheme.com/\" target=\"_blank\">EnvyTheme</a>
-                    </p>
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Quick Links</h3>
+
+                        <ul class=\"quick-links\">
+                            <li>
+                                <a href=\"index.html\"><i class='bx bxs-right-arrow'></i> Home</a>
+                            </li>
+                            <li>
+                                <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About</a>
+                            </li>
+                            <li>
+                                <a href=\"#\"><i class='bx bxs-right-arrow'></i> Programs</a>
+                            </li>
+                            <li>
+                                <a href=\"services.html\"><i class='bx bxs-right-arrow'></i> Services</a>
+                            </li>
+                            <li>
+                                <a href=\"blog-3.html\"><i class='bx bxs-right-arrow'></i> Blog</a>
+                            </li>
+                            <li>
+                                <a href=\"contact.html\"><i class='bx bxs-right-arrow'></i> Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Explore</h3>
+
+                        <ul class=\"quick-links\">
+                            <li>
+                                <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About Us</a>
+                            </li>
+                            <li>
+                                <a href=\"success-story.html\"><i class='bx bxs-right-arrow'></i> Success Story</a>
+                            </li>
+                            <li>
+                                <a href=\"membership-levels.html\"><i class='bx bxs-right-arrow'></i> Membership</a>
+                            </li>
+                            <li>
+                                <a href=\"purchase-guide.html\"><i class='bx bxs-right-arrow'></i> Purchase Guide</a>
+                            </li>
+                            <li>
+                                <a href=\"privacy-policy.html\"><i class='bx bxs-right-arrow'></i> Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href=\"terms-of-service.html\"><i class='bx bxs-right-arrow'></i> Terms Of Services</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Contact Us</h3>
+
+                        <ul class=\"footer-contact-info\">
+                            <li>
+                                <i class='flaticon-phone-call'></i>
+                                <span>Phone No:</span>
+                                <a href=\"tel:9885394203\">+988 5394 203</a>
+                            </li>
+                            <li>
+                                <i class='flaticon-mail'></i>
+                                <span>Email Address:</span>
+                                <a href=\"/cdn-cgi/l/email-protection#1a727f7676755a6a6963767534797577\"><span class=\"__cf_email__\" data-cfemail=\"3159545d5d5e714142485d5e1f525e5c\">[email&#160;protected]</span></a>
+                            </li>
+                            <li>
+                                <i class='flaticon-placeholder'></i>
+                                <span>Location:</span>
+                                3 Edgar Buildings, George Street, England, BA1 2FJ.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-         </div>
-         <!-- End Copy Right Area -->
+        </div>
+    </footer>
+    <!-- End Footer Area -->
 
-         <!-- Start Go Top Area -->
-         <div class=\"go-top\">
-            <i class='flaticon-up-arrow'></i>
-         </div>
-        ";
+    <!-- Start Copy Right Area -->
+    <div class=\"copyright-area\">
+        <div class=\"container\">
+            <div class=\"copyright-area-content\">
+                <p>
+                    Copyright Psylo. All rights reserved By
+                    <a href=\"https://envytheme.com/\" target=\"_blank\">EnvyTheme</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- End Copy Right Area -->
+
+    <!-- Start Go Top Area -->
+    <div class=\"go-top\">
+        <i class='flaticon-up-arrow'></i>
+    </div>
+";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -906,465 +847,432 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  757 => 303,  749 => 297,  736 => 296,  714 => 295,  693 => 285,  682 => 276,  671 => 267,  669 => 266,  648 => 247,  641 => 243,  637 => 241,  634 => 240,  626 => 235,  622 => 234,  614 => 228,  611 => 227,  603 => 222,  599 => 221,  591 => 215,  588 => 214,  580 => 209,  576 => 208,  568 => 202,  565 => 201,  557 => 196,  553 => 195,  545 => 189,  542 => 188,  535 => 184,  531 => 182,  528 => 181,  521 => 177,  517 => 175,  515 => 174,  436 => 98,  426 => 91,  410 => 78,  402 => 73,  393 => 67,  389 => 66,  375 => 55,  371 => 54,  363 => 48,  350 => 47,  327 => 42,  316 => 43,  313 => 42,  300 => 41,  289 => 39,  276 => 38,  253 => 4,  238 => 452,  233 => 450,  228 => 448,  223 => 446,  218 => 444,  213 => 442,  208 => 440,  203 => 438,  198 => 436,  193 => 434,  188 => 432,  183 => 430,  178 => 428,  173 => 426,  165 => 424,  162 => 296,  159 => 295,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
+        return array (  698 => 301,  690 => 295,  677 => 294,  655 => 293,  634 => 283,  624 => 275,  616 => 270,  610 => 266,  608 => 265,  587 => 246,  580 => 242,  576 => 240,  573 => 239,  565 => 234,  561 => 233,  553 => 227,  550 => 226,  542 => 221,  538 => 220,  530 => 214,  527 => 213,  519 => 208,  515 => 207,  507 => 201,  504 => 200,  496 => 195,  492 => 194,  484 => 188,  481 => 187,  474 => 183,  470 => 181,  467 => 180,  460 => 176,  456 => 174,  454 => 173,  442 => 163,  435 => 161,  429 => 159,  424 => 158,  416 => 153,  411 => 151,  351 => 94,  345 => 91,  329 => 78,  321 => 73,  312 => 67,  308 => 66,  294 => 55,  290 => 54,  282 => 48,  269 => 47,  246 => 42,  235 => 43,  232 => 42,  219 => 41,  208 => 39,  195 => 38,  172 => 4,  161 => 294,  159 => 293,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("<!DOCTYPE html>
 <html>
-    <head>
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <meta charset=\"utf-8\">
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-        <!-- Bootstrap CSS --> 
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/bootstrap.min.css') }}\">
-        <!-- Animate CSS --> 
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/animate.min.css') }}\">
-        <!-- Meanmenu CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/meanmenu.css') }}\">
-        <!-- Boxicons CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/boxicons.min.css') }}\">
-        <!-- Flaticon CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/flaticon.css') }}\">
-        <!-- Odometer CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/odometer.min.css') }}\">
-        <!-- Slick Min CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/slick.min.css') }}\">
-        <!-- Nice Select CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/nice-select.min.css') }}\">
-        <!-- Carousel CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/owl.carousel.min.css') }}\">
-        <!-- Carousel Default CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/owl.theme.default.min.css') }}\">
-        <!-- Magnific Popup CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/magnific-popup.min.css') }}\">
-        <!-- Fancybox CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/fancybox.min.css') }}\">
-        <!-- Style CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/style.css') }}\">
-        <!-- Dark CSS -->
-        <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/dark.css') }}\">
-        <!-- Responsive CSS -->
-\t\t<link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/responsive.css') }}\">
-        <link rel=\"icon\" type=\"image/png\" href=\"{{ asset('assetsP/images/favicon.png') }}\">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
+    <!-- Bootstrap CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/bootstrap.min.css') }}\">
+    <!-- Animate CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/animate.min.css') }}\">
+    <!-- Meanmenu CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/meanmenu.css') }}\">
+    <!-- Boxicons CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/boxicons.min.css') }}\">
+    <!-- Flaticon CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/flaticon.css') }}\">
+    <!-- Odometer CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/odometer.min.css') }}\">
+    <!-- Slick Min CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/slick.min.css') }}\">
+    <!-- Nice Select CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/nice-select.min.css') }}\">
+    <!-- Carousel CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/owl.carousel.min.css') }}\">
+    <!-- Carousel Default CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/owl.theme.default.min.css') }}\">
+    <!-- Magnific Popup CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/magnific-popup.min.css') }}\">
+    <!-- Fancybox CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/fancybox.min.css') }}\">
+    <!-- Style CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/style.css') }}\">
+    <!-- Dark CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/dark.css') }}\">
+    <!-- Responsive CSS -->
+    <link rel=\"stylesheet\" href=\"{{ asset('assetsP/css/responsive.css') }}\">
+    <link rel=\"icon\" type=\"image/png\" href=\"{{ asset('assetsP/images/favicon.png') }}\">
+    {% block stylesheets %}
+    {% endblock %}
 
-        {% block javascripts %}
-          {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-    
-        {% block header %}
-         <div class=\"navbar-area\">
-            <div class=\"main-responsive-nav\">
-                <div class=\"container\">
-                    <div class=\"main-responsive-menu\">
-                        <div class=\"logo\">
-                            <a href=\"index.html\">
-                                <img src=\"{{ asset('assetsP/images/logo.png')}}\" class=\"black-logo\" alt=\"image\">
-                                <img src=\"{{ asset('assetsP/images/logo-2.png')}}\" class=\"white-logo\" alt=\"image\">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
 
-            <div class=\"main-navbar\">
-                <div class=\"container\">
-                    <nav class=\"navbar navbar-expand-md navbar-light\">
-                        <a class=\"navbar-brand\" href=\"index.html\">
+{% block header %}
+    <div class=\"navbar-area\">
+        <div class=\"main-responsive-nav\">
+            <div class=\"container\">
+                <div class=\"main-responsive-menu\">
+                    <div class=\"logo\">
+                        <a href=\"index.html\">
                             <img src=\"{{ asset('assetsP/images/logo.png')}}\" class=\"black-logo\" alt=\"image\">
                             <img src=\"{{ asset('assetsP/images/logo-2.png')}}\" class=\"white-logo\" alt=\"image\">
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
-                            <ul class=\"navbar-nav m-auto\">
-                                <li class=\"nav-item\">
-                                    <a href=\"{{ path('app_home')}}\" class=\"nav-link active\">
-                                        Home 
-                                    </a> 
-                                </li>
-                                <li class=\"nav-item\">
-                                    <a href=\"{{ path('patient_activity_index')}}\" class=\"nav-link\">
-                                        Activities 
+        <div class=\"main-navbar\">
+            <div class=\"container\">
+                <nav class=\"navbar navbar-expand-md navbar-light\">
+                    <a class=\"navbar-brand\" href=\"index.html\">
+                        <img src=\"{{ asset('assetsP/images/logo.png')}}\" class=\"black-logo\" alt=\"image\">
+                        <img src=\"{{ asset('assetsP/images/logo-2.png')}}\" class=\"white-logo\" alt=\"image\">
+                    </a>
+
+                    <div class=\"collapse navbar-collapse mean-menu\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav m-auto\">
+                            <li class=\"nav-item\">
+                                <a href=\"{{ path('app_home')}}\" class=\"nav-link active\">
+                                    Home
+                                </a>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a href=\"{{ path('patient_activity_index')}}\" class=\"nav-link\">
+                                    Activities
+                                </a>
+                            </li>
+
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Produit
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
+
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"{{ path('produit_index_patient') }}\" class=\"nav-link\">Listes des Produits </a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"{{ path('produit_index_patient') }}\" class=\"nav-link\">Détail du produit </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Services
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
+
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"services.html\" class=\"nav-link\">Services</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"services-details.html\" class=\"nav-link\">Services Details</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class=\"nav-item\">
+                                <a href=\"#\" class=\"nav-link\">
+                                    Shop
+                                    <i class='bx bx-caret-down'></i>
+                                </a>
+
+                                <ul class=\"dropdown-menu\">
+                                    <li class=\"nav-item\">
+                                        <a href=\"products-grid.html\" class=\"nav-link\">Products Grid</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"cart.html\" class=\"nav-link\">Cart</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"wishlist.html\" class=\"nav-link\">Wishlist</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"checkout.html\" class=\"nav-link\">Checkout</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"my-account.html\" class=\"nav-link\">My Account</a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a href=\"products-details.html\" class=\"nav-link\">Products Details</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class=\"nav-item\">
+                                <a href=\"contact.html\" class=\"nav-link\">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class=\"others-options d-flex align-items-center\">
+                            <div class=\"option-item\">
+                                <div class=\"cart-btn\">
+
+                                        <a href=\"{{ path('app_panier') }}\">
+                                        <i class='flaticon-shopping-cart'></i>
+                                        <span>{{ panier_service.getPanierUtilisateur()|length }}</span>
                                     </a>
-                                </li>
+                                    <div class=\"panier-dropdown\">
+                                        <h3></h3>
+                                        <ul>
+                                            {% for item in panier_service.getPanierUtilisateur() %}
 
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Produit
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"{{ path('produit_index_patient') }}\" class=\"nav-link\">Listes des Produits </a>
-                                        </li>
-
-
-                                    </ul>
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"{{ path('produit_index_patient') }}\" class=\"nav-link\">Détail du produit </a>
-                                        </li>
-
-
-                                    </ul>
-                                </li>
-
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Services 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"services.html\" class=\"nav-link\">Services</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"services-details.html\" class=\"nav-link\">Services Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class=\"nav-item\">
-                                    <a href=\"#\" class=\"nav-link\">
-                                        Shop 
-                                        <i class='bx bx-caret-down'></i>
-                                    </a>
-
-                                    <ul class=\"dropdown-menu\">
-                                        <li class=\"nav-item\">
-                                            <a href=\"products-grid.html\" class=\"nav-link\">Products Grid</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"cart.html\" class=\"nav-link\">Cart</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"wishlist.html\" class=\"nav-link\">Wishlist</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"checkout.html\" class=\"nav-link\">Checkout</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"my-account.html\" class=\"nav-link\">My Account</a>
-                                        </li>
-
-                                        <li class=\"nav-item\">
-                                            <a href=\"products-details.html\" class=\"nav-link\">Products Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class=\"nav-item\">
-                                    <a href=\"contact.html\" class=\"nav-link\">Contact</a>
-                                </li>
-                            </ul>
-
-                            <div class=\"others-options d-flex align-items-center\">
-                                <div class=\"option-item\">
-                                    <div class=\"cart-btn\">
-                                        <a href=\"cart.html\">
-                                            <i class='flaticon-shopping-cart'></i>
-                                            <span>2</span>
-                                        </a>
+                                            {% else %}
+                                                <li>Votre panier est vide.</li>
+                                            {% endfor %}
+                                        </ul>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class=\"option-item\">
-                                    <div class=\"search-box\">
-                                        <i class='flaticon-search'></i>
-                                    </div>
+                            <div class=\"option-item\">
+                                <div class=\"search-box\">
+                                    <i class='flaticon-search'></i>
                                 </div>
-                                {% if not app.user %}
+                            </div>
+                            {% if not app.user %}
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"{{ path('app_login') }}\" class=\"default-btn\">Login <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                {% endif %}
-                               {% if not app.user %}
+                            {% endif %}
+                            {% if not app.user %}
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"{{ path('app_register') }}\" class=\"default-btn\">Register <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                {% endif %}
-                               {% if is_granted('ROLE_FOURNISSEUR') %}
-                                  <div class=\"option-item dropdown\">
+                            {% endif %}
+                            {% if is_granted('ROLE_FOURNISSEUR') %}
+                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"{{ path('app_fournisseur')}}\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
-                                    </ul>
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"{{ path('app_fournisseur')}}\">Profile</a></li>
+                                            <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
+                                        </ul>
                                     </div>
-                                  </div>
-                                {% endif %}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                  <div class=\"option-item dropdown\">
+                                </div>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"{{ path('app_admin')}}\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
-                                    </ul>
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"{{ path('app_admin')}}\">Profile</a></li>
+                                            <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
+                                        </ul>
                                     </div>
-                                  </div>
-                                {% endif %}
-                                {% if is_granted('ROLE_PSYCHIATRE') %}
-                                  <div class=\"option-item dropdown\">
+                                </div>
+                            {% endif %}
+                            {% if is_granted('ROLE_PSYCHIATRE') %}
+                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"{{ path('app_psychiatre')}}\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
-                                    </ul>
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"{{ path('app_psychiatre')}}\">Profile</a></li>
+                                            <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
+                                        </ul>
                                     </div>
-                                  </div>
-                                {% endif %}
-                                {% if is_granted('ROLE_PATIENT') %}
-                                  <div class=\"option-item dropdown\">
+                                </div>
+                            {% endif %}
+                            {% if is_granted('ROLE_PATIENT') %}
+                                <div class=\"option-item dropdown\">
                                     <div class=\"navbar-btn\">
-                                    <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                                     My Account <i class=\"flaticon-pointer\"></i>
-                                     </a>
-                                     <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
-                                     <li><a class=\"dropdown-item\" href=\"{{ path('app_patient_show', {'id': app.user.id})}}\">Profile</a></li>
-                                     <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
-                                    </ul>
+                                        <a href=\"#\" class=\"default-btn dropdown-toggle\" id=\"accountDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                                            My Account <i class=\"flaticon-pointer\"></i>
+                                        </a>
+                                        <ul class=\"dropdown-menu\" aria-labelledby=\"accountDropdown\">
+                                            <li><a class=\"dropdown-item\" href=\"{{ path('app_patient_show', {'id': app.user.id})}}\">Profile</a></li>
+                                            <li><a class=\"dropdown-item\" href=\"{{path('app_logout')}}\">Logout</a></li>
+                                        </ul>
                                     </div>
-                                  </div>
-                                {% endif %}
-                               {% if app.user %}
+                                </div>
+                            {% endif %}
+                            {% if app.user %}
                                 <div class=\"option-item\">
                                     <div class=\"navbar-btn\">
                                         <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                     </div>
                                 </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-
-            <div class=\"others-option-for-responsive\">
-                <div class=\"container\">
-                    <div class=\"dot-menu\">
-                        <div class=\"inner\">
-                            <div class=\"circle circle-one\"></div>
-                            <div class=\"circle circle-two\"></div>
-                            <div class=\"circle circle-three\"></div>
+                            {% endif %}
                         </div>
                     </div>
-                    
-                    <div class=\"container\">
-                        <div class=\"option-inner\">
-                            <div class=\"others-options d-flex align-items-center\">
-                                {% if app.user %}
+                </nav>
+            </div>
+        </div>
+
+        <div class=\"others-option-for-responsive\">
+            <div class=\"container\">
+                <div class=\"dot-menu\">
+                    <div class=\"inner\">
+                        <div class=\"circle circle-one\"></div>
+                        <div class=\"circle circle-two\"></div>
+                        <div class=\"circle circle-three\"></div>
+                    </div>
+                </div>
+
+                <div class=\"container\">
+                    <div class=\"option-inner\">
+                        <div class=\"others-options d-flex align-items-center\">
+                            {% if app.user %}
                                 <div class=\"option-item\">
                                     <div class=\"cart-btn\">
                                         <a href=\"cart.html\">
                                             <i class='flaticon-shopping-cart'></i>
-                                            <span>2</span>
+                                            <span>{{ panier_service.getPanierUtilisateur()|length }}</span>
                                         </a>
                                     </div>
                                 </div>
-                                {% endif %}
-                                <div class=\"option-item\">
-                                    <div class=\"search-box\">
-                                        <i class='flaticon-search'></i>
-                                    </div>
+                            {% endif %}
+                            <div class=\"option-item\">
+                                <div class=\"search-box\">
+                                    <i class='flaticon-search'></i>
                                 </div>
-                                
-                                <div class=\"option-item\">
-                                    <div class=\"navbar-btn\">
+                            </div>
 
-                                        <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
-                                    </div>
+                            <div class=\"option-item\">
+                                <div class=\"navbar-btn\">
+                                    <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-         </div>
-        {% endblock %}
-        {% block body %}{% endblock %}
-        {% block footer %}
-         <footer class=\"footer-area pt-100 pb-70\">
-            <div class=\"container\">
-                <div class=\"row\">
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <div class=\"widget-logo\">
-                                <a href=\"index.html\"><img src=\"{{ asset('assetsP/images/logo-2.png')}}\" alt=\"image\"></a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eir mod tempor invidunt ut labore et.</p>
-
-                            <div class=\"widget-share\">
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-facebook'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-twitter'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-instagram'></i>
-                                </a>
-                                <a href=\"#\" target=\"_blank\">
-                                    <i class='bx bxl-linkedin'></i>
-                                </a>
-                            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}
+    <footer class=\"footer-area pt-100 pb-70\">
+        <div class=\"container\">
+            <div class=\"row\">
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <div class=\"widget-logo\">
+                            <a href=\"index.html\"><img src=\"{{ asset('assetsP/images/logo-2.png')}}\" alt=\"image\"></a>
                         </div>
-                    </div>
+                        <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eir mod tempor invidunt ut labore et.</p>
 
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Quick Links</h3>
-
-                            <ul class=\"quick-links\">
-                                <li>
-                                    <a href=\"index.html\"><i class='bx bxs-right-arrow'></i> Home</a>
-                                </li>
-                                <li>
-                                    <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About</a>
-                                </li>
-                                <li>
-                                    <a href=\"#\"><i class='bx bxs-right-arrow'></i> Programs</a>
-                                </li>
-                                <li>
-                                    <a href=\"services.html\"><i class='bx bxs-right-arrow'></i> Services</a>
-                                </li>
-                                <li>
-                                    <a href=\"blog-3.html\"><i class='bx bxs-right-arrow'></i> Blog</a>
-                                </li>
-                                <li>
-                                    <a href=\"contact.html\"><i class='bx bxs-right-arrow'></i> Contacts</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Explore</h3>
-
-                            <ul class=\"quick-links\">
-                                <li>
-                                    <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About Us</a>
-                                </li>
-                                <li>
-                                    <a href=\"success-story.html\"><i class='bx bxs-right-arrow'></i> Success Story</a>
-                                </li>
-                                <li>
-                                    <a href=\"membership-levels.html\"><i class='bx bxs-right-arrow'></i> Membership</a>
-                                </li>
-                                <li>
-                                    <a href=\"purchase-guide.html\"><i class='bx bxs-right-arrow'></i> Purchase Guide</a>
-                                </li>
-                                <li>
-                                    <a href=\"privacy-policy.html\"><i class='bx bxs-right-arrow'></i> Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href=\"terms-of-service.html\"><i class='bx bxs-right-arrow'></i> Terms Of Services</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class=\"col-lg-3 col-sm-6\">
-                        <div class=\"single-footer-widget\">
-                            <h3>Contact Us</h3>
-
-                            <ul class=\"footer-contact-info\">
-                                <li>
-                                    <i class='flaticon-phone-call'></i>
-                                    <span>Phone No:</span>
-                                    <a href=\"tel:9885394203\">+988 5394 203</a>
-                                </li>
-                                <li>
-                                    <i class='flaticon-mail'></i>
-                                    <span>Email Address:</span>
-                                    <a href=\"/cdn-cgi/l/email-protection#1a727f7676755a6a6963767534797577\"><span class=\"__cf_email__\" data-cfemail=\"3159545d5d5e714142485d5e1f525e5c\">[email&#160;protected]</span></a>
-                                </li>
-                                <li>
-                                    <i class='flaticon-placeholder'></i>
-                                    <span>Location:</span>
-                                    3 Edgar Buildings, George Street, England, BA1 2FJ.
-                                </li>
-                            </ul>
+                        <div class=\"widget-share\">
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-twitter'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-instagram'></i>
+                            </a>
+                            <a href=\"#\" target=\"_blank\">
+                                <i class='bx bxl-linkedin'></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-         </footer>
-         <!-- End Footer Area -->
 
-         <!-- Start Copy Right Area -->
-         <div class=\"copyright-area\">
-            <div class=\"container\">
-                <div class=\"copyright-area-content\">
-                    <p>
-                        Copyright Psylo. All rights reserved By
-                        <a href=\"https://envytheme.com/\" target=\"_blank\">EnvyTheme</a>
-                    </p>
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Quick Links</h3>
+
+                        <ul class=\"quick-links\">
+                            <li>
+                                <a href=\"index.html\"><i class='bx bxs-right-arrow'></i> Home</a>
+                            </li>
+                            <li>
+                                <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About</a>
+                            </li>
+                            <li>
+                                <a href=\"#\"><i class='bx bxs-right-arrow'></i> Programs</a>
+                            </li>
+                            <li>
+                                <a href=\"services.html\"><i class='bx bxs-right-arrow'></i> Services</a>
+                            </li>
+                            <li>
+                                <a href=\"blog-3.html\"><i class='bx bxs-right-arrow'></i> Blog</a>
+                            </li>
+                            <li>
+                                <a href=\"contact.html\"><i class='bx bxs-right-arrow'></i> Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Explore</h3>
+
+                        <ul class=\"quick-links\">
+                            <li>
+                                <a href=\"about.html\"><i class='bx bxs-right-arrow'></i> About Us</a>
+                            </li>
+                            <li>
+                                <a href=\"success-story.html\"><i class='bx bxs-right-arrow'></i> Success Story</a>
+                            </li>
+                            <li>
+                                <a href=\"membership-levels.html\"><i class='bx bxs-right-arrow'></i> Membership</a>
+                            </li>
+                            <li>
+                                <a href=\"purchase-guide.html\"><i class='bx bxs-right-arrow'></i> Purchase Guide</a>
+                            </li>
+                            <li>
+                                <a href=\"privacy-policy.html\"><i class='bx bxs-right-arrow'></i> Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href=\"terms-of-service.html\"><i class='bx bxs-right-arrow'></i> Terms Of Services</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class=\"col-lg-3 col-sm-6\">
+                    <div class=\"single-footer-widget\">
+                        <h3>Contact Us</h3>
+
+                        <ul class=\"footer-contact-info\">
+                            <li>
+                                <i class='flaticon-phone-call'></i>
+                                <span>Phone No:</span>
+                                <a href=\"tel:9885394203\">+988 5394 203</a>
+                            </li>
+                            <li>
+                                <i class='flaticon-mail'></i>
+                                <span>Email Address:</span>
+                                <a href=\"/cdn-cgi/l/email-protection#1a727f7676755a6a6963767534797577\"><span class=\"__cf_email__\" data-cfemail=\"3159545d5d5e714142485d5e1f525e5c\">[email&#160;protected]</span></a>
+                            </li>
+                            <li>
+                                <i class='flaticon-placeholder'></i>
+                                <span>Location:</span>
+                                3 Edgar Buildings, George Street, England, BA1 2FJ.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-         </div>
-         <!-- End Copy Right Area -->
+        </div>
+    </footer>
+    <!-- End Footer Area -->
 
-         <!-- Start Go Top Area -->
-         <div class=\"go-top\">
-            <i class='flaticon-up-arrow'></i>
-         </div>
-        {% endblock %}
-        <script data-cfasync=\"false\" src=\"{{ asset('assetsP/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}\"></script><script src=\"{{ asset('assetsP/js/jquery.min.js')}}\"></script>
-        <!-- Bootstrap Bundle JS -->
-        <script src=\"{{ asset('assetsP/js/bootstrap.bundle.min.js')}}\"></script>
-        <!-- Meanmenu JS -->
-        <script src=\"{{ asset('assetsP/js/jquery.meanmenu.js')}}\"></script>
-        <!-- Owl Carousel JS -->
-        <script src=\"{{ asset('assetsP/js/owl.carousel.min.js')}}\"></script>
-        <!-- Jquery Appear JS -->
-        <script src=\"{{ asset('assetsP/js/jquery.appear.js')}}\"></script>
-        <!-- Odometer JS -->
-        <script src=\"{{ asset('assetsP/js/odometer.min.js')}}\"></script>
-        <!-- Slick Min JS -->
-        <script src=\"{{ asset('assetsP/js/slick.min.js')}}\"></script>
-        <!-- Nice Select JS -->
-        <script src=\"{{ asset('assetsP/js/nice-select.min.js')}}\"></script>
-        <!-- Magnific Popup JS -->
-        <script src=\"{{ asset('assetsP/js/jquery.magnific-popup.min.js')}}\"></script>
-        <!-- Fancybox JS -->
-        <script src=\"{{ asset('assetsP/js/fancybox.min.js')}}\"></script>
-        <!-- Ajaxchimp JS -->
-\t\t<script src=\"{{ asset('assetsP/js/jquery.ajaxchimp.min.js')}}\"></script>
-\t\t<!-- Form Validator JS -->
-\t\t<script src=\"{{ asset('assetsP/js/form-validator.min.js')}}\"></script>
-\t\t<!-- Contact JS -->
-        <script src=\"{{ asset('assetsP/js/contact-form-script.js')}}\"></script>
-        <!-- Wow JS -->
-        <script src=\"{{ asset('assetsP/js/wow.min.js')}}\"></script>
-        <!-- Custom JS -->
-        <script src=\"{{ asset('assetsP/js/main.js')}}\"></script>
-    </body>
-</html>
+    <!-- Start Copy Right Area -->
+    <div class=\"copyright-area\">
+        <div class=\"container\">
+            <div class=\"copyright-area-content\">
+                <p>
+                    Copyright Psylo. All rights reserved By
+                    <a href=\"https://envytheme.com/\" target=\"_blank\">EnvyTheme</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- End Copy Right Area -->
+
+    <!-- Start Go Top Area -->
+    <div class=\"go-top\">
+        <i class='flaticon-up-arrow'></i>
+    </div>
+{% endblock %}
 ", "basePatient.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\basePatient.html.twig");
     }
 }

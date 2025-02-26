@@ -163,4 +163,5 @@ final class ProduitController extends AbstractController
 
         return $this->redirectToRoute('produit_index');
     }
+
 }

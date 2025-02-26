@@ -1,11 +1,53 @@
-<h1>Produit : {{ produit.nom }}</h1>
-<p><strong>Description :</strong> {{ produit.description }}</p>
-<p><strong>Prix :</strong> {{ produit.prix }} €</p>
-<p><strong>Disponible :</strong> {{ produit.disponible ? 'Oui' : 'Non' }}</p>
 
-<a href="{{ path('produit_index') }}" class="btn btn-secondary">Retour à la liste</a>
-<a href="{{ path('produit_edit', {'id': produit.id}) }}" class="btn btn-warning">Modifier</a>
-<form method="post" action="{{ path('produit_delete', {'id': produit.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');" style="display:inline;">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
-    <button type="submit" class="btn btn-danger">Supprimer</button>
-</form>
+{% extends 'basePatient.html.twig' %}
+
+{% block body %}
+    <!-- Start Page Banner Area -->
+    <div class="page-banner-with-full-image">
+        <div class="container">
+            <div class="page-banner-content-two">
+                <h2>{{ produit.nom }}</h2>
+                <ul>
+                    <li>
+                        <a href="{{ path('produit_index_patient') }}">Accueil</a>
+                    </li>
+                    <li>Produit</li>
+                    <li>{{ produit.nom }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Banner Area -->
+
+    <!-- Start Product Details Area -->
+    <section class="courses-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-courses-box">
+                        <div class="courses-image">
+                            <img src="{{ asset('uploads/' ~ produit.image) }}" alt="{{ produit.nom }}">
+                            <div class="price">{{ produit.prix }} €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="courses-content">
+                        <h3>{{ produit.nom }}</h3>
+                        <p>{{ produit.description }}</p>
+                        <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                            <li>
+                                <i class='bx bxs-book'></i> Quantité : {{ produit.quantite }}
+                            </li>
+                            <li>
+                                <i class='bx bxs-book'></i> Disponibilité : {{ produit.disponible ? 'Disponible' : 'Indisponible' }}
+                            </li>
+                        </ul>
+                        <a href="{{ path('produit_index_patient') }}" class="btn btn-secondary mt-3">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Details Area -->
+{% endblock %}

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Panier;
 use App\Entity\Patient;
 use App\Form\PatientType;
 use App\Form\PasswordForm;
@@ -43,7 +43,7 @@ final class PatientController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            1
+            3
         );
 
         // Assurez-vous que la variable 'produits' est définie ici
@@ -72,16 +72,12 @@ final class PatientController extends AbstractController
     }
 
     // Affichage d'un produit spécifique
-    #[Route('/produit/{id<\d+>}', name: 'produit_show_patient', methods: ['GET'])]
-    public function showProduit(EntityManagerInterface $entityManager, int $id): Response
+    #[Route('/produit/{id}', name: 'produit_show_patient')]
+    public function showProduit(Produit $produit): Response
     {
-        $produit = $entityManager->getRepository(Produit::class)->find($id);
-        if (!$produit) {
-            throw $this->createNotFoundException('Produit introuvable');
-        }
-
-        return $this->render('produit/show_patient.html.twig', [
-            'produit' => $produit,
+        // Retourne la vue avec le produit récupéré
+        return $this->render('produit/show.html.twig', [
+            'produit' => $produit, // Envoie l'objet produit à la vue
         ]);
     }
 
@@ -178,4 +174,5 @@ final class PatientController extends AbstractController
 
         return $this->json(['status' => $activity->getStatus()]);
     }
+
 }

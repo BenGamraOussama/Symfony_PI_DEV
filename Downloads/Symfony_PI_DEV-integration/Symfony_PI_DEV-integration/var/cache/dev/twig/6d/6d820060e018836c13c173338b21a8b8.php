@@ -29,10 +29,15 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'body' => [$this, 'block_body'],
         ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 2
+        return "basePatient.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = []): iterable
@@ -44,47 +49,116 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "produit/show.html.twig"));
 
-        // line 1
-        yield "<h1>Produit : ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 1, $this->source); })()), "nom", [], "any", false, false, false, 1), "html", null, true);
-        yield "</h1>
-<p><strong>Description :</strong> ";
-        // line 2
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 2, $this->source); })()), "description", [], "any", false, false, false, 2), "html", null, true);
-        yield "</p>
-<p><strong>Prix :</strong> ";
-        // line 3
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 3, $this->source); })()), "prix", [], "any", false, false, false, 3), "html", null, true);
-        yield " €</p>
-<p><strong>Disponible :</strong> ";
-        // line 4
-        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 4, $this->source); })()), "disponible", [], "any", false, false, false, 4)) ? ("Oui") : ("Non"));
-        yield "</p>
-
-<a href=\"";
-        // line 6
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index");
-        yield "\" class=\"btn btn-secondary\">Retour à la liste</a>
-<a href=\"";
-        // line 7
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 7, $this->source); })()), "id", [], "any", false, false, false, 7)]), "html", null, true);
-        yield "\" class=\"btn btn-warning\">Modifier</a>
-<form method=\"post\" action=\"";
-        // line 8
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 8, $this->source); })()), "id", [], "any", false, false, false, 8)]), "html", null, true);
-        yield "\" onsubmit=\"return confirm('Voulez-vous vraiment supprimer ce produit ?');\" style=\"display:inline;\">
-    <input type=\"hidden\" name=\"_token\" value=\"";
-        // line 9
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 9, $this->source); })()), "id", [], "any", false, false, false, 9))), "html", null, true);
-        yield "\">
-    <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
-</form>
-";
+        $this->parent = $this->loadTemplate("basePatient.html.twig", "produit/show.html.twig", 2);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 4
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 5
+        yield "    <!-- Start Page Banner Area -->
+    <div class=\"page-banner-with-full-image\">
+        <div class=\"container\">
+            <div class=\"page-banner-content-two\">
+                <h2>";
+        // line 9
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 9, $this->source); })()), "nom", [], "any", false, false, false, 9), "html", null, true);
+        yield "</h2>
+                <ul>
+                    <li>
+                        <a href=\"";
+        // line 12
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
+        yield "\">Accueil</a>
+                    </li>
+                    <li>Produit</li>
+                    <li>";
+        // line 15
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 15, $this->source); })()), "nom", [], "any", false, false, false, 15), "html", null, true);
+        yield "</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Banner Area -->
+
+    <!-- Start Product Details Area -->
+    <section class=\"courses-area ptb-100\">
+        <div class=\"container\">
+            <div class=\"row\">
+                <div class=\"col-lg-4 col-md-6\">
+                    <div class=\"single-courses-box\">
+                        <div class=\"courses-image\">
+                            <img src=\"";
+        // line 29
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/" . CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 29, $this->source); })()), "image", [], "any", false, false, false, 29))), "html", null, true);
+        yield "\" alt=\"";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 29, $this->source); })()), "nom", [], "any", false, false, false, 29), "html", null, true);
+        yield "\">
+                            <div class=\"price\">";
+        // line 30
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 30, $this->source); })()), "prix", [], "any", false, false, false, 30), "html", null, true);
+        yield " €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class=\"col-lg-8 col-md-6\">
+                    <div class=\"courses-content\">
+                        <h3>";
+        // line 36
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 36, $this->source); })()), "nom", [], "any", false, false, false, 36), "html", null, true);
+        yield "</h3>
+                        <p>";
+        // line 37
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 37, $this->source); })()), "description", [], "any", false, false, false, 37), "html", null, true);
+        yield "</p>
+                        <ul class=\"courses-box-footer d-flex justify-content-between align-items-center\">
+                            <li>
+                                <i class='bx bxs-book'></i> Quantité : ";
+        // line 40
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 40, $this->source); })()), "quantite", [], "any", false, false, false, 40), "html", null, true);
+        yield "
+                            </li>
+                            <li>
+                                <i class='bx bxs-book'></i> Disponibilité : ";
+        // line 43
+        yield ((CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 43, $this->source); })()), "disponible", [], "any", false, false, false, 43)) ? ("Disponible") : ("Indisponible"));
+        yield "
+                            </li>
+                        </ul>
+                        <a href=\"";
+        // line 46
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
+        yield "\" class=\"btn btn-secondary mt-3\">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Details Area -->
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
         yield from [];
     }
@@ -110,22 +184,64 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  78 => 9,  74 => 8,  70 => 7,  66 => 6,  61 => 4,  57 => 3,  53 => 2,  48 => 1,);
+        return array (  148 => 46,  142 => 43,  136 => 40,  130 => 37,  126 => 36,  117 => 30,  111 => 29,  94 => 15,  88 => 12,  82 => 9,  76 => 5,  63 => 4,  40 => 2,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("<h1>Produit : {{ produit.nom }}</h1>
-<p><strong>Description :</strong> {{ produit.description }}</p>
-<p><strong>Prix :</strong> {{ produit.prix }} €</p>
-<p><strong>Disponible :</strong> {{ produit.disponible ? 'Oui' : 'Non' }}</p>
+        return new Source("
+{% extends 'basePatient.html.twig' %}
 
-<a href=\"{{ path('produit_index') }}\" class=\"btn btn-secondary\">Retour à la liste</a>
-<a href=\"{{ path('produit_edit', {'id': produit.id}) }}\" class=\"btn btn-warning\">Modifier</a>
-<form method=\"post\" action=\"{{ path('produit_delete', {'id': produit.id}) }}\" onsubmit=\"return confirm('Voulez-vous vraiment supprimer ce produit ?');\" style=\"display:inline;\">
-    <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ produit.id) }}\">
-    <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
-</form>
+{% block body %}
+    <!-- Start Page Banner Area -->
+    <div class=\"page-banner-with-full-image\">
+        <div class=\"container\">
+            <div class=\"page-banner-content-two\">
+                <h2>{{ produit.nom }}</h2>
+                <ul>
+                    <li>
+                        <a href=\"{{ path('produit_index_patient') }}\">Accueil</a>
+                    </li>
+                    <li>Produit</li>
+                    <li>{{ produit.nom }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Banner Area -->
+
+    <!-- Start Product Details Area -->
+    <section class=\"courses-area ptb-100\">
+        <div class=\"container\">
+            <div class=\"row\">
+                <div class=\"col-lg-4 col-md-6\">
+                    <div class=\"single-courses-box\">
+                        <div class=\"courses-image\">
+                            <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"{{ produit.nom }}\">
+                            <div class=\"price\">{{ produit.prix }} €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class=\"col-lg-8 col-md-6\">
+                    <div class=\"courses-content\">
+                        <h3>{{ produit.nom }}</h3>
+                        <p>{{ produit.description }}</p>
+                        <ul class=\"courses-box-footer d-flex justify-content-between align-items-center\">
+                            <li>
+                                <i class='bx bxs-book'></i> Quantité : {{ produit.quantite }}
+                            </li>
+                            <li>
+                                <i class='bx bxs-book'></i> Disponibilité : {{ produit.disponible ? 'Disponible' : 'Indisponible' }}
+                            </li>
+                        </ul>
+                        <a href=\"{{ path('produit_index_patient') }}\" class=\"btn btn-secondary mt-3\">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Details Area -->
+{% endblock %}
 ", "produit/show.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit\\show.html.twig");
     }
 }

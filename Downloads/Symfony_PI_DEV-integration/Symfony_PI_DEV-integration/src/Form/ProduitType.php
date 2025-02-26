@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\File;
 
 class ProduitType extends AbstractType
@@ -54,6 +55,11 @@ class ProduitType extends AbstractType
                 'choice_label' => 'nom',
                 'placeholder' => 'Choisir une catégorie',
                 'attr' => ['class' => 'form-control']
+            ])
+            ->add('quantite', IntegerType::class, [  // Correction ici
+                'label' => 'Quantite',
+
+                'attr' => ['min' => 0, 'class' => 'form-control'],
             ]);
     }
 
