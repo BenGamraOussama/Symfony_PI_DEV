@@ -1,0 +1,49 @@
+{% extends 'basePatient.html.twig' %}
+ 
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+<br><br><br><br><br><br>
+
+<h1>Mon Panier</h1>
+
+{% if cart is empty %}
+    <p>Votre panier est vide.</p>
+{% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td><img src="{{ asset('uploads/' ~ item.produit.image) }}" width="50" height="50" alt="{{ item.produit.nom }}"></td>
+                    <td>{{ item.produit.nom }}</td>
+                    <td>{{ item.produit.Prix }} TND</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.produit.Prix * item.quantity }} TND</td>
+                    <td>
+                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('cart_clear') }}" class="btn btn-warning">Vider le panier</a>
+{% endif %}
+<a href="/cart/valider" class="btn btn-success">passer commande</a>
+
+
+
+ 
+
+
+ {% endblock %}
