@@ -48,7 +48,7 @@ class Patient
     #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class)]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     private ?User $user = null;
-
+    
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -86,7 +86,8 @@ class Patient
 
         return $this;
     }
-
+    
+    
     /**
      * @return Collection<int, Question>
      */

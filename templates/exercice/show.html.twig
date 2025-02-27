@@ -61,8 +61,27 @@
             
             {% if app.user and app.user.patient %}
             <h4 class="mt-4">Your Answer</h4>
-            <form method="post" action="{{ path('app_reponse_new', {'id': activite.exercice.id}) }}">
+            <form method="post" action="{{ path('app_reponse_new', {'id': exercice.id}) }}">
                 <div class="mb-3">
+                <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#responseForm");
+        const inputField = document.querySelector("#response_text");
+        const badWords = ["badword1", "badword2", "badword3"];
+
+        form.addEventListener("submit", function (event) {
+            const responseText = inputField.value.toLowerCase();
+            for (let word of badWords) {
+                if (responseText.includes(word)) {
+                    alert("Your response contains inappropriate words and cannot be submitted.");
+                    event.preventDefault(); // Stop form submission
+                    return;
+                }
+            }
+        });
+    });
+</script>
+
                     <textarea class="form-control" name="reponse" 
                               rows="4" placeholder="Type your answer here..." 
                               required {% if hasResponse %}disabled{% endif %}></textarea>

@@ -1,4 +1,22 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'id': 'responseForm'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn" type="submit">Save</button>
 {{ form_end(form) }}
+
+<script>
+    document.getElementById('responseForm').addEventListener('submit', function(event) {
+        let responseInput = document.querySelector("textarea"); // Adjust if your field isn't a textarea
+        if (!responseInput) return; // Ensure the field exists
+        
+        let responseText = responseInput.value.toLowerCase();
+        let badWords = ["badword1", "badword2", "badword3"]; // Add more words if needed
+
+        for (let i = 0; i < badWords.length; i++) {
+            if (responseText.includes(badWords[i])) {
+                alert("Your response contains inappropriate words and cannot be submitted.");
+                event.preventDefault(); // Stop form submission
+                return;
+            }
+        }
+    });
+</script>
