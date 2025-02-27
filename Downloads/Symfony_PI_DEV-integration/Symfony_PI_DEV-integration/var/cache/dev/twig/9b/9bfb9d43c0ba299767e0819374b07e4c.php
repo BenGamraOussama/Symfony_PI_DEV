@@ -190,7 +190,7 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
                                 <th>Image</th>
                                 <th>Nom</th>
                                 <th>Description</th>
-                                <th>Prix (€)</th>
+                                <th>Prix (TND)</th>
                                 <th>Quantite</th>
                                 <th>Disponible</th>
                                 <th>Catégorie</th>
@@ -425,7 +425,7 @@ class __TwigTemplate_e41ea100e3328f29d4031af9133dd3a9 extends Template
                                 <th>Image</th>
                                 <th>Nom</th>
                                 <th>Description</th>
-                                <th>Prix (€)</th>
+                                <th>Prix (TND)</th>
                                 <th>Quantite</th>
                                 <th>Disponible</th>
                                 <th>Catégorie</th>

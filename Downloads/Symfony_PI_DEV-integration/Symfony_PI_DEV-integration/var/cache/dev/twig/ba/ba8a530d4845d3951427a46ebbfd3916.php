@@ -163,7 +163,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
                                 <div class=\"price\">";
             // line 62
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "prix", [], "any", false, false, false, 62), "html", null, true);
-            yield " €</div>
+            yield " TND</div>
                             </div>
                             <div class=\"courses-content\">
                                 <h3>
@@ -316,7 +316,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
                                 <a href=\"{{ path('produit_show_patient', {'id': produit.id}) }}\">
                                     <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"{{ produit.nom }}\">
                                 </a>
-                                <div class=\"price\">{{ produit.prix }} €</div>
+                                <div class=\"price\">{{ produit.prix }} TND</div>
                             </div>
                             <div class=\"courses-content\">
                                 <h3>

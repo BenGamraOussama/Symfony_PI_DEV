@@ -98,7 +98,6 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
 
         // line 6
         yield "
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/mentor-bootstrap-4-admin-dashboard-template/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Jan 2023 12:27:52 GMT -->
     <!-- begin app -->
     <div class=\"app\">
         <!-- begin app-wrap -->
@@ -108,19 +107,15 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                 <div class=\"h-100 d-flex justify-content-center\">
                     <div class=\"align-self-center\">
                         <img src=\"";
-        // line 16
+        // line 15
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/loader/loader.svg"), "html", null, true);
         yield "\" alt=\"loader\">
                     </div>
                 </div>
             </div>
             <!-- end pre-loader -->
-            <!-- begin app-header -->
-            <!-- end app-header -->
             <!-- begin app-container -->
             <div class=\"app-container\">
-                <!-- begin app-nabar -->
-                <!-- end app-navbar -->
                 <!-- begin app-main -->
                 <div class=\"app-main\" id=\"main\">
                     <!-- begin container-fluid -->
@@ -131,7 +126,7 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                                 <!-- begin page title -->
                                 <div class=\"d-block d-sm-flex flex-nowrap align-items-center\">
                                     <div class=\"page-title mb-2 mb-sm-0\">
-                                        <h1>List des Psychiatres</h1>
+                                        <h1>Liste des Psychiatres</h1>
                                     </div>
                                     <div class=\"ml-auto d-flex align-items-center\">
                                         <nav>
@@ -142,7 +137,7 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                                                 <li class=\"breadcrumb-item\">
                                                     Tables
                                                 </li>
-                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">List des Psychiatres</li>
+                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">Liste des Psychiatres</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -151,71 +146,84 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                             </div>
                         </div>
                         <!-- end row -->
+
                         <!-- begin row -->
                         <div class=\"row\">
                             <div class=\"col-lg-12\">
                                 <div class=\"card card-statistics\">
                                     <div class=\"card-body\">
                                         <div class=\"datatable-wrapper table-responsive\">
-                                            <table  id=\"datatable\" class=\"display compact table table-striped table-bordered\">
+                                            ";
+        // line 59
+        if (($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN") || $this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_FOURNISSEUR"))) {
+            // line 60
+            yield "                                                <a href=\"";
+            yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_new");
+            yield "\" class=\"btn btn-primary mb-3\">Ajouter un produit</a>
+                                            ";
+        }
+        // line 62
+        yield "                                            <table id=\"datatable\" class=\"display compact table table-striped table-bordered\">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
-                                                        <th>Specialite</th>
-                                                        <th>actions</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Email</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Spécialité</th>
+                                                    <th>Actions</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
                                                 ";
-        // line 75
+        // line 74
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["patients"]) || array_key_exists("patients", $context) ? $context["patients"] : (function () { throw new RuntimeError('Variable "patients" does not exist.', 75, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["patients"]) || array_key_exists("patients", $context) ? $context["patients"] : (function () { throw new RuntimeError('Variable "patients" does not exist.', 74, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["patient"]) {
-            // line 76
+            // line 75
             yield "                                                    <tr>
                                                         <td>";
+            // line 76
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 76), "html", null, true);
+            yield "</td>
+                                                        <td>";
             // line 77
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 77), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "email", [], "any", false, false, false, 77), "html", null, true);
             yield "</td>
                                                         <td>";
             // line 78
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "email", [], "any", false, false, false, 78), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "lastName", [], "any", false, false, false, 78), "html", null, true);
             yield "</td>
                                                         <td>";
             // line 79
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "lastName", [], "any", false, false, false, 79), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "firstName", [], "any", false, false, false, 79), "html", null, true);
             yield "</td>
                                                         <td>";
             // line 80
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "firstName", [], "any", false, false, false, 80), "html", null, true);
-            yield "</td>
-                                                        <td>";
-            // line 81
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "dossierMedical", [], "any", false, false, false, 81), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "dossierMedical", [], "any", false, false, false, 80), "html", null, true);
             yield "</td>
                                                         <td>
-                                                        <form method=\"post\" action=\"";
+                                                            <form method=\"post\" action=\"";
+            // line 82
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("patient_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 82)]), "html", null, true);
+            yield "\" onsubmit=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');\">
+                                                                <input type=\"hidden\" name=\"_token\" value=\"";
             // line 83
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("patient_delete", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 83)]), "html", null, true);
-            yield "\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
-                                                          <input type=\"hidden\" name=\"_token\" value=\"";
-            // line 84
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 84))), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . CoreExtension::getAttribute($this->env, $this->source, $context["patient"], "id", [], "any", false, false, false, 83))), "html", null, true);
             yield "\">
-                                                          <button class=\"btn btn-danger\">Block</button>
-                                                          <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
-                                                        </form>
-                                                        </td></tr>
-                                                         ";
+                                                                <button class=\"btn btn-danger\">Bloquer</button>
+                                                                <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['patient'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 90
-        yield "                                                        </tbody></table>
+        yield "                                                </tbody>
+                                            </table>
                                             <pagination-controls style=\"text-align: right;\" (pageChange)=\"p = \$event\"></pagination-controls>
                                         </div>
                                     </div>
@@ -229,12 +237,11 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                 <!-- end app-main -->
             </div>
             <!-- end app-container -->
-            <!-- begin footer -->
-            <!-- end footer -->
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -266,7 +273,7 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  218 => 90,  206 => 84,  202 => 83,  197 => 81,  193 => 80,  189 => 79,  185 => 78,  181 => 77,  178 => 76,  174 => 75,  112 => 16,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  225 => 90,  212 => 83,  208 => 82,  203 => 80,  199 => 79,  195 => 78,  191 => 77,  187 => 76,  184 => 75,  180 => 74,  166 => 62,  160 => 60,  158 => 59,  111 => 15,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -277,7 +284,6 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
 
 {% block body %}
 
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/mentor-bootstrap-4-admin-dashboard-template/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Jan 2023 12:27:52 GMT -->
     <!-- begin app -->
     <div class=\"app\">
         <!-- begin app-wrap -->
@@ -291,12 +297,8 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                 </div>
             </div>
             <!-- end pre-loader -->
-            <!-- begin app-header -->
-            <!-- end app-header -->
             <!-- begin app-container -->
             <div class=\"app-container\">
-                <!-- begin app-nabar -->
-                <!-- end app-navbar -->
                 <!-- begin app-main -->
                 <div class=\"app-main\" id=\"main\">
                     <!-- begin container-fluid -->
@@ -307,7 +309,7 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                                 <!-- begin page title -->
                                 <div class=\"d-block d-sm-flex flex-nowrap align-items-center\">
                                     <div class=\"page-title mb-2 mb-sm-0\">
-                                        <h1>List des Psychiatres</h1>
+                                        <h1>Liste des Psychiatres</h1>
                                     </div>
                                     <div class=\"ml-auto d-flex align-items-center\">
                                         <nav>
@@ -318,7 +320,7 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                                                 <li class=\"breadcrumb-item\">
                                                     Tables
                                                 </li>
-                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">List des Psychiatres</li>
+                                                <li class=\"breadcrumb-item active text-primary\" aria-current=\"page\">Liste des Psychiatres</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -327,22 +329,26 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                             </div>
                         </div>
                         <!-- end row -->
+
                         <!-- begin row -->
                         <div class=\"row\">
                             <div class=\"col-lg-12\">
                                 <div class=\"card card-statistics\">
                                     <div class=\"card-body\">
                                         <div class=\"datatable-wrapper table-responsive\">
-                                            <table  id=\"datatable\" class=\"display compact table table-striped table-bordered\">
+                                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_FOURNISSEUR') %}
+                                                <a href=\"{{ path('produit_new') }}\" class=\"btn btn-primary mb-3\">Ajouter un produit</a>
+                                            {% endif %}
+                                            <table id=\"datatable\" class=\"display compact table table-striped table-bordered\">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
-                                                        <th>Specialite</th>
-                                                        <th>actions</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Email</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Spécialité</th>
+                                                    <th>Actions</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for patient in patients %}
@@ -353,14 +359,16 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                                                         <td>{{ patient.firstName }}</td>
                                                         <td>{{ patient.dossierMedical }}</td>
                                                         <td>
-                                                        <form method=\"post\" action=\"{{ path('patient_delete', {'id': patient.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
-                                                          <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ patient.id) }}\">
-                                                          <button class=\"btn btn-danger\">Block</button>
-                                                          <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
-                                                        </form>
-                                                        </td></tr>
-                                                         {% endfor %}
-                                                        </tbody></table>
+                                                            <form method=\"post\" action=\"{{ path('patient_delete', {'id': patient.id}) }}\" onsubmit=\"return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');\">
+                                                                <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ patient.id) }}\">
+                                                                <button class=\"btn btn-danger\">Bloquer</button>
+                                                                <button type=\"submit\" class=\"btn btn-danger\">Supprimer</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
                                             <pagination-controls style=\"text-align: right;\" (pageChange)=\"p = \$event\"></pagination-controls>
                                         </div>
                                     </div>
@@ -374,12 +382,11 @@ class __TwigTemplate_910ea63295d21ab531c6a9444984e77f extends Template
                 <!-- end app-main -->
             </div>
             <!-- end app-container -->
-            <!-- begin footer -->
-            <!-- end footer -->
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
 {% endblock %}
 ", "patient/index.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\patient\\index.html.twig");
     }

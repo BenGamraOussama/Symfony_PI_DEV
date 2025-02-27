@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250225185324 extends AbstractMigration
+final class Version20250227100714 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -27,10 +27,11 @@ final class Version20250225185324 extends AbstractMigration
         $this->addSql('CREATE TABLE exercice (id INT AUTO_INCREMENT NOT NULL, activite_id INT NOT NULL, question LONGTEXT NOT NULL, UNIQUE INDEX UNIQ_E418C74D9B0F88B1 (activite_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE fournisseur (id INT NOT NULL, etat TINYINT(1) NOT NULL, adresse VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE ligne_commande (id INT AUTO_INCREMENT NOT NULL, commande_id INT DEFAULT NULL, quantite INT NOT NULL, prix_unitaire DOUBLE PRECISION NOT NULL, INDEX IDX_3170B74B82EA2E54 (commande_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE panier (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT NOT NULL, produit_id INT NOT NULL, quantite INT NOT NULL, INDEX IDX_24CC0DF2FB88E14F (utilisateur_id), INDEX IDX_24CC0DF2F347EFB (produit_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE patient (id INT NOT NULL, user_id INT DEFAULT NULL, dossier_medical_path VARCHAR(255) DEFAULT NULL, gener VARCHAR(255) DEFAULT NULL, adresse VARCHAR(255) DEFAULT NULL, phone INT DEFAULT NULL, name VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_1ADAD7EBA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE patient_exercice (patient_id INT NOT NULL, exercice_id INT NOT NULL, INDEX IDX_D39D9FE86B899279 (patient_id), INDEX IDX_D39D9FE889D40298 (exercice_id), PRIMARY KEY(patient_id, exercice_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE patient_activite (patient_id INT NOT NULL, activite_id INT NOT NULL, INDEX IDX_8FF00DB06B899279 (patient_id), INDEX IDX_8FF00DB09B0F88B1 (activite_id), PRIMARY KEY(patient_id, activite_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, nom VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, prix VARCHAR(255) NOT NULL, disponible TINYINT(1) NOT NULL, image VARCHAR(255) DEFAULT NULL, INDEX IDX_29A5EC27BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, nom VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, prix VARCHAR(255) NOT NULL, disponible TINYINT(1) NOT NULL, image VARCHAR(255) DEFAULT NULL, quantite INT NOT NULL, INDEX IDX_29A5EC27BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE produit_categories (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE psychiatre (id INT NOT NULL, consultation_id INT DEFAULT NULL, specialite VARCHAR(255) NOT NULL, num_licence VARCHAR(255) NOT NULL, phone INT NOT NULL, adresse VARCHAR(255) NOT NULL, INDEX IDX_559A887F62FF6CDF (consultation_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE question (id INT AUTO_INCREMENT NOT NULL, patient_id INT NOT NULL, contenu VARCHAR(255) NOT NULL, INDEX IDX_B6F7494E6B899279 (patient_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -44,6 +45,8 @@ final class Version20250225185324 extends AbstractMigration
         $this->addSql('ALTER TABLE exercice ADD CONSTRAINT FK_E418C74D9B0F88B1 FOREIGN KEY (activite_id) REFERENCES activite (id)');
         $this->addSql('ALTER TABLE fournisseur ADD CONSTRAINT FK_369ECA32BF396750 FOREIGN KEY (id) REFERENCES user (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE ligne_commande ADD CONSTRAINT FK_3170B74B82EA2E54 FOREIGN KEY (commande_id) REFERENCES commande (id)');
+        $this->addSql('ALTER TABLE panier ADD CONSTRAINT FK_24CC0DF2FB88E14F FOREIGN KEY (utilisateur_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE panier ADD CONSTRAINT FK_24CC0DF2F347EFB FOREIGN KEY (produit_id) REFERENCES produit (id)');
         $this->addSql('ALTER TABLE patient ADD CONSTRAINT FK_1ADAD7EBA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE patient ADD CONSTRAINT FK_1ADAD7EBBF396750 FOREIGN KEY (id) REFERENCES user (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE patient_exercice ADD CONSTRAINT FK_D39D9FE86B899279 FOREIGN KEY (patient_id) REFERENCES patient (id) ON DELETE CASCADE');
@@ -69,6 +72,8 @@ final class Version20250225185324 extends AbstractMigration
         $this->addSql('ALTER TABLE exercice DROP FOREIGN KEY FK_E418C74D9B0F88B1');
         $this->addSql('ALTER TABLE fournisseur DROP FOREIGN KEY FK_369ECA32BF396750');
         $this->addSql('ALTER TABLE ligne_commande DROP FOREIGN KEY FK_3170B74B82EA2E54');
+        $this->addSql('ALTER TABLE panier DROP FOREIGN KEY FK_24CC0DF2FB88E14F');
+        $this->addSql('ALTER TABLE panier DROP FOREIGN KEY FK_24CC0DF2F347EFB');
         $this->addSql('ALTER TABLE patient DROP FOREIGN KEY FK_1ADAD7EBA76ED395');
         $this->addSql('ALTER TABLE patient DROP FOREIGN KEY FK_1ADAD7EBBF396750');
         $this->addSql('ALTER TABLE patient_exercice DROP FOREIGN KEY FK_D39D9FE86B899279');
@@ -92,6 +97,7 @@ final class Version20250225185324 extends AbstractMigration
         $this->addSql('DROP TABLE exercice');
         $this->addSql('DROP TABLE fournisseur');
         $this->addSql('DROP TABLE ligne_commande');
+        $this->addSql('DROP TABLE panier');
         $this->addSql('DROP TABLE patient');
         $this->addSql('DROP TABLE patient_exercice');
         $this->addSql('DROP TABLE patient_activite');

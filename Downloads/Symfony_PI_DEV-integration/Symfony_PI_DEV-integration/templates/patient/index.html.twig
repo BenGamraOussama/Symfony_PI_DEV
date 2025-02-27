@@ -4,7 +4,6 @@
 
 {% block body %}
 
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/mentor-bootstrap-4-admin-dashboard-template/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Jan 2023 12:27:52 GMT -->
     <!-- begin app -->
     <div class="app">
         <!-- begin app-wrap -->
@@ -18,12 +17,8 @@
                 </div>
             </div>
             <!-- end pre-loader -->
-            <!-- begin app-header -->
-            <!-- end app-header -->
             <!-- begin app-container -->
             <div class="app-container">
-                <!-- begin app-nabar -->
-                <!-- end app-navbar -->
                 <!-- begin app-main -->
                 <div class="app-main" id="main">
                     <!-- begin container-fluid -->
@@ -34,7 +29,7 @@
                                 <!-- begin page title -->
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>List des Psychiatres</h1>
+                                        <h1>Liste des Psychiatres</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
                                         <nav>
@@ -45,7 +40,7 @@
                                                 <li class="breadcrumb-item">
                                                     Tables
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">List des Psychiatres</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Liste des Psychiatres</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -54,22 +49,26 @@
                             </div>
                         </div>
                         <!-- end row -->
+
                         <!-- begin row -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card card-statistics">
                                     <div class="card-body">
                                         <div class="datatable-wrapper table-responsive">
-                                            <table  id="datatable" class="display compact table table-striped table-bordered">
+                                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_FOURNISSEUR') %}
+                                                <a href="{{ path('produit_new') }}" class="btn btn-primary mb-3">Ajouter un produit</a>
+                                            {% endif %}
+                                            <table id="datatable" class="display compact table table-striped table-bordered">
                                                 <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Email</th>
-                                                        <th>Last Name</th>
-                                                        <th>Firs tName</th>
-                                                        <th>Specialite</th>
-                                                        <th>actions</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Email</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Spécialité</th>
+                                                    <th>Actions</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
                                                 {% for patient in patients %}
@@ -80,14 +79,16 @@
                                                         <td>{{ patient.firstName }}</td>
                                                         <td>{{ patient.dossierMedical }}</td>
                                                         <td>
-                                                        <form method="post" action="{{ path('patient_delete', {'id': patient.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ patient.id) }}">
-                                                          <button class="btn btn-danger">Block</button>
-                                                          <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                        </form>
-                                                        </td></tr>
-                                                         {% endfor %}
-                                                        </tbody></table>
+                                                            <form method="post" action="{{ path('patient_delete', {'id': patient.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ patient.id) }}">
+                                                                <button class="btn btn-danger">Bloquer</button>
+                                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
                                             <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
                                         </div>
                                     </div>
@@ -101,10 +102,9 @@
                 <!-- end app-main -->
             </div>
             <!-- end app-container -->
-            <!-- begin footer -->
-            <!-- end footer -->
         </div>
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
 {% endblock %}
