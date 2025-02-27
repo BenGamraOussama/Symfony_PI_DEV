@@ -44,47 +44,136 @@
     </head>
     <body>
     <style>
-        /* Style du header */
+     /* Style de base pour la modal */
+.modal {
+  display: none; /* Masquée par défaut */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-        /* Style du bouton */
-        .btn-modal {
-            background: #ff9800;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+/* Contenu de la modal */
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.5s ease-out;
+}
 
-        /* Style du modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+/* Animation d'entrée de la modal */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
-        /* Contenu du modal */
-        .modal-content {
-            background: white;
-            padding: 20px;
-            width: 300px;
-            margin: 15% auto;
-            text-align: center;
-            border-radius: 10px;
-        }
+/* Bouton de fermeture */
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ff6b6b;
+  transition: color 0.3s ease;
+}
 
-        /* Bouton de fermeture */
-        .close {
-            color: red;
-            float: right;
-            font-size: 20px;
-            cursor: pointer;
-        }
+.close:hover {
+  color: #ff4757;
+}
+
+/* Conteneur pour les cœurs */
+.hearts-container {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 50px;
+}
+
+/* Style des cœurs */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6b6b;
+  transform: rotate(-45deg);
+  animation: float 5s infinite ease-in-out;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff6b6b;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+/* Animation de flottement des cœurs */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-45deg);
+  }
+}
+
+/* Positionnement des cœurs */
+.heart:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+  left: 30%;
+  animation-delay: 1s;
+}
+
+.heart:nth-child(3) {
+  left: 50%;
+  animation-delay: 2s;
+}
+
+.heart:nth-child(4) {
+  left: 70%;
+  animation-delay: 3s;
+}
+
+.heart:nth-child(5) {
+  left: 90%;
+  animation-delay: 4s;
+}
     </style>
     
         {% block header %}
@@ -118,148 +207,30 @@
                                     </a> 
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        Pages 
-                                        <i class='bx bx-caret-down'></i>
+                                    <a href="{{ path('patient_activity_index')}}" class="nav-link">
+                                        Activities 
                                     </a>
-
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="about.html" class="nav-link">About</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Coaches 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="coaches.html" class="nav-link">Coaches</a>
-                                                </li>
-        
-                                                <li class="nav-item">
-                                                    <a href="coaches-details.html" class="nav-link">Coaches Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Events 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="events.html" class="nav-link">Events</a>
-                                                </li>
-        
-                                                <li class="nav-item">
-                                                    <a href="events-details.html" class="nav-link">Events Details</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="success-story.html" class="nav-link">Success Story</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="purchase-guide.html" class="nav-link">Purchase Guide</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="pricing.html" class="nav-link">Pricing</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="gallery.html" class="nav-link">Gallery</a>
-                                        </li>
-    
-                                        <li class="nav-item">
-                                            <a href="faq.html" class="nav-link">FAQ</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Users 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="login.html" class="nav-link">Login</a>
-                                                </li>
-        
-                                                <li class="nav-item">
-                                                    <a href="register.html" class="nav-link">Register</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                Others 
-                                                <i class='bx bx-caret-down'></i>
-                                            </a>
-        
-                                            <ul class="dropdown-menu">
-                                                <li class="nav-item">
-                                                    <a href="{{ path('app_rdv_index') }}" class="nav-link">Online Booking</a>
-                                                </li>
-        
-                                                <li class="nav-item">
-                                                    <a href="{{ path('app_rdv_index') }}" class="nav-link">Book Appointment</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="error-404.html" class="nav-link">404 Error</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="terms-of-service.html" class="nav-link">Terms of Service</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="coming-soon.html" class="nav-link">Coming Soon</a>
-                                        </li>
-                                    </ul>
                                 </li>
 
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        Courses 
+                                        Produit
                                         <i class='bx bx-caret-down'></i>
                                     </a>
 
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="courses-1.html" class="nav-link">Courses (3 in Row)</a>
+                                            <a href="{{ path('produit_index_patient') }}" class="nav-link">Listes des Produits </a>
                                         </li>
 
+
+                                    </ul>
+                                    <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="courses-2.html" class="nav-link">Courses (Full Width)</a>
+                                            <a href="{{ path('produit_index_patient') }}" class="nav-link">Détail du produit </a>
                                         </li>
 
-                                        <li class="nav-item">
-                                            <a href="membership-levels.html" class="nav-link">Membership Levels</a>
-                                        </li>
 
-                                        <li class="nav-item">
-                                            <a href="become-coaches.html" class="nav-link">Become Coaches</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a href="courses-details.html" class="nav-link">Courses Details</a>
-                                        </li>
                                     </ul>
                                 </li>
 
@@ -315,12 +286,8 @@
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" id="openModal">Motivation</a>
-                                </li>
-                               
                             </ul>
-
+                            <a href='#' class="buy-now-btn" id="openModal">❤️</a>
                             <div class="others-options d-flex align-items-center">
                                 <div class="option-item">
                                     <div class="cart-btn">
@@ -589,10 +556,10 @@
          </div>
         {% endblock %}
         <div id="myModal" class="modal">
-          <div class="modal-content">
-            <span class="close" id="closeModal">Test</span>
-            <p>{{ message }}</p>
-          </div>
+           <div class="modal-content">
+           <span class="close" id="closeModal">&#10006;</span>
+           <p>{{ message }}</p>
+            </div>
         </div>
 
      <script>

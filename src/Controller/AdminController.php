@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Service\DeepSeekMotivationalMessageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\UserRepository;
@@ -45,10 +44,15 @@ final class AdminController extends AbstractController
     {
         $user = $this->getUser();
         $totalPatients = $userRepository->countPatients();
+        $totalPsychiatres = $userRepository->countPsychiatres();
+        $totalFournisseurs = $userRepository->countFournisseurs();
+
         $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'total'=>$totalPatients,
+            'totalP'=>$totalPatients,
+            'totalPsy'=>$totalPsychiatres,
+            'totalF'=>$totalFournisseurs,
             'user' => $user,
             'message' => $message,
         ]);
@@ -159,6 +163,16 @@ final class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_listpsychiatre', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('listPsychiatre/{id}', name: 'app_psychiatre_block', methods: ['POST'])]
+    public function blockpsy(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('blockpsy'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
+            $psychiatre->setBlocked(true); // Set the psychiatrist as blocked instead of deleting
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    }
     //fournisseur
     #[Route('/listFournisseur', name: 'app_admin_listfournisseur', methods: ['GET'])]
     public function listFournisseur(FournisseurRepository $fournisseurRepository): Response
@@ -251,6 +265,17 @@ final class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_listfournisseur', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('listFournisseur/{id}', name: 'app_fournisseur_block', methods: ['POST'])]
+    public function block(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('block'.$fournisseur->getId(), $request->getPayload()->getString('_token'))) {
+            $fournisseur->setBlocked(true); // Set the fournisseur as blocked instead of deleting
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    }
+
     //Patient
     #[Route('/listPatient', name: 'list_patient_index', methods: ['GET'])]
     public function listPatient(PatientRepository $patientRepository): Response
@@ -345,5 +370,14 @@ final class AdminController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('list_patient_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('listPatient/{id}', name: 'app_patient_block', methods: ['POST'])]
+    public function blockP(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('blockP'.$patient->getId(), $request->get('_token'))) {
+            $patient->setBlocked(true); // Set the patient as blocked instead of deleting
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

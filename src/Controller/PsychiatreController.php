@@ -80,10 +80,11 @@ final class PsychiatreController extends AbstractController
     public function delete(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($psychiatre);
+            $psychiatre->setBlocked(true); // Set the psychiatrist as blocked instead of deleting
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
+
 }

@@ -18,7 +18,10 @@ class DeepSeekMotivationalMessageService
     public function getMotivationalMessage(): string
     {
         try {
-            $response = $this->httpClient->request('POST', 'https://api.deepseek.com/v1/chat/completions', [
+$response = $this->httpClient->request('POST', 'https://api.deepseek.com/v1/chat/completions', [
+    'verify_peer' => false,
+    'verify_host' => false,
+
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->deepSeekApiKey,
                     'Content-Type' => 'application/json',

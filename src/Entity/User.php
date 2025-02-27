@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Entity\Patient;
+
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -53,6 +55,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: "FirstName is required"), Assert\Length(min:3)]
     private ?string $firstName = null;
+
+    #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
+    private ?Patient $patient = null;
+
 
     public function getId(): ?int
     {
@@ -156,5 +162,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->firstName = $firstName;
 
         return $this;
+    }
+    
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
     }
 }

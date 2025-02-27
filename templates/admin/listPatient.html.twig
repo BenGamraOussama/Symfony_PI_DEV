@@ -80,7 +80,9 @@
                                                         <td>{{ patient.adresse }}</td>
                                                         <td>{{ patient.gener }}</td>
                                                         <td>
-                                                            <button class="btn btn-danger" data-toggle="modal" data-target="#defaultModal">Supprimer</button>
+<a href="{{ path('block_patient', {'id': patient.id}) }}" class="btn btn-warning">Block</a>
+<button class="btn btn-danger" data-toggle="modal" data-target="#defaultModal">Supprimer</button>
+
                                                             <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                             <div class="modal-content">

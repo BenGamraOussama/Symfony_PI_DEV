@@ -76,10 +76,11 @@ final class FournisseurController extends AbstractController
     public function delete(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$fournisseur->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($fournisseur);
+            $fournisseur->setBlocked(true); // Set the fournisseur as blocked instead of deleting
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
+
 }

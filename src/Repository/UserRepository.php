@@ -66,4 +66,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ->getQuery()
         ->getSingleScalarResult();
 }
+public function countPsychiatres(): int
+{
+    return $this->createQueryBuilder('u')
+        ->select('COUNT(u.id)')
+        ->where('u.roles LIKE :role')
+        ->setParameter('role', '%ROLE_PSYCHIATRE%')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+public function countFournisseurs(): int
+{
+    return $this->createQueryBuilder('u')
+        ->select('COUNT(u.id)')
+        ->where('u.roles LIKE :role')
+        ->setParameter('role', '%ROLE_FOURNISSEUR%')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
 }

@@ -10,7 +10,20 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PsychiatreRepository::class)]
 class Psychiatre extends User
 {
-  
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $blocked = false;
+
+    public function isBlocked(): bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(bool $blocked): self
+    {
+        $this->blocked = $blocked;
+        return $this;
+    }
+
     #[ORM\Column(length: 255)]
     private ?string $specialite = null;
 
@@ -22,6 +35,7 @@ class Psychiatre extends User
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
+
     #[ORM\ManyToOne(inversedBy: 'psychiatre')]
     private ?Consultation $consultation = null;
 
@@ -81,6 +95,7 @@ class Psychiatre extends User
         $this->phone = $phone;
         return $this;
     }
+
     /**
      * @return Collection<int, RDV>
      */
@@ -110,6 +125,7 @@ class Psychiatre extends User
 
         return $this;
     }
+
     public function removeDrv(RDV $drv): static
     {
         if ($this->drvs->removeElement($drv)) {
@@ -121,7 +137,4 @@ class Psychiatre extends User
 
         return $this;
     }
-
-  
-
 }

@@ -1,0 +1,133 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block body %}
+    <!-- Start Search Layout -->
+    <div class="search-overlay">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="search-overlay-layer"></div>
+                <div class="search-overlay-layer"></div>
+                <div class="search-overlay-layer"></div>
+
+                <div class="search-overlay-close">
+                    <span class="search-overlay-close-line"></span>
+                    <span class="search-overlay-close-line"></span>
+                </div>
+
+                <div class="search-overlay-form">
+                    <form>
+                        <input type="text" class="input-search" placeholder="Search here...">
+                        <button type="submit"><i class='flaticon-search'></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Search Layout -->
+
+    <!-- Start Page Banner Area -->
+    <div class="page-banner-with-full-image">
+        <div class="container">
+            <div class="page-banner-content-two">
+                <h2>Courses (Three in Row)</h2>
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>Courses (3 in Row)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Banner Area -->
+
+    <!-- Start Courses Area -->
+    <section class="courses-area ptb-100">
+        <div class="container">
+            <div class="psylo-grid-sorting row align-items-center">
+                <div class="col-lg-6 col-md-6 result-count">
+                    <p>We found <span class="count">14</span> courses available for you</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 ordering">
+                    <div class="select-box">
+                        <label>Sort By:</label>
+                        <select>
+                            <option>Default</option>
+                            <option>Popularity</option>
+                            <option>Latest</option>
+                            <option>Price: low to high</option>
+                            <option>Price: high to low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for produit in produits %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-courses-box">
+                        <div class="courses-image">
+                            <a href="courses-details.html">
+                                <img src=" {{ asset('uploads/' ~ produit.image) }}" alt="image">
+                            </a>
+                            <div class="price">{{ produit.prix }} €</div>
+                        </div>
+                        <div class="courses-content">
+                            <div class="course-author d-flex align-items-center">
+
+
+                            </div>
+                            <h3>
+                                <a href="courses-details.html">{{ produit.nom }}</a>
+                            </h3>
+                            <p>{{ produit.description }}</p>
+                            <ul class="courses-box-footer d-flex justify-content-between align-items-center">
+                                <li>
+                                    <i class='bx bxs-book'></i> {{ produit.disponible }}
+                                    <button class="btn btn-outline-primary">commander</button>
+                                </li>
+                                <li>F
+                                    <a href="{{ path('produit_show_patient', {'id': produit.id}) }}">Voir les détails</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+    <!-- End Courses Area -->
+
+    <!-- Start Subscribe Area -->
+    <div class="subscribe-area bg-top">
+        <div class="container">
+            <div class="subscribe-inner-box">
+                <div class="subscribe-content">
+                    <h2>Subscribe Our Newsletter</h2>
+                    <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua.</p>
+
+                    <form class="newsletter-form" data-bs-toggle="validator">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-6">
+                                <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <button type="submit">Subscribe Now <i class="flaticon-paper-plane"></i></button>
+                                <div id="validator-newsletter" class="form-result"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Subscribe Area -->
+
+
+{% endblock %}
