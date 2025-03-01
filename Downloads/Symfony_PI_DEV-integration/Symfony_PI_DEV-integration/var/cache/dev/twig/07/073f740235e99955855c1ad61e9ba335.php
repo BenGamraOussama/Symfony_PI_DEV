@@ -97,15 +97,15 @@ class __TwigTemplate_b8d51132013888195f5ad3c2181da24e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        yield "<div class=\"container d-flex justify-content-center align-items-center vh-100\"> <!-- Centrage vertical et horizontal -->
-    <div class=\"col-md-6\"> <!-- Réduction de la largeur -->
-        <h1 class=\"text-center mb-4\">🆕 Ajouter une Catégorie de Produit</h1>
+        yield "    <div class=\"container d-flex justify-content-center align-items-center vh-100\">
+        <div class=\"col-md-6\">
+            <h1 class=\"text-center mb-4\">🆕 Ajouter une Catégorie de Produit</h1>
 
-        <div class=\"card shadow-sm p-3\"> <!-- Réduction du padding interne -->
-            ";
+            <div class=\"card shadow-sm p-3\">
+                ";
         // line 11
         yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), 'form_start', ["attr" => ["enctype" => "multipart/form-data"]]);
-        yield " <!-- Important pour l'upload d'image -->
+        yield "
                 <div class=\"mb-2\">
                     ";
         // line 13
@@ -115,23 +115,30 @@ class __TwigTemplate_b8d51132013888195f5ad3c2181da24e extends Template
         // line 14
         yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), "nom", [], "any", false, false, false, 14), 'widget', ["attr" => ["class" => "form-control"]]);
         yield "
+
+                    <!-- Message d'erreur en rouge (Bootstrap ou CSS inline) -->
+                    <div class=\"text-danger\" style=\"font-size: 0.9em; margin-top: 5px;\">
+                        ";
+        // line 18
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 18, $this->source); })()), "nom", [], "any", false, false, false, 18), 'errors');
+        yield "
+                    </div>
                 </div>
 
-                
-                <div class=\"d-flex justify-content-between mt-3\"> <!-- Alignement plus compact des boutons -->
+                <div class=\"d-flex justify-content-between mt-3\">
                     <a href=\"";
-        // line 19
+        // line 23
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
         yield "\" class=\"btn btn-secondary\">↩ Retour</a>
                     <button type=\"submit\" class=\"btn btn-success\">💾 Enregistrer</button>
                 </div>
-            ";
-        // line 22
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 22, $this->source); })()), 'form_end');
+                ";
+        // line 26
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 26, $this->source); })()), 'form_end');
         yield "
+            </div>
         </div>
     </div>
-</div>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -163,7 +170,7 @@ class __TwigTemplate_b8d51132013888195f5ad3c2181da24e extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  130 => 22,  124 => 19,  116 => 14,  112 => 13,  107 => 11,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  137 => 26,  131 => 23,  123 => 18,  116 => 14,  112 => 13,  107 => 11,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -173,26 +180,30 @@ class __TwigTemplate_b8d51132013888195f5ad3c2181da24e extends Template
 {% block title %}Créer une Catégorie de Produit{% endblock %}
 
 {% block body %}
-<div class=\"container d-flex justify-content-center align-items-center vh-100\"> <!-- Centrage vertical et horizontal -->
-    <div class=\"col-md-6\"> <!-- Réduction de la largeur -->
-        <h1 class=\"text-center mb-4\">🆕 Ajouter une Catégorie de Produit</h1>
+    <div class=\"container d-flex justify-content-center align-items-center vh-100\">
+        <div class=\"col-md-6\">
+            <h1 class=\"text-center mb-4\">🆕 Ajouter une Catégorie de Produit</h1>
 
-        <div class=\"card shadow-sm p-3\"> <!-- Réduction du padding interne -->
-            {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }} <!-- Important pour l'upload d'image -->
+            <div class=\"card shadow-sm p-3\">
+                {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
                 <div class=\"mb-2\">
                     {{ form_label(form.nom, 'Nom') }}
                     {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+
+                    <!-- Message d'erreur en rouge (Bootstrap ou CSS inline) -->
+                    <div class=\"text-danger\" style=\"font-size: 0.9em; margin-top: 5px;\">
+                        {{ form_errors(form.nom) }}
+                    </div>
                 </div>
 
-                
-                <div class=\"d-flex justify-content-between mt-3\"> <!-- Alignement plus compact des boutons -->
+                <div class=\"d-flex justify-content-between mt-3\">
                     <a href=\"{{ path('produit_categories_index') }}\" class=\"btn btn-secondary\">↩ Retour</a>
                     <button type=\"submit\" class=\"btn btn-success\">💾 Enregistrer</button>
                 </div>
-            {{ form_end(form) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}", "produit_categories/new.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit_categories\\new.html.twig");
     }
 }

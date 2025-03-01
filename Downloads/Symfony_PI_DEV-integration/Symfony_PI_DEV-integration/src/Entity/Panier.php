@@ -1,10 +1,9 @@
 <?php
 
-// src/Entity/Panier.php
 namespace App\Entity;
+
 use App\Repository\PanierRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User; // Assurez-vous que cette ligne est présente
 
 #[ORM\Entity(repositoryClass: PanierRepository::class)]
 class Panier
@@ -14,34 +13,31 @@ class Panier
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: Patient::class)] // Correction : Utilisation de Patient::class
     #[ORM\JoinColumn(nullable: false)]
-    private $utilisateur; // Assurez-vous que ce champ existe
+    private $utilisateur;
 
     #[ORM\Column(type: 'integer')]
     private $quantite;
+
     #[ORM\ManyToOne(targetEntity: Produit::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $produit;
 
-
-
-
-
-    // Getters et setters pour tous les champs
+    // Getters et setters
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUser(): ?User
+    public function getUtilisateur(): ?Patient // Correction : Retourne un Patient et non un User
     {
-        return $this->User;
+        return $this->utilisateur;
     }
 
-    public function setUser(?User $user): self
+    public function setUtilisateur(?Patient $utilisateur): self // Correction : Accepte un Patient
     {
-        $this->user = $user;
+        $this->utilisateur = $utilisateur;
         return $this;
     }
 
@@ -66,6 +62,4 @@ class Panier
         $this->quantite = $quantite;
         return $this;
     }
-
-
 }

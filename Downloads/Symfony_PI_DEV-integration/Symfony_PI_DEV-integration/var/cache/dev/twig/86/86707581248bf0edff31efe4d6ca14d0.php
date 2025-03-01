@@ -142,7 +142,7 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
                 <div class=\"mb-2\">
                     ";
         // line 32
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 32, $this->source); })()), "prix", [], "any", false, false, false, 32), 'label', ["label" => "Prix (€)"]);
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 32, $this->source); })()), "prix", [], "any", false, false, false, 32), 'label', ["label" => "Prix (TND)"]);
         yield "
                     ";
         // line 33
@@ -278,7 +278,7 @@ class __TwigTemplate_c92c4c6adf1c84c8ed0f762df8067ec9 extends Template
                 </div>
 
                 <div class=\"mb-2\">
-                    {{ form_label(form.prix, 'Prix (€)') }}
+                    {{ form_label(form.prix, 'Prix (TND)') }}
                     {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(form.prix) }}
                 </div>

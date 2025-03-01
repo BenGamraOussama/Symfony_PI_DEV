@@ -662,65 +662,65 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                                         <div class=\"bg-gradient px-4 py-3\">
                                             <div class=\"d-flex align-items-center justify-content-between\">
                                                 <div class=\"mr-1\">
-                                                ";
+                                                    ";
         // line 427
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_FOURNISSEUR")) {
             // line 428
-            yield "                                                    <h4 class=\"text-white mb-0\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 428, $this->source); })()), "firstName", [], "any", false, false, false, 428), "html", null, true);
+            yield "                                                        <h4 class=\"text-white mb-0\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 428, $this->source); })()), "user", [], "any", false, false, false, 428), "firstName", [], "any", false, false, false, 428), "html", null, true);
             yield " ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 428, $this->source); })()), "lastName", [], "any", false, false, false, 428), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 428, $this->source); })()), "user", [], "any", false, false, false, 428), "lastName", [], "any", false, false, false, 428), "html", null, true);
             yield "</h4>
-                                                    <small class=\"text-white\">";
+                                                        <small class=\"text-white\">";
             // line 429
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 429, $this->source); })()), "email", [], "any", false, false, false, 429), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 429, $this->source); })()), "user", [], "any", false, false, false, 429), "email", [], "any", false, false, false, 429), "html", null, true);
             yield "</small>
-                                                ";
+                                                    ";
         }
         // line 431
-        yield "                                                ";
+        yield "                                                    ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PATIENT")) {
             // line 432
-            yield "                                                    <h4 class=\"text-white mb-0\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 432, $this->source); })()), "firstName", [], "any", false, false, false, 432), "html", null, true);
+            yield "                                                        <h4 class=\"text-white mb-0\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 432, $this->source); })()), "user", [], "any", false, false, false, 432), "firstName", [], "any", false, false, false, 432), "html", null, true);
             yield " ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 432, $this->source); })()), "lastName", [], "any", false, false, false, 432), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 432, $this->source); })()), "user", [], "any", false, false, false, 432), "lastName", [], "any", false, false, false, 432), "html", null, true);
             yield "</h4>
-                                                    <small class=\"text-white\">";
+                                                        <small class=\"text-white\">";
             // line 433
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 433, $this->source); })()), "email", [], "any", false, false, false, 433), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 433, $this->source); })()), "user", [], "any", false, false, false, 433), "email", [], "any", false, false, false, 433), "html", null, true);
             yield "</small>
-                                                ";
+                                                    ";
         }
         // line 435
-        yield "                                                ";
+        yield "                                                    ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PSYCHIATRE")) {
             // line 436
-            yield "                                                    <h4 class=\"text-white mb-0\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 436, $this->source); })()), "firstName", [], "any", false, false, false, 436), "html", null, true);
+            yield "                                                        <h4 class=\"text-white mb-0\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 436, $this->source); })()), "user", [], "any", false, false, false, 436), "firstName", [], "any", false, false, false, 436), "html", null, true);
             yield " ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 436, $this->source); })()), "lastName", [], "any", false, false, false, 436), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 436, $this->source); })()), "user", [], "any", false, false, false, 436), "lastName", [], "any", false, false, false, 436), "html", null, true);
             yield "</h4>
-                                                    <small class=\"text-white\">";
+                                                        <small class=\"text-white\">";
             // line 437
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 437, $this->source); })()), "email", [], "any", false, false, false, 437), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 437, $this->source); })()), "user", [], "any", false, false, false, 437), "email", [], "any", false, false, false, 437), "html", null, true);
             yield "</small>
-                                                ";
+                                                    ";
         }
         // line 439
-        yield "                                                ";
+        yield "                                                    ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
             // line 440
-            yield "                                                    <h4 class=\"text-white mb-0\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 440, $this->source); })()), "firstName", [], "any", false, false, false, 440), "html", null, true);
+            yield "                                                        <h4 class=\"text-white mb-0\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 440, $this->source); })()), "user", [], "any", false, false, false, 440), "firstName", [], "any", false, false, false, 440), "html", null, true);
             yield " ";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 440, $this->source); })()), "lastName", [], "any", false, false, false, 440), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 440, $this->source); })()), "user", [], "any", false, false, false, 440), "lastName", [], "any", false, false, false, 440), "html", null, true);
             yield "</h4>
-                                                    <small class=\"text-white\">";
+                                                        <small class=\"text-white\">";
             // line 441
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 441, $this->source); })()), "email", [], "any", false, false, false, 441), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 441, $this->source); })()), "user", [], "any", false, false, false, 441), "email", [], "any", false, false, false, 441), "html", null, true);
             yield "</small>
-                                                ";
+                                                    ";
         }
         // line 443
         yield "                                                </div>
@@ -936,7 +936,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                     </ul>
                 </li>
             <li>
-                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">ProduitCategory</span> </a>
+                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">catégorie des produits</span> </a>
                 <ul aria-expanded=\"false\">
 
 
@@ -945,7 +945,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         // line 572
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_categories_index");
         yield "\">
-                            List category
+                            Liste des catégories
                         </a>
                     </li>
                     <li class=\"nav-item\">
@@ -953,7 +953,7 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
         // line 577
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ajouter_categorie");
         yield "\">
-                            new category
+                            ajouter catégories
                         </a>
 
 
@@ -1493,22 +1493,22 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                                         <div class=\"bg-gradient px-4 py-3\">
                                             <div class=\"d-flex align-items-center justify-content-between\">
                                                 <div class=\"mr-1\">
-                                                {% if is_granted('ROLE_FOURNISSEUR') %}
-                                                    <h4 class=\"text-white mb-0\">{{user.firstName}} {{user.lastName}}</h4>
-                                                    <small class=\"text-white\">{{user.email}}</small>
-                                                {% endif %}
-                                                {% if is_granted('ROLE_PATIENT') %}
-                                                    <h4 class=\"text-white mb-0\">{{user.firstName}} {{user.lastName}}</h4>
-                                                    <small class=\"text-white\">{{user.email}}</small>
-                                                {% endif %}
-                                                {% if is_granted('ROLE_PSYCHIATRE') %}
-                                                    <h4 class=\"text-white mb-0\">{{user.firstName}} {{user.lastName}}</h4>
-                                                    <small class=\"text-white\">{{user.email}}</small>
-                                                {% endif %}
-                                                {% if is_granted('ROLE_ADMIN') %}
-                                                    <h4 class=\"text-white mb-0\">{{user.firstName}} {{user.lastName}}</h4>
-                                                    <small class=\"text-white\">{{user.email}}</small>
-                                                {% endif %}
+                                                    {% if is_granted('ROLE_FOURNISSEUR') %}
+                                                        <h4 class=\"text-white mb-0\">{{ app.user.firstName }} {{ app.user.lastName }}</h4>
+                                                        <small class=\"text-white\">{{ app.user.email }}</small>
+                                                    {% endif %}
+                                                    {% if is_granted('ROLE_PATIENT') %}
+                                                        <h4 class=\"text-white mb-0\">{{ app.user.firstName }} {{ app.user.lastName }}</h4>
+                                                        <small class=\"text-white\">{{ app.user.email }}</small>
+                                                    {% endif %}
+                                                    {% if is_granted('ROLE_PSYCHIATRE') %}
+                                                        <h4 class=\"text-white mb-0\">{{ app.user.firstName }} {{ app.user.lastName }}</h4>
+                                                        <small class=\"text-white\">{{ app.user.email }}</small>
+                                                    {% endif %}
+                                                    {% if is_granted('ROLE_ADMIN') %}
+                                                        <h4 class=\"text-white mb-0\">{{ app.user.firstName }} {{ app.user.lastName }}</h4>
+                                                        <small class=\"text-white\">{{ app.user.email }}</small>
+                                                    {% endif %}
                                                 </div>
                                                 <a href=\"{{ path('app_logout')}}\" class=\"text-white font-20 tooltip-wrapper\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"Logout\"> <i class=\"zmdi zmdi-power\"></i></a>
                                             </div>
@@ -1633,18 +1633,18 @@ class __TwigTemplate_8cdbed0cf4f509e86617891fe1babd1c extends Template
                     </ul>
                 </li>
             <li>
-                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">ProduitCategory</span> </a>
+                <a class=\"has-arrow\" href=\"javascript:void(0)\" aria-expanded=\"false\"><i class=\"bi bi-people\"></i><span class=\"nav-title\">catégorie des produits</span> </a>
                 <ul aria-expanded=\"false\">
 
 
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('produit_categories_index') }}\">
-                            List category
+                            Liste des catégories
                         </a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('ajouter_categorie') }}\">
-                            new category
+                            ajouter catégories
                         </a>
 
 

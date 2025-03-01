@@ -9,8 +9,8 @@
     <parameter key="kernel.runtime_mode.cli">%env(not:default:kernel.runtime_mode.web:)%</parameter>
     <parameter key="kernel.runtime_mode.worker">%env(bool:default::key:worker:default:kernel.runtime_mode:)%</parameter>
     <parameter key="kernel.debug">true</parameter>
-    <parameter key="kernel.build_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev</parameter>
-    <parameter key="kernel.cache_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev</parameter>
+    <parameter key="kernel.build_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev</parameter>
+    <parameter key="kernel.cache_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev</parameter>
     <parameter key="kernel.logs_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
@@ -127,15 +127,15 @@
     <parameter key="translator.logging">false</parameter>
     <parameter key="translator.default_path">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration/translations</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/App_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/App_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
     <parameter key="router.resource">kernel::loadRoutes</parameter>
-    <parameter key="router.cache_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev</parameter>
+    <parameter key="router.cache_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
-    <parameter key="serializer.mapping.cache.file">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/serialization.php</parameter>
+    <parameter key="serializer.mapping.cache.file">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/serialization.php</parameter>
     <parameter key="cache.prefix.seed">_C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration.App_KernelDevDebugContainer</parameter>
     <parameter key="session.metadata.storage_key">_sf2_meta</parameter>
     <parameter key="session.storage.options" type="collection">
@@ -149,11 +149,11 @@
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="form.type_extension.csrf.enabled">true</parameter>
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
-    <parameter key="validator.mapping.cache.file">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/validation.php</parameter>
+    <parameter key="validator.mapping.cache.file">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_main_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/profiler</parameter>
     <parameter key="doctrine.dbal.configuration.class">Doctrine\DBAL\Configuration</parameter>
     <parameter key="doctrine.data_collector.class">Doctrine\Bundle\DoctrineBundle\DataCollector\DoctrineDataCollector</parameter>
     <parameter key="doctrine.dbal.connection.event_manager.class">Symfony\Bridge\Doctrine\ContainerAwareEventManager</parameter>
@@ -219,7 +219,7 @@
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
     <parameter key="doctrine.orm.enable_lazy_ghost_objects">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="doctrine.migrations.preferred_em">null</parameter>
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
@@ -734,7 +734,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.PsFb5Tq"/>
+      <argument type="service" id=".service_locator.yuoEFdo"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -815,7 +815,7 @@
       </argument>
     </service>
     <service id="http_cache.store" class="Symfony\Component\HttpKernel\HttpCache\Store">
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/http_cache</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/http_cache</argument>
     </service>
     <service id="url_helper" class="Symfony\Component\HttpFoundation\UrlHelper">
       <argument type="service" id="request_stack"/>
@@ -825,7 +825,7 @@
       <tag name="container.no_preload"/>
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/App_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/App_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -1821,7 +1821,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1840,7 +1840,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/app</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -2012,7 +2012,7 @@
     <service id="asset_mapper.cached_mapped_asset_factory" class="Symfony\Component\AssetMapper\Factory\CachedMappedAssetFactory">
       <tag name="container.decorator" id="asset_mapper.mapped_asset_factory" inner="asset_mapper.cached_mapped_asset_factory.inner"/>
       <argument type="service" id="asset_mapper.cached_mapped_asset_factory.inner"/>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/asset_mapper</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/asset_mapper</argument>
       <argument>true</argument>
     </service>
     <service id="asset_mapper.repository" class="Symfony\Component\AssetMapper\AssetMapperRepository">
@@ -2386,7 +2386,7 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/translations</argument>
+        <argument key="cache_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/translations</argument>
         <argument key="debug">true</argument>
         <argument key="resource_files" type="collection">
           <argument key="af" type="collection">
@@ -3746,7 +3746,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.PsFb5Tq"/>
+      <argument type="service" id=".service_locator.yuoEFdo"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3849,7 +3849,7 @@
       <argument type="service" id=".service_locator.bN.V_Nq.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev</argument>
+        <argument key="cache_dir">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -4028,10 +4028,10 @@
           </service>
         </argument>
       </argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/serialization.php</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/serialization.php</argument>
     </service>
     <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface">
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/serialization.php</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/serialization.php</argument>
       <argument type="service" id="cache.serializer"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
@@ -4167,7 +4167,7 @@
       <argument>true</argument>
     </service>
     <service id="session.storage.factory.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorageFactory">
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/sessions</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service">
         <service class="Symfony\Component\HttpFoundation\Session\Storage\MetadataBag">
@@ -4372,10 +4372,10 @@
     <service id="validator.mapping.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\ValidatorCacheWarmer">
       <tag name="kernel.cache_warmer"/>
       <argument type="service" id="validator.builder"/>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/validation.php</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/validation.php</argument>
     </service>
     <service id="validator.mapping.cache.adapter" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" constructor="create">
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/validation.php</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/validation.php</argument>
       <argument type="service" id="cache.validator"/>
     </service>
     <service id="validator.validator_factory" class="Symfony\Component\Validator\ContainerConstraintValidatorFactory">
@@ -4925,7 +4925,7 @@
       </call>
     </service>
     <service id="profiler.storage" class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage">
-      <argument>file:C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/profiler</argument>
+      <argument>file:C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/profiler</argument>
     </service>
     <service id="profiler_listener" class="Symfony\Component\HttpKernel\EventListener\ProfilerListener">
       <tag name="kernel.event_subscriber"/>
@@ -4984,7 +4984,7 @@
       <tag name="monolog.logger" channel="profiler"/>
       <tag name="data_collector" template="@WebProfiler/Collector/logger.html.twig" id="logger" priority="300"/>
       <argument type="service" id="monolog.logger.profiler" on-invalid="ignore"/>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/App_KernelDevDebugContainer</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/App_KernelDevDebugContainer</argument>
       <argument type="service" id=".virtual_request_stack" on-invalid="ignore"/>
     </service>
     <service id="data_collector.time" class="Symfony\Component\HttpKernel\DataCollector\TimeDataCollector">
@@ -5556,7 +5556,7 @@
         <argument type="service" id=".doctrine.orm.default_metadata_driver"/>
       </call>
       <call method="setProxyDir">
-        <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/doctrine/orm/Proxies</argument>
+        <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/doctrine/orm/Proxies</argument>
       </call>
       <call method="setProxyNamespace">
         <argument>Proxies</argument>
@@ -5974,7 +5974,7 @@
       <argument type="service" id="twig.loader.native_filesystem"/>
       <argument type="collection">
         <argument key="autoescape">name</argument>
-        <argument key="cache">C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/twig</argument>
+        <argument key="cache">C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -6513,7 +6513,7 @@
       <argument type="service" id=".service_locator.e_.xxAP"/>
       <argument type="collection">
         <argument key="dev">null</argument>
-        <argument key="main" type="service" id=".service_locator.6n8Us2x"/>
+        <argument key="main" type="service" id=".service_locator.1trLN57"/>
       </argument>
     </service>
     <service id="security.user_value_resolver" class="Symfony\Component\Security\Http\Controller\UserValueResolver">
@@ -6713,30 +6713,44 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap">
       <call method="add">
-        <argument type="service" id=".security.request_matcher.fe0J_UT"/>
+        <argument type="service" id=".security.request_matcher.28NqKnb"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.EcTSqji"/>
+        <argument type="service" id=".security.request_matcher.ETajTxA"/>
         <argument type="collection">
           <argument>ROLE_PATIENT</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.4bD5kjm"/>
+        <argument type="service" id=".security.request_matcher._C33xmy"/>
         <argument type="collection">
           <argument>ROLE_PSYCHIATRE</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.StaxzSu"/>
+        <argument type="service" id=".security.request_matcher.ztDnvRF"/>
         <argument type="collection">
           <argument>ROLE_FOURNISSEUR</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.LMInxZ1"/>
+        <argument type="collection">
+          <argument>ROLE_FOURNISSEUR</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.Bzd8QLh"/>
+        <argument type="collection">
+          <argument>ROLE_PATIENT</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -7029,6 +7043,7 @@
       <argument type="collection">
         <argument key="main" type="collection">
           <argument type="service" id="App\Security\SecurityAuthenticator"/>
+          <argument type="service" id="security.authenticator.form_login.main"/>
           <argument type="service" id="security.authenticator.remember_me.main"/>
         </argument>
       </argument>
@@ -7083,20 +7098,21 @@
       <argument>false</argument>
       <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
-      <argument>App\Security\SecurityAuthenticator</argument>
+      <argument>security.authenticator.form_login.main</argument>
       <argument>null</argument>
       <argument>null</argument>
       <argument type="collection">
+        <argument>form_login</argument>
         <argument>remember_me</argument>
         <argument>App\Security\SecurityAuthenticator</argument>
       </argument>
       <argument>null</argument>
       <argument type="collection">
         <argument key="path">app_logout</argument>
+        <argument key="target">app_home</argument>
         <argument key="enable_csrf">null</argument>
         <argument key="csrf_token_id">logout</argument>
         <argument key="csrf_parameter">_csrf_token</argument>
-        <argument key="target">/</argument>
         <argument key="invalidate_session">true</argument>
         <argument key="clear_site_data" type="collection"/>
         <argument key="delete_cookies" type="collection"/>
@@ -7142,10 +7158,60 @@
     <service id="security.logout.listener.default.main" class="Symfony\Component\Security\Http\EventListener\DefaultLogoutListener">
       <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
       <argument type="service" id="security.http_utils"/>
-      <argument>/</argument>
+      <argument>app_home</argument>
     </service>
     <service id="security.logout.listener.session.main" class="Symfony\Component\Security\Http\EventListener\SessionLogoutListener">
       <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+    </service>
+    <service id="security.authenticator.form_login.main" class="Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator">
+      <argument type="service" id="security.http_utils"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      <argument type="service" id="security.authentication.success_handler.main.form_login"/>
+      <argument type="service" id="security.authentication.failure_handler.main.form_login"/>
+      <argument type="collection">
+        <argument key="login_path">app_login</argument>
+        <argument key="check_path">app_login_check</argument>
+        <argument key="use_forward">false</argument>
+        <argument key="require_previous_session">false</argument>
+        <argument key="username_parameter">_username</argument>
+        <argument key="password_parameter">_password</argument>
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="csrf_token_id">authenticate</argument>
+        <argument key="enable_csrf">false</argument>
+        <argument key="post_only">true</argument>
+        <argument key="form_only">false</argument>
+      </argument>
+    </service>
+    <service id="security.authentication.success_handler.main.form_login" class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler">
+      <argument type="service" id="security.http_utils"/>
+      <argument type="collection"/>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+      <call method="setOptions">
+        <argument type="collection">
+          <argument key="login_path">app_login</argument>
+          <argument key="default_target_path">app_home</argument>
+          <argument key="always_use_default_target_path">false</argument>
+          <argument key="target_path_parameter">_target_path</argument>
+          <argument key="use_referer">false</argument>
+        </argument>
+      </call>
+      <call method="setFirewallName">
+        <argument>main</argument>
+      </call>
+    </service>
+    <service id="security.authentication.failure_handler.main.form_login" class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler">
+      <argument type="service" id="http_kernel"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument type="collection"/>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+      <call method="setOptions">
+        <argument type="collection">
+          <argument key="login_path">app_login</argument>
+          <argument key="failure_path">null</argument>
+          <argument key="failure_forward">false</argument>
+          <argument key="failure_path_parameter">_failure_path</argument>
+        </argument>
+      </call>
     </service>
     <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
       <tag name="kernel.event_subscriber"/>
@@ -7259,6 +7325,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="collection">
         <argument type="service" id="App\Security\SecurityAuthenticator"/>
+        <argument type="service" id="security.authenticator.form_login.main"/>
         <argument type="service" id="security.authenticator.remember_me.main"/>
       </argument>
       <argument type="service" id="security.token_storage"/>
@@ -7283,16 +7350,17 @@
       <argument type="service" id="security.authentication.trust_resolver"/>
       <argument type="service" id="security.http_utils"/>
       <argument>main</argument>
-      <argument type="service" id="App\Security\SecurityAuthenticator"/>
+      <argument type="service" id="security.authenticator.form_login.main"/>
       <argument>null</argument>
       <argument>null</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
     </service>
-    <service id=".service_locator.6n8Us2x" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.1trLN57" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Security\SecurityAuthenticator" type="service_closure" id="App\Security\SecurityAuthenticator"/>
+        <argument key="security.authenticator.form_login.main" type="service_closure" id="security.authenticator.form_login.main"/>
         <argument key="security.authenticator.remember_me.main" type="service_closure" id="security.authenticator.remember_me.main"/>
       </argument>
     </service>
@@ -7315,36 +7383,52 @@
         <argument key="security.firewall.map.context.main" type="service_closure" id="security.firewall.map.context.main"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.SVFmQ6f" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
-      <argument>/admin</argument>
+    <service id=".security.request_matcher.obhk0jm" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/admin</argument>
     </service>
-    <service id=".security.request_matcher.fe0J_UT" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+    <service id=".security.request_matcher.28NqKnb" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
-        <argument type="service" id=".security.request_matcher.SVFmQ6f"/>
+        <argument type="service" id=".security.request_matcher.obhk0jm"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.9p38KMG" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
-      <argument>/patient</argument>
+    <service id=".security.request_matcher.gYxacZQ" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/patient</argument>
     </service>
-    <service id=".security.request_matcher.EcTSqji" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+    <service id=".security.request_matcher.ETajTxA" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
-        <argument type="service" id=".security.request_matcher.9p38KMG"/>
+        <argument type="service" id=".security.request_matcher.gYxacZQ"/>
       </argument>
     </service>
-    <service id=".security.request_matcher._lAFCCd" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
-      <argument>/psychiatre</argument>
+    <service id=".security.request_matcher.rM.J1h6" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/psychiatre</argument>
     </service>
-    <service id=".security.request_matcher.4bD5kjm" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+    <service id=".security.request_matcher._C33xmy" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
-        <argument type="service" id=".security.request_matcher._lAFCCd"/>
+        <argument type="service" id=".security.request_matcher.rM.J1h6"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.rk8w16A" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
-      <argument>/fournissur</argument>
+    <service id=".security.request_matcher.njSn6JJ" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/fournisseur</argument>
     </service>
-    <service id=".security.request_matcher.StaxzSu" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+    <service id=".security.request_matcher.ztDnvRF" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
       <argument type="collection">
-        <argument type="service" id=".security.request_matcher.rk8w16A"/>
+        <argument type="service" id=".security.request_matcher.njSn6JJ"/>
+      </argument>
+    </service>
+    <service id=".security.request_matcher.mneAH7X" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/produit</argument>
+    </service>
+    <service id=".security.request_matcher.LMInxZ1" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.mneAH7X"/>
+      </argument>
+    </service>
+    <service id=".security.request_matcher.Zl2pEkc" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/commande</argument>
+    </service>
+    <service id=".security.request_matcher.Bzd8QLh" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.Zl2pEkc"/>
       </argument>
     </service>
     <service id="security.command.user_password_hash" class="Symfony\Component\PasswordHasher\Command\UserPasswordHashCommand">
@@ -8473,12 +8557,6 @@
         <argument key="panier" type="service_closure" id=".errored..service_locator.BL5d5iZ.App\Entity\Panier"/>
       </argument>
     </service>
-    <service id=".service_locator.FM7hU.l" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="patient" type="service_closure" id=".errored..service_locator.FM7hU.l.App\Entity\Patient"/>
-      </argument>
-    </service>
     <service id=".service_locator.Ecpu4I3" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8490,29 +8568,6 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="produit" type="service_closure" id=".errored..service_locator.ViXcClx.App\Entity\Produit"/>
-      </argument>
-    </service>
-    <service id=".service_locator.nHVKLtO" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
-        <argument key="patient" type="service_closure" id=".errored..service_locator.nHVKLtO.App\Entity\Patient"/>
-        <argument key="slugger" type="service_closure" id="slugger"/>
-      </argument>
-    </service>
-    <service id=".service_locator.G_6iG_b" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="activiteRepository" type="service_closure" id="App\Repository\ActiviteRepository"/>
-        <argument key="patientRepository" type="service_closure" id="App\Repository\PatientRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.NsszSph" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="activity" type="service_closure" id=".errored..service_locator.NsszSph.App\Entity\Activite"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.28EXb3I" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8656,7 +8711,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.PsFb5Tq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.yuoEFdo" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8701,18 +8756,14 @@
         <argument key="App\Controller\LigneCommandeController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\LigneCommandeController::show" type="service_closure" id=".service_locator.lT33.ht"/>
         <argument key="App\Controller\PanierController::ajouterPanier" type="service_closure" id=".service_locator.6DpIc9s"/>
+        <argument key="App\Controller\PanierController::modifierQuantite" type="service_closure" id=".service_locator.BL5d5iZ"/>
         <argument key="App\Controller\PanierController::show" type="service_closure" id=".service_locator.XjqUGgN"/>
         <argument key="App\Controller\PanierController::supprimerDuPanier" type="service_closure" id=".service_locator.BL5d5iZ"/>
         <argument key="App\Controller\PatientActivityController::index" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientActivityController::updateStatus" type="service_closure" id=".service_locator.9kKwU2t"/>
-        <argument key="App\Controller\PatientController::delete" type="service_closure" id=".service_locator.BMqRrkB"/>
-        <argument key="App\Controller\PatientController::edit" type="service_closure" id=".service_locator.nHVKLtO"/>
-        <argument key="App\Controller\PatientController::getProduits" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController::index" type="service_closure" id=".service_locator.Ecpu4I3"/>
-        <argument key="App\Controller\PatientController::show" type="service_closure" id=".service_locator.FM7hU.l"/>
+        <argument key="App\Controller\PatientController::recherche" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientController::showProduit" type="service_closure" id=".service_locator.ViXcClx"/>
-        <argument key="App\Controller\PatientController::updateActivityStatus" type="service_closure" id=".service_locator.NsszSph"/>
-        <argument key="App\Controller\PatientController::viewActivities" type="service_closure" id=".service_locator.G_6iG_b"/>
         <argument key="App\Controller\ProduitCategoriesController::ajouterCategorie" type="service_closure" id=".service_locator.LNwsF6h"/>
         <argument key="App\Controller\ProduitCategoriesController::delete" type="service_closure" id=".service_locator.EO0FbVW"/>
         <argument key="App\Controller\ProduitCategoriesController::edit" type="service_closure" id=".service_locator.EO0FbVW"/>
@@ -8795,18 +8846,14 @@
         <argument key="App\Controller\LigneCommandeController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\LigneCommandeController:show" type="service_closure" id=".service_locator.lT33.ht"/>
         <argument key="App\Controller\PanierController:ajouterPanier" type="service_closure" id=".service_locator.6DpIc9s"/>
+        <argument key="App\Controller\PanierController:modifierQuantite" type="service_closure" id=".service_locator.BL5d5iZ"/>
         <argument key="App\Controller\PanierController:show" type="service_closure" id=".service_locator.XjqUGgN"/>
         <argument key="App\Controller\PanierController:supprimerDuPanier" type="service_closure" id=".service_locator.BL5d5iZ"/>
         <argument key="App\Controller\PatientActivityController:index" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientActivityController:updateStatus" type="service_closure" id=".service_locator.9kKwU2t"/>
-        <argument key="App\Controller\PatientController:delete" type="service_closure" id=".service_locator.BMqRrkB"/>
-        <argument key="App\Controller\PatientController:edit" type="service_closure" id=".service_locator.nHVKLtO"/>
-        <argument key="App\Controller\PatientController:getProduits" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\PatientController:index" type="service_closure" id=".service_locator.Ecpu4I3"/>
-        <argument key="App\Controller\PatientController:show" type="service_closure" id=".service_locator.FM7hU.l"/>
+        <argument key="App\Controller\PatientController:recherche" type="service_closure" id=".service_locator.9kKwU2t"/>
         <argument key="App\Controller\PatientController:showProduit" type="service_closure" id=".service_locator.ViXcClx"/>
-        <argument key="App\Controller\PatientController:updateActivityStatus" type="service_closure" id=".service_locator.NsszSph"/>
-        <argument key="App\Controller\PatientController:viewActivities" type="service_closure" id=".service_locator.G_6iG_b"/>
         <argument key="App\Controller\ProduitCategoriesController:ajouterCategorie" type="service_closure" id=".service_locator.LNwsF6h"/>
         <argument key="App\Controller\ProduitCategoriesController:delete" type="service_closure" id=".service_locator.EO0FbVW"/>
         <argument key="App\Controller\ProduitCategoriesController:edit" type="service_closure" id=".service_locator.EO0FbVW"/>
@@ -10119,17 +10166,8 @@
     <service id=".errored..service_locator.BL5d5iZ.App\Entity\Panier" class="App\Entity\Panier">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.BL5d5iZ&quot;: it needs an instance of &quot;App\Entity\Panier&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.FM7hU.l.App\Entity\Patient" class="App\Entity\Patient">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.FM7hU.l&quot;: it needs an instance of &quot;App\Entity\Patient&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
     <service id=".errored..service_locator.ViXcClx.App\Entity\Produit" class="App\Entity\Produit">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.ViXcClx&quot;: it needs an instance of &quot;App\Entity\Produit&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
-    <service id=".errored..service_locator.nHVKLtO.App\Entity\Patient" class="App\Entity\Patient">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.nHVKLtO&quot;: it needs an instance of &quot;App\Entity\Patient&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
-    </service>
-    <service id=".errored..service_locator.NsszSph.App\Entity\Activite" class="App\Entity\Activite">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.NsszSph&quot;: it needs an instance of &quot;App\Entity\Activite&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.EO0FbVW.App\Entity\ProduitCategories" class="App\Entity\ProduitCategories">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.EO0FbVW&quot;: it needs an instance of &quot;App\Entity\ProduitCategories&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -11085,7 +11123,7 @@
     <service id="cache.app.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
       <argument>JOdWFzq24y</argument>
       <argument>0</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/app</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -11095,7 +11133,7 @@
       <argument>ACgVy7Pdd9</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11103,7 +11141,7 @@
       <argument>Zv2hUxQl22</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11111,7 +11149,7 @@
       <argument>03RGCwTv0h</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11119,7 +11157,7 @@
       <argument>pUyRpcahiL</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11127,7 +11165,7 @@
       <argument>hDGIIpxeRs</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11135,14 +11173,14 @@
       <argument>3n1u4u6inc</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.messenger.restart_workers_signal.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
       <argument>L2eVThL0Ds</argument>
       <argument>0</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/app</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/app</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -11152,7 +11190,7 @@
       <argument>dfjSn+s894</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11162,7 +11200,7 @@
       <argument>h-tQNnPpev</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11170,7 +11208,7 @@
       <argument>K2RUOvNzFu</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11178,7 +11216,7 @@
       <argument>DVFZa-TMY9</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>C:/Users/Lenovo/Downloads/Symfony_PI_DEV-integration/Symfony_PI_DEV-integration/var/cache/dev/pools/system</argument>
+      <argument>C:\Users\Lenovo\Downloads\Symfony_PI_DEV-integration\Symfony_PI_DEV-integration\var\cache\dev/pools/system</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -11360,7 +11398,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.PsFb5Tq"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.yuoEFdo"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11392,7 +11430,6 @@
     <service id=".service_locator.C0Qi.jl" alias=".service_locator.acTpigy"/>
     <service id=".service_locator.bWImZDr" alias=".service_locator.6DpIc9s"/>
     <service id=".service_locator.ExPXXGH" alias=".service_locator.BL5d5iZ"/>
-    <service id=".service_locator.gh7CNQv" alias=".service_locator.nHVKLtO"/>
     <service id=".service_locator.PyvJesv" alias=".service_locator.EO0FbVW"/>
     <service id=".service_locator.KPV0MsR" alias=".service_locator.Fk8aPoM"/>
     <service id=".service_locator.gMpfJT2" alias=".service_locator.hCjLFs3"/>
@@ -11402,7 +11439,7 @@
     <service id=".service_locator.PFeenAx" alias=".service_locator.0488DqB"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.d4tI7RE" alias=".service_locator.PsFb5Tq"/>
+    <service id=".service_locator.JZpFvX." alias=".service_locator.yuoEFdo"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.xgzMSDr" alias=".service_locator.BQwTVXw"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -11456,12 +11493,8 @@
     <service id=".service_locator.xaOiXcO" alias=".service_locator.6DpIc9s"/>
     <service id=".service_locator.bO_cdcv" alias=".service_locator.XjqUGgN"/>
     <service id=".service_locator.qzl85fA" alias=".service_locator.BL5d5iZ"/>
-    <service id=".service_locator.Fvkhs03" alias=".service_locator.FM7hU.l"/>
     <service id=".service_locator.mRHrHxc" alias=".service_locator.Ecpu4I3"/>
     <service id=".service_locator.dMZ2O9f" alias=".service_locator.ViXcClx"/>
-    <service id=".service_locator.DRs7aTa" alias=".service_locator.nHVKLtO"/>
-    <service id=".service_locator.WBmZoV_" alias=".service_locator.G_6iG_b"/>
-    <service id=".service_locator.tJcwKky" alias=".service_locator.NsszSph"/>
     <service id=".service_locator.vTMyopO" alias=".service_locator.28EXb3I"/>
     <service id=".service_locator.lUJI3Z8" alias=".service_locator.LNwsF6h"/>
     <service id=".service_locator.fe9GlNf" alias=".service_locator.EO0FbVW"/>

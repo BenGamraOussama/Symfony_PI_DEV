@@ -13,8 +13,9 @@
                     <tr>
                         <th>Nom du produit</th>
                         <th>Quantité</th>
-                        <th>Prix unitaire</th>
-                        <th>Total</th>
+                        <th>Prix unitaire (TND)</th>
+                        <th>Total (TND)</th>
+                        <th>Modifier</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -22,9 +23,20 @@
                     {% for item in panierItems %}
                         <tr>
                             <td>{{ item.produit.nom }}</td>
-                            <td>{{ item.quantite }}</td>
-                            <td>{{ item.produit.prix }} €</td>
-                            <td>{{ item.produit.prix * item.quantite }} €</td>
+
+                            <!-- Formulaire pour modifier la quantité -->
+                            <td>
+                                <form action="{{ path('modifier_quantite_panier', {'id': item.id}) }}" method="POST" class="d-flex align-items-center">
+                                    <input type="number" name="quantite" value="{{ item.quantite }}" min="1" class="form-control form-control-sm w-50 me-2 quantite-input" data-id="{{ item.id }}" data-prix="{{ item.produit.prix }}">
+                                    <button type="submit" class="btn btn-info btn-sm">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                </form>
+                            </td>
+
+                            <td class="prix-unitaire">{{ item.produit.prix }}</td>
+                            <td class="total-produit" id="total-{{ item.id }}"><strong>{{ item.produit.prix * item.quantite }} TND</strong></td>
+
                             <td>
                                 <a href="{{ path('supprimer_du_panier', {'id': item.id}) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i> Supprimer
@@ -36,8 +48,26 @@
                 </table>
             </div>
 
+            {# Calcul du total et de la remise #}
+            {% set total = 0 %}
+            {% for item in panierItems %}
+                {% set total = total + (item.produit.prix * item.quantite) %}
+            {% endfor %}
+
+            {# Application de la remise de 10 % si le total dépasse 100 TND #}
+            {% set remise = 0 %}
+            {% if total >= 100 %}
+                {% set remise = total * 0.10 %}
+                {% set total = total - remise %}
+            {% endif %}
+
             <div class="d-flex justify-content-between align-items-center mt-4">
-                <h3 class="text-success">Total : <strong>{{ total }} €</strong></h3>
+                <h3 class="text-success">Total : <strong id="total-global">{{ total }} TND</strong></h3>
+
+                {% if remise > 0 %}
+                    <p class="text-danger">Remise de 10% : -{{ remise }} TND</p>
+                {% endif %}
+
                 <a href="{{ path('app_commande_index') }}" class="btn btn-primary btn-lg">
                     <i class="fas fa-shopping-cart"></i> Commander
                 </a>
@@ -48,4 +78,47 @@
             </div>
         {% endif %}
     </div>
+
+    <!-- JavaScript pour la mise à jour dynamique -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".quantite-input").forEach(input => {
+                input.addEventListener("input", function () {
+                    let quantite = parseInt(this.value);
+                    let prixUnitaire = parseFloat(this.getAttribute("data-prix"));
+                    let id = this.getAttribute("data-id");
+
+                    if (quantite > 0) {
+                        let totalProduit = quantite * prixUnitaire;
+                        document.getElementById("total-" + id).innerHTML = `<strong>${totalProduit.toFixed(2)} TND</strong>`;
+
+                        // Mettre à jour le total général
+                        let totalGlobal = 0;
+                        document.querySelectorAll(".total-produit").forEach(t => {
+                            totalGlobal += parseFloat(t.innerText);
+                        });
+
+                        // Appliquer la remise
+                        let remise = 0;
+                        if (totalGlobal >= 100) {
+                            remise = totalGlobal * 0.10;
+                            totalGlobal -= remise;
+                        }
+
+                        document.getElementById("total-global").innerText = totalGlobal.toFixed(2) + " TND";
+
+                        // Afficher ou masquer la remise
+                        if (remise > 0) {
+                            let remiseElement = document.querySelector(".text-danger");
+                            remiseElement.style.display = "block";
+                            remiseElement.innerText = "Remise de 10% : -" + remise.toFixed(2) + " TND";
+                        } else {
+                            let remiseElement = document.querySelector(".text-danger");
+                            remiseElement.style.display = "none";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

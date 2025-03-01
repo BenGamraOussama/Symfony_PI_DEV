@@ -42,7 +42,7 @@ class ProduitType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('prix', NumberType::class, [
-                'label' => 'Prix (€)',
+                'label' => 'Prix (TND)',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('disponible', CheckboxType::class, [

@@ -115,7 +115,7 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
                             <div class=\"price\">";
         // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["produit"]) || array_key_exists("produit", $context) ? $context["produit"] : (function () { throw new RuntimeError('Variable "produit" does not exist.', 30, $this->source); })()), "prix", [], "any", false, false, false, 30), "html", null, true);
-        yield " €</div>
+        yield " TND</div>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
                     <div class=\"single-courses-box\">
                         <div class=\"courses-image\">
                             <img src=\"{{ asset('uploads/' ~ produit.image) }}\" alt=\"{{ produit.nom }}\">
-                            <div class=\"price\">{{ produit.prix }} €</div>
+                            <div class=\"price\">{{ produit.prix }} TND</div>
                         </div>
                     </div>
                 </div>

@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProduitCategoriesController extends AbstractController
 {
@@ -31,19 +29,27 @@ class ProduitCategoriesController extends AbstractController
         $form = $this->createForm(ProduitCategoriesType::class, $categorie);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($categorie);
-            $entityManager->flush();
+        // Validation du formulaire
+        if ($form->isSubmitted()) {
+            if (!$categorie->getNom()) {  // Vérifier si le champ nom est vide
+                $this->addFlash('error', 'Veuillez saisir le nom de la catégorie.');
+            } elseif ($form->isValid()) {
+                // Si le formulaire est valide, enregistrer la catégorie
+                $entityManager->persist($categorie);
+                $entityManager->flush();
 
-            $this->addFlash('success', 'Catégorie ajoutée avec succès !');
-            return $this->redirectToRoute('produit_categories_index');
+                $this->addFlash('success', 'Catégorie ajoutée avec succès !');
+                return $this->redirectToRoute('produit_categories_index');
+            } else {
+                // Si le formulaire n'est pas valide mais a été soumis, on peut aussi afficher un message d'erreur
+                $this->addFlash('error', 'Veuillez corriger les erreurs dans le formulaire.');
+            }
         }
 
         return $this->render('produit_categories/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-
 
     #[Route('/produit-categorie/show/{id}', name: 'produit_categorie_show', methods: ['GET'])]
     public function show(int $id, ProduitCategoriesRepository $produitCategoriesRepository): Response
@@ -63,12 +69,9 @@ class ProduitCategoriesController extends AbstractController
     public function edit(Request $request, ProduitCategories $produitCategorie, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ProduitCategoriesType::class, $produitCategorie);
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             $entityManager->flush();
             $this->addFlash('success', 'Catégorie mise à jour avec succès !');
 

@@ -30,6 +30,10 @@
         <div class="container">
             <div class="page-banner-content-two">
                 <h2>Nos Produits</h2>
+                <!-- Message de remise -->
+                <p class="remise-info" style="color: #ff6347; font-size: 16px;">
+                    Profitez d'une remise de 10% dès que la somme des produits atteint 100 TND !
+                </p>
                 <ul>
                     <li>
                         <a href="{{ path('produit_index_patient') }}">Accueil</a>
@@ -40,6 +44,25 @@
         </div>
     </div>
     <!-- End Page Banner Area -->
+
+    <!-- Formulaire de filtre par prix -->
+    <div class="container mt-4">
+        <form action="{{ path('produit_index_patient') }}" method="GET">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="prix_min">Prix minimum (TND)</label>
+                    <input type="number" id="prix_min" name="prix_min" class="form-control" placeholder="Prix min" value="{{ app.request.get('prix_min') }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="prix_max">Prix maximum (TND)</label>
+                    <input type="number" id="prix_max" name="prix_max" class="form-control" placeholder="Prix max" value="{{ app.request.get('prix_max') }}">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary" style="margin-top: 32px;">Filtrer</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- Afficher les messages flash -->
     {% for message in app.flashes('success') %}
@@ -77,14 +100,17 @@
                             </div>
 
                             <!-- Bouton "Ajouter au panier" -->
-                            <a href="{{ path('ajouter_panier', {'id': produit.id}) }}" class="btn btn-primary">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                            </a>
+                            <form action="{{ path('ajouter_panier', {'id': produit.id}) }}" method="POST">
+                                <input type="number" name="quantite" value="1" min="1" max="{{ produit.disponible }}">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                 {% endfor %}
             </div>
-
 
             <div class="pagination">
                 {{ knp_pagination_render(pagination) }}
