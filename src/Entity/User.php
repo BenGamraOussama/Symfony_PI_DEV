@@ -58,7 +58,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
     private ?Patient $patient = null;
+    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $secret = null;
+    
+    public function getSecret(): ?string
+    {
+        return $this->secret;
+    }
 
+    public function setSecret(?string $secret): static
+    {
+        $this->secret = $secret;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +99,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
+    }
+
+    public function getTwoFactorSecret(): ?string
+    {
+        return $this->twoFactorSecret;
+    }
+
+    public function setTwoFactorSecret(?string $twoFactorSecret): self
+    {
+        $this->twoFactorSecret = $twoFactorSecret;
+        return $this;
     }
 
     /**

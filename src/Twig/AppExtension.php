@@ -2,26 +2,32 @@
 
 namespace App\Twig;
 
-use App\Service\DeepSeekMotivationalMessageService;
 use Symfony\Component\Security\Core\Security;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use App\Service\AuthenticatorService;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
-    private $motivationalMessageService;
-    private $security;
+    private ?string $qrCodeUri = null;
+    private ?string $secret = null;
 
-    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService, Security $security)
+    public function __construct(
+        private readonly AuthenticatorService $authenticatorService,
+        private readonly Security $security
+    )
     {
-        $this->motivationalMessageService = $motivationalMessageService;
-        $this->security = $security;
+        $user = $this->security->getUser();
+        if ($user) {
+            [$this->qrCodeUri, $this->secret] = $this->authenticatorService->getQrCodeUri($user);
+        }
     }
 
     public function getGlobals(): array
     {
         return [
-            'message' => $this->motivationalMessageService->getMotivationalMessage(),
+            'qrCodeUri' => $this->qrCodeUri,
+            'secret' => $this->secret,
             'user' => $this->security->getUser(),
         ];
     }

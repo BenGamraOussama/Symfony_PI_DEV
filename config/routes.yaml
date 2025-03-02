@@ -8,9 +8,6 @@ controllers:
     #path: /error
     #controller: App\Controller\ErrorController::show
     # config/routes.yaml
-motivation:
-    path: /motivation
-    controller: App\Controller\MotivationController::showMotivationalMessage
 app_reponse_new:
     path: /response/exercise/{id}/new
     controller: App\Controller\ReponseController::new

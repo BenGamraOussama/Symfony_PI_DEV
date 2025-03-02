@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Service\DeepSeekMotivationalMessageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -30,15 +29,7 @@ use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
 #[Route('/admin')]
 final class AdminController extends AbstractController
-{
-    private $motivationalMessageService;
-
-    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService)
-    {
-        $this->motivationalMessageService = $motivationalMessageService;
-    }
-
-    
+{   
     #[Route(name: 'app_admin')]
     public function index(UserRepository $userRepository): Response
     {
@@ -47,14 +38,12 @@ final class AdminController extends AbstractController
         $totalPsychiatres = $userRepository->countPsychiatres();
         $totalFournisseurs = $userRepository->countFournisseurs();
 
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'totalP'=>$totalPatients,
             'totalPsy'=>$totalPsychiatres,
             'totalF'=>$totalFournisseurs,
             'user' => $user,
-            'message' => $message,
         ]);
 
 
@@ -63,10 +52,8 @@ final class AdminController extends AbstractController
     public function show(): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/profile.html.twig', [
             'user' => $user,
-            'message' => $message,
         ]);
 
     }
@@ -75,11 +62,9 @@ final class AdminController extends AbstractController
     public function listPsychiatre(PsychiatreRepository $psychiatreRepository): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listPsychiatre.html.twig', [
             'psychiatres' => $psychiatreRepository->findAll(),
             'user' => $user,
-            'message' => $message,
         ]);
 
     }
@@ -142,14 +127,12 @@ final class AdminController extends AbstractController
 
         }
 
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterPsychiatre.html.twig', [
             'psychiatreadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
             'user'=>$user,
-            'message' => $message,
         ]);
 
     }
@@ -166,7 +149,7 @@ final class AdminController extends AbstractController
     #[Route('listPsychiatre/{id}', name: 'app_psychiatre_block', methods: ['POST'])]
     public function blockpsy(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('blockpsy'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
             $psychiatre->setBlocked(true); // Set the psychiatrist as blocked instead of deleting
             $entityManager->flush();
         }
@@ -178,11 +161,9 @@ final class AdminController extends AbstractController
     public function listFournisseur(FournisseurRepository $fournisseurRepository): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listFournisseur.html.twig', [
             'fournisseurs' => $fournisseurRepository->findAll(),
             'user' => $user,
-            'message' => $message,
         ]);
 
     }
@@ -244,14 +225,12 @@ final class AdminController extends AbstractController
             return $this->redirectToRoute('app_admin_ajouterfournisseur');
         }
 
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterFournisseur.html.twig', [
             'fournisseuradd' => $form,
             'firstName' => $form->get('firstName')->createView(),
             'lastName' => $form->get('lastName')->createView(),
             'email' => $form->get('email')->createView(),
             'user'=>$user,
-            'message' => $message,
         ]);
 
     }
@@ -281,11 +260,9 @@ final class AdminController extends AbstractController
     public function listPatient(PatientRepository $patientRepository): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/listPatient.html.twig', [
             'patients' => $patientRepository->findAll(),
             'user' => $user,
-            'message' => $message,
         ]);
 
     }
@@ -351,14 +328,10 @@ final class AdminController extends AbstractController
             return $this->redirectToRoute('app_patient_new');
         }
 
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('admin/ajouterPatient.html.twig', [
             'patientadd' => $form,
             'firstName' => $form->get('firstName')->createView(),
-            'lastName' => $form->get('lastName')->createView(),
-            'email' => $form->get('email')->createView(),
             'user'=>$user,
-            'message' => $message,
         ]);
 
     }
@@ -371,13 +344,41 @@ final class AdminController extends AbstractController
         }
         return $this->redirectToRoute('list_patient_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('listPatient/{id}', name: 'app_patient_block', methods: ['POST'])]
-    public function blockP(Request $request, Patient $patient, EntityManagerInterface $entityManager): Response
+
+    #[Route('listPatient/block/{id}', name: 'app_patient_block', methods: ['POST'])]
+    public function blockPatient(Request $request, Patient $patient = null, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('blockP'.$patient->getId(), $request->get('_token'))) {
-            $patient->setBlocked(true); // Set the patient as blocked instead of deleting
-            $entityManager->flush();
+        if (!$patient) {
+            $this->addFlash('error', 'Patient non trouvé.');
+            return $this->redirectToRoute('list_patient_index');
         }
-        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+    
+        // Bloquer uniquement ce patient
+        dump($patient->getId()); // Vérifiez l'ID du patient
+        $patient->setIsBlocked(true);
+        $em->flush();
+        $this->addFlash('success', 'Le patient a été bloqué avec succès.');
+    
+        return $this->redirectToRoute('list_patient_index');
+    }
+
+    #[Route('listPatient/unblock/{id}', name: 'app_patient_unblock', methods: ['POST'])]
+    public function unblockPatient(Request $request, Patient $patient = null, EntityManagerInterface $em): Response
+    {
+    if (!$patient) {
+        $this->addFlash('error', 'Patient non trouvé.');
+        return $this->redirectToRoute('list_patient_index');
+    }
+
+    if ($this->isCsrfTokenValid('unblock'.$patient->getId(), $request->request->get('_token'))) {
+        dump($patient->getId()); // Vérifiez l'ID du patient
+        $patient->setIsBlocked(false);
+        $em->flush();
+        $this->addFlash('success', 'Le patient a été débloqué avec succès.');
+    } else {
+        $this->addFlash('error', 'Token CSRF invalide.');
+    }
+
+    return $this->redirectToRoute('list_patient_index');
     }
 }

@@ -13,17 +13,6 @@ class Fournisseur extends User
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     private bool $blocked = false;
 
-    public function isBlocked(): bool
-    {
-        return $this->blocked;
-    }
-
-    public function setBlocked(bool $blocked): self
-    {
-        $this->blocked = $blocked;
-        return $this;
-    }
-
     #[ORM\Column(length: 255)]
     private ?string $companyName = null;
 
@@ -31,7 +20,7 @@ class Fournisseur extends User
     private ?string $contactName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    private ?string $adresse = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
@@ -44,6 +33,17 @@ class Fournisseur extends User
     {
         $this->products = new ArrayCollection();
     }
+    public function isBlocked(): bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(bool $blocked): self
+    {
+        $this->blocked = $blocked;
+        return $this;
+    }
+
 
     public function getCompanyName(): ?string
     {
@@ -69,14 +69,14 @@ class Fournisseur extends User
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->address;
+        return $this->adresse;
     }
 
-    public function setAddress(string $address): static
+    public function setAdresse(string $adresse): static
     {
-        $this->address = $address;
+        $this->adresse = $adresse;
 
         return $this;
     }

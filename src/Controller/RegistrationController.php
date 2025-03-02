@@ -12,6 +12,9 @@ use App\Form\FournisseurType;
 use App\Security\SecurityAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,7 +58,6 @@ public function register(
         $plainPassword = $fournisseurForm->get('plainPassword')->getData();
 
         $fournisseur->setRoles(['ROLE_FOURNISSEUR']);
-        $fournisseur->setEtat('true');
         $fournisseur->setPassword($userPasswordHasher->hashPassword($fournisseur, $plainPassword));
 
         $entityManager->persist($fournisseur);
@@ -80,7 +82,19 @@ public function register(
         $patient->setRoles(['ROLE_PATIENT']);
         $patient->setPassword($userPasswordHasher->hashPassword($patient, $plainPassword));
 
+        // Generate a 2FA secret
+        $twoFactorSecret = bin2hex(random_bytes(10)); // Generate a random secret
+        $patient->setTwoFactorSecret($twoFactorSecret);
+        $patient->setIsTwoFactorEnabled(true); // Enable 2FA for the user
+
+        // Generate QR code for 2FA
+        $qrCode = new QrCode('otpauth://totp/YourAppName?secret=' . $twoFactorSecret . '&issuer=YourAppName');
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+        $result->saveToFile('qr_code/qrcode.png'); // Save the QR code image
+
         $entityManager->persist($patient);
+
         $entityManager->flush();
 
         return $security->login($patient, SecurityAuthenticator::class, 'main');

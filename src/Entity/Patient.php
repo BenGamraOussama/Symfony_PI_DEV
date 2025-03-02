@@ -10,19 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 class Patient extends User
 {
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private bool $blocked = false;
-
-    public function isBlocked(): bool
-    {
-        return $this->blocked;
-    }
-
-    public function setBlocked(bool $blocked): self
-    {
-        $this->blocked = $blocked;
-        return $this;
-    }
+    #[ORM\Column(type: 'boolean')]
+    private $isBlocked = false;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $dossierMedicalPath = null;
@@ -66,6 +55,167 @@ class Patient extends User
         $this->activites = new ArrayCollection();
         $this->reponses = new ArrayCollection();
     }
+    
+    public function getIsBlocked(): ?bool
+    {
+        return $this->isBlocked;
+    }
 
-    // Other existing methods...
+    public function setIsBlocked(bool $isBlocked): self
+    {
+        $this->isBlocked = $isBlocked;
+
+        return $this;
+    }
+    public function getGener(): ?string
+    {
+        return $this->gener;
+    }
+
+    public function setGener(?string $gener): static
+    {
+        $this->gener = $gener;
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): static
+    {
+        $this->adresse = $adresse;
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): static
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getRdvs(): Collection
+    {
+        return $this->rdvs;
+    }
+
+    public function addRdv(RDV $rdv): static
+    {
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs->add($rdv);
+            $rdv->setPatient($this);
+        }
+        return $this;
+    }
+
+    public function removeRdv(RDV $rdv): static
+    {
+        if ($this->rdvs->removeElement($rdv)) {
+            if ($rdv->getPatient() === $this) {
+                $rdv->setPatient(null);
+            }
+        }
+        return $this;
+    }
+
+    public function getDossierMedicalPath(): ?string
+    {
+        return $this->dossierMedicalPath;
+    }
+
+    public function setDossierMedicalPath(?string $dossierMedicalPath): self
+    {
+        $this->dossierMedicalPath = $dossierMedicalPath;
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getQuestions(): Collection
+    {
+        return $this->questions;
+    }
+
+    public function addQuestion(Question $question): static
+    {
+        if (!$this->questions->contains($question)) {
+            $this->questions->add($question);
+            $question->setPatient($this);
+        }
+        return $this;
+    }
+
+    public function removeQuestion(Question $question): static
+    {
+        if ($this->questions->removeElement($question)) {
+            if ($question->getPatient() === $this) {
+                $question->setPatient(null);
+            }
+        }
+        return $this;
+    }
+
+    public function getExercices(): Collection
+    {
+        return $this->exercices;
+    }
+
+    public function addExercice(Exercice $exercice): static
+    {
+        if (!$this->exercices->contains($exercice)) {
+            $this->exercices->add($exercice);
+        }
+        return $this;
+    }
+
+    public function removeExercice(Exercice $exercice): static
+    {
+        $this->exercices->removeElement($exercice);
+        return $this;
+    }
+
+    public function getActivites(): Collection
+    {
+        return $this->activites;
+    }
+
+    public function addActivite(Activite $activite): static
+    {
+        if (!$this->activites->contains($activite)) {
+            $this->activites->add($activite);
+        }
+        return $this;
+    }
+
+    public function removeActivite(Activite $activite): static
+    {
+        $this->activites->removeElement($activite);
+        return $this;
+    }
+
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
 }

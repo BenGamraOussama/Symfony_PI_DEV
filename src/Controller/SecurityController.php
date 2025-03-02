@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\Verify2FAType;
+use Google\Authenticator\GoogleAuthenticator;
 
 class SecurityController extends AbstractController
 {
@@ -22,14 +25,24 @@ class SecurityController extends AbstractController
             if ($this->isGranted('ROLE_PSYCHIATRE')) {
                 return $this->redirectToRoute('app_psychiatre'); // Redirection vers l'admin
             }
-        return $this->redirectToRoute('app_home'); // Redirection vers l'admin
+            if ($this->isGranted('ROLE_PATIENT')) {
+                if ($this->getUser() && $this->getUser()->getSecret() !== null) {
+                    return $this->redirectToRoute('app_authenticator_verify');
+                } else {
+                    return $this->redirectToRoute('app_home');
+                } // Redirection vers home
+            }
+            return $this->redirectToRoute('app_home'); // Redirection vers l'admin
          }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
@@ -37,6 +50,4 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
-    
-    
 }

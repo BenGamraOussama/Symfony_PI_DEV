@@ -16,7 +16,8 @@ class LigneCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'lignes')]
+
     #[ORM\JoinColumn(nullable: true)]
     private ?Commande $commande = null;
 

@@ -6,6 +6,7 @@
 parameters:
     dossier_medical_directory: '%kernel.project_dir%/public/uploads/dossier_medical'
     uploads_directory: '%kernel.project_dir%/public/uploads'
+    app.issuer: Amazaune
 
 services:
     App\Enum\ExerciceStatus: ~
@@ -16,6 +17,9 @@ services:
     #App\Controller\ErrorController:
       #  tags: ['controller.service_arguments']
     App\Twig\AppExtension:
+        arguments:
+            $authenticatorService: '@App\Service\AuthenticatorService'
+            $security: '@security.helper'
         tags: ['twig.extension']
 
     # Rend les classes du dossier src/ disponibles en tant que services
@@ -34,9 +38,9 @@ services:
     App\Service\PasswordGenerator:
         autowire: true
         # config/services.yaml
-    App\Service\DeepSeekMotivationalMessageService:
-        arguments:
-            $deepSeekApiKey: '%env(DEEPSEEK_API_KEY)%'
-twig:
-    globals:
-        motivational_message: '@App\Service\DeepSeekMotivationalMessageService'
+    #App\Service\DeepSeekMotivationalMessageService:
+        #arguments:
+            #$deepSeekApiKey: '%env(DEEPSEEK_API_KEY)%'
+#twig:
+    #globals:
+        #motivational_message: '@App\Service\DeepSeekMotivationalMessageService'

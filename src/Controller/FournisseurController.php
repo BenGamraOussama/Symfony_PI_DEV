@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Fournisseur;
-use App\Service\DeepSeekMotivationalMessageService;
 use App\Form\FournisseurType;
 use App\Repository\FournisseurRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,22 +16,13 @@ use App\Entity\User;
 #[Route('/fournisseur')]
 final class FournisseurController extends AbstractController
 {
-    private $motivationalMessageService;
-
-    public function __construct(DeepSeekMotivationalMessageService $motivationalMessageService)
-    {
-        $this->motivationalMessageService = $motivationalMessageService;
-    }
-
     #[Route(name: 'app_fournisseur')]
     public function index(UserRepository $userRepository): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/index.html.twig', [
             'controller_name' => 'FournisseurController',
             'user' => $user,
-            'message' => $message,
         ]);
     }
     
@@ -40,12 +30,10 @@ final class FournisseurController extends AbstractController
     public function show(Fournisseur $fournisseur, int $id): Response
     {
         $user = $this->getUser();
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/show.html.twig', [
             'fournisseur' => $fournisseur,
             'user' => $user,
             'id' => $id,
-            'message' => $message,
         ]);
     }
 
@@ -63,12 +51,10 @@ final class FournisseurController extends AbstractController
             return $this->redirectToRoute('app_fournisseur_show', ['id' => $fournisseur->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        $message = $this->motivationalMessageService->getMotivationalMessage();
         return $this->render('fournisseur/edit.html.twig', [
             'fournisseur' => $fournisseur,
             'form' => $form,
             'user' => $user,
-            'message' => $message,
         ]);
     }
 

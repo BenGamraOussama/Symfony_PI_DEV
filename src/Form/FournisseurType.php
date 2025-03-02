@@ -12,6 +12,10 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class FournisseurType extends AbstractType
 {
@@ -50,6 +54,7 @@ class FournisseurType extends AbstractType
                 ]),
             ],
         ])
+        
         ->add('adresse', TextType::class, [
             'required' => true,
             'label' => 'Adresse',
