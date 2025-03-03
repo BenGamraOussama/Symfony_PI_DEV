@@ -85,7 +85,7 @@
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="dossier_medical_directory">C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev/public/uploads/dossier_medical</parameter>
     <parameter key="uploads_directory">C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev/public/uploads</parameter>
-    <parameter key="app.issuer">Amazaune</parameter>
+    <parameter key="app.issuer">HopeNest</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -357,6 +357,7 @@
       <tag name="twig.extension"/>
       <argument type="service" id="App\Service\AuthenticatorService"/>
       <argument type="service" id="security.helper"/>
+      <argument type="service" id="monolog.logger"/>
     </service>
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>

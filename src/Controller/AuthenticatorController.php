@@ -32,7 +32,12 @@ class AuthenticatorController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('authenticator/pair.html.twig');
+        [$qrCodeUri, $secret] = $this->authenticatorService->getQrCodeUri($this->getUser());
+
+        return $this->render('patient/edit.html.twig', [
+            'qrCodeUri' => $qrCodeUri,
+            'secret' => $secret
+        ]);
     }
 
     #[Route('/authenticator/verify', name: 'app_authenticator_verify')]

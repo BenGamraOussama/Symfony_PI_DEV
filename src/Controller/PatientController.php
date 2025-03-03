@@ -17,6 +17,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Repository\ActiviteRepository;
 use App\Entity\Activite;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\AuthenticatorService;
+use OTPHP\TOTP;
+use App\Twig\AppExtension;
 
 #[Route('/patient')]
 final class PatientController extends AbstractController
@@ -71,8 +74,14 @@ final class PatientController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Patient $patient, EntityManagerInterface $entityManager, SluggerInterface $slugger, UserPasswordHasherInterface $passwordHasher, int $id): Response
-    {
+    public function edit(
+        Request $request, 
+        Patient $patient, 
+        EntityManagerInterface $entityManager, 
+        SluggerInterface $slugger, 
+        UserPasswordHasherInterface $passwordHasher
+    ): Response {
+        // Création du formulaire principal
         $form = $this->createForm(PatientType::class, $patient, [
             'is_edit' => true,
             'is_admin' => true,
@@ -80,53 +89,85 @@ final class PatientController extends AbstractController
             'on_register' => true,
         ]);
         $form->handleRequest($request);
-
+    
+        // Création du formulaire de changement de mot de passe
         $formPassword = $this->createForm(PasswordForm::class);
         $formPassword->handleRequest($request);
-
-        $form2FA = $this->createForm(PatientType::class, $patient); // Create form for 2FA
-        $form2FA->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle 2FA settings
-            $patient->setIsTwoFactorEnabled($form2FA->get('isTwoFactorEnabled')->getData());
-
+            // Gestion des paramètres 2FA
+            if ($form->has('isTwoFactorEnabled')) {
+                $patient->setIsTwoFactorEnabled($form->get('isTwoFactorEnabled')->getData());
+            }
+    
+            // Gestion de l'upload du dossier médical
             $dossierMedicalFile = $form->get('dossierMedical')->getData();
             if ($dossierMedicalFile) {
                 $originalFilename = pathinfo($dossierMedicalFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$dossierMedicalFile->guessExtension();
-
+    
                 try {
                     $dossierMedicalFile->move(
                         $this->getParameter('dossier_medical_directory'),
                         $newFilename
                     );
+                    $patient->setDossierMedicalPath($newFilename);
                 } catch (FileException $e) {
-                    // Handle exception if something happens during file upload
+                    $this->addFlash('error', 'Erreur lors du téléchargement du fichier.');
                 }
-
-                $patient->setDossierMedicalPath($newFilename);
             }
+    
+            // Gestion de l'appairage 2FA
+            if ($request->isMethod(Request::METHOD_POST)) {
+                $secret = $request->request->get('secret');
+                if ($secret) {
+                    $this->authenticatorService->validatePairing($patient, $secret);
+                } else {
+                    [$qrCodeUri, $secret] = $this->authenticatorService->getQrCodeUri($patient);
+                }
+            }
+    
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home');
         }
-
+    
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {
             $newPassword = $formPassword->get('plainPassword')->getData();
             $hashedPassword = $passwordHasher->hashPassword($patient, $newPassword);
             $patient->setPassword($hashedPassword);
-
+            
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_patient_show', ['id' => $patient->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_patient_show', ['id' => $patient->getId()]);
         }
-
+    
+        // Vérification de l'OTP (Authentification 2FA)
+        if ($request->isMethod(Request::METHOD_POST) && $request->request->has('otp')) {
+            if (null === $patient->getSecret()) {
+                return $this->redirectToRoute('app_authenticator_pair');
+            }
+    
+            $totp = TOTP::create($patient->getSecret()); // Correction ici
+            $otp = $request->request->get('otp');
+            $result = $totp->verify($otp);
+    
+            return $this->render('patient/edit.html.twig', [
+                'patient' => $patient,
+                'form' => $form->createView(),
+                'formP' => $formPassword->createView(),
+                'result' => $result,
+            ]);
+        }
+    
+        // Génération du QR code et secret pour 2FA
+        [$qrCodeUri, $secret] = $this->authenticatorService->getQrCodeUri($patient);
+    
         return $this->render('patient/edit.html.twig', [
             'patient' => $patient,
             'form' => $form->createView(),
             'formP' => $formPassword->createView(),
+            'qrCodeUri' => $qrCodeUri,
+            'secret' => $secret,
         ]);
     }
 

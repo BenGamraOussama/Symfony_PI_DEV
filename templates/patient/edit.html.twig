@@ -253,12 +253,18 @@
                         </div>
                         <div class="card p-4 mt-4">
                             <h4 class="mb-3">Authenticator</h4>
-                            <a href="{{ path('app_authenticator_pair') }}" style="text-decoration: none;">
-        <button>Pair</button>
-    </a>
-    <a href="{{ path('app_authenticator_verify') }}" style="text-decoration: none;">
-        <button>Verify</button>
-    </a>
+        <button class="btn btn-primary" id="openModal5">Pair</button>
+        <h1>Verify</h1>
+
+    <form method="post">
+        <label for="otp">OTP Code</label>
+        <input id="otp" type="text" name="otp" />
+        <button type="submit">Verify</button>
+    </form>
+
+    {% if result is not null %}
+        <p>{{ result == true ? 'Le code est bon' : 'Cest pas bon' }}</p>
+    {% endif %}
                     </div>
                     </div>
                 </div>
@@ -275,11 +281,35 @@
     </form>
             </div>
         </div>
+        
 
      <script>
         // Sélection des éléments
         const modal = document.getElementById("myModal");
-        const openModal = document.getElementById("openModal");
+        const openModal = document.getElementById("openModal5");
+        const closeModal = document.getElementById("closeModal");
+
+        // Afficher le modal
+        openModal.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Fermer le modal
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Fermer en cliquant en dehors du modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+     </script>
+     <script>
+        // Sélection des éléments
+        const modal = document.getElementById("myModal");
+        const openModal = document.getElementById("openModal6");
         const closeModal = document.getElementById("closeModal");
 
         // Afficher le modal

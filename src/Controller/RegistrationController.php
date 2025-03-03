@@ -105,6 +105,7 @@ public function register(
         'psychiatreType' => $psychiatreForm->createView(),
         'fournissuerType' => $fournisseurForm->createView(),
         'patientFormType' => $patientForm->createView(),
+        'recaptcha_site_key' => $_ENV['RECAPTCHA_SITE_KEY'], // Passer la clé à Twig
     ]);
 }
 }

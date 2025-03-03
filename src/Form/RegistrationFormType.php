@@ -46,15 +46,6 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add('isTwoFactorEnabled', CheckboxType::class, [
-                'required' => false,
-                'label' => 'Enable Two-Factor Authentication',
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You must agree to enable two-factor authentication.',
-                    ]),
-                ],
             ]);
     }
 

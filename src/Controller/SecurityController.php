@@ -26,10 +26,10 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_psychiatre'); // Redirection vers l'admin
             }
             if ($this->isGranted('ROLE_PATIENT')) {
-                if ($this->getUser() && $this->getUser()->getSecret() !== null) {
-                    return $this->redirectToRoute('app_authenticator_verify');
-                } else {
+                if (null === $this->getUser()->getSecret()) {
                     return $this->redirectToRoute('app_home');
+                } else {
+                    return $this->redirectToRoute('app_authenticator_verify');
                 } // Redirection vers home
             }
             return $this->redirectToRoute('app_home'); // Redirection vers l'admin

@@ -12,6 +12,13 @@
     </form>
 
     {% if result is not null %}
-        <p>{{ result == true ? 'Le code est bon' : 'Cest pas bon' }}</p>
+        {% if result == true %}
+            <p>Le code correct. Redirection en cours...</p>
+            <script>
+                window.location.href = "{{ path('app_home') }}";
+            </script>
+        {% else %}
+            <p>C'est pas bon</p>
+        {% endif %}
     {% endif %}
 {% endblock %}

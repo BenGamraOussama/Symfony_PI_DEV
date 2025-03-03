@@ -109,7 +109,7 @@ final class AdminController extends AbstractController
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
-                ->from('oussamagamra52@gmail.com')
+                ->from('novateeam@gmail.com')
                 ->to($psychiatre->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
@@ -208,7 +208,7 @@ final class AdminController extends AbstractController
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
-                ->from('oussamagamra52@gmail.com')
+                ->from('novateeam@gmail.com')
                 ->to($fournisseur->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
@@ -311,7 +311,7 @@ final class AdminController extends AbstractController
 
             // Envoyer un email avec les informations de connexion
             $email = (new Email())
-                ->from('oussamagamra52@gmail.com')
+                ->from('novateeam@gmail.com')
                 ->to($patient->getEmail())
                 ->subject('Vos informations de connexion')
                 ->html($this->renderView(
