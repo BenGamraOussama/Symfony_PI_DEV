@@ -6,40 +6,35 @@ use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Question;
-use App\Entity\Exercice;
-use App\Entity\Activite;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
-class Patient
+class Patient extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $dossierMedicalPath = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $gener = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $phone = null;
     
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
 
-    /**
-     * @var Collection<int, Question>
-     */
+    #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
+    private Collection $rdvs;
+
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'patient')]
     private Collection $questions;
 
-
-
-    /**
-     * @var Collection<int, Exercice>
-     */
-    #[ORM\ManyToMany(targetEntity: Exercice::class, mappedBy: 'patient')]
+    #[ORM\ManyToMany(targetEntity: Exercice::class, inversedBy: 'patients')]
     private Collection $exercices;
 
-    /**
-     * @var Collection<int, Activite>
-     */
-    #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'patient')]
+    #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'patients')]
     private Collection $activites;
 
     #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'patient')]
@@ -51,27 +46,78 @@ class Patient
     
     public function __construct()
     {
+        $this->rdvs = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->exercices = new ArrayCollection();
         $this->activites = new ArrayCollection();
         $this->reponses = new ArrayCollection();
-
     }
 
-    public function getReponses(): Collection
+    public function getGener(): ?string
     {
-        return $this->reponses;
+        return $this->gener;
     }
 
-    public function getId(): ?int
+    public function setGener(?string $gener): static
     {
-        return $this->id;
+        $this->gener = $gener;
+        return $this;
     }
 
-    public function setId(int $id): static
+    public function getAdresse(): ?string
     {
-        $this->id = $id;
+        return $this->adresse;
+    }
 
+    public function setAdresse(?string $adresse): static
+    {
+        $this->adresse = $adresse;
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): static
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getRdvs(): Collection
+    {
+        return $this->rdvs;
+    }
+
+    public function addRdv(RDV $rdv): static
+    {
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs->add($rdv);
+            $rdv->setPatient($this);
+        }
+        return $this;
+    }
+
+    public function removeRdv(RDV $rdv): static
+    {
+        if ($this->rdvs->removeElement($rdv)) {
+            if ($rdv->getPatient() === $this) {
+                $rdv->setPatient(null);
+            }
+        }
+        return $this;
+    }
+
+    public function getDossierMedicalPath(): ?string
+    {
+        return $this->dossierMedicalPath;
+    }
+
+    public function setDossierMedicalPath(?string $dossierMedicalPath): self
+    {
+        $this->dossierMedicalPath = $dossierMedicalPath;
         return $this;
     }
 
@@ -83,7 +129,6 @@ class Patient
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
     
@@ -102,27 +147,19 @@ class Patient
             $this->questions->add($question);
             $question->setPatient($this);
         }
-
         return $this;
     }
 
     public function removeQuestion(Question $question): static
     {
         if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
             if ($question->getPatient() === $this) {
                 $question->setPatient(null);
             }
         }
-
         return $this;
     }
 
-    
-
-    /**
-     * @return Collection<int, Exercice>
-     */
     public function getExercices(): Collection
     {
         return $this->exercices;
@@ -132,52 +169,51 @@ class Patient
     {
         if (!$this->exercices->contains($exercice)) {
             $this->exercices->add($exercice);
-            $exercice->addPatient($this);
         }
-
         return $this;
     }
 
     public function removeExercice(Exercice $exercice): static
     {
-        if ($this->exercices->removeElement($exercice)) {
-            $exercice->removePatient($this);
-        }
-
+        $this->exercices->removeElement($exercice);
         return $this;
     }
 
-    /**
-     * @return Collection<int, Activite>
-     */
     public function getActivites(): Collection
     {
         return $this->activites;
     }
 
     public function addActivite(Activite $activite): static
-    {
-        if (!$this->activites->contains($activite)) {
-            $this->activites->add($activite);
-            $activite->addPatient($this);
-        }
+{
+    if (!$this->activites->contains($activite)) {
+        $this->activites->add($activite);
+        $activite->addPatient($this); 
+    }
+    return $this;
+}
 
-        return $this;
+public function removeActivite(Activite $activite): static
+{
+    if ($this->activites->removeElement($activite)) {
+        $activite->removePatient($this); // Add this line
+    }
+    return $this;
+}
+
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
     }
 
-    public function removeActivite(Activite $activite): static
+    public function getUser(): ?User
     {
-        if ($this->activites->removeElement($activite)) {
-            $activite->removePatient($this);
-        }
-
-        return $this;
+        return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
         return $this;
     }
-    
 }

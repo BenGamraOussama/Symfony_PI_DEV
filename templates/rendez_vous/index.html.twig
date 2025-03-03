@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RDV index{% endblock %}
+
+{% block body %}
+
+<style>
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-action {
+    margin: 2px;
+}
+</style>
+
+<div class="app">
+    <div class="app-wrap">
+        <!-- Contenu de l'application -->
+        <div class="app-container">
+            <div class="app-main" id="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card container shadow">
+                            <h5 class="card-header">List RDVs</h5>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#addRdvModal">
+                                <b><i class="bx bx-add-to-queue me-1"></i> Add RDV</b>
+                            </button>
+
+                            <!-- Tableau des RDVs -->
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Heure</th>
+                                            <th>Priorité</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        {% for rdv in rdvs %}
+                                            <tr>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ rdv.id }}</strong></td>
+                                                <td>{{ rdv.heure ? rdv.heure|date('H:i:s') : '' }}</td>
+                                                <td>{{ rdv.priorite }}</td>
+                                                <td>
+                                                    <!-- Bouton d'édition -->
+                                                    <a class="btn btn-warning btn-action" href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">
+                                                        <i class="dripicons dripicons-pencil"></i> Modifier
+                                                    </a>
+                                                    <!-- Bouton de suppression avec modal de confirmation -->
+                                                    <button class="btn btn-danger btn-action" data-toggle="modal" data-target="#deleteModal{{ rdv.id }}">
+                                                        <i class="dripicons dripicons-trash"></i> Supprimer
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Modal de confirmation de suppression pour chaque RDV -->
+                                            <div class="modal fade" id="deleteModal{{ rdv.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ rdv.id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel{{ rdv.id }}">Confirmation de suppression</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Êtes-vous sûr de vouloir supprimer ce RDV ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <form method="post" action="{{ path('app_rdv_delete', {'id': rdv.id}) }}">
+                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
+                                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="4">Aucun RDV trouvé</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Inclure jQuery (si ce n'est pas déjà fait) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Script pour gérer les modals -->
+<script>
+    $(document).ready(function() {
+        // Ouvrir la modal d'ajout ou de confirmation lorsque le bouton est cliqué
+        $('[data-toggle="modal"]').on('click', function() {
+            var target = $(this).data('target'); // Récupère l'ID de la modal
+            $(target).modal('show'); // Ouvre la modal
+        });
+
+        // Fermer la modal lorsque le bouton "Close" est cliqué
+        $('[data-dismiss="modal"]').on('click', function() {
+            $(this).closest('.modal').modal('hide'); // Ferme la modal
+        });
+
+        // Fermer la modal lorsque l'utilisateur clique en dehors de la modal
+        $('.modal').on('click', function(event) {
+            if ($(event.target).hasClass('modal')) {
+                $(this).modal('hide'); // Ferme la modal
+            }
+        });
+
+        // Soumettre le formulaire de suppression lorsque l'utilisateur confirme
+        $('.confirm-delete').on('click', function() {
+            var form = $(this).closest('.modal').find('form'); // Récupère le formulaire associé
+            form.submit(); // Soumet le formulaire
+        });
+    });
+</script>
+
+{% endblock %}

@@ -17,14 +17,17 @@ final class QuestionController extends AbstractController
     #[Route(name: 'app_question_index', methods: ['GET'])]
     public function index(QuestionRepository $questionRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('question/index.html.twig', [
             'questions' => $questionRepository->findAll(),
+            'user' => $user
         ]);
     }
 
     #[Route('/new', name: 'app_question_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
@@ -39,20 +42,24 @@ final class QuestionController extends AbstractController
         return $this->render('question/new.html.twig', [
             'question' => $question,
             'form' => $form,
+            'user' => $user
         ]);
     }
 
     #[Route('/{id}', name: 'app_question_show', methods: ['GET'])]
     public function show(Question $question): Response
     {
+        $user = $this->getUser();
         return $this->render('question/show.html.twig', [
             'question' => $question,
+            'user' => $user
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_question_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Question $question, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
@@ -65,6 +72,7 @@ final class QuestionController extends AbstractController
         return $this->render('question/edit.html.twig', [
             'question' => $question,
             'form' => $form,
+            'user' => $user
         ]);
     }
 

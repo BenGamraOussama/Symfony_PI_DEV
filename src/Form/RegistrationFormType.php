@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -19,14 +20,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
             ->add('firstName')
             ->add('lastName')
             ->add('roles', ChoiceType::class, [
@@ -35,8 +28,11 @@ class RegistrationFormType extends AbstractType
                     'Psychiatre' => 'ROLE_PSYCHIATRE',
                     'Fournisseur' => 'ROLE_FOURNISSEUR',
                 ],
-                'expanded' => false,
-                'multiple' => true, // Symfony attend un tableau pour les rôles
+                'expanded' => false, // Si vous voulez des boutons radio, mettez cela à true
+                'multiple' => false, // Permettre la sélection d'un seul rôle
+                'attr' => [
+                   'class' => 'newcss', // Optionnel: ajoute des classes CSS
+                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -55,13 +51,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            // Ajout du champ spécialité uniquement pour le psychiatre
+
+            // Ajout du champ dossier médical uniquement pour les patients
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => user::class,
         ]);
     }
 }

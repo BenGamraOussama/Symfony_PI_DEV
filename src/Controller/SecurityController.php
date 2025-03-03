@@ -22,12 +22,8 @@ class SecurityController extends AbstractController
             if ($this->isGranted('ROLE_PSYCHIATRE')) {
                 return $this->redirectToRoute('app_psychiatre'); // Redirection vers l'admin
             }
-            if ($this->isGranted('ROLE_PATIENT')) {
-                return $this->redirectToRoute('app_home'); // Redirection vers l'admin
-            }
-             return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_home'); // Redirection vers l'admin
          }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user

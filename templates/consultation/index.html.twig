@@ -1,0 +1,190 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List Consultations{% endblock %}
+
+{% block body %}
+
+<style>
+.card {
+    border-radius: 10px;
+}
+</style>
+
+<div class="app">
+    <div class="app-wrap">
+        <!-- Contenu de l'application -->
+        <div class="app-container">
+            <div class="app-main" id="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card container shadow">
+                            <h5 class="card-header">List Consultations</h5>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">
+                                <b><i class="bx bx-add-to-queue me-1"></i> Add Consultation</b>
+                            </button>
+
+                            <!-- Tableau des consultations -->
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Heure</th>
+                                            <th>Prix</th>
+                                            <th>Mode de Consultation</th>
+                                            <th>État</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        {% for consultation in consultations %}
+                                            <tr>
+                                                <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ consultation.date ? consultation.date|date('Y-m-d') : '' }}</strong></td>
+                                                <td>{{ consultation.heure ? consultation.heure|date('H:i:s') : '' }}</td>
+                                                <td>{{ consultation.prix }}</td>
+                                                <td>{{ consultation.modeconsultation }}</td>
+                                                <td>{{ consultation.etaenum.value }}</td>
+                                                <td>
+                                                    <!-- Bouton d'édition -->
+                                                        <a class="btn btn-warning btn-action" href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">
+                                                            <i class="dripicons dripicons-pencil"></i> Modifier
+                                                        </a>
+                                                        <!-- Bouton de suppression avec modal de confirmation -->
+                                                        <button class="btn btn-danger btn-action" data-toggle="modal" data-target="#deleteModal{{ consultation.id }}">
+                                                            <i class="dripicons dripicons-trash"></i> Supprimer
+                                                        </button>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Modal de confirmation de suppression pour chaque consultation -->
+                                            <div class="modal fade" id="verticalCenter{{ consultation.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ consultation.id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel{{ consultation.id }}">Confirmation de suppression</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Êtes-vous sûr de vouloir supprimer cette consultation ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <form method="post" action="{{ path('app_consultation_delete', {'id': consultation.id}) }}">
+                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ consultation.id) }}">
+                                                                <button type="submit" class="btn btn-danger confirm-delete">Supprimer</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="6">Aucune consultation trouvée</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal pour ajouter une consultation -->
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Ajouter une Consultation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form, {'attr': {'id': 'addConsultationForm', 'novalidate': 'novalidate'}}) }}
+                <div class="input-group mb-3">
+                    {{ form_widget(form.date, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Date', 'id': 'consultation_date'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.heure, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Heure', 'id': 'consultation_heure'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.prix, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Prix', 'id': 'consultation_prix'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.modeconsultation, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Mode de Consultation', 'id': 'consultation_modeconsultation'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.etaenum, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'État', 'id': 'consultation_etaenum'} }) }}
+                </div>
+                <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">
+                    <b>Ajouter</b>
+                </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inclure jQuery (si ce n'est pas déjà fait) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Script pour gérer les modals -->
+<script>
+    $(document).ready(function() {
+        // Validation du formulaire d'ajout de consultation
+        $('#addConsultationForm').on('submit', function(event) {
+            var isValid = true;
+
+            // Clear previous error messages
+            $('.error-message').remove();
+
+            // Validate Date field
+            var date = $('#consultation_date').val();
+            if (!date) {
+                $('#consultation_date').after('<div class="text-danger error-message">La date ne peut pas être vide.</div>');
+                isValid = false;
+            }
+
+            // Validate Heure field
+            var heure = $('#consultation_heure').val();
+            if (!heure) {
+                $('#consultation_heure').after('<div class="text-danger error-message">L\'heure ne peut pas être vide.</div>');
+                isValid = false;
+            }
+
+            // Validate Prix field
+            var prix = $('#consultation_prix').val();
+            if (!prix || isNaN(prix) || prix <= 0) {
+                $('#consultation_prix').after('<div class="text-danger error-message">Le prix doit être un nombre positif.</div>');
+                isValid = false;
+            }
+
+            // Validate Mode de Consultation field
+            var modeconsultation = $('#consultation_modeconsultation').val();
+            if (!modeconsultation) {
+                $('#consultation_modeconsultation').after('<div class="text-danger error-message">Le mode de consultation ne peut pas être vide.</div>');
+                isValid = false;
+            }
+
+            // Validate État field
+            var etaenum = $('#consultation_etaenum').val();
+            if (!etaenum) {
+                $('#consultation_etaenum').after('<div class="text-danger error-message">L\'état ne peut pas être vide.</div>');
+                isValid = false;
+            }
+
+            // Prevent form submission if any field is invalid
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+{% endblock %}

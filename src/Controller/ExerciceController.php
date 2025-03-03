@@ -19,14 +19,17 @@ final class ExerciceController extends AbstractController
     #[Route(name: 'app_exercice_index', methods: ['GET'])]
     public function index(ExerciceRepository $exerciceRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('exercice/index.html.twig', [
             'exercices' => $exerciceRepository->findAll(),
+            'user' => $user
         ]);
     }
 
     #[Route('/new', name: 'app_exercice_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $exercice = new Exercice();
         $form = $this->createForm(ExerciceType::class, $exercice);
         $form->handleRequest($request);
@@ -41,6 +44,7 @@ final class ExerciceController extends AbstractController
         return $this->render('exercice/new.html.twig', [
             'exercice' => $exercice,
             'form' => $form,
+            'user' => $user
         ]);
     }
 
@@ -61,12 +65,15 @@ public function show(Exercice $exercice, Security $security): Response
     return $this->render('exercice/show.html.twig', [
         'exercice' => $exercice,
         'hasResponse' => $hasResponse, 
+        'user' => $user
+
     ]);
 }
 
     #[Route('/{id}/edit', name: 'app_exercice_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(ExerciceType::class, $exercice);
         $form->handleRequest($request);
 
@@ -79,6 +86,7 @@ public function show(Exercice $exercice, Security $security): Response
         return $this->render('exercice/edit.html.twig', [
             'exercice' => $exercice,
             'form' => $form,
+            'user' => $user
         ]);
     }
 

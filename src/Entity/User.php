@@ -5,23 +5,35 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Entity\Patient;
+
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[ORM\Table(name: 'user')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ORM\InheritanceType('JOINED')] // Stratégie d'héritage "JOINED"
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')] // Colonne discriminatrice
+#[ORM\DiscriminatorMap([
+    'user' => User::class,
+    'admin' => Admin::class,
+    'patient' => Patient::class,
+    'psychiatre' => Psychiatre::class,
+    'fournisseur' => Fournisseur::class,
+
+])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Patient::class)]
-    private ?Patient $patient = null;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\NotBlank(message: "Email is required"), Assert\Email(message: "The email '{ @ }' is not a valid email")]
     private ?string $email = null;
 
     /**
@@ -36,11 +48,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255, nullable:true)]
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: "LastName is required"), Assert\Length(min:3)]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 255, nullable:true)]
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: "FirstName is required"), Assert\Length(min:3)]
     private ?string $firstName = null;
+
+    #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
+    private ?Patient $patient = null;
+
 
     public function getId(): ?int
     {
@@ -151,4 +169,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->patient;
     }
+
+    public function setPatient(?Patient $patient): self
+    {
+        $this->patient = $patient;
+        return $this;
+    }
+    
 }

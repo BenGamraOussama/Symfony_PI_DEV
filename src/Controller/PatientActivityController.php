@@ -15,11 +15,13 @@ class PatientActivityController extends AbstractController
     #[Route('/', name: 'patient_activity_index', methods: ['GET'])]
     public function index(EntityManagerInterface $em): Response
     {
+        $user = $this->getUser();
         $activities = $em->getRepository(Activite::class)
             ->findAll();
 
         return $this->render('patient/activities.html.twig', [
-            'patientActivities' => $activities
+            'patientActivities' => $activities,
+            'user' => $user
         ]);
     }
 

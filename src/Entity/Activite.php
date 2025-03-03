@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
 class Activite
 {
@@ -56,14 +57,23 @@ class Activite
     // Supprimer la contrainte Assert\Choice
     private ?string $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Patient::class, inversedBy: 'activites')]
+    #[ORM\ManyToMany(
+        targetEntity: Patient::class, 
+        inversedBy: 'activites',
+    )]
+    #[ORM\JoinTable(name: 'patient_activite')]
     #[Assert\Count(
         min: 1,
         minMessage: "Vous devez sélectionner au moins un patient"
     )]
     private Collection $patients;
 
-    #[ORM\OneToOne(mappedBy: 'activite', targetEntity: Exercice::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(
+        mappedBy: 'activite', 
+        targetEntity: Exercice::class, 
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true // Add this line
+    )]
     private ?Exercice $exercice = null;
 
     public function __construct()
@@ -72,7 +82,6 @@ class Activite
         $this->status = self::STATUS_NOT_STARTED;
     }
 
-    // Getters and Setters (inchangés)
     public function getId(): ?int
     {
         return $this->id;
@@ -128,18 +137,21 @@ class Activite
     }
 
     public function addPatient(Patient $patient): self
-    {
-        if (!$this->patients->contains($patient)) {
-            $this->patients->add($patient);
-        }
-        return $this;
+{
+    if (!$this->patients->contains($patient)) {
+        $this->patients->add($patient);
+        $patient->addActivite($this); // Add this line
     }
+    return $this;
+}
 
-    public function removePatient(Patient $patient): self
-    {
-        $this->patients->removeElement($patient);
-        return $this;
+public function removePatient(Patient $patient): self
+{
+    if ($this->patients->removeElement($patient)) {
+        $patient->removeActivite($this); // Add this line
     }
+    return $this;
+}
 
     public function getExercice(): ?Exercice
     {
