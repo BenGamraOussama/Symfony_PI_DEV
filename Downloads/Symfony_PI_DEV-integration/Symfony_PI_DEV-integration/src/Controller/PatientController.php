@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Panier;
-use App\Entity\Patient;
+use App\Entity\Rating;
 use App\Entity\Produit;
-use App\Repository\PatientRepository;
+use App\Form\RatingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,77 +15,95 @@ use Knp\Component\Pager\PaginatorInterface;
 #[Route('/patient')]
 final class PatientController extends AbstractController
 {
-    // Affichage de tous les produits dans l'interface utilisateur avec pagination et filtre par prix
+    // Affichage de tous les produits avec pagination et filtre par prix
     #[Route('/produit_patient', name: 'produit_index_patient', methods: ['GET'])]
     #[IsGranted('PUBLIC_ACCESS')]
     public function index(EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator): Response
     {
-        // Récupérer les valeurs de prix minimum et maximum depuis la requête GET
+        // Récupérer les valeurs de prix depuis la requête GET
         $prixMin = $request->query->get('prix_min');
         $prixMax = $request->query->get('prix_max');
 
-        // Créer la requête de base pour les produits
+        // Requête de base pour récupérer les produits avec des filtres sur les prix
         $queryBuilder = $entityManager->getRepository(Produit::class)->createQueryBuilder('p');
 
-        // Appliquer les filtres si les valeurs sont présentes
         if ($prixMin) {
-            $queryBuilder->andWhere('p.prix >= :prixMin')
-                ->setParameter('prixMin', $prixMin);
+            $queryBuilder->andWhere('p.prix >= :prixMin')->setParameter('prixMin', $prixMin);
         }
 
         if ($prixMax) {
-            $queryBuilder->andWhere('p.prix <= :prixMax')
-                ->setParameter('prixMax', $prixMax);
+            $queryBuilder->andWhere('p.prix <= :prixMax')->setParameter('prixMax', $prixMax);
         }
 
-        // Récupérer les produits filtrés avec pagination
         $query = $queryBuilder->getQuery();
 
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1), // Page actuelle
-            2 // Nombre d'éléments par page
-        );
+        // Pagination
+        $pagination = $paginator->paginate($query, $request->query->getInt('page', 1), 2);
+        $produits = $pagination->getItems();
 
-        // Assurez-vous que la variable 'produits' est définie ici
-        $produits = $pagination->getItems(); // Récupérer les produits de la pagination
-
-        // Renvoyer la vue avec les variables correctes
         return $this->render('produit/index_patient.html.twig', [
             'pagination' => $pagination,
-            'produits' => $produits, // Passer la variable 'produits' dans la vue
-            'prixMin' => $prixMin, // Passer la valeur du filtre prix min
-            'prixMax' => $prixMax, // Passer la valeur du filtre prix max
-        ]);
-    }
-
-    // Affichage d'un produit spécifique
-    #[Route('/produit/{id}', name: 'produit_show_patient')]
-    public function showProduit(Produit $produit): Response
-    {
-        // Retourne la vue avec le produit récupéré
-        return $this->render('produit/show.html.twig', [
-            'produit' => $produit, // Envoie l'objet produit à la vue
-        ]);
-    }
-    #[Route('/recherche', name: 'produit_recherche')]
-    public function recherche(Request $request, EntityManagerInterface $em): Response
-    {
-        // Récupérer le terme de recherche
-        $nomRecherche = $request->query->get('nom');
-
-        // Créer une requête pour chercher des produits dont le nom contient le terme de recherche
-        $produits = $em->getRepository(Produit::class)->createQueryBuilder('p')
-            ->where('p.nom LIKE :nom')
-            ->setParameter('nom', '%'.$nomRecherche.'%')
-            ->getQuery()
-            ->getResult();
-
-        // Retourner la vue avec les produits trouvés
-        return $this->render('produit/recherche.html.twig', [
             'produits' => $produits,
-            'nomRecherche' => $nomRecherche,
+            'prixMin' => $prixMin,
+            'prixMax' => $prixMax,
         ]);
     }
 
+    // Affichage d'un produit spécifique avec un formulaire de notation
+    #[Route('/produit/{id}', name: 'produit_show_patient')]
+    public function showProduit(Produit $produit, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // Création du formulaire de notation
+        $rating = new Rating(); // Créer une instance de l'entité Rating
+        $form = $this->createForm(RatingType::class, $rating); // Créer le formulaire avec RatingType
+        $form->handleRequest($request); // Gérer la soumission du formulaire
+
+        // Si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Lier l'évaluation au produit
+            $rating->setProduit($produit);
+            $entityManager->persist($rating); // Persister l'évaluation
+            $entityManager->flush(); // Sauvegarder dans la base de données
+
+            // Calcul de la moyenne des notes du produit
+            $ratings = $entityManager->getRepository(Rating::class)->findBy(['produit' => $produit]);
+            $totalRating = 0;
+            $ratingCount = count($ratings);
+
+            // Si le produit a des évaluations
+            if ($ratingCount > 0) {
+                foreach ($ratings as $r) {
+                    $totalRating += $r->getNote(); // Ajoute la note à la somme
+                }
+                $averageRating = $totalRating / $ratingCount; // Calcul de la moyenne
+            } else {
+                $averageRating = 0; // Aucun rating, donc moyenne = 0
+            }
+
+            // Mettre à jour la note moyenne du produit
+            $produit->setAverageRating($averageRating); // Utilisation du setter
+            $entityManager->persist($produit);
+            $entityManager->flush();
+
+            // Rediriger après la soumission du formulaire
+            return $this->redirectToRoute('produit_show_patient', ['id' => $produit->getId()]);
+        }
+
+        // Renvoyer la vue avec les variables 'produit' et 'form'
+        return $this->render('produit/show.html.twig', [
+            'produit' => $produit,
+            'form' => $form->createView(), // Passer le formulaire à la vue
+        ]);
+    }
+
+    #[Route('/produits/recherche', name: 'produit_recherche')]
+    public function search(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $query = $request->query->get('query');
+        $produits = $entityManager->getRepository(Produit::class)->findBySearchQuery($query);
+
+        return $this->render('produit/index_user.html.twig', [
+            'produits' => $produits,
+        ]);
+    }
 }

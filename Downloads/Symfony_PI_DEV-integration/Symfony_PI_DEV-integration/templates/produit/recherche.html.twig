@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basePatient.html.twig' %}
 
 {% block title %}Résultats de recherche{% endblock %}
 
@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ produit.nom }}</h5>
                             <p class="card-text">{{ produit.description }}</p>
-                            <p class="card-text">{{ produit.prix }} DT</p>
+                            <p class="card-text">{{ produit.prix }} TND</p>
                             <a href="{{ path('ajouter_panier', {'id': produit.id}) }}" class="btn btn-primary">
                                 Ajouter au panier
                             </a>

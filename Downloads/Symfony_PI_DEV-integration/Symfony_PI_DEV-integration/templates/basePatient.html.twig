@@ -280,6 +280,7 @@
                             </form>
 
 
+
                             <div class="option-item">
                                 <div class="navbar-btn">
                                     <a href="{{ path('app_rdv_index') }}" class="default-btn">Book Online <i class="flaticon-pointer"></i></a>
@@ -291,6 +292,21 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-raty/2.7.1/jquery.raty.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#rating').raty({
+                score: function () {
+                    return $(this).attr('data-score');
+                },
+                click: function (score) {
+                    $('#rating_input').val(score);
+                }
+            });
+        });
+    </script>
+
 {% endblock %}
 {% block body %}{% endblock %}
 {% block footer %}

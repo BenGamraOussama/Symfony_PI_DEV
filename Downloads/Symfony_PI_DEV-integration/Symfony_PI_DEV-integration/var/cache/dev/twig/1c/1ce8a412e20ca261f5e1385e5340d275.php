@@ -155,9 +155,9 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
 ";
         // line 47
         yield from $this->unwrap()->yieldBlock('header', $context, $blocks);
-        // line 295
+        // line 311
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 296
+        // line 312
         yield from $this->unwrap()->yieldBlock('footer', $context, $blocks);
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
@@ -631,10 +631,11 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
                             </form>
 
 
+
                             <div class=\"option-item\">
                                 <div class=\"navbar-btn\">
                                     <a href=\"";
-        // line 285
+        // line 286
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_rdv_index");
         yield "\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
                                 </div>
@@ -645,6 +646,21 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
             </div>
         </div>
     </div>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-raty/2.7.1/jquery.raty.js\"></script>
+    <script>
+        \$(document).ready(function () {
+            \$('#rating').raty({
+                score: function () {
+                    return \$(this).attr('data-score');
+                },
+                click: function (score) {
+                    \$('#rating_input').val(score);
+                }
+            });
+        });
+    </script>
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -655,7 +671,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         yield from [];
     }
 
-    // line 295
+    // line 311
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -677,7 +693,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         yield from [];
     }
 
-    // line 296
+    // line 312
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -690,7 +706,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 297
+        // line 313
         yield "    <footer class=\"footer-area pt-100 pb-70\">
         <div class=\"container\">
             <div class=\"row\">
@@ -698,7 +714,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
                     <div class=\"single-footer-widget\">
                         <div class=\"widget-logo\">
                             <a href=\"index.html\"><img src=\"";
-        // line 303
+        // line 319
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assetsP/images/logo-2.png"), "html", null, true);
         yield "\" alt=\"image\"></a>
                         </div>
@@ -851,7 +867,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  702 => 303,  694 => 297,  681 => 296,  659 => 295,  638 => 285,  624 => 275,  616 => 270,  610 => 266,  608 => 265,  587 => 246,  580 => 242,  576 => 240,  573 => 239,  565 => 234,  561 => 233,  553 => 227,  550 => 226,  542 => 221,  538 => 220,  530 => 214,  527 => 213,  519 => 208,  515 => 207,  507 => 201,  504 => 200,  496 => 195,  492 => 194,  484 => 188,  481 => 187,  474 => 183,  470 => 181,  467 => 180,  460 => 176,  456 => 174,  454 => 173,  442 => 163,  435 => 161,  429 => 159,  424 => 158,  416 => 153,  411 => 151,  351 => 94,  345 => 91,  329 => 78,  321 => 73,  312 => 67,  308 => 66,  294 => 55,  290 => 54,  282 => 48,  269 => 47,  246 => 42,  235 => 43,  232 => 42,  219 => 41,  208 => 39,  195 => 38,  172 => 4,  161 => 296,  159 => 295,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
+        return array (  718 => 319,  710 => 313,  697 => 312,  675 => 311,  639 => 286,  624 => 275,  616 => 270,  610 => 266,  608 => 265,  587 => 246,  580 => 242,  576 => 240,  573 => 239,  565 => 234,  561 => 233,  553 => 227,  550 => 226,  542 => 221,  538 => 220,  530 => 214,  527 => 213,  519 => 208,  515 => 207,  507 => 201,  504 => 200,  496 => 195,  492 => 194,  484 => 188,  481 => 187,  474 => 183,  470 => 181,  467 => 180,  460 => 176,  456 => 174,  454 => 173,  442 => 163,  435 => 161,  429 => 159,  424 => 158,  416 => 153,  411 => 151,  351 => 94,  345 => 91,  329 => 78,  321 => 73,  312 => 67,  308 => 66,  294 => 55,  290 => 54,  282 => 48,  269 => 47,  246 => 42,  235 => 43,  232 => 42,  219 => 41,  208 => 39,  195 => 38,  172 => 4,  161 => 312,  159 => 311,  157 => 47,  152 => 44,  150 => 41,  147 => 40,  145 => 38,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  122 => 30,  117 => 28,  112 => 26,  107 => 24,  102 => 22,  97 => 20,  92 => 18,  87 => 16,  82 => 14,  77 => 12,  72 => 10,  67 => 8,  60 => 4,  55 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1138,6 +1154,7 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
                             </form>
 
 
+
                             <div class=\"option-item\">
                                 <div class=\"navbar-btn\">
                                     <a href=\"{{ path('app_rdv_index') }}\" class=\"default-btn\">Book Online <i class=\"flaticon-pointer\"></i></a>
@@ -1149,6 +1166,21 @@ class __TwigTemplate_66b6198bbd6a66e403abd33bfcd60424 extends Template
             </div>
         </div>
     </div>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-raty/2.7.1/jquery.raty.js\"></script>
+    <script>
+        \$(document).ready(function () {
+            \$('#rating').raty({
+                score: function () {
+                    return \$(this).attr('data-score');
+                },
+                click: function (score) {
+                    \$('#rating_input').val(score);
+                }
+            });
+        });
+    </script>
+
 {% endblock %}
 {% block body %}{% endblock %}
 {% block footer %}
