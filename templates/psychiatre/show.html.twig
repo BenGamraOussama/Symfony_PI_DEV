@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Psychiatre{% endblock %}
+
+{% block body %}
+    <h1>Psychiatre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ psychiatre.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ psychiatre.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ psychiatre.roles ? psychiatre.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ psychiatre.password }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ psychiatre.lastName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ psychiatre.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ psychiatre.specialite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_psychiatre_index') }}">back to list</a>
+
+    <a href="{{ path('app_psychiatre_edit', {'id': psychiatre.id}) }}">edit</a>
+
+    {{ include('psychiatre/_delete_form.html.twig') }}
+{% endblock %}

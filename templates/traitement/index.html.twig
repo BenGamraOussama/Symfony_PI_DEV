@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+<div class="app">
+    <div class="app-wrap">
+        <!-- Contenu de l'application -->
+        <div class="app-container">
+            <div class="app-main" id="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card container shadow">
+                            <h5 class="card-header">List Traittements</h5>
+                            
+                           <!-- Tableau des consultations -->
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Medicament</th>
+                                            <th>Suivi</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                       
+        {% for traitement in traitements %}
+        <tr>
+        <td>{{ traitement.type }}</td>
+        <td>{{ traitement.medicament }}</td>
+        <td>{{ traitement.suivi }}</td>
+        <td> <a href="{{ path('app_traitement_edit', {'consultation_id': consultation.id, 'id': traitement.id}) }}" class="btn btn-primary">Modifier</a>
+                <form action="{{ path('app_traitement_delete', {'consultation_id': consultation.id, 'id': traitement.id}) }}" method="post" style="display:inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ traitement.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form></td>               
+        </tr>
+        {% endfor %}
+
+                    </tbody> 
+                    </table>
+                    </div>
+</div></div></div></div></div></div></div>
+    
+
+
+
+{% endblock %}
