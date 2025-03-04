@@ -27,9 +27,11 @@ use App\Form\FournisseurType;
 use App\Form\Patientadd;
 use App\Security\SecurityAuthenticator;
 use Symfony\Bundle\SecurityBundle\Security;
+
 #[Route('/admin')]
 final class AdminController extends AbstractController
-{   
+{
+    
     #[Route(name: 'app_admin')]
     public function index(UserRepository $userRepository): Response
     {
@@ -345,24 +347,22 @@ final class AdminController extends AbstractController
         return $this->redirectToRoute('list_patient_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('listPatient/block/{id}', name: 'app_patient_block', methods: ['POST'])]
-    public function blockPatient(Request $request, Patient $patient = null, EntityManagerInterface $em): Response
+    #[Route('/listPatient/{id}/block', name: 'app_patient_block')]
+    public function blockPatient(Patient $patient, int $id, EntityManagerInterface $entityManager): Response
     {
+        $patient = $entityManager->getRepository(Patient::class)->find($id);
         if (!$patient) {
-            $this->addFlash('error', 'Patient non trouvé.');
-            return $this->redirectToRoute('list_patient_index');
+            throw $this->createNotFoundException('Patient not found');
         }
-    
-        // Bloquer uniquement ce patient
-        dump($patient->getId()); // Vérifiez l'ID du patient
+
         $patient->setIsBlocked(true);
-        $em->flush();
-        $this->addFlash('success', 'Le patient a été bloqué avec succès.');
-    
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Patient block avec succès.');
         return $this->redirectToRoute('list_patient_index');
     }
 
-    #[Route('listPatient/unblock/{id}', name: 'app_patient_unblock', methods: ['POST'])]
+    #[Route('listPatient/{id}/unblock', name: 'app_patient_unblock', methods: ['POST'])]
     public function unblockPatient(Request $request, Patient $patient = null, EntityManagerInterface $em): Response
     {
     if (!$patient) {
@@ -370,14 +370,9 @@ final class AdminController extends AbstractController
         return $this->redirectToRoute('list_patient_index');
     }
 
-    if ($this->isCsrfTokenValid('unblock'.$patient->getId(), $request->request->get('_token'))) {
-        dump($patient->getId()); // Vérifiez l'ID du patient
         $patient->setIsBlocked(false);
         $em->flush();
         $this->addFlash('success', 'Le patient a été débloqué avec succès.');
-    } else {
-        $this->addFlash('error', 'Token CSRF invalide.');
-    }
 
     return $this->redirectToRoute('list_patient_index');
     }

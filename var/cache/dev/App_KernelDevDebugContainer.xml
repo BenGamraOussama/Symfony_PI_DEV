@@ -476,6 +476,8 @@
     <service id="App\Controller\PatientController" class="App\Controller\PatientController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Service\AuthenticatorService"/>
+      <argument type="service" id="App\Twig\AppExtension"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\PatientController"/>
       </call>
@@ -732,7 +734,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.UYpmVkM"/>
+      <argument type="service" id=".service_locator.QjdXCpe"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2227,6 +2229,11 @@
       </call>
       <factory class="Symfony\Component\HttpClient\HttpClient" method="create"/>
     </service>
+    <service id="psr18.http_client" class="Symfony\Component\HttpClient\Psr18Client">
+      <argument type="service" id=".debug.http_client"/>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
     <service id="http_client.abstract_retry_strategy" class="Symfony\Component\HttpClient\Retry\GenericRetryStrategy" abstract="true">
       <argument type="abstract">http codes</argument>
       <argument type="abstract">delay ms</argument>
@@ -3659,7 +3666,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.UYpmVkM"/>
+      <argument type="service" id=".service_locator.QjdXCpe"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8457,7 +8464,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.UYpmVkM" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.QjdXCpe" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8470,7 +8477,7 @@
         <argument key="App\Controller\AdminController::addpatient" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController::addpsychiatre" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController::block" type="service_closure" id=".service_locator.RalIsqi"/>
-        <argument key="App\Controller\AdminController::blockPatient" type="service_closure" id=".service_locator.UVjNdd7"/>
+        <argument key="App\Controller\AdminController::blockPatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController::blockpsy" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController::delete" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController::deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
@@ -8565,7 +8572,7 @@
         <argument key="App\Controller\AdminController:addpatient" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController:addpsychiatre" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController:block" type="service_closure" id=".service_locator.RalIsqi"/>
-        <argument key="App\Controller\AdminController:blockPatient" type="service_closure" id=".service_locator.UVjNdd7"/>
+        <argument key="App\Controller\AdminController:blockPatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController:blockpsy" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController:delete" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController:deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
@@ -11024,6 +11031,7 @@
     <service id="asset_mapper.http_client" alias=".debug.http_client"/>
     <service id="Symfony\Component\AssetMapper\ImportMap\ImportMapManager" alias="asset_mapper.importmap.manager"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
+    <service id="Psr\Http\Client\ClientInterface" alias="psr18.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\Transport\TransportInterface" alias="mailer.default_transport"/>
@@ -11152,7 +11160,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.UYpmVkM"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.QjdXCpe"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11193,7 +11201,7 @@
     <service id=".service_locator.PFeenAx" alias=".service_locator.0488DqB"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.W_HR_or" alias=".service_locator.UYpmVkM"/>
+    <service id=".service_locator.R4mgyw0" alias=".service_locator.QjdXCpe"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.cF3TOCl" alias=".service_locator.dAx6K1Z"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>

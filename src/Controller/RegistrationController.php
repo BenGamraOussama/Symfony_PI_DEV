@@ -85,7 +85,6 @@ public function register(
         // Generate a 2FA secret
         $twoFactorSecret = bin2hex(random_bytes(10)); // Generate a random secret
         $patient->setTwoFactorSecret($twoFactorSecret);
-        $patient->setIsTwoFactorEnabled(true); // Enable 2FA for the user
 
         // Generate QR code for 2FA
         $qrCode = new QrCode('otpauth://totp/YourAppName?secret=' . $twoFactorSecret . '&issuer=YourAppName');

@@ -32,9 +32,14 @@ class AuthenticatorController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        [$qrCodeUri, $secret] = $this->authenticatorService->getQrCodeUri($this->getUser());
+        $user = $this->getUser();
+        if ($user === null) {
+            return $this->redirectToRoute('app_login'); // Redirect to login if user is not authenticated
+        }
+        [$qrCodeUri, $secret] = $this->authenticatorService->getQrCodeUri($user);
 
-        return $this->render('patient/edit.html.twig', [
+
+        return $this->render('authenticator/pair.html.twig', [
             'qrCodeUri' => $qrCodeUri,
             'secret' => $secret
         ]);
