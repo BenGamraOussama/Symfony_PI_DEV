@@ -132,7 +132,7 @@
 
 <!-- Responses List -->
 <div class="mt-5">
-<h4 class="mb-4">All Responses</h4>
+<h4 class="mb-4">Tous Les Reponses</h4>
 {% if exercice.reponses|length > 0 %}
 <div class="response-list">
     {% for reponse in exercice.reponses|reverse %}
@@ -142,7 +142,7 @@
                 <div class="w-75">
                     <p class="mb-1">{{ reponse.contenu }}</p>
                     <small class="text-muted">
-   Answered by {{ reponse.patient.name }}  {# Added patient name #}
+   Répondu par {{ reponse.patient.name }}
  on {{ reponse.dateCreation|date('M d, Y H:i') }}
                     </small>
                 </div>
@@ -150,7 +150,7 @@
                 <div class="btn-group">
                     <form method="post" 
                           action="{{ path('app_reponse_delete', {'id': reponse.id}) }}"
-                          onsubmit="return confirm('Are you sure you want to delete this response?');">
+                          onsubmit="return confirm("Êtes-vous sûr de vouloir supprimer cette réponse ?");">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete_response') }}">
                         <button type="submit" class="btn btn-sm btn-outline-danger">
                             <i class="bi bi-trash"></i>

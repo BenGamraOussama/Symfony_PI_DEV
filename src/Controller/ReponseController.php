@@ -66,7 +66,7 @@ class ReponseController extends AbstractController
                     $entityManager->persist($patient);  // Ensure the updated patient is persisted
                     $entityManager->flush();
                     
-                    $this->addFlash('error', 'Your account has been suspended for 24 hours due to repeated inappropriate responses.');
+                    $this->addFlash('error', 'Votre compte a été suspendu pendant 24 heures en raison de réponses inappropriées répétées.');
                     return $this->redirectToRoute('app_home');
                 }
         
@@ -74,7 +74,7 @@ class ReponseController extends AbstractController
                 $entityManager->persist($patient);  // Persist the patient entity to store the updated attempts
                 $entityManager->flush();
                 
-                $this->addFlash('error', "Inappropriate response detected! Attempt $currentAttempts/3.");
+                $this->addFlash('error', "Réponse inappropriée détectée ! Tentative $currentAttempts/3.");
                 return $this->redirectToRoute('app_activite_show', [
                     'id' => $activite->getId()
                 ]);

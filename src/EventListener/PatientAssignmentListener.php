@@ -70,7 +70,7 @@ class PatientAssignmentListener
                     $activity = $emailData['activity'];
                     $email = (new TemplatedEmail())
                         ->to($user->getEmail())
-                        ->subject('New Activity Assigned')
+                        ->subject('nouvelle activité assignée')
                         ->htmlTemplate('emails/new_activity_assigned.html.twig')
                         ->context([
                             'patient' => $patient,
@@ -80,7 +80,7 @@ class PatientAssignmentListener
                     $exercise = $emailData['exercise'];
                     $email = (new TemplatedEmail())
                         ->to($user->getEmail())
-                        ->subject('New Exercise Assigned')
+                        ->subject('nouvelle exercice assignée')
                         ->htmlTemplate('emails/new_exercise_assigned.html.twig')
                         ->context([
                             'patient' => $patient,

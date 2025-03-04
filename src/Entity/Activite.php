@@ -12,9 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
 class Activite
 {
-    public const STATUS_NOT_STARTED = 'not_started';
-    public const STATUS_IN_PROGRESS = 'in_progress';
-    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_NOT_STARTED = 'Pas commencé';
+    public const STATUS_IN_PROGRESS = 'En cours';
+    public const STATUS_COMPLETED = 'Complété';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

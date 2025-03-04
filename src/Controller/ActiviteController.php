@@ -30,15 +30,50 @@ final class ActiviteController extends AbstractController
     public function index(Request $request, ActiviteRepository $activiteRepository): Response
     {
         $user = $this->getUser();
-        $typeFilter = $request->query->get('type');
+    $typeFilter = $request->query->get('type');
 
-        $activites = $activiteRepository->findByFilters($typeFilter);
+    $activites = $activiteRepository->findByFilters($typeFilter);
 
-        return $this->render('activite/index.html.twig', [
-            'activites' => $activites,
-            'typeFilter' => $typeFilter,
-            'user' => $user
-        ]);
+    // Calculate statistics
+    $completedCount = 0;
+    $exerciseCount = 0;
+    $mentalCount = 0;
+    $relaxationCount = 0;
+    $socialCount = 0;
+
+    foreach ($activites as $activite) {
+        // Status counts
+        if ($activite->getStatus() === 'Complété') {
+            $completedCount++;
+        }
+
+        // Type counts
+        switch ($activite->getType()) {
+            case 'exercise':
+                $exerciseCount++;
+                break;
+            case 'mentale':
+                $mentalCount++;
+                break;
+            case 'relaxation':
+                $relaxationCount++;
+                break;
+            case 'sociale':
+                $socialCount++;
+                break;
+        }
+    }
+
+    return $this->render('activite/index.html.twig', [
+        'activites' => $activites,
+        'typeFilter' => $typeFilter,
+        'user' => $user,
+        'completedCount' => $completedCount,
+        'exerciseCount' => $exerciseCount,
+        'mentalCount' => $mentalCount,
+        'relaxationCount' => $relaxationCount,
+        'socialCount' => $socialCount
+    ]);
     }
     
     #[Route('/update-status', name: 'app_activite_update_status', methods: ['POST'])]
@@ -98,7 +133,7 @@ final class ActiviteController extends AbstractController
                     if ($phoneNumber) {
                         $this->twilioService->sendSms(
                             $phoneNumber,
-                            "Hello " . ($user ? $user->getFirstName() : "Patient") . ", a new activity has been assigned to you."
+                            "Hello " . ($user ? $user->getFirstName() : "Patient") . ", Une nouvelle activité vous a été assignée."
                         );
                     }
                 }
@@ -219,8 +254,8 @@ public function edit(Request $request, Activite $activite, EntityManagerInterfac
         $email = (new Email())
             ->from('oussemadenguir999@gmail.com')
             ->to($user->getEmail())
-            ->subject('New Activity Assigned')
-            ->text("Hello " . $user->getFirstName() . ",\n\nA new activity has been assigned to you.");
+            ->subject('Nouvelle activité assignée')
+            ->text("Hello " . $user->getFirstName() . ",\n\nA Une nouvelle activité vous a été assignée.");
 
         $mailer->send($email);
     }

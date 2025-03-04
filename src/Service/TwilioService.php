@@ -16,10 +16,9 @@ class TwilioService
 
     public function sendSms(string $to, string $message): void
 {
-    // Ensure the phone number includes the country code and is formatted correctly
     $to = preg_replace('/[^0-9+]/', '', $to); 
     if (strpos($to, '+') !== 0) {
-        $to = '+' . $to; // Prepend "+" if missing
+        $to = '+' . $to; 
     }
 
     $this->twilio->messages->create(

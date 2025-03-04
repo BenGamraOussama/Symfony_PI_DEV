@@ -1,6 +1,6 @@
 {{ form_start(form, {'attr': {'id': 'responseForm'}}) }}
     {{ form_widget(form) }}
-    <button class="btn" type="submit">Save</button>
+    <button class="btn" type="submit">Sauvegarder</button>
 {{ form_end(form) }}
 
 <script>
@@ -14,7 +14,7 @@
             
             for (let i = 0; i < badWords.length; i++) {
                 if (responseText.includes(badWords[i])) {
-                    alert("Your response contains inappropriate words and cannot be submitted.");
+                    alert("Votre réponse contient des mots inappropriés et ne peut pas être soumise.");
                     event.preventDefault(); // Stop form submission
                     return;
                 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Activity{% endblock %}
+{% block title %}Nouvelle Activité{% endblock %}
 
 {% block body %}
 <div class="app">
@@ -12,7 +12,7 @@
                         <div class="col-md-12 m-b-30">
                             <div class="d-block d-lg-flex flex-nowrap align-items-center">
                                 <div class="page-title mr-4 pr-4 border-right">
-                                    <h1>New Activity</h1>
+                                    <h1>Nouvelle Activité</h1>
                                 </div>
                                 <div class="breadcrumb-bar align-items-center">
                                     <nav>
@@ -21,9 +21,9 @@
                                                 <a href="{{ path('app_home') }}"><i class="ti ti-home"></i></a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="{{ path('app_activite_index') }}">Activities</a>
+                                                <a href="{{ path('app_activite_index') }}">Activitiés</a>
                                             </li>
-                                            <li class="breadcrumb-item active text-primary">New Activity</li>
+                                            <li class="breadcrumb-item active text-primary">Nouvelle Activité</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -35,14 +35,14 @@
                         <div class="col-12">
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
-                                    <h2 class="h4 mb-0">Create New Activity</h2>
+                                    <h2 class="h4 mb-0">Creer Nouvelle Activité</h2>
                                 </div>
                                 <div class="card-body">
                                     {{ include('activite/_form.html.twig') }}
                                 </div>
                                 <div class="card-footer bg-light">
                                     <a href="{{ path('app_activite_index') }}" class="btn btn-secondary">
-                                        <i class="bi bi-arrow-left me-2"></i>Back to List
+                                        <i class="bi bi-arrow-left me-2"></i>Retour à la liste
                                     </a>
                                 </div>
                             </div>

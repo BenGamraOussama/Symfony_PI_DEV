@@ -30,7 +30,7 @@ public function buildForm(FormBuilderInterface $builder, array $options): void
             ],
             'attr' => ['class' => 'form-select'],
             'label' => 'Type',
-            'placeholder' => 'Select type'
+            'placeholder' => 'Selectionner type'
         ])
         ->add('patients', EntityType::class, [
             'class' => Patient::class,
