@@ -500,7 +500,7 @@
         <ul class="metismenu " id="sidebarNav">
             <li class="nav-static-title">Personal</li>
             <li>
-                <a href="admin" aria-expanded="false">
+                <a href="{{path('app_admin')}}" aria-expanded="false">
                     <i class="nav-icon ti ti-home"></i>
                     <span class="nav-title">Tableau de bord</span>
     
@@ -589,9 +589,11 @@
     <div class="footer">
       <div class="row">
         <div class="col-12 col-sm-6 text-center text-sm-left">
-
+          <p>&copy; Copyright 2019. All rights reserved.</p>
         </div>
-
+        <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
+            <p>Hand-crafted made with <i class="fa fa-heart text-danger mx-1"></i> by NovaTeam</p>
+        </div>
       </div>
     </div>
     {% endblock %}

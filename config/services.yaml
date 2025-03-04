@@ -17,7 +17,6 @@ services:
             $security: '@security.helper'
             $logger: '@logger'
         tags: ['twig.extension']    
-
     # Rend les classes du dossier src/ disponibles en tant que services
     # Cela crée un service par classe avec son nom de classe complet comme identifiant
     App\:

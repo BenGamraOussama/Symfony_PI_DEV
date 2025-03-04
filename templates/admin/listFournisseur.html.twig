@@ -63,7 +63,7 @@
                                             <table  id="datatable" class="display compact table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
+                                                        <th>Nom et Prenom</th>
                                                         <th>Email</th>
                                                         <th>Adresse</th>
                                                         <th>actions</th>
@@ -76,8 +76,20 @@
                                                         <td>{{ fournisseur.email }}</td>
                                                         <td>{{ fournisseur.adresse }}</td>
                                                         <td>
-                                                            <button class="btn btn-danger" data-toggle="modal" data-target="#defaultModal">Supprimer</button>
-                                                            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
+                                                            {% if fournisseur.isBlocked %}
+                    <form action="{{ path('app_fournisseur_unblock', {'id': fournisseur.id}) }}" method="POST" style="display: inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('unblock' ~ fournisseur.id) }}">
+                        <button type="submit" class="btn btn-success">Débloquer</button>
+                    </form>
+                {% else %}
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#actionModal" data-action="block" data-fournisseur-id="{{ fournisseur.id }}" data-fournisseur-name="{{ fournisseur.firstName }} {{ fournisseur.lastName }}">
+                        Bloquer
+                    </button>
+                {% endif %}
+
+                <!-- Bouton pour supprimer -->
+                  <button class="btn btn-danger" data-toggle="modal" data-target="#defaultModal">Supprimer</button>
+                                                        <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModal" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                             <div class="modal-header">
@@ -90,7 +102,7 @@
                                                              Are you sure you want to delete {{ fournisseur.firstName }} {{ fournisseur.lastName }} ?
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                             <form method="post" action="{{ path('fournisseur_delete', {'id': fournisseur.id}) }}">
                                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ fournisseur.id) }}">
                                                              <button class="btn btn-danger">Supprimer</button>
@@ -98,10 +110,64 @@
                                                             </div>
                                                            </div>
                                                            </div>
-                                                            </div>
-                                                        </td></tr>
+                                                        </div>
+            </td>
+        </tr>
                                                          {% endfor %}
-                                                        </tbody></table>
+                                                        </tbody>
+                                                        <div class="modal fade" id="actionModal" tabindex="-1" role="dialog" aria-labelledby="actionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actionModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir <span id="actionText"></span> <span id="fournisseurName"></span> ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form id="actionForm" method="POST" style="display: inline;">
+                    <input type="hidden" name="_token" id="csrfToken">
+                    <button type="submit" class="btn btn-danger" id="confirmActionButton"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Script pour gérer dynamiquement le modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#actionModal').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget); // Bouton qui a déclenché le modal
+            const action = button.data('action'); // Action (block/delete)
+            const fournisseurId = button.data('fournisseur-id'); // ID du fournisseur
+            const fournisseurName = button.data('fournisseur-name'); // Nom du fournisseur
+
+            // Mettre à jour le texte du modal
+            const actionText = action === 'block' ? 'bloquer' : 'supprimer';
+            $('#actionText').text(actionText);
+            $('#fournisseurName').text(fournisseurName);
+
+            // Mettre à jour le formulaire d'action
+            const actionUrl = action === 'block' 
+                ? "{{ path('app_fournisseur_block', {'id': 'FOURNISSEUR_ID'}) }}".replace('FOURNISSEUR_ID', fournisseurId)
+                : "{{ path('fournisseur_delete', {'id': 'FOURNISSEUR_ID'}) }}".replace('FOURNISSEUR_ID', fournisseurId);
+            $('#actionForm').attr('action', actionUrl);
+
+            // Mettre à jour le token CSRF
+            const csrfToken = action === 'block' 
+                ? "{{ csrf_token('block' ~ 'FOURNISSEUR_ID') }}".replace('FOURNISSEUR_ID', fournisseurId)
+                : "{{ csrf_token('delete' ~ 'FOURNISSEUR_ID') }}".replace('FOURNISSEUR_ID', fournisseurId);
+            $('#csrfToken').val(csrfToken);
+
+            // Mettre à jour le texte du bouton de confirmation
+            $('#confirmActionButton').text(action === 'block' ? 'Bloquer' : 'Supprimer');
+        });
+    });
+</script></table>
                                             <pagination-controls style="text-align: right;" (pageChange)="p = $event"></pagination-controls>
                                         </div>
                                     </div>

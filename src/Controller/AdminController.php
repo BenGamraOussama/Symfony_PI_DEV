@@ -33,12 +33,15 @@ final class AdminController extends AbstractController
 {
     
     #[Route(name: 'app_admin')]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, PatientRepository $patientRepository): Response
     {
         $user = $this->getUser();
         $totalPatients = $userRepository->countPatients();
         $totalPsychiatres = $userRepository->countPsychiatres();
         $totalFournisseurs = $userRepository->countFournisseurs();
+        $totalUsers = $userRepository->countUsers();
+        $male = $patientRepository->countMalePatients();
+        $female = $patientRepository->countFemalePatients();
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
@@ -46,6 +49,9 @@ final class AdminController extends AbstractController
             'totalPsy'=>$totalPsychiatres,
             'totalF'=>$totalFournisseurs,
             'user' => $user,
+            'totalU'=>$totalUsers,
+            'male' => $male,
+            'female' => $female,
         ]);
 
 
@@ -125,7 +131,7 @@ final class AdminController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_admin_ajouterpsychiatre');
+            return $this->redirectToRoute('app_admin_listpsychiatre');
 
         }
 
@@ -148,15 +154,34 @@ final class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_listpsychiatre', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('listPsychiatre/{id}', name: 'app_psychiatre_block', methods: ['POST'])]
-    public function blockpsy(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
+    #[Route('/listPsychiatre/{id}/block', name: 'app_psychiatre_block')]
+    public function blockPsychiatre(Psychiatre $psychiatre, int $id, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$psychiatre->getId(), $request->getPayload()->getString('_token'))) {
-            $psychiatre->setBlocked(true); // Set the psychiatrist as blocked instead of deleting
-            $entityManager->flush();
+        $psychiatre = $entityManager->getRepository(Psychiatre::class)->find($id);
+        if (!$psychiatre) {
+            throw $this->createNotFoundException('Psychiatre not found');
         }
 
-        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        $psychiatre->setIsBlocked(true);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Psychiatre block avec succès.');
+        return $this->redirectToRoute('app_admin_listpsychiatre');
+    }
+
+    #[Route('listPsychiatre/{id}/unblock', name: 'app_psychiatre_unblock', methods: ['POST'])]
+    public function unblockPsychiatre(Request $request, Psychiatre $psychiatre = null, EntityManagerInterface $em): Response
+    {
+    if (!$psychiatre) {
+        $this->addFlash('error', 'Psychiatre non trouvé.');
+        return $this->redirectToRoute('app_admin_listpsychiatre');
+    }
+
+        $psychiatre->setIsBlocked(false);
+        $em->flush();
+        $this->addFlash('success', 'Le psychiatre a été débloqué avec succès.');
+
+    return $this->redirectToRoute('app_admin_listpsychiatre');
     }
     //fournisseur
     #[Route('/listFournisseur', name: 'app_admin_listfournisseur', methods: ['GET'])]
@@ -190,7 +215,6 @@ final class AdminController extends AbstractController
                 $this->addFlash('error', 'Un utilisateur avec cet email existe déjà.');
                 return $this->redirectToRoute('app_admin_ajouterfournisseur');
             }
-            $fournisseur->setEtat('true');
             // Générer un mot de passe aléatoire
             $password = $passwordGenerator->generatePassword();
 
@@ -224,7 +248,7 @@ final class AdminController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_admin_ajouterfournisseur');
+            return $this->redirectToRoute('app_admin_listfournisseur');
         }
 
         return $this->render('admin/ajouterFournisseur.html.twig', [
@@ -246,15 +270,34 @@ final class AdminController extends AbstractController
 
         return $this->redirectToRoute('app_admin_listfournisseur', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('listFournisseur/{id}', name: 'app_fournisseur_block', methods: ['POST'])]
-    public function block(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
+    #[Route('/listFournisseur/{id}/block', name: 'app_fournisseur_block')]
+    public function blockFournisseur(Fournisseur $fournisseur, int $id, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('block'.$fournisseur->getId(), $request->getPayload()->getString('_token'))) {
-            $fournisseur->setBlocked(true); // Set the fournisseur as blocked instead of deleting
-            $entityManager->flush();
+        $fournisseur = $entityManager->getRepository(Fournisseur::class)->find($id);
+        if (!$fournisseur) {
+            throw $this->createNotFoundException('Fournisseur not found');
         }
 
-        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        $fournisseur->setIsBlocked(true);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Fournisseur block avec succès.');
+        return $this->redirectToRoute('app_admin_listfournisseur');
+    }
+
+    #[Route('listFournisseur/{id}/unblock', name: 'app_fournisseur_unblock', methods: ['POST'])]
+    public function unblockFournisseur(Request $request, Fournisseur $fournisseur = null, EntityManagerInterface $em): Response
+    {
+    if (!$fournisseur) {
+        $this->addFlash('error', 'Fournisseur non trouvé.');
+        return $this->redirectToRoute('app_admin_listfournisseur');
+    }
+
+        $fournisseur->setIsBlocked(false);
+        $em->flush();
+        $this->addFlash('success', 'Le fournisseur a été débloqué avec succès.');
+
+    return $this->redirectToRoute('app_admin_listfournisseur');
     }
 
     //Patient
@@ -327,7 +370,7 @@ final class AdminController extends AbstractController
             $mailer->send($email);
 
             $this->addFlash('success', 'Compte médecin créé avec succès. Un email a été envoyé avec les informations de connexion.');
-            return $this->redirectToRoute('app_patient_new');
+            return $this->redirectToRoute('list_patient_index');
         }
 
         return $this->render('admin/ajouterPatient.html.twig', [

@@ -48,6 +48,9 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
         $user = $token->getUser();
+        if (false !== $user->getIsBlocked()) {
+            return new RedirectResponse($this->urlGenerator->generate('app_block'));
+        }
         
         if (null !== $user->getSecret()) {
             return new RedirectResponse($this->urlGenerator->generate('app_authenticator_verify'));

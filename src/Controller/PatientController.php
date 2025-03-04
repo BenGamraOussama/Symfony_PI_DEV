@@ -94,13 +94,8 @@ final class PatientController extends AbstractController
         $formPassword = $this->createForm(PasswordForm::class);
         $formPassword->handleRequest($request);
 
-        $form2FA = $this->createForm(PatientType::class, $patient); // Create form for 2FA
-        $form2FA->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // Handle 2FA settings
-            $patient->setIsTwoFactorEnabled($form2FA->get('isTwoFactorEnabled')->getData());
-
             $dossierMedicalFile = $form->get('dossierMedical')->getData();
             if ($dossierMedicalFile) {
                 $originalFilename = pathinfo($dossierMedicalFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -132,7 +127,7 @@ final class PatientController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_patient_show', ['id' => $patient->getId()], Response::HTTP_SEE_OTHER);
         }
 
         if ($formPassword->isSubmitted() && $formPassword->isValid()) {

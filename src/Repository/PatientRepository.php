@@ -40,4 +40,23 @@ class PatientRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function countMalePatients(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->Where('u.gener = :gener')
+            ->setParameter('gener', 'male')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countFemalePatients(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->Where('u.gener = :gener')
+            ->setParameter('gener', 'female')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

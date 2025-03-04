@@ -1,16 +1,64 @@
 {% extends 'basePatient.html.twig' %}
 
-{% block title %}Verify{% endblock %}
-
+{% block title %}Log in!{% endblock %}
 {% block body %}
-    <h1>Verify</h1>
+        <!-- Start Preloader Area -->
+        <div class="preloader-area">
+            <div class="spinner">
+                <div class="inner">
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="search-overlay">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    
+                    <div class="search-overlay-close">
+                        <span class="search-overlay-close-line"></span>
+                        <span class="search-overlay-close-line"></span>
+                    </div>
 
-    <form method="post">
+                    <div class="search-overlay-form">
+                        <form>
+                            <input type="text" class="input-search" placeholder="Search here...">
+                            <button type="submit"><i class='flaticon-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-banner-with-full-image item-bg3">
+            <div class="container">
+                <div class="page-banner-content-two">
+                    <h2>Login</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+        <section class="login-area ptb-100">
+            <div class="container">
+                <div class="login-form">
+                    <h2>Verify</h2>
+                    <form method="post">
+                    <div class="form-group">
         <label for="otp">OTP Code</label>
-        <input id="otp" type="text" name="otp" />
+        <input id="otp" type="text" name="otp" class="form-control" />
         <button type="submit">Verify</button>
+        </div>
     </form>
-
     {% if result is not null %}
         {% if result == true %}
             <p>Le code correct. Redirection en cours...</p>
@@ -18,7 +66,14 @@
                 window.location.href = "{{ path('app_home') }}";
             </script>
         {% else %}
-            <p>C'est pas bon</p>
+            <p>Le code incorrect</p>
         {% endif %}
     {% endif %}
+                </div>
+            </div>
+        </section>
+        <div class="go-top">
+            <i class='flaticon-up-arrow'></i>
+        </div>
+       
 {% endblock %}

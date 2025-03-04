@@ -359,6 +359,10 @@
       <argument type="service" id="security.helper"/>
       <argument type="service" id="monolog.logger"/>
     </service>
+    <service id="App\EventListener\BlockedUserListener" class="App\EventListener\BlockedUserListener" autowire="true" autoconfigure="true">
+      <argument type="service" id="security.helper"/>
+      <argument type="service" id="router.default"/>
+    </service>
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
@@ -401,6 +405,13 @@
       <argument type="service" id="App\Service\AuthenticatorService"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\AuthenticatorController"/>
+      </call>
+    </service>
+    <service id="App\Controller\BlockController" class="App\Controller\BlockController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\BlockController"/>
       </call>
     </service>
     <service id="App\Controller\ClientController" class="App\Controller\ClientController" public="true" autowire="true" autoconfigure="true">
@@ -734,7 +745,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.QjdXCpe"/>
+      <argument type="service" id=".service_locator.iWt0BaF"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3666,7 +3677,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.QjdXCpe"/>
+      <argument type="service" id=".service_locator.iWt0BaF"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7557,6 +7568,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AuthenticatorController" class="App\Controller\AuthenticatorController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AuthenticatorController" class="App\Controller\AuthenticatorController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AuthenticatorController" class="App\Controller\AuthenticatorController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8157,9 +8171,10 @@
         <argument key="activite" type="service_closure" id=".errored..service_locator.DvuZ952.App\Entity\Activite"/>
       </argument>
     </service>
-    <service id=".service_locator.kPUOGb8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.dZH1jgp" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="patientRepository" type="service_closure" id="App\Repository\PatientRepository"/>
         <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -8186,6 +8201,12 @@
         <argument key="psychiatre" type="service_closure" id=".errored..service_locator.3eSJxWD.App\Entity\Psychiatre"/>
       </argument>
     </service>
+    <service id=".service_locator.2YBQAkS" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
     <service id=".service_locator.WZwGqEX" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8197,6 +8218,12 @@
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="fournisseur" type="service_closure" id=".errored..service_locator.RalIsqi.App\Entity\Fournisseur"/>
+      </argument>
+    </service>
+    <service id=".service_locator.k1TgatX" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
     <service id=".service_locator.3LKzslB" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8274,6 +8301,12 @@
       <argument type="collection">
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="exercice" type="service_closure" id=".errored..service_locator.0NP03bD.App\Entity\Exercice"/>
+      </argument>
+    </service>
+    <service id=".service_locator.kPUOGb8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.ZlrNvMC" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8464,7 +8497,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.QjdXCpe" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.iWt0BaF" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8476,17 +8509,19 @@
         <argument key="App\Controller\AdminController::addfournisseur" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController::addpatient" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController::addpsychiatre" type="service_closure" id=".service_locator.hlEC4eP"/>
-        <argument key="App\Controller\AdminController::block" type="service_closure" id=".service_locator.RalIsqi"/>
+        <argument key="App\Controller\AdminController::blockFournisseur" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController::blockPatient" type="service_closure" id=".service_locator.BMqRrkB"/>
-        <argument key="App\Controller\AdminController::blockpsy" type="service_closure" id=".service_locator.3eSJxWD"/>
+        <argument key="App\Controller\AdminController::blockPsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController::delete" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController::deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController::deletepsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
-        <argument key="App\Controller\AdminController::index" type="service_closure" id=".service_locator.kPUOGb8"/>
+        <argument key="App\Controller\AdminController::index" type="service_closure" id=".service_locator.dZH1jgp"/>
         <argument key="App\Controller\AdminController::listFournisseur" type="service_closure" id=".service_locator.WZwGqEX"/>
         <argument key="App\Controller\AdminController::listPatient" type="service_closure" id=".service_locator.3LKzslB"/>
         <argument key="App\Controller\AdminController::listPsychiatre" type="service_closure" id=".service_locator.2lIoHht"/>
+        <argument key="App\Controller\AdminController::unblockFournisseur" type="service_closure" id=".service_locator.k1TgatX"/>
         <argument key="App\Controller\AdminController::unblockPatient" type="service_closure" id=".service_locator.UVjNdd7"/>
+        <argument key="App\Controller\AdminController::unblockPsychiatre" type="service_closure" id=".service_locator.2YBQAkS"/>
         <argument key="App\Controller\CommandeController::ajout2" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController::delete" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController::edit" type="service_closure" id=".service_locator.iR5i4O4"/>
@@ -8571,17 +8606,19 @@
         <argument key="App\Controller\AdminController:addfournisseur" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController:addpatient" type="service_closure" id=".service_locator.hlEC4eP"/>
         <argument key="App\Controller\AdminController:addpsychiatre" type="service_closure" id=".service_locator.hlEC4eP"/>
-        <argument key="App\Controller\AdminController:block" type="service_closure" id=".service_locator.RalIsqi"/>
+        <argument key="App\Controller\AdminController:blockFournisseur" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController:blockPatient" type="service_closure" id=".service_locator.BMqRrkB"/>
-        <argument key="App\Controller\AdminController:blockpsy" type="service_closure" id=".service_locator.3eSJxWD"/>
+        <argument key="App\Controller\AdminController:blockPsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
         <argument key="App\Controller\AdminController:delete" type="service_closure" id=".service_locator.RalIsqi"/>
         <argument key="App\Controller\AdminController:deletePatient" type="service_closure" id=".service_locator.BMqRrkB"/>
         <argument key="App\Controller\AdminController:deletepsychiatre" type="service_closure" id=".service_locator.3eSJxWD"/>
-        <argument key="App\Controller\AdminController:index" type="service_closure" id=".service_locator.kPUOGb8"/>
+        <argument key="App\Controller\AdminController:index" type="service_closure" id=".service_locator.dZH1jgp"/>
         <argument key="App\Controller\AdminController:listFournisseur" type="service_closure" id=".service_locator.WZwGqEX"/>
         <argument key="App\Controller\AdminController:listPatient" type="service_closure" id=".service_locator.3LKzslB"/>
         <argument key="App\Controller\AdminController:listPsychiatre" type="service_closure" id=".service_locator.2lIoHht"/>
+        <argument key="App\Controller\AdminController:unblockFournisseur" type="service_closure" id=".service_locator.k1TgatX"/>
         <argument key="App\Controller\AdminController:unblockPatient" type="service_closure" id=".service_locator.UVjNdd7"/>
+        <argument key="App\Controller\AdminController:unblockPsychiatre" type="service_closure" id=".service_locator.2YBQAkS"/>
         <argument key="App\Controller\CommandeController:ajout2" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController:delete" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController:edit" type="service_closure" id=".service_locator.iR5i4O4"/>
@@ -9355,6 +9392,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\BlockController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BlockController"/>
+      <argument>App\Controller\BlockController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
     <service id=".service_locator.O2p6Lk7.App\Controller\ClientController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\ClientController"/>
       <argument>App\Controller\ClientController</argument>
@@ -9660,6 +9703,7 @@
           <argument>App\Controller\ActiviteController</argument>
           <argument>App\Controller\AdminController</argument>
           <argument>App\Controller\AuthenticatorController</argument>
+          <argument>App\Controller\BlockController</argument>
           <argument>App\Controller\ClientController</argument>
           <argument>App\Controller\CommandeController</argument>
           <argument>App\Controller\ConsultationController</argument>
@@ -11160,7 +11204,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.QjdXCpe"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.iWt0BaF"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11184,9 +11228,12 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.bJ.4HC5" alias=".service_locator.w7.f4fT"/>
+    <service id=".service_locator.B2ea61N" alias=".service_locator.dZH1jgp"/>
     <service id=".service_locator..GUQ7o0" alias=".service_locator.hlEC4eP"/>
     <service id=".service_locator.9IFJ8.C" alias=".service_locator.3eSJxWD"/>
+    <service id=".service_locator.upg9cNY" alias=".service_locator.2YBQAkS"/>
     <service id=".service_locator.fnQ8Sk2" alias=".service_locator.RalIsqi"/>
+    <service id=".service_locator.Xsc7WhR" alias=".service_locator.k1TgatX"/>
     <service id=".service_locator._ScEuGu" alias=".service_locator.BMqRrkB"/>
     <service id=".service_locator.3eFlpyB" alias=".service_locator.UVjNdd7"/>
     <service id=".service_locator.IjLAl66" alias=".service_locator.0NP03bD"/>
@@ -11201,7 +11248,7 @@
     <service id=".service_locator.PFeenAx" alias=".service_locator.0488DqB"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.R4mgyw0" alias=".service_locator.QjdXCpe"/>
+    <service id=".service_locator.hqyqvOE" alias=".service_locator.iWt0BaF"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.cF3TOCl" alias=".service_locator.dAx6K1Z"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
@@ -11232,12 +11279,14 @@
     <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
     <service id=".service_locator.lD0mDiy" alias=".service_locator.DgVI9c3"/>
     <service id=".service_locator.3eO9V5p" alias=".service_locator.DvuZ952"/>
-    <service id=".service_locator.025Wi8b" alias=".service_locator.kPUOGb8"/>
+    <service id=".service_locator.m_zYWhe" alias=".service_locator.dZH1jgp"/>
     <service id=".service_locator.LDTgNM8" alias=".service_locator.2lIoHht"/>
     <service id=".service_locator.wWpgpUd" alias=".service_locator.hlEC4eP"/>
     <service id=".service_locator.bWpsLHc" alias=".service_locator.3eSJxWD"/>
+    <service id=".service_locator.m93JyPD" alias=".service_locator.2YBQAkS"/>
     <service id=".service_locator.VG5hlDB" alias=".service_locator.WZwGqEX"/>
     <service id=".service_locator.qeHuYrT" alias=".service_locator.RalIsqi"/>
+    <service id=".service_locator.0G0G.9J" alias=".service_locator.k1TgatX"/>
     <service id=".service_locator.VJ3gNC_" alias=".service_locator.3LKzslB"/>
     <service id=".service_locator.CIHmcfL" alias=".service_locator.BMqRrkB"/>
     <service id=".service_locator.tBtqnUO" alias=".service_locator.UVjNdd7"/>
@@ -11250,6 +11299,7 @@
     <service id=".service_locator.2rKZW9N" alias=".service_locator.kmw5w4s"/>
     <service id=".service_locator.majUndv" alias=".service_locator.dFXnpKl"/>
     <service id=".service_locator.KmAjSZM" alias=".service_locator.0NP03bD"/>
+    <service id=".service_locator.025Wi8b" alias=".service_locator.kPUOGb8"/>
     <service id=".service_locator.pLDvYQP" alias=".service_locator.ZlrNvMC"/>
     <service id=".service_locator.sTPDsov" alias=".service_locator.YFCVwWF"/>
     <service id=".service_locator.QCLGQva" alias=".service_locator.lT33.ht"/>

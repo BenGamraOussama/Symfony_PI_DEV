@@ -10,13 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
 class Fournisseur extends User
 {
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private bool $blocked = false;
+    #[ORM\Column(type: 'boolean')]
+    private $isBlocked = false;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $companyName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $contactName = null;
 
     #[ORM\Column(length: 255)]
@@ -33,17 +33,17 @@ class Fournisseur extends User
     {
         $this->products = new ArrayCollection();
     }
-    public function isBlocked(): bool
+    public function getIsBlocked(): ?bool
     {
-        return $this->blocked;
+        return $this->isBlocked;
     }
 
-    public function setBlocked(bool $blocked): self
+    public function setIsBlocked(bool $isBlocked): self
     {
-        $this->blocked = $blocked;
+        $this->isBlocked = $isBlocked;
+
         return $this;
     }
-
 
     public function getCompanyName(): ?string
     {

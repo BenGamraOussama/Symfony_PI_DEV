@@ -10,19 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PsychiatreRepository::class)]
 class Psychiatre extends User
 {
-    #[ORM\Column(type: 'boolean', options: ['default' => false])]
-    private bool $blocked = false;
-
-    public function isBlocked(): bool
-    {
-        return $this->blocked;
-    }
-
-    public function setBlocked(bool $blocked): self
-    {
-        $this->blocked = $blocked;
-        return $this;
-    }
+    #[ORM\Column(type: 'boolean')]
+    private $isBlocked = false;
 
     #[ORM\Column(length: 255)]
     private ?string $specialite = null;
@@ -58,6 +47,17 @@ class Psychiatre extends User
     public function setSpecialite(string $specialite): static
     {
         $this->specialite = $specialite;
+
+        return $this;
+    }
+    public function getIsBlocked(): ?bool
+    {
+        return $this->isBlocked;
+    }
+
+    public function setIsBlocked(bool $isBlocked): self
+    {
+        $this->isBlocked = $isBlocked;
 
         return $this;
     }

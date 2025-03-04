@@ -58,7 +58,6 @@
 
             {{ form_start(resetForm) }}
                 <div class="form-group">
-                    <label for="plainPassword">New Password</label>
                     {{ form_widget(resetForm.plainPassword, { 'attr': {'class': 'form-control', 'placeholder': 'New Password'} }) }}
                     <div class="text-danger mb-3">
                         {{ form_errors(resetForm.plainPassword) }}
