@@ -54,17 +54,13 @@ class Activite
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le type est requis")]
-    // Supprimer la contrainte Assert\Choice
     private ?string $type = null;
 
-    #[ORM\ManyToMany(
-        targetEntity: Patient::class, 
-        inversedBy: 'activites',
-    )]
+    #[ORM\ManyToMany(targetEntity: Patient::class, inversedBy: 'activites')]
     #[ORM\JoinTable(name: 'patient_activite')]
     #[Assert\Count(
         min: 1,
-        minMessage: "Vous devez sélectionner au moins un patient"
+        minMessage: "You must select at least one patient."
     )]
     private Collection $patients;
 

@@ -56,6 +56,7 @@ return [
         '/reset-password/check-email' => [[['_route' => 'app_check_email', '_controller' => 'App\\Controller\\ResetPasswordController::checkEmail'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
+        '/account-suspended' => [[['_route' => 'app_account_suspended', '_controller' => 'App\\Controller\\SecurityController::accountSuspended'], null, null, null, false, false, null]],
         '/traitement' => [[['_route' => 'app_traitement_index', '_controller' => 'App\\Controller\\TraitementController::index'], null, null, null, false, false, null]],
         '/traitement/new' => [[['_route' => 'app_traitement_new', '_controller' => 'App\\Controller\\TraitementController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
@@ -168,18 +169,15 @@ return [
                         .'|/edit(*:1100)'
                         .'|(*:1109)'
                     .')'
-                    .'|e(?'
-                        .'|ponse/([^/]++)/delete(*:1144)'
-                        .'|s(?'
-                            .'|et\\-password/reset(?:/([^/]++))?(*:1189)'
-                            .'|ponse/exercise/([^/]++)/new(*:1225)'
-                        .')'
+                    .'|es(?'
+                        .'|et\\-password/reset(?:/([^/]++))?(*:1156)'
+                        .'|ponse/exercise/([^/]++)/new(*:1192)'
                     .')'
                 .')'
                 .'|/traitement/([^/]++)(?'
-                    .'|(*:1260)'
-                    .'|/edit(*:1274)'
-                    .'|(*:1283)'
+                    .'|(*:1226)'
+                    .'|/edit(*:1240)'
+                    .'|(*:1249)'
                 .')'
             .')/?$}sDu',
     ],
@@ -240,12 +238,11 @@ return [
         1086 => [[['_route' => 'app_rdv_show', '_controller' => 'App\\Controller\\RDVController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         1100 => [[['_route' => 'app_rdv_edit', '_controller' => 'App\\Controller\\RDVController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         1109 => [[['_route' => 'app_rdv_delete', '_controller' => 'App\\Controller\\RDVController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1144 => [[['_route' => 'app_reponse_delete', '_controller' => 'App\\Controller\\ReponseController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
-        1189 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        1225 => [[['_route' => 'app_reponse_new', '_controller' => 'App\\Controller\\ReponseController::new'], ['id'], ['POST' => 0], null, false, false, null]],
-        1260 => [[['_route' => 'app_traitement_show', '_controller' => 'App\\Controller\\TraitementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1274 => [[['_route' => 'app_traitement_edit', '_controller' => 'App\\Controller\\TraitementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1283 => [
+        1156 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        1192 => [[['_route' => 'app_reponse_new', '_controller' => 'App\\Controller\\ReponseController::new'], ['id'], ['POST' => 0], null, false, false, null]],
+        1226 => [[['_route' => 'app_traitement_show', '_controller' => 'App\\Controller\\TraitementController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1240 => [[['_route' => 'app_traitement_edit', '_controller' => 'App\\Controller\\TraitementController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1249 => [
             [['_route' => 'app_traitement_delete', '_controller' => 'App\\Controller\\TraitementController::delete'], ['id'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

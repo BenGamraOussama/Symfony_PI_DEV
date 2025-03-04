@@ -96,7 +96,6 @@ final class ActiviteController extends AbstractController
                 }
             }
     
-            $this->addFlash('success', 'Activity created successfully!');
             return $this->redirectToRoute('app_activite_index');
         }
     

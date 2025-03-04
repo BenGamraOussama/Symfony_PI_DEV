@@ -38,3 +38,12 @@ services:
         tags:
             - { name: doctrine.event_listener, event: onFlush }
             - { name: doctrine.event_listener, event: postFlush }
+
+    App\Security\UserChecker:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: security.user_checker }
+    App\Security\Authentification\AuthenticationFailureHandler:
+        arguments:
+            $router: '@router'

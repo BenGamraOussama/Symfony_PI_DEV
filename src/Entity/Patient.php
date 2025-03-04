@@ -25,6 +25,12 @@ class Patient extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $suspendedUntil = null;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 0])]
+    private int $badWordAttempts = 0;
+
     #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
     private Collection $rdvs;
 
@@ -34,15 +40,16 @@ class Patient extends User
     #[ORM\ManyToMany(targetEntity: Exercice::class, inversedBy: 'patients')]
     private Collection $exercices;
 
-    #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'patients')]
-    private Collection $activites;
+    #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'patients')]
+    private Collection $activites;  
 
     #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'patient')]
     private Collection $reponses;
 
-    #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class, cascade: ['remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?User $user = null;
+
     
     public function __construct()
     {
@@ -214,6 +221,27 @@ public function removeActivite(Activite $activite): static
     public function setUser(?User $user): self
     {
         $this->user = $user;
+        return $this;
+    }
+    public function getSuspendedUntil(): ?\DateTimeInterface
+    {
+        return $this->suspendedUntil;
+    }
+
+    public function setSuspendedUntil(?\DateTimeInterface $suspendedUntil): self
+    {
+        $this->suspendedUntil = $suspendedUntil;
+        return $this;
+    }
+
+    public function getBadWordAttempts(): int
+    {
+        return $this->badWordAttempts;
+    }
+
+    public function setBadWordAttempts(int $badWordAttempts): self
+    {
+        $this->badWordAttempts = $badWordAttempts;
         return $this;
     }
 }

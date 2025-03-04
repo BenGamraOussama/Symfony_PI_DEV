@@ -4,19 +4,21 @@
 {{ form_end(form) }}
 
 <script>
-    document.getElementById('responseForm').addEventListener('submit', function(event) {
-        let responseInput = document.querySelector("textarea"); // Adjust if your field isn't a textarea
-        if (!responseInput) return; // Ensure the field exists
-        
-        let responseText = responseInput.value.toLowerCase();
-        let badWords = ["badword1", "badword2", "badword3"]; // Add more words if needed
+    document.addEventListener('DOMContentLoaded', function () {
+        let form = document.getElementById('responseForm');
+        let responseInput = document.querySelector("textarea[name='reponse']");
+        let badWords = ["badword1", "badword2", "badword3"]; // Add more words
 
-        for (let i = 0; i < badWords.length; i++) {
-            if (responseText.includes(badWords[i])) {
-                alert("Your response contains inappropriate words and cannot be submitted.");
-                event.preventDefault(); // Stop form submission
-                return;
+        form.addEventListener('submit', function (event) {
+            let responseText = responseInput.value.toLowerCase();
+            
+            for (let i = 0; i < badWords.length; i++) {
+                if (responseText.includes(badWords[i])) {
+                    alert("Your response contains inappropriate words and cannot be submitted.");
+                    event.preventDefault(); // Stop form submission
+                    return;
+                }
             }
-        }
+        });
     });
 </script>
