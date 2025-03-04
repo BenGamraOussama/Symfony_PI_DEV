@@ -359,10 +359,6 @@
       <argument type="service" id="security.helper"/>
       <argument type="service" id="monolog.logger"/>
     </service>
-    <service id="App\EventListener\BlockedUserListener" class="App\EventListener\BlockedUserListener" autowire="true" autoconfigure="true">
-      <argument type="service" id="security.helper"/>
-      <argument type="service" id="router.default"/>
-    </service>
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>

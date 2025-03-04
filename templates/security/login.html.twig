@@ -73,6 +73,7 @@
                             <label>Password</label>
                             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Password" required>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <button type="submit">Login</button>
                         <div class="col-12  mt-3">
@@ -85,5 +86,5 @@
         <div class="go-top">
             <i class='flaticon-up-arrow'></i>
         </div>
-       
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
