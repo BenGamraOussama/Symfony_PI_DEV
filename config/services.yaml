@@ -6,6 +6,9 @@
 parameters:
     dossier_medical_directory: '%kernel.project_dir%/public/uploads/dossier_medical'
     uploads_directory: '%kernel.project_dir%/public/uploads'
+    twilio.sid: '%env(TWILIO_SID)%'
+    twilio.token: '%env(TWILIO_AUTH_TOKEN)%'
+    twilio.phone_number: '%env(TWILIO_PHONE_NUMBER)%'
 
 services:
     App\Enum\ExerciceStatus: ~
@@ -47,3 +50,8 @@ services:
     App\Security\Authentification\AuthenticationFailureHandler:
         arguments:
             $router: '@router'
+    App\Service\TwilioService:
+        arguments:
+            $sid: '%twilio.sid%'
+            $token: '%twilio.token%'
+            $twilioNumber: '%twilio.phone_number%'

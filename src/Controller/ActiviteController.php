@@ -6,6 +6,7 @@ use App\Entity\Activite;
 use App\Entity\Exercice;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use App\Service\TwilioService;
 use App\Service\NotificationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,12 @@ use Symfony\Component\Mime\Email;
 #[Route('/activite')]
 final class ActiviteController extends AbstractController
 {
+    private TwilioService $twilioService;
+    public function __construct(TwilioService $twilioService)
+    {
+        $this->twilioService = $twilioService;
+    }
+
     #[Route('/', name: 'app_activite_index', methods: ['GET'])]
     public function index(Request $request, ActiviteRepository $activiteRepository): Response
     {
@@ -57,21 +64,17 @@ final class ActiviteController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            // Handle exercise creation if the activity type is 'exercise'
             if ($activite->getType() === 'exercise') {
                 $exerciceData = $form->get('exercice')->getData();
                 
                 if ($exerciceData && $exerciceData->getQuestion()) {
-                    // Check if the Exercice with the same question already exists
                     $existingExercice = $entityManager->getRepository(Exercice::class)->findOneBy([
                         'question' => $exerciceData->getQuestion()
                     ]);
                     
                     if ($existingExercice) {
-                        // If the Exercice exists, associate it with the current Activite
                         $activite->setExercice($existingExercice);
                     } else {
-                        // If no existing Exercice, create a new one
                         $exercice = new Exercice();
                         $exercice->setQuestion($exerciceData->getQuestion());
                         $exercice->setActivite($activite);
@@ -84,17 +87,22 @@ final class ActiviteController extends AbstractController
             $entityManager->persist($activite);
             $entityManager->flush();
     
-            // Send notification email if patients are assigned to the activity
             if (!$activite->getPatients()->isEmpty()) {
-                // Assuming you want to notify all patients associated with the activity
                 foreach ($activite->getPatients() as $patient) {
-                    $user = $patient->getUser(); // Get User from Patient
+                    $user = $patient->getUser();
+                    $phoneNumber = $patient->getPhone();
     
                     if ($user && $user->getEmail()) {
                         $this->sendActivityNotification($mailer, $user);
                     }
+                    if ($phoneNumber) {
+                        $this->twilioService->sendSms(
+                            $phoneNumber,
+                            "Hello " . ($user ? $user->getFirstName() : "Patient") . ", a new activity has been assigned to you."
+                        );
+                    }
                 }
-            }
+        }
     
             return $this->redirectToRoute('app_activite_index');
         }
@@ -103,6 +111,7 @@ final class ActiviteController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
     
 
     #[Route('/{id}/edit', name: 'app_activite_edit', methods: ['GET', 'POST'])]

@@ -85,6 +85,9 @@
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
     <parameter key="dossier_medical_directory">C:\xampp\htdocs\symfony_pi_dev (4)\symfony_pi_dev/public/uploads/dossier_medical</parameter>
     <parameter key="uploads_directory">C:\xampp\htdocs\symfony_pi_dev (4)\symfony_pi_dev/public/uploads</parameter>
+    <parameter key="twilio.sid">%env(TWILIO_SID)%</parameter>
+    <parameter key="twilio.token">%env(TWILIO_AUTH_TOKEN)%</parameter>
+    <parameter key="twilio.phone_number">%env(TWILIO_PHONE_NUMBER)%</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -384,6 +387,7 @@
     <service id="App\Controller\ActiviteController" class="App\Controller\ActiviteController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\Service\TwilioService"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\ActiviteController"/>
       </call>
@@ -710,6 +714,11 @@
       <argument type="service" id="mailer.mailer"/>
     </service>
     <service id="App\Service\PasswordGenerator" class="App\Service\PasswordGenerator" autowire="true" autoconfigure="true"/>
+    <service id="App\Service\TwilioService" class="App\Service\TwilioService" autowire="true" autoconfigure="true">
+      <argument>%env(TWILIO_SID)%</argument>
+      <argument>%env(TWILIO_AUTH_TOKEN)%</argument>
+      <argument>%env(TWILIO_PHONE_NUMBER)%</argument>
+    </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
       <tag priority="100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">controller.argument_value_resolver</tag>

@@ -19,8 +19,8 @@ class Patient extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $phone = null;
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $phone = null;
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
