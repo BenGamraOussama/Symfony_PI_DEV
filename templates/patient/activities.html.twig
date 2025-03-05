@@ -6,7 +6,7 @@
 <div class="container my-5">
     <h2 class="text-center mb-5">Vos Activités</h2>
     
-    {# Filter Controls #}
+    {# Filtres #}
     <div class="d-flex justify-content-between mb-4">
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-outline-primary filter active" data-filter="all">Tous Types</button>
@@ -168,7 +168,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
+    // Filtres
     let selectedType = 'all';
     let selectedStatus = 'all';
 
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Modal functionality
+    // Modal
     const modal = document.getElementById('activityModal');
     const responseForm = document.getElementById('responseForm');
     const statusUpdateSection = document.getElementById('statusUpdateSection');
@@ -222,8 +222,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('activityModalTitle').textContent = card.dataset.title;
         document.getElementById('activityModalDescription').textContent = card.dataset.description;
-        document.getElementById('activityId').value = card.dataset.activityId;
-        document.getElementById('exerciseId').value = exerciseId;
+
+        // Vérifier si l'élément existe avant de définir sa valeur
+        const activityIdElement = document.getElementById('activityId');
+        if (activityIdElement) {
+            activityIdElement.value = card.dataset.activityId;
+        }
+
+        const exerciseIdElement = document.getElementById('exerciseId');
+        if (exerciseIdElement) {
+            exerciseIdElement.value = exerciseId;
+        }
 
         if (isExercise) {
             document.getElementById('exerciseSection').style.display = 'block';
@@ -297,18 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if(response.ok) {
                 location.reload();
-                const activityId = document.getElementById('activityId').value;
-                const newStatus = document.getElementById('statusSelect').value;
-                const badge = document.querySelector(`[data-activity-id="${activityId}"] .badge:last-child`);
-                
-                badge.textContent = newStatus;
-                badge.className = `badge ${
-                    newStatus === 'Pas commencé' ? 'bg-secondary' :
-                    newStatus === 'En cours' ? 'bg-warning text-dark' :
-                    'bg-success'
-                }`;
-                
-                bootstrap.Modal.getInstance(modal).hide();
             }
         })
         .catch(error => console.error('Error:', error));
