@@ -17,8 +17,8 @@ class TwilioService
     public function sendSms(string $to, string $message): void
     {
         $to = preg_replace('/[^0-9+]/', '', $to); 
-        if (strpos($to, '+') !== 0) {
-            $to = '+' . $to; 
+        if (strpos($to, '+216') !== 0) {
+            $to = '+216' . $to; 
         }
 
         $this->twilio->messages->create(
