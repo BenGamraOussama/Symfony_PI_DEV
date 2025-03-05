@@ -359,6 +359,7 @@
       <argument type="service" id="security.helper"/>
       <argument type="service" id="monolog.logger"/>
     </service>
+    <service id="App\EventListener\UserStatusListener" class="App\EventListener\UserStatusListener" autowire="true" autoconfigure="true"/>
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
@@ -527,6 +528,7 @@
     <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="mailer.mailer"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\RegistrationController"/>
       </call>
@@ -708,6 +710,7 @@
     </service>
     <service id="App\Security\SecurityAuthenticator" class="App\Security\SecurityAuthenticator" autowire="true" autoconfigure="true">
       <argument type="service" id="router.default"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
     <service id="App\Service\AuthenticatorService" class="App\Service\AuthenticatorService" autowire="true" autoconfigure="true">
       <argument type="service" id="parameter_bag"/>
@@ -741,7 +744,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.iWt0BaF"/>
+      <argument type="service" id=".service_locator.ZVFf3Zx"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3673,7 +3676,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.iWt0BaF"/>
+      <argument type="service" id=".service_locator.ZVFf3Zx"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8493,7 +8496,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.iWt0BaF" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.ZVFf3Zx" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8577,6 +8580,7 @@
         <argument key="App\Controller\RDVController::index" type="service_closure" id=".service_locator.hCjLFs3"/>
         <argument key="App\Controller\RDVController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RDVController::show" type="service_closure" id=".service_locator.Jvbgp4K"/>
+        <argument key="App\Controller\RegistrationController::confirmEmail" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.jpvOrpT"/>
         <argument key="App\Controller\RendezVousController::index" type="service_closure" id=".service_locator.Udb.vtV"/>
         <argument key="App\Controller\ReponseController::delete" type="service_closure" id=".service_locator.0488DqB"/>
@@ -8674,6 +8678,7 @@
         <argument key="App\Controller\RDVController:index" type="service_closure" id=".service_locator.hCjLFs3"/>
         <argument key="App\Controller\RDVController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RDVController:show" type="service_closure" id=".service_locator.Jvbgp4K"/>
+        <argument key="App\Controller\RegistrationController:confirmEmail" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.jpvOrpT"/>
         <argument key="App\Controller\RendezVousController:index" type="service_closure" id=".service_locator.Udb.vtV"/>
         <argument key="App\Controller\ReponseController:delete" type="service_closure" id=".service_locator.0488DqB"/>
@@ -11200,7 +11205,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.iWt0BaF"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.ZVFf3Zx"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11244,7 +11249,7 @@
     <service id=".service_locator.PFeenAx" alias=".service_locator.0488DqB"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.hqyqvOE" alias=".service_locator.iWt0BaF"/>
+    <service id=".service_locator.k_OVGNf" alias=".service_locator.ZVFf3Zx"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.cF3TOCl" alias=".service_locator.dAx6K1Z"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>

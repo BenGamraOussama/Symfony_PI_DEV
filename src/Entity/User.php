@@ -61,6 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secret = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $confirmationToken = null;
     
     public function getSecret(): ?string
     {
@@ -101,14 +104,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
-    public function getTwoFactorSecret(): ?string
+    public function getConfirmationToken(): ?string
     {
-        return $this->twoFactorSecret;
+        return $this->confirmationToken;
     }
 
-    public function setTwoFactorSecret(?string $twoFactorSecret): self
+    public function setConfirmationToken(?string $confirmationToken): static
     {
-        $this->twoFactorSecret = $twoFactorSecret;
+        $this->confirmationToken = $confirmationToken;
+
         return $this;
     }
 

@@ -20,9 +20,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class RegistrationController extends AbstractController
 {
+    private MailerInterface $mailer;
+
+    public function __construct(MailerInterface $mailer)
+    {
+        $this->mailer = $mailer;
+    }
     #[Route('/register', name: 'app_register')]
 public function register(
     Request $request,
@@ -41,11 +49,13 @@ public function register(
 
         $psychiatre->setRoles(['ROLE_PSYCHIATRE']);
         $psychiatre->setPassword($userPasswordHasher->hashPassword($psychiatre, $plainPassword));
-
+        $psychiatre->setConfirmationToken(bin2hex(random_bytes(32))); // Generate confirmation token
         $entityManager->persist($psychiatre);
+        $this->sendConfirmationEmail($psychiatre); // Send confirmation email
         $entityManager->flush();
 
-        return $security->login($psychiatre, SecurityAuthenticator::class, 'main');
+        $this->addFlash('success', 'Please check your email to confirm your registration.');
+        return $this->redirectToRoute('app_login');
     }
 
     // Formulaire Fournisseur
@@ -60,10 +70,13 @@ public function register(
         $fournisseur->setRoles(['ROLE_FOURNISSEUR']);
         $fournisseur->setPassword($userPasswordHasher->hashPassword($fournisseur, $plainPassword));
 
+        $fournisseur->setConfirmationToken(bin2hex(random_bytes(32))); // Generate confirmation token
         $entityManager->persist($fournisseur);
+        $this->sendConfirmationEmail($fournisseur); // Send confirmation email
         $entityManager->flush();
 
-        return $security->login($fournisseur, SecurityAuthenticator::class, 'main');
+        $this->addFlash('success', 'Please check your email to confirm your registration.');
+        return $this->redirectToRoute('app_login');
     }
 
     $patient = new Patient();
@@ -83,20 +96,13 @@ public function register(
         $patient->setPassword($userPasswordHasher->hashPassword($patient, $plainPassword));
 
         // Generate a 2FA secret
-        $twoFactorSecret = bin2hex(random_bytes(10)); // Generate a random secret
-        $patient->setTwoFactorSecret($twoFactorSecret);
-
-        // Generate QR code for 2FA
-        $qrCode = new QrCode('otpauth://totp/YourAppName?secret=' . $twoFactorSecret . '&issuer=YourAppName');
-        $writer = new PngWriter();
-        $result = $writer->write($qrCode);
-        $result->saveToFile('qr_code/qrcode.png'); // Save the QR code image
-
+        $patient->setConfirmationToken(bin2hex(random_bytes(32))); // Generate confirmation token
         $entityManager->persist($patient);
-
+        $this->sendConfirmationEmail($patient); // Send confirmation email
         $entityManager->flush();
 
-        return $security->login($patient, SecurityAuthenticator::class, 'main');
+        $this->addFlash('success', 'Please check your email to confirm your registration.');
+        return $this->redirectToRoute('app_login');
     }
 
     // Passer les deux formulaires à la vue Twig
@@ -107,4 +113,38 @@ public function register(
         'recaptcha_site_key' => $_ENV['RECAPTCHA_SITE_KEY'], // Passer la clé à Twig
     ]);
 }
+private function sendConfirmationEmail($user): void
+    {
+        $email = (new Email())
+            ->from('noreply@example.com')
+            ->to($user->getEmail())
+            ->subject('Please Confirm Your Email')
+            ->html($this->renderView('emails/email1.html.twig', [
+                'user' => $user,
+                'token' => $user->getConfirmationToken(),
+            ]));
+
+            $this->mailer->send($email);
+    }
+
+    #[Route('/confirm-email/{token}', name: 'app_confirm_email')]
+    public function confirmEmail(string $token, EntityManagerInterface $entityManager): Response
+    {
+        // Find user by confirmation token
+        $user = $entityManager->getRepository(Patient::class)->findOneBy(['confirmationToken' => $token])
+            ?? $entityManager->getRepository(Psychiatre::class)->findOneBy(['confirmationToken' => $token])
+            ?? $entityManager->getRepository(Fournisseur::class)->findOneBy(['confirmationToken' => $token]);
+
+        if (!$user || $user->getConfirmationToken() !== $token) {
+            throw $this->createNotFoundException('Invalid confirmation token or token has already been used');
+        }
+
+        // Clear the confirmation token
+        $user->setConfirmationToken(null);
+        $entityManager->flush();
+
+        // Redirect to login with success message
+        $this->addFlash('success', 'Your email has been confirmed! You can now log in.');
+        return $this->redirectToRoute('app_login');
+    }
 }
