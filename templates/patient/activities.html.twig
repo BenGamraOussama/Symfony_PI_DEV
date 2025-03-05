@@ -25,7 +25,7 @@
             {% set uniqueStatuses = [] %}
             {% for activity in patientActivities %}
                 {% set status = activity.type == 'exercise' 
-                    ? (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0 ? 'Répondu' : 'En attente') 
+                    ? (activity.exercice and activity.exercice.reponses is defined and app.user.patient and activity.exercice.reponses|filter(r => r.patient.id == app.user.patient.id)|length > 0 ? 'Répondu' : 'En attente') 
                     : activity.status %}
                 {% if status not in uniqueStatuses %}
                     {% set uniqueStatuses = uniqueStatuses|merge([status]) %}
@@ -44,7 +44,7 @@
     <div class="row g-4">
         {% for activity in patientActivities %}
             {% set activityStatus = activity.type == 'exercise' 
-                ? (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0 ? 'Répondu' : 'En attente') 
+                ? (activity.exercice and activity.exercice.reponses is defined and app.user.patient and activity.exercice.reponses|filter(r => r.patient.id == app.user.patient.id)|length > 0 ? 'Répondu' : 'En attente') 
                 : activity.status %}
             
             <div class="col-md-4 activity-item" 
@@ -60,7 +60,12 @@
                      data-is-exercise="{{ activity.type == 'exercise' ? 'true' : 'false' }}"
                      data-exercise-id="{{ activity.exercice ? activity.exercice.id : '' }}"
                      data-question="{{ activity.exercice ? activity.exercice.question : '' }}"
-                     data-has-response="{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'true' : 'false' }}">
+                     data-has-response="{{ 
+                         (activity.exercice and 
+                         activity.exercice.reponses is defined and 
+                         app.user.patient and 
+                         activity.exercice.reponses|filter(r => r.patient.id == app.user.patient.id)|length > 0
+                     ) ? 'true' : 'false' }}">
                     <img src="{{ asset('images/default-activity-image.png') }}" class="card-img-top" alt="Activity Image">
                     <div class="card-body">
                         <h5 class="card-title d-flex justify-content-between align-items-center">
@@ -169,12 +174,11 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Filtres
-    let selectedType = 'all';
-    let selectedStatus = 'all';
-
     const filterButtons = document.querySelectorAll('.filter');
     const statusFilterButtons = document.querySelectorAll('.status-filter');
     const activityItems = document.querySelectorAll('.activity-item');
+    let selectedType = 'all';
+    let selectedStatus = 'all';
 
     function updateFilters() {
         activityItems.forEach(item => {
@@ -202,12 +206,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Modal
+    // Modal Handling
     const modal = document.getElementById('activityModal');
     const responseForm = document.getElementById('responseForm');
-    const statusUpdateSection = document.getElementById('statusUpdateSection');
     const statusUpdateButton = document.getElementById('statusUpdateButton');
-    
     const responseUrlTemplate = '{{ path("app_reponse_new", { id: "__id__" }) }}';
 
     modal.addEventListener('show.bs.modal', function(event) {
@@ -217,29 +219,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const exerciseId = card.dataset.exerciseId;
         const question = card.dataset.question;
 
+        // Reset UI elements
         document.getElementById('existingResponses').innerHTML = '';
         if(responseForm) responseForm.reset();
         
+        // Set basic info
         document.getElementById('activityModalTitle').textContent = card.dataset.title;
         document.getElementById('activityModalDescription').textContent = card.dataset.description;
 
-        // Vérifier si l'élément existe avant de définir sa valeur
-        const activityIdElement = document.getElementById('activityId');
-        if (activityIdElement) {
-            activityIdElement.value = card.dataset.activityId;
-        }
-
-        const exerciseIdElement = document.getElementById('exerciseId');
-        if (exerciseIdElement) {
-            exerciseIdElement.value = exerciseId;
-        }
-
+        // Handle exercise-specific elements
         if (isExercise) {
             document.getElementById('exerciseSection').style.display = 'block';
             document.getElementById('activityModalQuestion').textContent = question;
-            statusUpdateSection.style.display = 'none';
+            document.getElementById('statusUpdateSection').style.display = 'none';
             statusUpdateButton.style.display = 'none';
 
+            // Set exercise ID
+            const exerciseIdElement = document.getElementById('exerciseId');
+            if (exerciseIdElement) exerciseIdElement.value = exerciseId;
+
+            // Handle existing responses
             {% if app.user and app.user.patient %}
                 {% for response in app.user.patient.reponses %}
                     if ({{ response.exercice.id }} == exerciseId) {
@@ -252,64 +251,90 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </small>
                                 </div>
                             </div>`;
-                        document.getElementById('responseFormContainer').style.display = 'none';
                     }
                 {% endfor %}
             {% endif %}
 
-            if (!hasResponse && document.getElementById('responseFormContainer')) {
-                document.getElementById('responseFormContainer').style.display = 'block';
+            // Show/hide response form
+            const responseContainer = document.getElementById('responseFormContainer');
+            if (responseContainer) {
+                responseContainer.style.display = hasResponse ? 'none' : 'block';
             }
         } else {
             document.getElementById('exerciseSection').style.display = 'none';
-            statusUpdateSection.style.display = 'block';
+            document.getElementById('statusUpdateSection').style.display = 'block';
             statusUpdateButton.style.display = 'block';
             document.getElementById('statusSelect').value = card.dataset.status;
+            
+            // Set activity ID
+            const activityIdElement = document.getElementById('activityId');
+            if (activityIdElement) activityIdElement.value = card.dataset.activityId;
         }
     });
 
+    // Response Form Handling
     if(responseForm) {
         responseForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
             const exerciseId = formData.get('exercise_id');
-            
             const url = responseUrlTemplate.replace('__id__', exerciseId);
-            
+
             fetch(url, {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                if(response.ok) {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
                     document.getElementById('responseFormContainer').style.display = 'none';
                     document.getElementById('existingResponses').innerHTML = `
                         <div class="card mb-3">
                             <div class="card-body">
-                                <p class="card-text">${formData.get('reponse')}</p>
+                                <p class="card-text">${data.response.contenu}</p>
                                 <small class="text-muted">Répondu à l'instant</small>
                             </div>
                         </div>`;
+                } else if (data.error) {
+                    alert('Error: ' + data.error);
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            });
         });
     }
 
-    statusUpdateButton.addEventListener('click', function() {
-        const formData = new FormData(document.getElementById('statusUpdateForm'));
-        
-        fetch('{{ path("app_activite_update_status") }}', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if(response.ok) {
-                location.reload();
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+    // Status Update Handling
+    if(statusUpdateButton) {
+        statusUpdateButton.addEventListener('click', function() {
+            const formData = new FormData(document.getElementById('statusUpdateForm'));
+            
+            fetch('{{ path("app_activite_update_status") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) return response.json();
+                throw new Error('Network response was not ok');
+            })
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error updating status: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Une erreur est survenue lors de la mise à jour du statut.');
+            });
+        });
+    }
 });
 </script>
 
