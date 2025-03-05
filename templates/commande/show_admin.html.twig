@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'basePatient.html.twig' %}
 
 {% block title %}Commande{% endblock %}
 
@@ -65,8 +65,10 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
-                                    <!-- Lignes de Commande -->
+                                    <div class="col-md-2 text-center">
+                Scanner moi !! 
+                <img src="{{qr}}" width="100px" height="100px" alt="">
+                </div>                                    <!-- Lignes de Commande -->
                                     <h3 class="mt-4">Lignes de Commande</h3>
                                     <table class="table table-striped">
                                         <thead>

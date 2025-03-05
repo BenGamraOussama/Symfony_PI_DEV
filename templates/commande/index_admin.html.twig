@@ -68,7 +68,8 @@
 
 												<div class="card-body">
 													<div class="table-responsive">
-														<h1>mes commandes</h1>
+														<h1>mes Commandes</h1>
+
 														<table class="table">
 															<thead>
 																<tr>
@@ -108,7 +109,10 @@
 																	<tr>
 																		<td colspan="4">no records found</td>
 																	</tr>
-																{% endfor %}						
+																{% endfor %}
+
+
+																
 															</tbody>
 														</table>
 													</div>
@@ -177,6 +181,52 @@
 </style>
 												</div>
 											</div>
+
+
+											 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <h1>Statistiques des Utilisateurs</h1>
+    <canvas id="myPieChart" width="400" height="400"></canvas>
+
+    <script>
+        // Données pour le diagramme circulaire
+        const xData = {{ nomUser|json_encode|raw }}; // Étiquettes
+        const yData = {{ nombreCommandes|json_encode|raw }}; // Valeurs
+
+        // Créer le diagramme circulaire
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: xData,
+                datasets: [{
+                    label: 'Nombre des commandes',
+                    data: yData,
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)', // Couleur pour les non bloqués
+                        'rgba(255, 99, 132, 0.2)'  // Couleur pour les bloqués
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Statistiques des Utilisateurs'
+                    }
+                }
+            }
+        });
+    </script>
 										</div>
 									</div>
 								</div>
@@ -184,7 +234,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div><!DOCTYPE html>
+ 
+   
+</body>
+</html>
+</html>
 		</div>
 	</div>
 </div> <br><br><br>{% endblock %}

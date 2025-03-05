@@ -1,0 +1,55 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Confirmation de commande{% endblock %}
+
+{% block body %}
+<br><br><br><br><br><br>
+
+<h1>Confirmation de commande</h1>
+
+{% if cart is empty %}
+    <p>Votre panier est vide.</p>
+{% else %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Récapitulatif de votre commande</h5>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                        <tr>
+                            <td><img src="{{ asset('uploads/' ~ item.produit.image) }}" width="50" height="50" alt="{{ item.produit.nom }}"></td>
+                            <td>{{ item.produit.nom }}</td>
+                            <td>{{ item.produit.prix|number_format(2, ',', ' ') }} TND</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ (item.produit.prix * item.quantity)|number_format(2, ',', ' ') }} TND</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right"><strong>Total Général</strong></td>
+                        <td><strong>{{ total|number_format(2, ',', ' ') }} TND</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-center">
+                <p>Merci de vérifier les détails de votre commande avant de confirmer.</p>
+                <a href="{{ path('valider_commande') }}" class="btn btn-success btn-lg">Confirmer la commande</a>
+                <a href="{{ path('cart_show') }}" class="btn btn-secondary btn-lg">Retour au panier</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

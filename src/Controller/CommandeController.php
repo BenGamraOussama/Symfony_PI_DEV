@@ -7,32 +7,73 @@ use App\Entity\LigneCommande;
 use App\Form\Commande1Type;
 use App\Form\LigneCommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\SvgWriter;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Knp\Snappy\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Twig\Environment;
 
 #[Route('/commande')]
 final class CommandeController extends AbstractController{
 
+ 
+    
 
+
+    #[Route('/imprimer/{id}', name: 'imprimer_dossier')]
+    public function imprimer(Pdf $pdf, int $id,CommandeRepository $dr , Environment $twig): Response
+    {
+    $html = $twig->render('cart/pdf.html.twig', [
+        'commande' => $dr->find($id)
+    ]);
+
+    // Générer le PDF
+    $pdfContent = $pdf->getOutputFromHtml($html);
+
+    // Retourner le fichier PDF en réponse
+    return new Response($pdfContent, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="commande.pdf"'
+    ]);
+}
 
      #[Route('/admin', name: 'app_commande_index_admin')]
-    public function andexadmin(CommandeRepository $commandeRepository,Request $request ,PaginatorInterface $paginator): Response
+    public function andexadmin( UserRepository $userRepo,CommandeRepository $commandeRepository,Request $request ,PaginatorInterface $paginator): Response
     {
+
+
+        $users = $userRepo->findAll();
+        
+        $nomUser = [];
+        $nombreCommandes = [];
+
+        foreach ($users as $user) {
+            $nomUser[] = $user->getLastName(). " " . $user->getFirstName();
+            $nombreCommandes[] = $commandeRepository->count(['user' => $user]);
+        }
+ 
         $pagination = $paginator->paginate(
             $commandeRepository->findAll(),
             $request->query->getInt('page', 1),
-            2
-            
+            2   // items per page
         );
         return $this->render('commande/index_admin.html.twig', [
-            'commandes' => $pagination
+            'commandes' => $pagination,
+            'nomUser' => $nomUser,
+            'nombreCommandes' => $nombreCommandes
         ]);
     }
 
@@ -100,8 +141,27 @@ final class CommandeController extends AbstractController{
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
+
+
+        $user = $this->getUser();
+    $data =  $user->getFirstName() . ' | Commande passé le : ' .  $commande->getDateCommande()->format('d/m/Y H:i:s') .'prix : '.$commande->getMontantTotal();
+
+    $result = Builder::create()
+    ->writer(new PngWriter())
+    ->data($data)
+     ->encoding(new Encoding('UTF-8'))
+     ->errorCorrectionLevel(ErrorCorrectionLevel::Low)
+     ->size(300)
+    // ->logoPath($logoPath) // Add logo
+     //->logoPunchoutBackground(true)
+     ->margin(10)
+     ->build();
+
+ // Generate a Data URI to include image data inline
+ $dataUri = $result->getDataUri();
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
+            'qr' => $dataUri
         ]);
     }
     #[Route('/{id}/admin', name: 'app_commande_show_admin', methods: ['GET'])]
@@ -118,11 +178,13 @@ final class CommandeController extends AbstractController{
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+            // Remove all existing LigneCommande entities associated with the Commande
             foreach ($commande->getLignes() as $ligne) {
                 $entityManager->remove($ligne);
             }
             $entityManager->flush();
     
+            // Recalculate the total amount and persist new LigneCommande entities
             $montantTotal = 0;
             foreach ($commande->getLignes() as $ligne) {
                 $montantTotal += $ligne->getQuantite() * $ligne->getPrixUnitaire();

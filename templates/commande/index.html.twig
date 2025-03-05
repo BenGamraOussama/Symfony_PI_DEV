@@ -8,17 +8,11 @@
 	<div
 		class="app">
 		<!-- begin app-wrap -->
-		<div
-			class="app-wrap">
-			<!-- begin pre-loader -->
+		<div class="app-wrap">
 		 
-			<!-- end pre-loader -->
-			<!-- begin app-header -->   
-			<header></header>
 			<!-- end app-header -->
 			<!-- begin app-container -->
-			<div class="app-container">
-				<!-- begin app-nabar -->
+				<div class="app-container"> <!-- begin app-nabar -->
 
 				<!-- end app-navbar -->
 				<!-- begin app-main -->
@@ -101,6 +95,9 @@
 																		</td>
 																		<td>
 																			<a class="btn btn-secondary" href="{{ path('app_commande_show', {'id': commande.id}) }}">Consulter</a>
+																			<a class="btn btn-primary" href="{{ path('imprimer_dossier', {'id': commande.id}) }}">Imprimer</a>
+
+
 																		</td>
 																	</tr>
 																{% else %}
@@ -123,4 +120,5 @@
 			</div>
 		</div>
 	</div>
-</div> <br><br><br>{% endblock %}
+</div>
+<br><br><br>{% endblock %}

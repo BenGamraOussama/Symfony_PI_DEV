@@ -19,8 +19,8 @@ class Commande1Type extends AbstractType
             'choice_label' => function (LigneCommande $ligneCommande) {
                 return 'prix unitére ' . $ligneCommande->getPrixUnitaire() . ' - Quantité: ' . $ligneCommande->getQuantite();
             },
-            'multiple' => true, 
-            'expanded' => true, 
+            'multiple' => true, // Permet la sélection multiple
+            'expanded' => true, // Affiche sous forme de cases à cocher
             'label' => 'Lignes de Commande',
         ])
            

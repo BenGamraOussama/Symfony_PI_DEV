@@ -71,6 +71,7 @@ public function addLigne(LigneCommande $ligne): static
 public function removeLigne(LigneCommande $ligne): static
 {
     if ($this->lignes->removeElement($ligne)) {
+        // Set the owning side to null (unless already changed)
         if ($ligne->getCommande() === $this) {
             $ligne->setCommande(null);
         }
