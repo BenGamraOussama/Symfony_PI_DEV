@@ -110,9 +110,9 @@
                                                                 <td>{{ exercice.description }}</td>
                                                                 <td>
                                                                     <span class="badge status-badge 
-                                                                        {% if exercice.status == 'not_started' %}bg-secondary
-                                                                        {% elseif exercice.status == 'in_progress' %}bg-warning text-dark
-                                                                        {% elseif exercice.status == 'completed' %}bg-success
+                                                                        {% if exercice.status == 'Pas commencé' %}bg-secondary
+                                                                        {% elseif exercice.status == 'En cours' %}bg-warning text-dark
+                                                                        {% elseif exercice.status == 'Complété' %}bg-success
                                                                         {% endif %}">
                                                                         {{ exercice.status|replace({'_': ' '})|title }}
                                                                     </span>

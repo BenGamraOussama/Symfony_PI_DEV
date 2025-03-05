@@ -52,7 +52,7 @@
 <div class="col-md-8">
     <div class="card mb-4 shadow-sm">
         <div class="card-header bg-info text-white">
-            <h3 class="h5 mb-0">Exercise Question</h3>
+            <h3 class="h5 mb-0">Question D'exercice</h3>
         </div>
         <div class="card-body">
             <div class="alert alert-light border">
@@ -61,8 +61,27 @@
             
             {% if app.user and app.user.patient %}
             <h4 class="mt-4">Your Answer</h4>
-            <form method="post" action="{{ path('app_reponse_new', {'id': activite.exercice.id}) }}">
+            <form method="post" action="{{ path('app_reponse_new', {'id': exercice.id}) }}">
                 <div class="mb-3">
+                <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#responseForm");
+        const inputField = document.querySelector("#response_text");
+        const badWords = ["badword1", "badword2", "badword3"];
+
+        form.addEventListener("submit", function (event) {
+            const responseText = inputField.value.toLowerCase();
+            for (let word of badWords) {
+                if (responseText.includes(word)) {
+                    alert("Votre réponse contient des mots inappropriés et ne peut pas être soumise..");
+                    event.preventDefault(); 
+                    return;
+                }
+            }
+        });
+    });
+</script>
+
                     <textarea class="form-control" name="reponse" 
                               rows="4" placeholder="Type your answer here..." 
                               required {% if hasResponse %}disabled{% endif %}></textarea>
@@ -74,46 +93,16 @@
                 </button>
             </form>
             {% else %}
-            <div class="alert alert-warning">
-                You need to be logged in as a patient to submit answers
-            </div>
             {% endif %}
         </div>
     </div>
 </div>
 
-<!-- Response Statistics -->
-<div class="col-md-4">
-    <div class="card shadow-sm border-primary">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Response Insights</h5>
-        </div>
-        <div class="card-body">
-            <div class="text-center mb-3">
-                <span class="display-4">{{ exercice.reponses|length }}</span>
-                <p class="text-muted mb-0">Total Responses</p>
-            </div>
-            <hr>
-            <div class="list-group">
-                <div class="list-group-item d-flex justify-content-between">
-                    <span>Latest Response</span>
-                    <strong>
-                        {% if exercice.reponses|length > 0 %}
-                            {{ exercice.reponses|last.dateCreation|date('M d, Y') }}
-                        {% else %}
-                            N/A
-                        {% endif %}
-                    </strong>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 
 <!-- Responses List -->
 <div class="mt-5">
-<h4 class="mb-4">All Responses</h4>
+<h4 class="mb-4">Tous Les Reponses</h4>
 {% if exercice.reponses|length > 0 %}
 <div class="response-list">
     {% for reponse in exercice.reponses|reverse %}
@@ -123,7 +112,7 @@
                 <div class="w-75">
                     <p class="mb-1">{{ reponse.contenu }}</p>
                     <small class="text-muted">
-   Answered by {{ reponse.patient.name }}  {# Added patient name #}
+   Répondu par {{ reponse.patient.name }}
  on {{ reponse.dateCreation|date('M d, Y H:i') }}
                     </small>
                 </div>
@@ -131,7 +120,7 @@
                 <div class="btn-group">
                     <form method="post" 
                           action="{{ path('app_reponse_delete', {'id': reponse.id}) }}"
-                          onsubmit="return confirm('Are you sure you want to delete this response?');">
+                          onsubmit="return confirm("Êtes-vous sûr de vouloir supprimer cette réponse ?");">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete_response') }}">
                         <button type="submit" class="btn btn-sm btn-outline-danger">
                             <i class="bi bi-trash"></i>
@@ -146,7 +135,7 @@
 </div>
 {% else %}
 <div class="alert alert-info">
-    <i class="bi bi-info-circle me-2"></i>No responses yet
+    <i class="bi bi-info-circle me-2"></i>Pas De Reponse
 </div>
 {% endif %}
 </div>

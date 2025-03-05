@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -76,9 +75,11 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        // Use the TargetPathTrait's functionality to handle the redirect
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+
         $user = $token->getUser();
         if (false !== $user->getIsBlocked()) {
             return new RedirectResponse($this->urlGenerator->generate('app_block'));
@@ -88,6 +89,7 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('app_authenticator_verify'));
         }
 
+        // Custom redirections based on roles
         if(in_array('ROLE_ADMIN', $user->getRoles(), true)){
             return new RedirectResponse($this->urlGenerator->generate('app_admin'));
         }
@@ -100,9 +102,8 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
         if(in_array('ROLE_PSYCHIATRE', $user->getRoles(), true)){
             return new RedirectResponse($this->urlGenerator->generate('app_psychiatre'));
         }
-        // For example:
+
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

@@ -216,7 +216,7 @@ final class PatientController extends AbstractController
     public function updateActivityStatus(Activite $activity, Request $request, EntityManagerInterface $entityManager): Response
     {
         $status = $request->request->get('status');
-        if (in_array($status, ['not_started', 'in_progress', 'completed'])) {
+        if (in_array($status, ['Pas commencé', 'En cours', 'Complété'])) {
             $activity->setStatus($status);
             $entityManager->flush();
         }

@@ -2,6 +2,9 @@ parameters:
     dossier_medical_directory: '%kernel.project_dir%/public/uploads/dossier_medical'
     uploads_directory: '%kernel.project_dir%/public/uploads'
     app.issuer: HopeNest
+    twilio.sid: '%env(TWILIO_SID)%'
+    twilio.token: '%env(TWILIO_AUTH_TOKEN)%'
+    twilio.phone_number: '%env(TWILIO_PHONE_NUMBER)%'
 
 services:
     App\Enum\ExerciceStatus: ~
@@ -39,3 +42,24 @@ services:
 #twig:
     #globals:
         #motivational_message: '@App\Service\DeepSeekMotivationalMessageService'
+
+    App\EventListener\PatientAssignmentListener:
+        arguments:
+            $mailer: '@Symfony\Component\Mailer\MailerInterface'
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    App\Security\UserChecker:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: security.user_checker }
+    App\Security\Authentification\AuthenticationFailureHandler:
+        arguments:
+            $router: '@router'
+    App\Service\TwilioService:
+        arguments:
+            $sid: '%twilio.sid%'
+            $token: '%twilio.token%'
+            $twilioNumber: '%twilio.phone_number%'

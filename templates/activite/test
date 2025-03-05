@@ -61,9 +61,9 @@
                                             <dt class="col-sm-3">Status</dt>
                                             <dd class="col-sm-9">
                                                 <span class="badge 
-                                                    {% if activite.status == 'not_started' %}bg-secondary
-                                                    {% elseif activite.status == 'in_progress' %}bg-warning text-dark
-                                                    {% elseif activite.status == 'completed' %}bg-success
+                                                    {% if activite.status == 'Pas commencé' %}bg-secondary
+                                                    {% elseif activite.status == 'En cours' %}bg-warning text-dark
+                                                    {% elseif activite.status == 'Complété' %}bg-success
                                                     {% endif %}">
                                                     {{ activite.status|replace({'_': ' '})|title }}
                                                 </span>

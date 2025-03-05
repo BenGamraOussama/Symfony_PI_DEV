@@ -77,16 +77,21 @@
                             
                             {% block javascripts %}
                             <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                // Delete confirmation handler
-                                const confirmDeleteBtn = document.getElementById('modalConfirmDelete');
-                                if(confirmDeleteBtn) {
-                                    confirmDeleteBtn.addEventListener('click', function() {
-                                        document.getElementById('deleteForm').submit();
-                                    });
-                                }
-                            });
-                            </script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typeSelect = document.getElementById('activity_type');
+    const exerciseSection = document.getElementById('exercise-section');
+
+    function toggleExerciseFields() {
+        exerciseSection.style.display = (typeSelect.value === 'exercise') ? 'block' : 'none';
+    }
+
+    // Initial state check (for edit mode)
+    toggleExerciseFields();
+    
+    // Event listener for changes
+    typeSelect.addEventListener('change', toggleExerciseFields);
+});
+</script>
                             {% endblock %}
 
 

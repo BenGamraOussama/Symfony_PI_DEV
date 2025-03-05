@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Activities{% endblock %}
+{% block title %}Admin - Activits{% endblock %}
 
 {% block body %}
 <div class="app">
@@ -13,7 +13,7 @@
                         <div class="col-md-12 m-b-30">
                             <div class="d-block d-lg-flex flex-nowrap align-items-center">
                                 <div class="page-title mr-4 pr-4 border-right">
-                                    <h1>Activities & Exercices</h1>
+                                    <h1>Activités & Exercices</h1>
                                 </div>
                                 <div class="breadcrumb-bar align-items-center">
                                     <nav>
@@ -29,15 +29,107 @@
                         </div>
                     </div>
 
+                    <!-- Statistics Panel -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-statistics">
+                                <div class="row no-gutters">
+                                    <!-- Total Activities -->
+                                    <div class="col-xxl-3 col-lg-6">
+                                        <div class="p-20 border-lg-right border-bottom border-xxl-bottom-0">
+                                            <div class="d-flex m-b-10">
+                                                <p class="mb-0 font-regular text-muted font-weight-bold">Activités totales</p>
+                                                <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i></a>
+                                            </div>
+                                            <div class="d-block d-sm-flex h-100 align-items-center">
+                                                <div class="apexchart-wrapper">
+                                                    <div id="activitiesTotal"></div>
+                                                </div>
+                                                <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                    <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{ activites|length }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Completed Activities -->
+                                    <div class="col-xxl-3 col-lg-6">
+                                        <div class="p-20 border-xxl-right border-bottom border-xxl-bottom-0">
+                                            <div class="d-flex m-b-10">
+                                                <p class="mb-0 font-regular text-muted font-weight-bold">Terminées</p>
+                                                <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i></a>
+                                            </div>
+                                            <div class="d-block d-sm-flex h-100 align-items-center">
+                                                <div class="apexchart-wrapper">
+                                                    <div id="activitiesCompleted"></div>
+                                                </div>
+                                                <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                    <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{ completedCount }}</h3>
+                                                    <p>Taux d'achèvement</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Exercises -->
+                                    <div class="col-xxl-3 col-lg-6">
+                                        <div class="p-20 border-lg-right border-bottom border-lg-bottom-0">
+                                            <div class="d-flex m-b-10">
+                                                <p class="mb-0 font-regular text-muted font-weight-bold">Exercices</p>
+                                                <a class="mb-0 ml-auto font-weight-bold" href="#"><i class="ti ti-more-alt"></i></a>
+                                            </div>
+                                            <div class="d-block d-sm-flex h-100 align-items-center">
+                                                <div class="apexchart-wrapper">
+                                                    <div id="exercisesStats"></div>
+                                                </div>
+                                                <div class="statistics mt-3 mt-sm-0 ml-sm-auto text-center text-sm-right">
+                                                    <h3 class="mb-0"><i class="icon-arrow-up-circle"></i> {{ exerciseCount }}</h3>
+                                                    <p>Actifs</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Type Breakdown -->
+                                    <div class="col-xxl-3 col-lg-6">
+                                        <div class="p-20">
+                                            <div class="d-block d-sm-flex h-100 align-items-center">
+                                                <div class="apexchart-wrapper">
+                                                    <div id="activityTypes"></div>
+                                                </div>
+                                                <div class="statistics ml-sm-auto mt-4 mt-sm-0 pr-sm-5">
+                                                    <ul class="list-style-none p-0">
+                                                        <li class="d-flex py-1">
+                                                            <span><i class="fa fa-circle text-primary pr-2"></i> Mentale</span> 
+                                                            <span class="pl-2 font-weight-bold">{{ mentalCount }}</span>
+                                                        </li>
+                                                        <li class="d-flex py-1">
+                                                            <span><i class="fa fa-circle text-warning pr-2"></i> Relaxation</span> 
+                                                            <span class="pl-2 font-weight-bold">{{ relaxationCount }}</span>
+                                                        </li>
+                                                        <li class="d-flex py-1">
+                                                            <span><i class="fa fa-circle text-info pr-2"></i> Sociale</span> 
+                                                            <span class="pl-2 font-weight-bold">{{ socialCount }}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Main Content -->
                     <div class="row">
                         <div class="col-12">
                             <div class="card shadow">
                                 <div class="card-header bg-primary text-white">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h2 class="h4 mb-0">Activities & Exercices Management</h2>
+                                        <h2 class="h4 mb-0">Gestion Activités & Exercices</h2>
                                         <a href="{{ path('app_activite_new') }}" class="btn btn-light btn-sm">
-                                            <i class="bi bi-plus-circle me-2"></i>New
+                                            <i class="bi bi-plus-circle me-2"></i>Nouveau
                                         </a>
                                     </div>
                                 </div>
@@ -47,17 +139,17 @@
                                     <form method="get" class="mb-4">
                                         <div class="row g-3">
                                             <div class="col-md-8">
-                                                <label class="form-label">Activity Type</label>
+                                                <label class="form-label">Type D'Activité</label>
                                                 <select name="type" class="form-select" onchange="this.form.submit()">
-                                                    <option value="">All Types (Including Exercises)</option>
+                                                    <option value="">Tous Les Types</option>
                                                     <option value="mentale" {{ typeFilter == 'mentale' ? 'selected' : '' }}>Mental</option>
                                                     <option value="relaxation" {{ typeFilter == 'relaxation' ? 'selected' : '' }}>Relaxation</option>
                                                     <option value="sociale" {{ typeFilter == 'sociale' ? 'selected' : '' }}>Social</option>
-                                                    <option value="exercise" {{ typeFilter == 'exercise' ? 'selected' : '' }}>Exercises Only</option>
+                                                    <option value="exercise" {{ typeFilter == 'exercise' ? 'selected' : '' }}>Exercices</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4 d-flex align-items-end">
-                                                <a href="{{ path('app_activite_index') }}" class="btn btn-secondary w-100">Reset Filters</a>
+                                                <a href="{{ path('app_activite_index') }}" class="btn btn-secondary w-100">Réinitialiser</a>
                                             </div>
                                         </div>
                                     </form>
@@ -67,11 +159,11 @@
                                         <table class="table table-hover align-middle">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th>Title</th>
+                                                    <th>Titre</th>
                                                     <th>Description</th>
-                                                    <th>Status</th>
+                                                    <th>Statut</th>
                                                     <th>Type</th>
-                                                    <th>Exercise</th>
+                                                    <th>Exercice</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -82,16 +174,16 @@
                                                     <td>{{ activite.description|u.truncate(50, '...') }}</td>
                                                     <td>
                                                         <span class="badge rounded-pill 
-                                                            {% if activite.status == 'not_started' %}bg-secondary
-                                                            {% elseif activite.status == 'in_progress' %}bg-warning text-dark
-                                                            {% elseif activite.status == 'completed' %}bg-success
+                                                            {% if activite.status == 'Pas commencé' %}bg-secondary
+                                                            {% elseif activite.status == 'En cours' %}bg-warning text-dark
+                                                            {% elseif activite.status == 'Complété' %}bg-success
                                                             {% endif %}">
                                                             {{ activite.status|replace({'_': ' '})|title }}
                                                         </span>
                                                     </td>
                                                     <td>
                                                         {% if activite.type == 'exercise' %}
-                                                            Exercise
+                                                            Exercice
                                                         {% else %}
                                                             {{ activite.type|capitalize }}
                                                         {% endif %}
@@ -108,25 +200,25 @@
                                                             <a href="{{ path('app_activite_show', {'id': activite.id}) }}" 
                                                                class="btn btn-sm btn-info"
                                                                data-bs-toggle="tooltip"
-                                                               title="View Details">
+                                                               title="Voir détails">
                                                                 <i class="bi bi-eye"></i>
                                                             </a>
 
                                                             <a href="{{ path('app_activite_edit', {'id': activite.id}) }}" 
                                                                class="btn btn-sm btn-warning"
                                                                data-bs-toggle="tooltip"
-                                                               title="Edit">
+                                                               title="Modifier">
                                                                 <i class="bi bi-pencil"></i>
                                                             </a>
 
                                                             <form method="post" 
                                                                   action="{{ path('app_activite_delete', {'id': activite.id}) }}"
-                                                                  onsubmit="return confirm('Are you sure you want to delete this activity?');">
+                                                                  onsubmit="return confirm('Confirmer la suppression ?');">
                                                                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activite.id) }}">
                                                                 <button type="submit" 
                                                                         class="btn btn-sm btn-danger"
                                                                         data-bs-toggle="tooltip"
-                                                                        title="Delete">
+                                                                        title="Supprimer">
                                                                     <i class="bi bi-trash"></i>
                                                                 </button>
                                                             </form>
@@ -135,7 +227,7 @@
                                                             <a href="{{ path('app_activite_show', {'id': activite.id}) }}#responses" 
                                                                class="btn btn-sm btn-success"
                                                                data-bs-toggle="tooltip"
-                                                               title="View Responses">
+                                                               title="Réponses">
                                                                 <i class="bi bi-chat-text"></i>
                                                             </a>
                                                             {% endif %}
@@ -145,7 +237,7 @@
                                                 {% else %}
                                                 <tr>
                                                     <td colspan="6" class="text-center text-muted py-4">
-                                                        No activities found matching your criteria
+                                                    Aucune activité trouvée
                                                     </td>
                                                 </tr>
                                                 {% endfor %}
@@ -163,12 +255,59 @@
 </div>
 
 {% block javascripts %}
+{{ parent() }}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Bootstrap tooltips
+    // Initialize tooltips
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    // Improved Chart Options
+    const baseChartOptions = {
+        chart: { type: 'donut', height: 250 },
+        plotOptions: {
+            pie: {
+                donut: { size: '65%' },
+                expandOnClick: false
+            }
+        },
+        dataLabels: { enabled: false },
+        legend: { position: 'bottom' }
+    };
+
+    // Total Activities Chart
+    new ApexCharts(document.querySelector("#activitiesTotal"), {
+        ...baseChartOptions,
+        series: [{{ activites|length }}],
+        labels: ['Total Activités'],
+        colors: ['#007bff']
+    }).render();
+
+    // Completed Activities Chart
+    new ApexCharts(document.querySelector("#activitiesCompleted"), {
+        ...baseChartOptions,
+        series: [{{ completedCount }}, {{ activites|length - completedCount }}],
+        labels: ['Complétées', 'Non complétées'],
+        colors: ['#28a745', '#dc3545']
+    }).render();
+
+    // Exercises Chart
+    new ApexCharts(document.querySelector("#exercisesStats"), {
+        ...baseChartOptions,
+        series: [{{ exerciseCount }}, {{ activites|length - exerciseCount }}],
+        labels: ['Exercices', 'Autres'],
+        colors: ['#17a2b8', '#ffc107']
+    }).render();
+
+    // Activity Types Chart
+    new ApexCharts(document.querySelector("#activityTypes"), {
+        ...baseChartOptions,
+        series: [{{ mentalCount }}, {{ relaxationCount }}, {{ socialCount }}],
+        labels: ['Mentale', 'Relaxation', 'Sociale'],
+        colors: ['#6610f2', '#fd7e14', '#20c997']
+    }).render();
 });
+
 </script>
 {% endblock %}
 {% endblock %}

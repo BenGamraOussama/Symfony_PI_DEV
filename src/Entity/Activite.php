@@ -8,12 +8,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
 class Activite
 {
-    public const STATUS_NOT_STARTED = 'not_started';
-    public const STATUS_IN_PROGRESS = 'in_progress';
-    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_NOT_STARTED = 'Pas commencé';
+    public const STATUS_IN_PROGRESS = 'En cours';
+    public const STATUS_COMPLETED = 'Complété';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -53,16 +54,22 @@ class Activite
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Le type est requis")]
-    // Supprimer la contrainte Assert\Choice
     private ?string $type = null;
 
-    #[ORM\ManyToMany(targetEntity: Patient::class, mappedBy: 'activites')]
+    #[ORM\ManyToMany(targetEntity: Patient::class, inversedBy: 'activites')]
+    #[ORM\JoinTable(name: 'patient_activite')]
+    #[Assert\Count(
+        min: 1,
+        minMessage: "You must select at least one patient."
+    )]
     private Collection $patients;
 
-
-
-
-    #[ORM\OneToOne(mappedBy: 'activite', targetEntity: Exercice::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(
+        mappedBy: 'activite', 
+        targetEntity: Exercice::class, 
+        cascade: ['persist', 'remove'],
+        orphanRemoval: true // Add this line
+    )]
     private ?Exercice $exercice = null;
 
     public function __construct()
@@ -71,7 +78,6 @@ class Activite
         $this->status = self::STATUS_NOT_STARTED;
     }
 
-    // Getters and Setters (inchangés)
     public function getId(): ?int
     {
         return $this->id;
@@ -127,23 +133,21 @@ class Activite
     }
 
     public function addPatient(Patient $patient): self
-    {
-        if (!$this->patients->contains($patient)) {
-            $this->patients->add($patient);
-            $patient->addActivite($this);
-        }
-        return $this;
+{
+    if (!$this->patients->contains($patient)) {
+        $this->patients->add($patient);
+        $patient->addActivite($this); // Add this line
     }
+    return $this;
+}
 
-
-    public function removePatient(Patient $patient): self
-    {
-        if ($this->patients->removeElement($patient)) {
-            $patient->removeActivite($this);
-        }
-        return $this;
+public function removePatient(Patient $patient): self
+{
+    if ($this->patients->removeElement($patient)) {
+        $patient->removeActivite($this); // Add this line
     }
-
+    return $this;
+}
 
     public function getExercice(): ?Exercice
     {

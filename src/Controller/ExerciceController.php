@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\SecurityBundle\Security;
+
 
 #[Route('/exercice')]
 final class ExerciceController extends AbstractController
@@ -46,15 +48,27 @@ final class ExerciceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_exercice_show', methods: ['GET'])]
-    public function show(Exercice $exercice): Response
-    {
-        $user = $this->getUser();
-        return $this->render('exercice/show.html.twig', [
-            'exercice' => $exercice,
-            'user' => $user
-        ]);
+    
+#[Route('/{id}', name: 'app_exercice_show', methods: ['GET'])]
+public function show(Exercice $exercice, Security $security): Response
+{
+    $user = $security->getUser();
+    $hasResponse = false;
+
+    if ($user && $user->getPatient()) {
+        $patient = $user->getPatient();
+        $hasResponse = $exercice->getReponses()->exists(function ($key, $response) use ($patient) {
+            return $response->getPatient() === $patient;
+        });
     }
+
+    return $this->render('exercice/show.html.twig', [
+        'exercice' => $exercice,
+        'hasResponse' => $hasResponse, 
+        'user' => $user
+
+    ]);
+}
 
     #[Route('/{id}/edit', name: 'app_exercice_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Exercice $exercice, EntityManagerInterface $entityManager): Response

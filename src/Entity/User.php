@@ -94,6 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     /**
      * A visual identifier that represents this user.
      *
@@ -197,4 +198,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->patient;
     }
+
+    public function setPatient(?Patient $patient): self
+    {
+        $this->patient = $patient;
+        return $this;
+    }
+    
 }

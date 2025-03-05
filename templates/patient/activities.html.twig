@@ -1,15 +1,15 @@
 {% extends 'basePatient.html.twig' %}
 
-{% block title %}My Activities{% endblock %}
+{% block title %}Mes Activités{% endblock %}
 
 {% block body %}
 <div class="container my-5">
-    <h2 class="text-center mb-5">Your Activities</h2>
+    <h2 class="text-center mb-5">Vos Activités</h2>
     
     {# Filter Controls #}
-    <div class="mb-4">
+    <div class="d-flex justify-content-between mb-4">
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-outline-primary filter active" data-filter="all">All</button>
+            <button type="button" class="btn btn-outline-primary filter active" data-filter="all">Tous Types</button>
             {% set uniqueTypes = [] %}
             {% for activity in patientActivities %}
                 {% if activity.type not in uniqueTypes %}
@@ -20,59 +20,81 @@
                 {% endif %}
             {% endfor %}
         </div>
+
+        <div class="btn-group" role="group">
+            {% set uniqueStatuses = [] %}
+            {% for activity in patientActivities %}
+                {% set status = activity.type == 'exercise' 
+                    ? (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0 ? 'Répondu' : 'En attente') 
+                    : activity.status %}
+                {% if status not in uniqueStatuses %}
+                    {% set uniqueStatuses = uniqueStatuses|merge([status]) %}
+                {% endif %}
+            {% endfor %}
+            
+            <button type="button" class="btn btn-outline-primary status-filter active" data-status-filter="all">Tous Les Statuts</button>
+            {% for status in uniqueStatuses|sort %}
+                <button type="button" class="btn btn-outline-primary status-filter" data-status-filter="{{ status }}">
+                    {{ status|replace({'_': ' '})|title }}
+                </button>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="row g-4">
         {% for activity in patientActivities %}
-        <div class="col-md-4 activity-item" data-type="{{ activity.type }}">
-            <div class="card h-100 shadow activity-card" 
-                 data-bs-toggle="modal" 
-                 data-bs-target="#activityModal"
-                 data-activity-id="{{ activity.id }}"
-                 data-title="{{ activity.titre }}"
-                 data-description="{{ activity.description }}"
-                 data-status="{{ activity.status }}"
-                 data-is-exercise="{{ activity.type == 'exercise' ? 'true' : 'false' }}"
-                 data-exercise-id="{{ activity.exercice ? activity.exercice.id : '' }}"
-                 data-question="{{ activity.exercice ? activity.exercice.question : '' }}"
-                 data-has-response="{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'true' : 'false' }}">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">
-                        {{ activity.titre }}
-                        <div class="badge-container">
-                            <span class="badge bg-info me-2">
-                                <i class="bi 
-                                    {% if activity.type == 'exercise' %}bi-question-circle
-                                    {% else %}bi-clipboard-check
-                                    {% endif %} me-1"></i>
-                                {{ activity.type|capitalize }}
-                            </span>
-                            {% if activity.type == 'exercise' %}
-                                <span class="badge bg-{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'success' : 'warning' }}">
-                                    {{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'Answered' : 'Pending' }}
+            {% set activityStatus = activity.type == 'exercise' 
+                ? (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0 ? 'Répondu' : 'En attente') 
+                : activity.status %}
+            
+            <div class="col-md-4 activity-item" 
+                 data-type="{{ activity.type }}"
+                 data-status="{{ activityStatus }}">
+                <div class="card h-100 shadow activity-card"
+                     data-bs-toggle="modal" 
+                     data-bs-target="#activityModal"
+                     data-activity-id="{{ activity.id }}"
+                     data-title="{{ activity.titre }}"
+                     data-description="{{ activity.description }}"
+                     data-status="{{ activityStatus }}"
+                     data-is-exercise="{{ activity.type == 'exercise' ? 'true' : 'false' }}"
+                     data-exercise-id="{{ activity.exercice ? activity.exercice.id : '' }}"
+                     data-question="{{ activity.exercice ? activity.exercice.question : '' }}"
+                     data-has-response="{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'true' : 'false' }}">
+                    <img src="{{ asset('images/default-activity-image.png') }}" class="card-img-top" alt="Activity Image">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex justify-content-between align-items-center">
+                            {{ activity.titre }}
+                            <div class="badge-container">
+                                <span class="badge bg-info me-2">
+                                    <i class="bi 
+                                        {% if activity.type == 'exercise' %}bi-question-circle
+                                        {% else %}bi-clipboard-check
+                                        {% endif %} me-1"></i>
+                                    {{ activity.type|capitalize }}
                                 </span>
-                            {% else %}
                                 <span class="badge 
-                                    {% if activity.status == 'not_started' %}bg-secondary
-                                    {% elseif activity.status == 'in_progress' %}bg-warning text-dark
-                                    {% elseif activity.status == 'completed' %}bg-success
+                                    {% if activityStatus == 'Répondu' %}bg-success
+                                    {% elseif activityStatus == 'En attente' %}bg-warning
+                                    {% elseif activityStatus == 'Pas commencé' %}bg-secondary
+                                    {% elseif activityStatus == 'En cours' %}bg-warning text-dark
+                                    {% elseif activityStatus == 'Complété' %}bg-success
                                     {% endif %}">
-                                    {{ activity.status|replace({'_': ' '})|title }}
+                                    {{ activityStatus|replace({'_': ' '})|title }}
                                 </span>
-                            {% endif %}
-                        </div>
-                    </h5>
+                            </div>
+                        </h5>
+                    </div>
                 </div>
             </div>
-        </div>
         {% else %}
-        <div class="col-12">
-            <div class="alert alert-info">No activities assigned yet.</div>
-        </div>
+            <div class="col-12">
+                <div class="alert alert-info">Aucune activité assignée pour le moment.</div>
+            </div>
         {% endfor %}
     </div>
 
-    {# Activity Modal #}
+    {# Modal #}
     <div class="modal fade" id="activityModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -88,29 +110,29 @@
 
                     <div id="exerciseSection" style="display: none;">
                         <div class="mb-3">
-                            <h6>Exercise Question</h6>
+                            <h6>Question de l'exercice</h6>
                             <p id="activityModalQuestion" class="text-muted fst-italic"></p>
                         </div>
                         
                         <div id="responseContainer">
-                            <h6>Your Response</h6>
+                            <h6>Votre réponse</h6>
                             <div id="existingResponses"></div>
                             <div id="responseFormContainer" style="display: none;">
                                 {% if app.user and app.user.patient %}
                                 <form id="responseForm" method="POST">
                                     <div class="mb-3">
                                         <textarea name="reponse" class="form-control" rows="3" 
-                                                  placeholder="Type your answer here..." required></textarea>
+                                                  placeholder="Écrivez votre réponse ici..." required></textarea>
                                     </div>
                                     <input type="hidden" name="exercise_id" id="exerciseId">
                                     <input type="hidden" name="_token" value="{{ csrf_token('response') }}">
                                     <button type="submit" class="btn btn-success">
-                                        <i class="bi bi-send me-2"></i>Submit Answer
+                                        <i class="bi bi-send me-2"></i>Envoyer la réponse
                                     </button>
                                 </form>
                                 {% else %}
                                 <div class="alert alert-danger">
-                                    Patient profile not found. Cannot submit response.
+                                    Profil patient non trouvé. Impossible de soumettre une réponse.
                                 </div>
                                 {% endif %}
                             </div>
@@ -121,11 +143,11 @@
                     <div id="statusUpdateSection" style="display: none;">
                         <form id="statusUpdateForm" method="POST">
                             <div class="mb-3">
-                                <label class="form-label">Update Status</label>
+                                <label class="form-label">Mettre à jour le statut</label>
                                 <select name="status" class="form-select" id="statusSelect">
-                                    <option value="not_started">Not Started</option>
-                                    <option value="in_progress">In Progress</option>
-                                    <option value="completed">Completed</option>
+                                    <option value="Pas commencé">Pas commencé</option>
+                                    <option value="En cours">En cours</option>
+                                    <option value="Complété">Complété</option>
                                 </select>
                             </div>
                             <input type="hidden" name="activity_id" id="activityId">
@@ -134,9 +156,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="button" class="btn btn-primary" id="statusUpdateButton" style="display: none;">
-                        Save Status
+                        Sauvegarder
                     </button>
                 </div>
             </div>
@@ -147,24 +169,36 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Filter functionality
+    let selectedType = 'all';
+    let selectedStatus = 'all';
+
     const filterButtons = document.querySelectorAll('.filter');
+    const statusFilterButtons = document.querySelectorAll('.status-filter');
     const activityItems = document.querySelectorAll('.activity-item');
+
+    function updateFilters() {
+        activityItems.forEach(item => {
+            const typeMatch = selectedType === 'all' || item.dataset.type === selectedType;
+            const statusMatch = selectedStatus === 'all' || item.dataset.status === selectedStatus;
+            item.style.display = typeMatch && statusMatch ? 'block' : 'none';
+        });
+    }
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
-            const filterValue = this.dataset.filter;
-            
-            activityItems.forEach(item => {
-                if (filterValue === 'all' || item.dataset.type === filterValue) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+            selectedType = this.dataset.filter;
+            updateFilters();
+        });
+    });
+
+    statusFilterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            statusFilterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            selectedStatus = this.dataset.statusFilter;
+            updateFilters();
         });
     });
 
@@ -205,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="card-body">
                                     <p class="card-text">{{ response.contenu }}</p>
                                     <small class="text-muted">
-                                        Answered on {{ response.dateCreation|date('Y-m-d H:i') }}
+                                        Répondu le {{ response.dateCreation|date('Y-m-d H:i') }}
                                     </small>
                                 </div>
                             </div>`;
@@ -244,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <p class="card-text">${formData.get('reponse')}</p>
-                                <small class="text-muted">Answered just now</small>
+                                <small class="text-muted">Répondu à l'instant</small>
                             </div>
                         </div>`;
                 }
@@ -267,10 +301,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newStatus = document.getElementById('statusSelect').value;
                 const badge = document.querySelector(`[data-activity-id="${activityId}"] .badge:last-child`);
                 
-                badge.textContent = newStatus.replace('_', ' ').toTitleCase();
+                badge.textContent = newStatus;
                 badge.className = `badge ${
-                    newStatus === 'not_started' ? 'bg-secondary' :
-                    newStatus === 'in_progress' ? 'bg-warning text-dark' :
+                    newStatus === 'Pas commencé' ? 'bg-secondary' :
+                    newStatus === 'En cours' ? 'bg-warning text-dark' :
                     'bg-success'
                 }`;
                 
@@ -280,22 +314,20 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
     });
 });
-
-String.prototype.toTitleCase = function() {
-    return this.replace(/\w\S*/g, function(txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-};
 </script>
 
 <style>
-.filter {
+.filter, .status-filter {
     transition: all 0.2s ease;
 }
-.filter.active {
+.filter.active, .status-filter.active {
     background-color: #0d6efd;
     color: white !important;
     border-color: #0d6efd;
+}
+.btn-group {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .activity-card {
     cursor: pointer;
@@ -325,6 +357,20 @@ String.prototype.toTitleCase = function() {
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: flex-end;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+.modal-header {
+    padding: 1rem 2rem;
+}
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.fst-italic {
+    font-style: italic;
 }
 </style>
 {% endblock %}

@@ -1,4 +1,24 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'id': 'responseForm'}}) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn" type="submit">Sauvegarder</button>
 {{ form_end(form) }}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let form = document.getElementById('responseForm');
+        let responseInput = document.querySelector("textarea[name='reponse']");
+        let badWords = ["badword1", "badword2", "badword3"]; // Add more words
+
+        form.addEventListener('submit', function (event) {
+            let responseText = responseInput.value.toLowerCase();
+            
+            for (let i = 0; i < badWords.length; i++) {
+                if (responseText.includes(badWords[i])) {
+                    alert("Votre réponse contient des mots inappropriés et ne peut pas être soumise.");
+                    event.preventDefault(); // Stop form submission
+                    return;
+                }
+            }
+        });
+    });
+</script>

@@ -22,11 +22,17 @@ class Patient extends User
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $phone = null;
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $phone = null;
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $suspendedUntil = null;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 0])]
+    private int $badWordAttempts = 0;
 
     #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
     private Collection $rdvs;
@@ -37,16 +43,17 @@ class Patient extends User
     #[ORM\ManyToMany(targetEntity: Exercice::class, inversedBy: 'patients')]
     private Collection $exercices;
 
-    #[ORM\ManyToMany(targetEntity: Activite::class, inversedBy: 'patients')]
-    private Collection $activites;
+    #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'patients')]
+    private Collection $activites;  
 
     #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'patient')]
     private Collection $reponses;
 
-    #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class)]
-    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class, cascade: ['remove'])]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?User $user = null;
 
+    
     public function __construct()
     {
         $this->rdvs = new ArrayCollection();
@@ -145,7 +152,11 @@ class Patient extends User
         $this->name = $name;
         return $this;
     }
-
+    
+    
+    /**
+     * @return Collection<int, Question>
+     */
     public function getQuestions(): Collection
     {
         return $this->questions;
@@ -195,27 +206,56 @@ class Patient extends User
     }
 
     public function addActivite(Activite $activite): static
-    {
-        if (!$this->activites->contains($activite)) {
-            $this->activites->add($activite);
-        }
-        return $this;
+{
+    if (!$this->activites->contains($activite)) {
+        $this->activites->add($activite);
+        $activite->addPatient($this); 
     }
+    return $this;
+}
 
-    public function removeActivite(Activite $activite): static
-    {
-        $this->activites->removeElement($activite);
-        return $this;
+public function removeActivite(Activite $activite): static
+{
+    if ($this->activites->removeElement($activite)) {
+        $activite->removePatient($this); // Add this line
     }
+    return $this;
+}
 
     public function getReponses(): Collection
     {
         return $this->reponses;
     }
 
-    public function setUser(User $user): self
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
     {
         $this->user = $user;
+        return $this;
+    }
+    public function getSuspendedUntil(): ?\DateTimeInterface
+    {
+        return $this->suspendedUntil;
+    }
+
+    public function setSuspendedUntil(?\DateTimeInterface $suspendedUntil): self
+    {
+        $this->suspendedUntil = $suspendedUntil;
+        return $this;
+    }
+
+    public function getBadWordAttempts(): int
+    {
+        return $this->badWordAttempts;
+    }
+
+    public function setBadWordAttempts(int $badWordAttempts): self
+    {
+        $this->badWordAttempts = $badWordAttempts;
         return $this;
     }
 }
