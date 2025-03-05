@@ -15,7 +15,6 @@
                         <th>Quantité</th>
                         <th>Prix unitaire (TND)</th>
                         <th>Total (TND)</th>
-                        <th>Modifier</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -24,14 +23,9 @@
                         <tr>
                             <td>{{ item.produit.nom }}</td>
 
-                            <!-- Formulaire pour modifier la quantité -->
+                            <!-- Champ de quantité sans bouton -->
                             <td>
-                                <form action="{{ path('modifier_quantite_panier', {'id': item.id}) }}" method="POST" class="d-flex align-items-center">
-                                    <input type="number" name="quantite" value="{{ item.quantite }}" min="1" class="form-control form-control-sm w-50 me-2 quantite-input" data-id="{{ item.id }}" data-prix="{{ item.produit.prix }}">
-                                    <button type="submit" class="btn btn-info btn-sm">
-                                        <i class="fas fa-sync"></i>
-                                    </button>
-                                </form>
+                                <input type="number" name="quantite" value="{{ item.quantite }}" min="1" class="form-control form-control-sm w-50 me-2 quantite-input" data-id="{{ item.id }}" data-prix="{{ item.produit.prix }}">
                             </td>
 
                             <td class="prix-unitaire">{{ item.produit.prix }}</td>
@@ -108,12 +102,11 @@
                         document.getElementById("total-global").innerText = totalGlobal.toFixed(2) + " TND";
 
                         // Afficher ou masquer la remise
+                        let remiseElement = document.querySelector(".text-danger");
                         if (remise > 0) {
-                            let remiseElement = document.querySelector(".text-danger");
                             remiseElement.style.display = "block";
                             remiseElement.innerText = "Remise de 10% : -" + remise.toFixed(2) + " TND";
                         } else {
-                            let remiseElement = document.querySelector(".text-danger");
                             remiseElement.style.display = "none";
                         }
                     }

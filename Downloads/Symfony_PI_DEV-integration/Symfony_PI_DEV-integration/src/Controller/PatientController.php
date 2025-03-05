@@ -97,13 +97,26 @@ final class PatientController extends AbstractController
     }
 
     #[Route('/produits/recherche', name: 'produit_recherche')]
-    public function search(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $query = $request->query->get('query');
-        $produits = $entityManager->getRepository(Produit::class)->findBySearchQuery($query);
 
+
+    public function search(Request $request, EntityManagerInterface $entityManager, ProduitRepository $produitRepository): Response
+    {
+        // Récupère la query du formulaire de recherche
+        $query = $request->query->get('query');
+
+        dump($query); // Affiche la valeur de la recherche dans la barre de débogage pour vérifier
+
+        if (!$query) {
+            $produits = []; // Si aucune recherche, pas de produits à afficher
+        } else {
+            // Si une recherche a été effectuée, on utilise le repository pour récupérer les produits correspondants
+            $produits = $produitRepository->findBySearchQuery($query);
+        }
+
+        // On renvoie la réponse avec les produits dans la vue
         return $this->render('produit/index_user.html.twig', [
             'produits' => $produits,
         ]);
     }
+
 }

@@ -88,12 +88,9 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
                     <form action=\"";
         // line 16
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_recherche");
-        yield "\" method=\"GET\">
-                        <input type=\"text\" class=\"input-search\" name=\"query\" placeholder=\"Rechercher des produits...\" value=\"";
-        // line 17
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 17, $this->source); })()), "request", [], "any", false, false, false, 17), "get", ["query"], "method", false, false, false, 17), "html", null, true);
-        yield "\">
-                        <button type=\"submit\"><i class='flaticon-search'></i></button>
+        yield "\" method=\"get\">
+                        <input type=\"text\" name=\"query\" placeholder=\"Rechercher un produit\" />
+                        <button type=\"submit\">Rechercher</button>
                     </form>
                 </div>
             </div>
@@ -254,17 +251,16 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
             yield "                ";
         } else {
             // line 108
-            yield "                    <p class=\"text-center text-danger\">Aucun produit trouvé pour \"";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 108, $this->source); })()), "request", [], "any", false, false, false, 108), "get", ["query"], "method", false, false, false, 108), "html", null, true);
-            yield "\"</p>
+            yield "
+                                   <p>Aucun produit trouvé</p>
                 ";
         }
-        // line 110
+        // line 111
         yield "            </div>
             <div class=\"pagination\">
                 ";
-        // line 112
-        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["pagination"]) || array_key_exists("pagination", $context) ? $context["pagination"] : (function () { throw new RuntimeError('Variable "pagination" does not exist.', 112, $this->source); })()));
+        // line 113
+        yield $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["pagination"]) || array_key_exists("pagination", $context) ? $context["pagination"] : (function () { throw new RuntimeError('Variable "pagination" does not exist.', 113, $this->source); })()));
         yield "
             </div>
         </div>
@@ -301,7 +297,7 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  267 => 112,  263 => 110,  257 => 108,  254 => 107,  240 => 99,  236 => 98,  229 => 94,  223 => 91,  214 => 87,  205 => 83,  198 => 79,  191 => 77,  187 => 76,  182 => 73,  177 => 72,  175 => 71,  168 => 66,  159 => 64,  155 => 63,  142 => 53,  135 => 49,  128 => 45,  115 => 35,  94 => 17,  90 => 16,  76 => 4,  63 => 3,  40 => 1,);
+        return array (  263 => 113,  259 => 111,  254 => 108,  251 => 107,  237 => 99,  233 => 98,  226 => 94,  220 => 91,  211 => 87,  202 => 83,  195 => 79,  188 => 77,  184 => 76,  179 => 73,  174 => 72,  172 => 71,  165 => 66,  156 => 64,  152 => 63,  139 => 53,  132 => 49,  125 => 45,  112 => 35,  90 => 16,  76 => 4,  63 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -321,9 +317,9 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
                     <span class=\"search-overlay-close-line\"></span>
                 </div>
                 <div class=\"search-overlay-form\">
-                    <form action=\"{{ path('produit_recherche') }}\" method=\"GET\">
-                        <input type=\"text\" class=\"input-search\" name=\"query\" placeholder=\"Rechercher des produits...\" value=\"{{ app.request.get('query') }}\">
-                        <button type=\"submit\"><i class='flaticon-search'></i></button>
+                    <form action=\"{{ path('produit_recherche') }}\" method=\"get\">
+                        <input type=\"text\" name=\"query\" placeholder=\"Rechercher un produit\" />
+                        <button type=\"submit\">Rechercher</button>
                     </form>
                 </div>
             </div>
@@ -413,7 +409,8 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p class=\"text-center text-danger\">Aucun produit trouvé pour \"{{ app.request.get('query') }}\"</p>
+
+                                   <p>Aucun produit trouvé</p>
                 {% endif %}
             </div>
             <div class=\"pagination\">
@@ -422,7 +419,6 @@ class __TwigTemplate_e8c88e5abcee95bc87d1d319184680f5 extends Template
         </div>
     </section>
     <!-- End Products Area -->
-{% endblock %}
-", "produit/index_patient.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit\\index_patient.html.twig");
+{% endblock %}", "produit/index_patient.html.twig", "C:\\Users\\Lenovo\\Downloads\\Symfony_PI_DEV-integration\\Symfony_PI_DEV-integration\\templates\\produit\\index_patient.html.twig");
     }
 }

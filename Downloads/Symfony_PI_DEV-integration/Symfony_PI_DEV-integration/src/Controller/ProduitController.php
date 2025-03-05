@@ -163,5 +163,42 @@ final class ProduitController extends AbstractController
 
         return $this->redirectToRoute('produit_index');
     }
+// src/Controller/ProduitController.php
+
+    #[Route('/produit/{id}/noter', name: 'produit_noter', methods: ['POST'])]
+    public function noter(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(NoteType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $note = $form->getData();
+            $note->setProduit($produit);
+
+            $entityManager->persist($note);
+            $entityManager->flush();
+
+            // Recalculer la note moyenne
+            $this->updateAverageRating($produit, $entityManager);
+        }
+
+        return $this->redirectToRoute('produit_show', ['id' => $produit->getId()]);
+    }
+
+    private function updateAverageRating(Produit $produit, EntityManagerInterface $entityManager)
+    {
+        $notes = $produit->getNotes(); // Suppose que tu as une relation OneToMany entre Produit et Note
+        $totalNotes = count($notes);
+
+        if ($totalNotes > 0) {
+            $somme = array_reduce($notes->toArray(), fn($carry, $note) => $carry + $note->getNote(), 0);
+            $produit->setAverageRating($somme / $totalNotes);
+        } else {
+            $produit->setAverageRating(0);
+        }
+
+        $entityManager->persist($produit);
+        $entityManager->flush();
+    }
 
 }

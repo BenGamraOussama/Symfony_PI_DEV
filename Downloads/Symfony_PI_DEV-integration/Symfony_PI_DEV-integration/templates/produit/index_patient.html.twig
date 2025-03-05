@@ -17,7 +17,6 @@
                         <input type="text" name="query" placeholder="Rechercher un produit" />
                         <button type="submit">Rechercher</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -106,7 +105,8 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p class="text-center text-danger">Aucun produit trouvé pour "{{ app.request.get('query') }}"</p>
+
+                                   <p>Aucun produit trouvé</p>
                 {% endif %}
             </div>
             <div class="pagination">

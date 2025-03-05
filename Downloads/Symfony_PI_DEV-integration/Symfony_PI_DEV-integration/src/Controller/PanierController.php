@@ -10,9 +10,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\EmailService; // Assurez-vous d'avoir ce service EmailService
 
 class PanierController extends AbstractController
 {
+    private $emailService;
+
+    public function __construct(EmailService $emailService)
+    {
+        $this->emailService = $emailService;  // Injection du service EmailService
+    }
+
     #[Route('/ajouter-panier/{id}', name: 'ajouter_panier')]
     public function ajouterPanier(Produit $produit, Request $request, EntityManagerInterface $em): Response
     {
@@ -71,6 +79,21 @@ class PanierController extends AbstractController
         // Enregistrer en base de données
         $em->flush();
 
+        // Envoi d'un email à l'utilisateur après l'ajout au panier
+        $email = $utilisateur->getEmail(); // Récupérer l'email de l'utilisateur
+        $subject = 'Produit ajouté à votre panier';
+        $body = sprintf(
+            'Bonjour %s, vous avez ajouté %d %s(s) à votre panier.\n\nPrix unitaire : %s DT\nTotal : %s DT',
+            $utilisateur->getName(),
+            $quantiteDemandee,
+            $produit->getNom(),
+            $produit->getPrix(),
+            $quantiteDemandee * $produit->getPrix()
+        );
+
+        // Appel du service EmailService pour envoyer l'email
+        $this->emailService->sendEmail($email, $subject, $body);
+
         // Ajouter un message flash
         $this->addFlash('success', 'Le produit a été ajouté à votre panier.');
 
@@ -78,13 +101,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('produit_index_patient');
     }
 
-
-
-
-
-
     // Route pour afficher le panier de l'utilisateur
-
     #[Route('/panier', name: 'app_panier')]
     public function show(\App\Repository\PanierRepository $panierRepository): Response
     {

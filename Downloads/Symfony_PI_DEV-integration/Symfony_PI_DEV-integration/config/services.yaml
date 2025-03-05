@@ -40,3 +40,5 @@ twig:
                 arguments:
                     $panierRepository: '@App\Repository\PanierRepository'
                     $security: '@security.helper'
+                    services:
+                        App\Service\EmailService: ~

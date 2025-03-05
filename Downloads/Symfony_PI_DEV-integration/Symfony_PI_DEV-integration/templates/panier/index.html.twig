@@ -14,7 +14,7 @@
                     <th>Prix Unitaire</th>
                     <th>Quantité</th>
                     <th>Total</th>
-                    <th>Actions</th>
+                    <th>Actions</th> <!-- On garde uniquement la colonne Actions -->
                 </tr>
                 </thead>
                 <tbody>
@@ -25,6 +25,7 @@
                         <td>{{ item.quantite }}</td>
                         <td>{{ item.total }} €</td>
                         <td>
+                            <!-- Le bouton pour supprimer l'élément du panier -->
                             <a href="{{ path('supprimer_du_panier', {'id': item.produit.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
                         </td>
                     </tr>
@@ -35,7 +36,7 @@
             <div class="text-right">
                 <h4>Total : {{ total }} €</h4>
                 <a href="{{ path('produit_index_patient') }}" class="btn btn-secondary">Continuer les achats</a>
-                <a href="{{ path('app_commande_add_ligne_de_commande'') }}" class="btn btn-primary">Passer la commande</a>
+                <a href="{{ path('app_commande_add_ligne_de_commande') }}" class="btn btn-primary">Passer la commande</a>
             </div>
         {% endif %}
     </div>

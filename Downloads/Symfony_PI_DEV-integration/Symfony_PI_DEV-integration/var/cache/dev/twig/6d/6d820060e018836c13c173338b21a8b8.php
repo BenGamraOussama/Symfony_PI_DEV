@@ -142,40 +142,41 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
                         </ul>
 
                         <!-- Note moyenne -->
-                        <h3>Note moyenne : ";
+                        <h3>Note moyenne : <span id=\"average-rating\">";
         // line 44
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(((CoreExtension::getAttribute($this->env, $this->source, ($context["produit"] ?? null), "averageRating", [], "any", true, true, false, 44)) ? (Twig\Extension\CoreExtension::default(CoreExtension::getAttribute($this->env, $this->source, ($context["produit"] ?? null), "averageRating", [], "any", false, false, false, 44), 0)) : (0)), "html", null, true);
-        yield " ⭐</h3>
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatNumber(((CoreExtension::getAttribute($this->env, $this->source, ($context["produit"] ?? null), "averageRating", [], "any", true, true, false, 44)) ? (Twig\Extension\CoreExtension::default(CoreExtension::getAttribute($this->env, $this->source, ($context["produit"] ?? null), "averageRating", [], "any", false, false, false, 44), 0)) : (0)), 1), "html", null, true);
+        yield " ⭐</span></h3>
+
 
                         <!-- Formulaire de notation -->
                         <h4>Noter ce produit :</h4>
                         ";
-        // line 48
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 48, $this->source); })()), 'form_start');
+        // line 49
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 49, $this->source); })()), 'form_start');
         yield "
                         ";
-        // line 49
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 49, $this->source); })()), "note", [], "any", false, false, false, 49), 'row');
+        // line 50
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 50, $this->source); })()), "note", [], "any", false, false, false, 50), 'row');
         yield "  <!-- Affiche le champ pour la notation avec les étoiles -->
 
                         ";
-        // line 51
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 51, $this->source); })()), "note", [], "any", false, false, false, 51), "vars", [], "any", false, false, false, 51), "errors", [], "any", false, false, false, 51)) > 0)) {
-            // line 52
+        // line 52
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 52, $this->source); })()), "note", [], "any", false, false, false, 52), "vars", [], "any", false, false, false, 52), "errors", [], "any", false, false, false, 52)) > 0)) {
+            // line 53
             yield "                            <div class=\"text-danger\">
                                 ";
-            // line 53
-            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 53, $this->source); })()), "note", [], "any", false, false, false, 53), 'errors');
+            // line 54
+            yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 54, $this->source); })()), "note", [], "any", false, false, false, 54), 'errors');
             yield "
                             </div>
                         ";
         }
-        // line 56
+        // line 57
         yield "
                         <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
                         ";
-        // line 58
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 58, $this->source); })()), 'form_end');
+        // line 59
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 59, $this->source); })()), 'form_end');
         yield "
 
 
@@ -183,7 +184,7 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
 
 
                         <a href=\"";
-        // line 64
+        // line 65
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produit_index_patient");
         yield "\" class=\"btn btn-secondary mt-3\">Retour</a>
                     </div>
@@ -223,7 +224,7 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  187 => 64,  178 => 58,  174 => 56,  168 => 53,  165 => 52,  163 => 51,  158 => 49,  154 => 48,  147 => 44,  140 => 40,  136 => 39,  131 => 37,  127 => 36,  116 => 28,  110 => 27,  92 => 12,  87 => 10,  82 => 8,  76 => 4,  63 => 3,  40 => 1,);
+        return array (  188 => 65,  179 => 59,  175 => 57,  169 => 54,  166 => 53,  164 => 52,  159 => 50,  155 => 49,  147 => 44,  140 => 40,  136 => 39,  131 => 37,  127 => 36,  116 => 28,  110 => 27,  92 => 12,  87 => 10,  82 => 8,  76 => 4,  63 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -271,7 +272,8 @@ class __TwigTemplate_479cb6cf8ee9875366d3c74e1081aea3 extends Template
                         </ul>
 
                         <!-- Note moyenne -->
-                        <h3>Note moyenne : {{ produit.averageRating|default(0) }} ⭐</h3>
+                        <h3>Note moyenne : <span id=\"average-rating\">{{ produit.averageRating|default(0)|number_format(1) }} ⭐</span></h3>
+
 
                         <!-- Formulaire de notation -->
                         <h4>Noter ce produit :</h4>
