@@ -35,7 +35,6 @@ class Article
     private ?string $content = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Url(message: "The media path must be a valid URL.")]
     private ?string $mediaPath = null;
 
     #[ORM\Column]

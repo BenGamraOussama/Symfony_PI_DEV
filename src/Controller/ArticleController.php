@@ -144,15 +144,23 @@ public function new(
     }
 
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($article);
-            $entityManager->flush();
+public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+{
+    if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->getPayload()->getString('_token'))) {
+        // Explicitly remove related ratings (optional if cascade is set correctly)
+        $ratings = $entityManager->getRepository(ArticleRating::class)->findBy(['article' => $article]);
+        foreach ($ratings as $rating) {
+            $entityManager->remove($rating);
         }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+        // Now remove the article
+        $entityManager->remove($article);
+        $entityManager->flush();
     }
+
+    return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+}
+
 
     // #[Route('/article/{id}', name: 'app_article_show', methods: ['GET'])]
     // public function show(Article $article): Response
