@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>New Article Published</title>
+    </head>
+    <body>
+        <h2>Dear {{ patient.firstName|default('patient') }},</h2>
+        <p>
+            A new article titled "<strong>{{ article.title }}</strong>" has just been published.
+        </p>
+        <p>
+            Category: {{ article.category.name }}<br>
+            Published At: {{ article.publishedAt|date('Y-m-d H:i') }}
+        </p>
+        <p>
+            {{ article.content }}
+        </p>
+        
+        <p>Best regards,<br>Your Team</p>
+    </body>
+</html>

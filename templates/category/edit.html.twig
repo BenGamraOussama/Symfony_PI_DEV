@@ -1,0 +1,39 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+    <div class="app">
+        <div class="app-wrap">
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="{{ asset('img/loader/loader.svg') }}" alt="loader">
+                    </div>
+                </div>
+            </div>
+<br/><br/><br/>
+            <div class="app-container">
+                <div class="app-main" id="main">
+                    <div class="container py-5">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8 col-md-10">
+                                <div class="card shadow-lg border-0 rounded-3 p-4">
+                                    <h2 class="mb-4 text-center text-primary fw-bold">Edit Category</h2>
+
+                                    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_category_index') }}">back to list</a>
+
+    {{ include('category/_delete_form.html.twig') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
