@@ -1,0 +1,330 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}My Activities{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">Your Activities</h2>
+    
+    {# Filter Controls #}
+    <div class="mb-4">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary filter active" data-filter="all">All</button>
+            {% set uniqueTypes = [] %}
+            {% for activity in patientActivities %}
+                {% if activity.type not in uniqueTypes %}
+                    {% set uniqueTypes = uniqueTypes|merge([activity.type]) %}
+                    <button type="button" class="btn btn-outline-primary filter" data-filter="{{ activity.type }}">
+                        {{ activity.type|capitalize }}
+                    </button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for activity in patientActivities %}
+        <div class="col-md-4 activity-item" data-type="{{ activity.type }}">
+            <div class="card h-100 shadow activity-card" 
+                 data-bs-toggle="modal" 
+                 data-bs-target="#activityModal"
+                 data-activity-id="{{ activity.id }}"
+                 data-title="{{ activity.titre }}"
+                 data-description="{{ activity.description }}"
+                 data-status="{{ activity.status }}"
+                 data-is-exercise="{{ activity.type == 'exercise' ? 'true' : 'false' }}"
+                 data-exercise-id="{{ activity.exercice ? activity.exercice.id : '' }}"
+                 data-question="{{ activity.exercice ? activity.exercice.question : '' }}"
+                 data-has-response="{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'true' : 'false' }}">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        {{ activity.titre }}
+                        <div class="badge-container">
+                            <span class="badge bg-info me-2">
+                                <i class="bi 
+                                    {% if activity.type == 'exercise' %}bi-question-circle
+                                    {% else %}bi-clipboard-check
+                                    {% endif %} me-1"></i>
+                                {{ activity.type|capitalize }}
+                            </span>
+                            {% if activity.type == 'exercise' %}
+                                <span class="badge bg-{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'success' : 'warning' }}">
+                                    {{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'Answered' : 'Pending' }}
+                                </span>
+                            {% else %}
+                                <span class="badge 
+                                    {% if activity.status == 'not_started' %}bg-secondary
+                                    {% elseif activity.status == 'in_progress' %}bg-warning text-dark
+                                    {% elseif activity.status == 'completed' %}bg-success
+                                    {% endif %}">
+                                    {{ activity.status|replace({'_': ' '})|title }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">No activities assigned yet.</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# Activity Modal #}
+    <div class="modal fade" id="activityModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="activityModalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <h6>Description</h6>
+                        <p id="activityModalDescription" class="text-muted"></p>
+                    </div>
+
+                    <div id="exerciseSection" style="display: none;">
+                        <div class="mb-3">
+                            <h6>Exercise Question</h6>
+                            <p id="activityModalQuestion" class="text-muted fst-italic"></p>
+                        </div>
+                        
+                        <div id="responseContainer">
+                            <h6>Your Response</h6>
+                            <div id="existingResponses"></div>
+                            <div id="responseFormContainer" style="display: none;">
+                                {% if app.user and app.user.patient %}
+                                <form id="responseForm" method="POST">
+                                    <div class="mb-3">
+                                        <textarea name="reponse" class="form-control" rows="3" 
+                                                  placeholder="Type your answer here..." required></textarea>
+                                    </div>
+                                    <input type="hidden" name="exercise_id" id="exerciseId">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('response') }}">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="bi bi-send me-2"></i>Submit Answer
+                                    </button>
+                                </form>
+                                {% else %}
+                                <div class="alert alert-danger">
+                                    Patient profile not found. Cannot submit response.
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div id="statusUpdateSection" style="display: none;">
+                        <form id="statusUpdateForm" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Update Status</label>
+                                <select name="status" class="form-select" id="statusSelect">
+                                    <option value="not_started">Not Started</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="activity_id" id="activityId">
+                            <input type="hidden" name="_token" value="{{ csrf_token('update_status') }}">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="statusUpdateButton" style="display: none;">
+                        Save Status
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter');
+    const activityItems = document.querySelectorAll('.activity-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterValue = this.dataset.filter;
+            
+            activityItems.forEach(item => {
+                if (filterValue === 'all' || item.dataset.type === filterValue) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('activityModal');
+    const responseForm = document.getElementById('responseForm');
+    const statusUpdateSection = document.getElementById('statusUpdateSection');
+    const statusUpdateButton = document.getElementById('statusUpdateButton');
+    
+    const responseUrlTemplate = '{{ path("app_reponse_new", { id: "__id__" }) }}';
+
+    modal.addEventListener('show.bs.modal', function(event) {
+        const card = event.relatedTarget;
+        const isExercise = card.dataset.isExercise === 'true';
+        const hasResponse = card.dataset.hasResponse === 'true';
+        const exerciseId = card.dataset.exerciseId;
+        const question = card.dataset.question;
+
+        document.getElementById('existingResponses').innerHTML = '';
+        if(responseForm) responseForm.reset();
+        
+        document.getElementById('activityModalTitle').textContent = card.dataset.title;
+        document.getElementById('activityModalDescription').textContent = card.dataset.description;
+        document.getElementById('activityId').value = card.dataset.activityId;
+        document.getElementById('exerciseId').value = exerciseId;
+
+        if (isExercise) {
+            document.getElementById('exerciseSection').style.display = 'block';
+            document.getElementById('activityModalQuestion').textContent = question;
+            statusUpdateSection.style.display = 'none';
+            statusUpdateButton.style.display = 'none';
+
+            {% if app.user and app.user.patient %}
+                {% for response in app.user.patient.reponses %}
+                    if ({{ response.exercice.id }} == exerciseId) {
+                        document.getElementById('existingResponses').innerHTML = `
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p class="card-text">{{ response.contenu }}</p>
+                                    <small class="text-muted">
+                                        Answered on {{ response.dateCreation|date('Y-m-d H:i') }}
+                                    </small>
+                                </div>
+                            </div>`;
+                        document.getElementById('responseFormContainer').style.display = 'none';
+                    }
+                {% endfor %}
+            {% endif %}
+
+            if (!hasResponse && document.getElementById('responseFormContainer')) {
+                document.getElementById('responseFormContainer').style.display = 'block';
+            }
+        } else {
+            document.getElementById('exerciseSection').style.display = 'none';
+            statusUpdateSection.style.display = 'block';
+            statusUpdateButton.style.display = 'block';
+            document.getElementById('statusSelect').value = card.dataset.status;
+        }
+    });
+
+    if(responseForm) {
+        responseForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const exerciseId = formData.get('exercise_id');
+            
+            const url = responseUrlTemplate.replace('__id__', exerciseId);
+            
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('responseFormContainer').style.display = 'none';
+                    document.getElementById('existingResponses').innerHTML = `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="card-text">${formData.get('reponse')}</p>
+                                <small class="text-muted">Answered just now</small>
+                            </div>
+                        </div>`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
+    statusUpdateButton.addEventListener('click', function() {
+        const formData = new FormData(document.getElementById('statusUpdateForm'));
+        
+        fetch('{{ path("app_activite_update_status") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if(response.ok) {
+                location.reload();
+                const activityId = document.getElementById('activityId').value;
+                const newStatus = document.getElementById('statusSelect').value;
+                const badge = document.querySelector(`[data-activity-id="${activityId}"] .badge:last-child`);
+                
+                badge.textContent = newStatus.replace('_', ' ').toTitleCase();
+                badge.className = `badge ${
+                    newStatus === 'not_started' ? 'bg-secondary' :
+                    newStatus === 'in_progress' ? 'bg-warning text-dark' :
+                    'bg-success'
+                }`;
+                
+                bootstrap.Modal.getInstance(modal).hide();
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+String.prototype.toTitleCase = function() {
+    return this.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+</script>
+
+<style>
+.filter {
+    transition: all 0.2s ease;
+}
+.filter.active {
+    background-color: #0d6efd;
+    color: white !important;
+    border-color: #0d6efd;
+}
+.activity-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.125);
+}
+.activity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+.badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+    display: inline-flex;
+    align-items: center;
+}
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.badge-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+</style>
+{% endblock %}

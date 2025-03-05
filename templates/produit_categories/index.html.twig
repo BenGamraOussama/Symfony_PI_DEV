@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories des Produits{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center text-primary mb-4" style="font-size: 1.8rem; margin-top: 80px;">Catégories de Produits</h2>
+
+        <!-- Si des messages flash d'erreur existent, affiche-les -->
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="mb-3 d-flex justify-content-center" style="margin-left: 10%;">
+            <input type="text" id="searchInput" class="form-control w-75" style="font-size: 1.2rem;" placeholder="Rechercher par nom de catégorie...">
+        </div>
+
+        <div class="card shadow-lg" style="max-width: 80%; margin-top: 50px; margin-right: 0%; padding-bottom: 20px; margin-bottom: 30px; margin-left: auto;">
+            <div class="card-body">
+                <table class="table table-hover text-center" style="font-size: 0.8rem;">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="categoryTable">
+                    {% for produit_categorie in produit_categories %}
+                        <tr>
+                            <td>{{ produit_categorie.id }}</td>
+                            <td class="fw-bold">{{ produit_categorie.nom }}</td>
+                            <td>
+                                <a href="{{ path('produit_categorie_show', {'id': produit_categorie.id}) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i> Voir
+                                </a>
+                                <a href="{{ path('produit_categories_edit', {'id': produit_categorie.id}) }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Modifier
+                                </a>
+                                <form method="post" action="{{ path('produit_categories_delete', {'id': produit_categorie.id}) }}" style="display:inline;"
+                                      onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit_categorie.id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-muted">Aucune catégorie trouvée</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#categoryTable tr");
+
+            rows.forEach(row => {
+                let categoryName = row.cells[1].textContent.toLowerCase();
+                row.style.display = categoryName.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
+
+{% endblock %}

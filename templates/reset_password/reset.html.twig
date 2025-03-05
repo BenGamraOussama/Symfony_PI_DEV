@@ -1,0 +1,75 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<!-- Start Preloader Area -->
+<div class="preloader-area">
+    <div class="spinner">
+        <div class="inner">
+            <div class="disc"></div>
+            <div class="disc"></div>
+            <div class="disc"></div>
+        </div>
+    </div>
+</div>
+
+<div class="search-overlay">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="search-overlay-layer"></div>
+            <div class="search-overlay-layer"></div>
+            <div class="search-overlay-layer"></div>
+            
+            <div class="search-overlay-close">
+                <span class="search-overlay-close-line"></span>
+                <span class="search-overlay-close-line"></span>
+            </div>
+
+            <div class="search-overlay-form">
+                <form>
+                    <input type="text" class="input-search" placeholder="Search here...">
+                    <button type="submit"><i class='flaticon-search'></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-banner-with-full-image item-bg3">
+    <div class="container">
+        <div class="page-banner-content-two">
+            <h2>Reset your password</h2>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>Reset your password</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner Area -->
+
+<!-- Start Login Area -->
+<section class="login-area ptb-100">
+    <div class="container">
+        <div class="login-form">
+            <h2>Reset your password</h2>
+
+            {{ form_start(resetForm) }}
+                <div class="form-group">
+                    <label for="plainPassword">New Password</label>
+                    {{ form_widget(resetForm.plainPassword, { 'attr': {'class': 'form-control', 'placeholder': 'New Password'} }) }}
+                    <div class="text-danger mb-3">
+                        {{ form_errors(resetForm.plainPassword) }}
+                    </div>
+                </div>
+                <button class="btn btn-primary">Reset password</button>
+            {{ form_end(resetForm) }}
+        </div>
+    </div>
+</section>
+<div class="go-top">
+    <i class='flaticon-up-arrow'></i>
+</div>
+{% endblock %}

@@ -1,0 +1,182 @@
+
+       {% extends 'basePatient.html.twig' %}
+
+{% block title %}New Rendez-vous{% endblock %}
+
+{% block body %}
+
+        
+        <!-- Start Search Layout -->
+        <div class="search-overlay">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    
+                    <div class="search-overlay-close">
+                        <span class="search-overlay-close-line"></span>
+                        <span class="search-overlay-close-line"></span>
+                    </div>
+
+                    <div class="search-overlay-form">
+                        <form>
+                            <input type="text" class="input-search" placeholder="Search here...">
+                            <button type="submit"><i class="flaticon-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Search Layout -->
+        
+        <!-- Start Page Banner Area -->
+        <div class="page-banner-area">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="page-banner-image">
+                            <img src="{{asset('assetsP/images/page-banner/page-banner-3.jpg')}}" alt="image">
+
+                            <div class="image-shape">
+                                <img src="{{ asset('assetsP/images/page-banner/shape.png') }}" alt="image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="page-banner-content">
+                            <h2>Online Booking</h2>
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>Online Booking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-banner-shape">
+                <img src="{{asset('assetsP/images/page-banner/banner-shape-1.png')}}" alt="image">
+            </div>
+        </div>
+        <!-- End Page Banner Area -->
+
+       <!-- Start Book Online Area -->
+<section class="book-online-area bg-ffffff ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="book-online-form bg-top">
+                    <h3>Book Our Online Session</h3>
+
+                    {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_row(form.patient, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.psychiatre, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.heure, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.priorite, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="book-online-btn">
+                            <button type="submit" class="default-btn">Book Online <i class="flaticon-pointer"></i></button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="book-online-image"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="book-main-shape">
+        <img src="{{ asset('assetsP/images/book-online-shape.png') }}" alt="image">
+    </div>
+</section>
+<!-- End Book Online Area -->
+        <!-- Start Subscribe Area -->
+        <div class="subscribe-area bg-top pt-100">
+            <div class="container">
+                <div class="subscribe-inner-box">
+                    <div class="subscribe-content">
+                        <h2>Subscribe Our Newsletter</h2>
+                        <p>Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat sed diam voluptua.</p>
+    
+                        <form class="newsletter-form" data-bs-toggle="validator" novalidate="true">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-6">
+                                    <input type="email" class="input-newsletter" placeholder="Enter your email" name="EMAIL" required="" autocomplete="off">
+                                </div>
+
+                                <div class="col-lg-4 col-md-6">
+                                    <button type="submit" class="disabled" style="pointer-events: all; cursor: pointer;">Subscribe Now <i class="flaticon-paper-plane"></i></button>
+                                    <div id="validator-newsletter" class="form-result"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Subscribe Area -->
+
+       
+
+       
+
+        <!-- Start Go Top Area -->
+        <div class="go-top">
+            <i class="flaticon-up-arrow"></i>
+        </div>
+        <!-- End Go Top Area -->
+        
+        <!-- Jquery Slim JS -->
+        <script src="assets/js/jquery.min.js"></script>
+        <!-- Bootstrap Bundle JS -->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!-- Meanmenu JS -->
+        <script src="assets/js/jquery.meanmenu.js"></script>
+        <!-- Owl Carousel JS -->
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <!-- Jquery Appear JS -->
+        <script src="assets/js/jquery.appear.js"></script>
+        <!-- Odometer JS -->
+        <script src="assets/js/odometer.min.js"></script>
+        <!-- Slick Min JS -->
+        <script src="assets/js/slick.min.js"></script>
+        <!-- Nice Select JS -->
+        <script src="assets/js/nice-select.min.js"></script>
+        <!-- Magnific Popup JS -->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!-- Fancybox JS -->
+        <script src="assets/js/fancybox.min.js"></script>
+        <!-- Ajaxchimp JS -->
+		<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+		<!-- Form Validator JS -->
+		<script src="assets/js/form-validator.min.js"></script>
+		<!-- Contact JS -->
+        <script src="assets/js/contact-form-script.js"></script>
+        <!-- Wow JS -->
+        <script src="assets/js/wow.min.js"></script>
+        <!-- Custom JS -->
+        <script src="assets/js/main.js"></script><a href="https://themeforest.net/checkout/from_item/30387585?license=regular&amp;support=bundle_6month&amp;_ga=2.245508931.634514020.1646539215-1425290503.1590986634" target="_blank" class="buy-now-btn">Buy Now</a><div class="switch-box"><label id="switch" class="switch"><input type="checkbox" onchange="toggleTheme()" id="slider"><span class="slider round"></span></label></div>
+    
+		<!-- Form Validator JS -->
+		<script src="assets/js/form-validator.min.js"></script>
+		<!-- Contact JS -->
+        <script src="assets/js/contact-form-script.js"></script>
+        <!-- Wow JS -->
+        <script src="assets/js/wow.min.js"></script>
+        <!-- Custom JS -->
+        <script src="assets/js/main.js"></script><a href="https://themeforest.net/checkout/from_item/30387585?license=regular&amp;support=bundle_6month&amp;_ga=2.245508931.634514020.1646539215-1425290503.1590986634" target="_blank" class="buy-now-btn">Buy Now</a><div class="switch-box"><label id="switch" class="switch"><input type="checkbox" onchange="toggleTheme()" id="slider"><span class="slider round"></span></label></div>
+    
+{% endblock %}

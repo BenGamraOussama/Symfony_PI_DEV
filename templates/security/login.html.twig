@@ -1,0 +1,89 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block body %}
+        <!-- Start Preloader Area -->
+        <div class="preloader-area">
+            <div class="spinner">
+                <div class="inner">
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                    <div class="disc"></div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="search-overlay">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    
+                    <div class="search-overlay-close">
+                        <span class="search-overlay-close-line"></span>
+                        <span class="search-overlay-close-line"></span>
+                    </div>
+
+                    <div class="search-overlay-form">
+                        <form>
+                            <input type="text" class="input-search" placeholder="Search here...">
+                            <button type="submit"><i class='flaticon-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-banner-with-full-image item-bg3">
+            <div class="container">
+                <div class="page-banner-content-two">
+                    <h2>Login</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+        <section class="login-area ptb-100">
+            <div class="container">
+                <div class="login-form">
+                    <h2>Login</h2>
+
+                    <form method="post">
+                        {% if error %}
+          <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+             {% endif %}
+
+         {% if app.user %}
+          <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+         </div>
+         {% endif %}
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Password" required>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button type="submit">Login</button>
+                        <div class="col-12  mt-3">
+                        <p><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>| Don't have an account? <a href="{{ path('app_register') }}">Sign Up</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <div class="go-top">
+            <i class='flaticon-up-arrow'></i>
+        </div>
+       
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RDV{% endblock %}
+
+{% block body %}
+    <h1>RDV</h1>
+
+    <table class="table">
+        <tbody>
+        {% for rdv in rdvs %}
+
+          
+            <tr>
+                <th>Heure</th>
+                <td>{{ rdv.heure ? rdv.heure|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Priorite</th>
+                <td>{{ rdv.priorite }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rdv_index') }}">back to list</a>
+
+    <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">edit</a>
+
+    {{ include('rdv/_delete_form.html.twig') }}
+{% endblock %}

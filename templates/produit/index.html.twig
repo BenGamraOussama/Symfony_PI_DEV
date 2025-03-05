@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .card {
+            max-width: 80%;
+            margin: 50px auto 30px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .table {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background-color: #343a40;
+            color: white;
+            border-bottom: 2px solid #454d55;
+        }
+
+        .badge {
+            font-size: 0.8em;
+            padding: 0.4em 0.6em;
+        }
+
+        .product-image img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Liste des Produits{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center text-primary mb-4" style="font-size: 1.8rem; margin-top: 80px;">Liste des Produits</h2>
+
+        <div class="mb-3 d-flex justify-content-center">
+            <input type="text" id="searchInput" class="form-control w-75"
+                   style="font-size: 1.1rem;"
+                   placeholder="Rechercher par nom...">
+        </div>
+
+        <div class="card shadow-lg">
+            <div class="card-body p-0">
+                <table class="table table-hover text-center">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Prix (TND)</th>
+                        <th>Quantité</th>
+                        <th>Disponible</th>
+                        <th>Catégorie</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productTable">
+                    {% for produit in produits %}
+                        <tr data-produit>
+                            <td>{{ produit.id }}</td>
+                            <td class="product-image">
+                                {% if produit.image %}
+                                    <img src="{{ asset('uploads/' ~ produit.image) }}" alt="Image du produit">
+                                {% else %}
+                                    <span class="text-muted">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td class="fw-bold">{{ produit.nom }}</td>
+                            <td>{{ produit.description|slice(0, 30) }}...</td>
+                            <td>{{ produit.prix }} TND</td>
+                            <td>{{ produit.quantite }}</td>
+                            <td>
+                                {% if produit.disponible %}
+                                    <span class="badge bg-success">Oui</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Non</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ produit.categorie.nom }}</td>
+                            <td>
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <a href="{{ path('produit_show', {'id': produit.id}) }}" class="btn btn-info btn-sm py-1">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ path('produit_edit', {'id': produit.id}) }}" class="btn btn-warning btn-sm py-1">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form method="post" action="{{ path('produit_delete', {'id': produit.id}) }}" style="display:inline;">
+                                        <button class="btn btn-danger btn-sm py-1">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9" class="text-muted py-4">Aucun produit trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    <tr id="noResultsRow" style="display: none;">
+                        <td colspan="9" class="text-muted py-4">Aucun résultat trouvé</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const productRows = document.querySelectorAll('tr[data-produit]');
+            const noResultsRow = document.getElementById('noResultsRow');
+
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                productRows.forEach(row => {
+                    const productName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                noResultsRow.style.display = visibleCount === 0 ? '' : 'none';
+            });
+        });
+    </script>
+{% endblock %}
