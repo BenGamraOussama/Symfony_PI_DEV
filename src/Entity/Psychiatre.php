@@ -24,7 +24,6 @@ class Psychiatre extends User
 
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
-
     #[ORM\ManyToOne(inversedBy: 'psychiatre')]
     private ?Consultation $consultation = null;
 
@@ -95,7 +94,6 @@ class Psychiatre extends User
         $this->phone = $phone;
         return $this;
     }
-
     /**
      * @return Collection<int, RDV>
      */
@@ -125,7 +123,6 @@ class Psychiatre extends User
 
         return $this;
     }
-
     public function removeDrv(RDV $drv): static
     {
         if ($this->drvs->removeElement($drv)) {

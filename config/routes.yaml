@@ -25,3 +25,11 @@ app_patient_show:
         _format: html
     requirements:
         id: \d+
+app_ajouter_panier:
+    path: /ajouter-panier/{id}
+    controller: App\Controller\ProduitController::ajouterPanier
+# config/routes.yaml
+
+produit_recherche:
+    path: /produits/recherche
+    controller: App\Controller\ProduitController::search

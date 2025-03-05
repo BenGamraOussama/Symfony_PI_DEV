@@ -15,6 +15,14 @@ class PatientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Patient::class);
     }
+    public function findBySearchQuery(string $query)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.nom LIKE :query')
+            ->setParameter('query', '%' . $query . '%')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Patient[] Returns an array of Patient objects

@@ -530,17 +530,11 @@
                     <li> <a href='{{path('app_admin_ajouterfournisseur')}}'>Ajouter Fournisseur</a> </li>
                     <li> <a href='{{path('app_admin_listfournisseur')}}'>List Fournisseur</a> </li>
                 </ul>
-                
+
             </li>
               {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Categorie</span> </a>
-                <ul aria-expanded="false">
-                    <li> <a href="{{ path('produit_categories_index') }}">List Categorie</a> </li>
-                    <li> <a href='{{ path('ajouter_categorie') }}'>Ajouter categorie</a> </li>
-                </ul>
-            </li>
+
             <li>
                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Patient</span> </a>
                 <ul aria-expanded="false">
@@ -550,12 +544,12 @@
             </li>
             {% endif %}
             <li><a href="listclient" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Client</span></a> </li>
-           
+
                 <li>
                     <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Produit</span> </a>
                     <ul aria-expanded="false">
-                        
-                       
+
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('produit_index') }}">
                                     Liste Produit
@@ -578,6 +572,37 @@
             </li>
         </ul>
        
+
+
+                    </ul>
+                </li>
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">catégorie des produits</span> </a>
+                <ul aria-expanded="false">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('produit_categories_index') }}">
+                            Liste des catégories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('ajouter_categorie') }}">
+                            ajouter catégories
+                        </a>
+
+
+                </ul>
+            </li>
+                <a href="listcolis" aria-expanded="false"><i class="bi bi-box"></i> <span class="nav-title">Colis</span></a>
+            </li>
+            <li><a href="affcom" aria-expanded="false"><i class="bi bi-command"></i><span class="nav-title">Commandes</span></a></li>
+            <li><a href="listcontact" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Reclamation</span></a></li>
+                <li><a href="{{ path('app_activite_index') }}" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Activities & Exercices</span> </a></li>
+
+            </li>
+        </ul>
+
     </div>
     <!-- end sidebar-nav -->
   </aside>
@@ -589,7 +614,7 @@
     <div class="footer">
       <div class="row">
         <div class="col-12 col-sm-6 text-center text-sm-left">
-          <p>&copy; Copyright 2019. All rights reserved.</p>
+          <p>&copy; Copyright 2025. All rights reserved.</p>
         </div>
         <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
             <p>Hand-crafted made with <i class="fa fa-heart text-danger mx-1"></i> by NovaTeam</p>

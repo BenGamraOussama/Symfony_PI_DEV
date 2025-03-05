@@ -9,7 +9,6 @@ use App\Repository\ProduitCategoriesRepository;
 #[ORM\Entity(repositoryClass: ProduitCategoriesRepository::class)]
 class ProduitCategories
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -25,11 +24,13 @@ class ProduitCategories
     )]
     private ?string $nom = null;
 
+    // Getter et Setter pour $id
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    // Getter et Setter pour $nom
     public function getNom(): ?string
     {
         return $this->nom;
@@ -38,9 +39,6 @@ class ProduitCategories
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
-
-
 }

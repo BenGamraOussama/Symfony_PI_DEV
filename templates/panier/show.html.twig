@@ -1,0 +1,117 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">🛒 Mon Panier</h1>
+
+        {% if panierItems is not empty %}
+            <div class="table-responsive">
+                <table class="table table-striped text-center">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire (TND)</th>
+                        <th>Total (TND)</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in panierItems %}
+                        <tr>
+                            <td>{{ item.produit.nom }}</td>
+
+                            <!-- Champ de quantité sans bouton -->
+                            <td>
+                                <input type="number" name="quantite" value="{{ item.quantite }}" min="1" class="form-control form-control-sm w-50 me-2 quantite-input" data-id="{{ item.id }}" data-prix="{{ item.produit.prix }}">
+                            </td>
+
+                            <td class="prix-unitaire">{{ item.produit.prix }}</td>
+                            <td class="total-produit" id="total-{{ item.id }}"><strong>{{ item.produit.prix * item.quantite }} TND</strong></td>
+
+                            <td>
+                                <a href="{{ path('supprimer_du_panier', {'id': item.id}) }}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {# Calcul du total et de la remise #}
+            {% set total = 0 %}
+            {% for item in panierItems %}
+                {% set total = total + (item.produit.prix * item.quantite) %}
+            {% endfor %}
+
+            {# Application de la remise de 10 % si le total dépasse 100 TND #}
+            {% set remise = 0 %}
+            {% if total >= 100 %}
+                {% set remise = total * 0.10 %}
+                {% set total = total - remise %}
+            {% endif %}
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <h3 class="text-success">Total : <strong id="total-global">{{ total }} TND</strong></h3>
+
+                {% if remise > 0 %}
+                    <p class="text-danger">Remise de 10% : -{{ remise }} TND</p>
+                {% endif %}
+
+                <a href="{{ path('app_commande_index') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-shopping-cart"></i> Commander
+                </a>
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center mt-4">
+                <p>Votre panier est vide.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript pour la mise à jour dynamique -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".quantite-input").forEach(input => {
+                input.addEventListener("input", function () {
+                    let quantite = parseInt(this.value);
+                    let prixUnitaire = parseFloat(this.getAttribute("data-prix"));
+                    let id = this.getAttribute("data-id");
+
+                    if (quantite > 0) {
+                        let totalProduit = quantite * prixUnitaire;
+                        document.getElementById("total-" + id).innerHTML = `<strong>${totalProduit.toFixed(2)} TND</strong>`;
+
+                        // Mettre à jour le total général
+                        let totalGlobal = 0;
+                        document.querySelectorAll(".total-produit").forEach(t => {
+                            totalGlobal += parseFloat(t.innerText);
+                        });
+
+                        // Appliquer la remise
+                        let remise = 0;
+                        if (totalGlobal >= 100) {
+                            remise = totalGlobal * 0.10;
+                            totalGlobal -= remise;
+                        }
+
+                        document.getElementById("total-global").innerText = totalGlobal.toFixed(2) + " TND";
+
+                        // Afficher ou masquer la remise
+                        let remiseElement = document.querySelector(".text-danger");
+                        if (remise > 0) {
+                            remiseElement.style.display = "block";
+                            remiseElement.innerText = "Remise de 10% : -" + remise.toFixed(2) + " TND";
+                        } else {
+                            remiseElement.style.display = "none";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

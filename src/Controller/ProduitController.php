@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,18 +12,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Core\Security;
 
 final class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'produit_index', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, Security $security): Response
     {
-        $user = $this->getUser();
+        // Récupérer l'utilisateur connecté
+        $user = $security->getUser();
+
+        // Récupérer les produits depuis la base de données
         $produits = $entityManager->getRepository(Produit::class)->findAll();
 
+        // Passer l'utilisateur et les produits à la vue
         return $this->render('produit/index.html.twig', [
-            'produits' => $produits,
             'user' => $user,
+            'produits' => $produits,
         ]);
     }
 
@@ -96,6 +102,7 @@ final class ProduitController extends AbstractController
                     throw new \Exception('Impossible de déplacer l\'image.');
                 }
 
+                // Supprimer l'ancienne image si elle existe
                 if ($produit->getImage()) {
                     $oldImagePath = $this->getParameter('uploads_directory') . '/' . $produit->getImage();
                     if (file_exists($oldImagePath)) {
@@ -156,4 +163,42 @@ final class ProduitController extends AbstractController
 
         return $this->redirectToRoute('produit_index');
     }
+// src/Controller/ProduitController.php
+
+    #[Route('/produit/{id}/noter', name: 'produit_noter', methods: ['POST'])]
+    public function noter(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(NoteType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $note = $form->getData();
+            $note->setProduit($produit);
+
+            $entityManager->persist($note);
+            $entityManager->flush();
+
+            // Recalculer la note moyenne
+            $this->updateAverageRating($produit, $entityManager);
+        }
+
+        return $this->redirectToRoute('produit_show', ['id' => $produit->getId()]);
+    }
+
+    private function updateAverageRating(Produit $produit, EntityManagerInterface $entityManager)
+    {
+        $notes = $produit->getNotes(); // Suppose que tu as une relation OneToMany entre Produit et Note
+        $totalNotes = count($notes);
+
+        if ($totalNotes > 0) {
+            $somme = array_reduce($notes->toArray(), fn($carry, $note) => $carry + $note->getNote(), 0);
+            $produit->setAverageRating($somme / $totalNotes);
+        } else {
+            $produit->setAverageRating(0);
+        }
+
+        $entityManager->persist($produit);
+        $entityManager->flush();
+    }
+
 }

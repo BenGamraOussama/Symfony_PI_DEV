@@ -14,4 +14,15 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
     // Ajoute ici tes méthodes personnalisées de requêtes si nécessaire.
+
+// src/Repository/ProduitRepository.php
+
+public function findBySearchQuery($query)
+{
+    $qb = $this->createQueryBuilder('p')
+        ->where('p.nom LIKE :query OR p.description LIKE :query')
+        ->setParameter('query', '%' . $query . '%');
+
+    return $qb->getQuery()->getResult();
+}
 }

@@ -25,7 +25,6 @@ final class PsychiatreController extends AbstractController
             'user' => $user,
         ]);
 
-
     }
 
     #[Route('/{id}', name: 'app_psychiatre_show', methods: ['GET'])]
@@ -36,7 +35,6 @@ final class PsychiatreController extends AbstractController
             'psychiatre' => $psychiatre,
             'user' => $user,
         ]);
-
     }
 
     #[Route('/{id}/edit', name: 'app_psychiatre_edit', methods: ['GET', 'POST'])]
@@ -58,7 +56,6 @@ final class PsychiatreController extends AbstractController
             'psychiatre' => $psychiatre,
             'form' => $form,
         ]);
-
     }
 
     #[Route('/{id}', name: 'app_psychiatre_delete', methods: ['POST'])]
@@ -71,5 +68,4 @@ final class PsychiatreController extends AbstractController
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
-
 }

@@ -68,5 +68,4 @@ final class FournisseurController extends AbstractController
 
         return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
-
 }

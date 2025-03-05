@@ -63,7 +63,6 @@ final class AdminController extends AbstractController
         return $this->render('admin/profile.html.twig', [
             'user' => $user,
         ]);
-
     }
     //psychiatre
     #[Route('/listPsychiatre', name: 'app_admin_listpsychiatre', methods: ['GET'])]
@@ -74,7 +73,6 @@ final class AdminController extends AbstractController
             'psychiatres' => $psychiatreRepository->findAll(),
             'user' => $user,
         ]);
-
     }
     #[Route('/ajouterPsychitare', name: 'app_admin_ajouterpsychiatre')]
 
@@ -142,7 +140,6 @@ final class AdminController extends AbstractController
             'email' => $form->get('email')->createView(),
             'user'=>$user,
         ]);
-
     }
     #[Route('listPsychiatre/{id}', name: 'psychiatre_delete', methods: ['POST'])]
     public function deletepsychiatre(Request $request, Psychiatre $psychiatre, EntityManagerInterface $entityManager): Response
@@ -192,7 +189,6 @@ final class AdminController extends AbstractController
             'fournisseurs' => $fournisseurRepository->findAll(),
             'user' => $user,
         ]);
-
     }
     #[Route('/ajouterFournisseur', name: 'app_admin_ajouterfournisseur', methods: ['GET', 'POST'])]
     public function addfournisseur(
@@ -258,7 +254,6 @@ final class AdminController extends AbstractController
             'email' => $form->get('email')->createView(),
             'user'=>$user,
         ]);
-
     }
     #[Route('listFournisseur/{id}', name: 'fournisseur_delete', methods: ['POST'])]
     public function delete(Request $request, Fournisseur $fournisseur, EntityManagerInterface $entityManager): Response
@@ -309,7 +304,6 @@ final class AdminController extends AbstractController
             'patients' => $patientRepository->findAll(),
             'user' => $user,
         ]);
-
     }
 
     #[Route('/ajouterPatient', name: 'app_patient_new', methods: ['GET', 'POST'])]

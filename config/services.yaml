@@ -63,3 +63,14 @@ services:
             $sid: '%twilio.sid%'
             $token: '%twilio.token%'
             $twilioNumber: '%twilio.phone_number%'
+# config/services.yaml
+twig:
+    globals:
+        panier_service: '@App\Service\PanierService'
+        services:
+            App\Service\PanierService:
+                arguments:
+                    $panierRepository: '@App\Repository\PanierRepository'
+                    $security: '@security.helper'
+                    services:
+                        App\Service\EmailService: ~

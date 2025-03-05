@@ -1,8 +1,12 @@
 <?php
 
+// src/Entity/Produit.php
+
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,24 +26,20 @@ class Produit
         minMessage: "Le nom du produit doit faire au moins {{ limit }} caractères.",
         maxMessage: "Le nom du produit ne peut pas dépasser {{ limit }} caractères."
     )]
-    private $nom;
+    private string $nom;
 
     #[ORM\Column(type: "string", length: 255)]
     #[Assert\NotBlank(message: "La description ne peut pas être vide.")]
-    private $description;
+    private string $description;
 
-    #[ORM\Column(type: "string", length: 255)]
+    #[ORM\Column(type: "float")]
     #[Assert\NotBlank(message: "Le prix ne peut pas être vide.")]
-    #[Assert\Regex(
-        pattern: "/^\d+(\.\d{1,2})?$/",
-        message: "Le prix doit être un nombre valide avec maximum deux décimales."
-    )]
-    private $prix;
+    #[Assert\Positive(message: "Le prix doit être un nombre positif.")]
+    private float $prix;
 
     #[ORM\Column(type: "boolean")]
-    private $disponible;
+    private bool $disponible;
 
-    // Relation ManyToOne avec ProduitCategories
     #[ORM\ManyToOne(targetEntity: ProduitCategories::class)]
     #[ORM\JoinColumn(name: "categorie_id", referencedColumnName: "id", nullable: false)]
     private ?ProduitCategories $categorie = null;
@@ -52,7 +52,21 @@ class Produit
     )]
     private ?string $image = null;
 
-    // Getters et Setters
+    #[ORM\Column(type: "integer")]
+    #[Assert\GreaterThanOrEqual(value: 0, message: "La quantité doit être supérieure ou égale à zéro.")]
+    private int $quantite;
+
+    #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: "produit", cascade: ["persist", "remove"], orphanRemoval: true)]
+    private Collection $ratings;
+
+    // Nouvelle propriété pour stocker la note moyenne
+    #[ORM\Column(type: "float", nullable: true)]
+    private ?float $averageRating = 0; // Initialisez avec une valeur par défaut
+
+    public function __construct()
+    {
+        $this->ratings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,7 +81,6 @@ class Produit
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -79,19 +92,17 @@ class Produit
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
-    public function getPrix(): ?string
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(string $prix): static
+    public function setPrix(float $prix): static
     {
         $this->prix = $prix;
-
         return $this;
     }
 
@@ -103,7 +114,6 @@ class Produit
     public function setDisponible(bool $disponible): static
     {
         $this->disponible = $disponible;
-
         return $this;
     }
 
@@ -115,7 +125,6 @@ class Produit
     public function setCategorie(?ProduitCategories $categorie): static
     {
         $this->categorie = $categorie;
-
         return $this;
     }
 
@@ -127,6 +136,52 @@ class Produit
     public function setImage(?string $image): static
     {
         $this->image = $image;
+        return $this;
+    }
+
+    public function getQuantite(): int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): static
+    {
+        $this->quantite = $quantite;
+        return $this;
+    }
+
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    public function addRating(Rating $rating): static
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setProduit($this);
+        }
+        return $this;
+    }
+
+    public function removeRating(Rating $rating): static
+    {
+        if ($this->ratings->removeElement($rating)) {
+            if ($rating->getProduit() === $this) {
+                $rating->setProduit(null);
+            }
+        }
+        return $this;
+    }
+
+    public function getAverageRating(): ?float
+    {
+        return $this->averageRating;
+    }
+
+    public function setAverageRating(float $averageRating): self
+    {
+        $this->averageRating = $averageRating;
 
         return $this;
     }
