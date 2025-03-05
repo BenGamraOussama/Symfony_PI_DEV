@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="img/loader/loader.svg" alt="loader">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header></header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+               
+                <!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-md-12 m-b-30">
+                                <!-- begin page title -->
+                                
+                                   
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- Notification -->
+                        <div class="row">
+                            <div class="col-md-12">
+                               
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row">
+                            
+                            <div class="container my-5">
+                                <div class="card shadow">
+                                    <div class="card-header bg-primary text-white">
+                                        <h2 class="h4 mb-0">{{ activite.titre }}</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <dl class="row">
+                                            <dt class="col-sm-3">Description</dt>
+                                            <dd class="col-sm-9">{{ activite.description }}</dd>
+                            
+                                            <dt class="col-sm-3">Status</dt>
+                                            <dd class="col-sm-9">
+                                                <span class="badge 
+                                                    {% if activite.status == 'not_started' %}bg-secondary
+                                                    {% elseif activite.status == 'in_progress' %}bg-warning text-dark
+                                                    {% elseif activite.status == 'completed' %}bg-success
+                                                    {% endif %}">
+                                                    {{ activite.status|replace({'_': ' '})|title }}
+                                                </span>
+                                            </dd>
+                            
+                                            <dt class="col-sm-3">Type</dt>
+                                            <dd class="col-sm-9">{{ activite.type|capitalize }}</dd>
+                                        </dl>
+                            
+                                        {% if activite.type == 'exercise' and activite.exercice %}
+                                            <div class="alert alert-info">
+                                                This is an exercise activity. <a href="{{ path('app_exercice_show', {'id': activite.exercice.id}) }}">
+                                                    View exercise details
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                       
+                        <!-- end row -->
+                        <!-- event Modal -->
+                        
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer></footer>
+            <!-- end footer -->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+
+    <!-- plugins -->
+{% endblock %}

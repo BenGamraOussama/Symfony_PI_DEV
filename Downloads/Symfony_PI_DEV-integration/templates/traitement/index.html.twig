@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Traitement Index{% endblock %}
+
+{% block body %}
+    <style>
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-action {
+            margin: 2px;
+        }
+    </style>
+
+    <div class="app">
+        <div class="app-wrap">
+            <!-- Contenu de l'application -->
+            <div class="app-container">
+                <div class="app-main" id="main">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="card container shadow">
+                                <h5 class="card-header">Liste des Traitements</h5>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#addTraitementModal">
+                                    <b><i class="bx bx-add-to-queue me-1"></i> Ajouter un Traitement</b>
+                                </button>
+
+                                <!-- Tableau des traitements -->
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Type</th>
+                                                <th>Médicament</th>
+                                                <th>Suivi</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            {% for traitement in traitements %}
+                                                <tr>
+                                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ traitement.id }}</strong></td>
+                                                    <td>{{ traitement.type }}</td>
+                                                    <td>{{ traitement.medicament }}</td>
+                                                    <td>{{ traitement.suivi }}</td>
+                                                    <td>
+                                                        <!-- Bouton d'édition -->
+                                                        <a class="btn btn-warning btn-action" href="{{ path('app_traitement_edit', {'id': traitement.id}) }}">
+                                                            <i class="dripicons dripicons-pencil"></i> Modifier
+                                                        </a>
+                                                        <!-- Bouton de suppression avec modal de confirmation -->
+                                                        <button class="btn btn-danger btn-action" data-toggle="modal" data-target="#deleteModal{{ traitement.id }}">
+                                                            <i class="dripicons dripicons-trash"></i> Supprimer
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Modal de confirmation de suppression pour chaque traitement -->
+                                                <div class="modal fade" id="deleteModal{{ traitement.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ traitement.id }}" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel{{ traitement.id }}">Confirmation de suppression</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Êtes-vous sûr de vouloir supprimer ce traitement ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <form method="post" action="{{ path('app_traitement_delete', {'id': traitement.id}) }}">
+                                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ traitement.id) }}">
+                                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="5">Aucun traitement trouvé</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Modal pour ajouter un traitement -->
+<div class="modal fade" id="addTraitementModal" tabindex="-1" role="dialog" aria-labelledby="addTraitementModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTraitementModalLabel">Ajouter un Traitement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form, {'attr': {'id': 'addTraitementForm'}}) }}
+                <div class="input-group mb-3">
+                    {{ form_widget(form.type, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Type', 'id': 'traitement_type'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.medicament, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Médicament', 'id': 'traitement_medicament'} }) }}
+                </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.suivi, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'Suivi', 'id': 'traitement_suivi'} }) }}
+                </div>
+                <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">
+                    <b>Ajouter</b>
+                </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Inclure jQuery (si ce n'est pas déjà fait) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Script pour gérer les modals -->
+    <script>
+    $(document).ready(function() {
+        // Ouvrir la modal d'ajout ou de confirmation lorsque le bouton est cliqué
+        $('[data-toggle="modal"]').on('click', function() {
+            var target = $(this).data('target'); // Récupère l'ID de la modal
+            $(target).modal('show'); // Ouvre la modal
+        });
+
+        // Fermer la modal lorsque le bouton "Close" est cliqué
+        $('[data-dismiss="modal"]').on('click', function() {
+            $(this).closest('.modal').modal('hide'); // Ferme la modal
+        });
+
+        // Fermer la modal lorsque l'utilisateur clique en dehors de la modal
+        $('.modal').on('click', function(event) {
+            if ($(event.target).hasClass('modal')) {
+                $(this).modal('hide'); // Ferme la modal
+            }
+        });
+
+        // Soumettre le formulaire de suppression lorsque l'utilisateur confirme
+        $('.confirm-delete').on('click', function() {
+            var form = $(this).closest('.modal').find('form'); // Récupère le formulaire associé
+            form.submit(); // Soumet le formulaire
+        });
+
+        // Validation du formulaire d'ajout de traitement
+        $('#addTraitementModal form').on('submit', function(event) {
+            var type = $('#traitement_type').val();
+            var medicament = $('#traitement_medicament').val();
+            var suivi = $('#traitement_suivi').val();
+
+            if (!type || !medicament || !suivi) {
+                alert('Tous les champs sont obligatoires.');
+                event.preventDefault(); // Empêche la soumission du formulaire
+            }
+        });
+    });
+</script>
+{% endblock %}

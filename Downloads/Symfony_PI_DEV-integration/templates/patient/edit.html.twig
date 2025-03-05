@@ -1,0 +1,130 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<style>
+.form-check{position:relative;display:block;padding-left:1.25rem}.form-check-input{position:absolute;margin-top:.3rem;margin-left:-1.25rem}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.form-check-inline{display:inline-flex;align-items:center;padding-left:0;margin-right:.75rem}.form-check-inline .form-check-input{position:static;margin-top:0;margin-right:.3125rem;margin-left:0}
+</style>
+        <div class="search-overlay">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    <div class="search-overlay-layer"></div>
+                    
+                    <div class="search-overlay-close">
+                        <span class="search-overlay-close-line"></span>
+                        <span class="search-overlay-close-line"></span>
+                    </div>
+
+                    <div class="search-overlay-form">
+                        <form>
+                            <input type="text" class="input-search" placeholder="Search here...">
+                            <button type="submit"><i class='flaticon-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Search Layout -->
+        
+        <!-- Start Page Banner Area -->
+        <div class="page-banner-with-full-image item-bg1">
+            <div class="container">
+                <div class="page-banner-content-two">
+                    <h2>Account Settings</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">Accueil</a>
+                        </li>
+                        <li>Account Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Banner Area -->
+
+        <!-- Start My Account Area -->
+        <section class="my-account-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <!-- Modifier mes informations -->
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-3">Modifier mes informations</h4>
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="mb-3">
+        <div class="form-check">
+        <label class="form-check-label" for="form_gener">Genre</label>
+            {{ form_widget(form.gener, {'attr': {'class': 'form-check'}}) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.firstName) }}
+        </div>
+    </div>
+    <div class="mb-3">
+        {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.lastName) }}
+        </div>
+    </div>
+    <div class="mb-3">
+        {{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Localité'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.adresse) }}
+        </div>
+    </div>
+
+    <div class="mb-3 d-flex">
+        <select>
+            <option>+216</option>
+        </select>
+        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de mobile'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.phone) }}
+        </div>
+    </div>
+    <div class="mb-3">
+        {{ form_widget(form.dossierMedical, {'attr': {'class': 'form-control', 'placeholder': 'Dossier Medical'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.dossierMedical) }}
+        </div>
+    </div>
+    <div class="mb-3">
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger">
+            {{ form_errors(form.email) }}
+        </div>
+    </div>
+
+    <button type="submit" value="Save" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+                        </div>
+                    </div>
+            
+                    <!-- Modifier mon mot de passe -->
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-3">Modifier mon mot de passe</h4>
+                            {{ form_start(formP, {'attr': {'id': 'passwordForm', 'novalidate': 'novalidate'}}) }}
+                                <div class="mb-3">
+                                    {{ form_widget(formP.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
+                                    <div class="text-danger">
+                                        {{ form_errors(formP.plainPassword) }}
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            {{ form_end(formP) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Script pour la validation des mots de passe -->
+{% endblock %}

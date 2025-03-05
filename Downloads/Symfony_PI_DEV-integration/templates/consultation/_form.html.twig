@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Consultation{% endblock %}
+
+{% block body %}
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.875em;
+        }
+    </style>
+
+    <div class="form-container shadow">
+        <div class="card-header">
+            <h2><i class="bx bx-edit"></i> Edit Consultation</h2>
+        </div>
+        <div class="card-body">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                <div class="form-group">
+                    {{ form_label(form.date) }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.date) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.heure) }}
+                    {{ form_widget(form.heure, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.heure) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.prix) }}
+                    {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.prix) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.modeconsultation) }}
+                    {{ form_widget(form.modeconsultation, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.modeconsultation) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.etaenum) }}
+                    {{ form_widget(form.etaenum, {'attr': {'class': 'form-control'}}) }}
+                    <div class="text-danger">
+                        {{ form_errors(form.etaenum) }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary form-control">
+                    <i class="bx bx-save"></i> {{ button_label|default('Update') }}
+                </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+
