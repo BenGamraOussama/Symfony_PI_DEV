@@ -56,6 +56,8 @@ final class CartController extends AbstractController
             $entityManager->persist($ligneCommande);
         }
     
+
+        
         // Mettre à jour le montant total de la commande
         $commande->setMontantTotal($total);
         $commande->setUser($this->getUser());

@@ -65,11 +65,18 @@ final class CommandeController extends AbstractController{
             $nombreCommandes[] = $commandeRepository->count(['user' => $user]);
         }
  
+
+
+
+
         $pagination = $paginator->paginate(
             $commandeRepository->findAll(),
             $request->query->getInt('page', 1),
-            2   // items per page
+            4  // items per page
         );
+
+
+
         return $this->render('commande/index_admin.html.twig', [
             'commandes' => $pagination,
             'nomUser' => $nomUser,
@@ -144,6 +151,7 @@ final class CommandeController extends AbstractController{
 
 
         $user = $this->getUser();
+
     $data =  $user->getFirstName() . ' | Commande passé le : ' .  $commande->getDateCommande()->format('d/m/Y H:i:s') .'prix : '.$commande->getMontantTotal();
 
     $result = Builder::create()
@@ -159,6 +167,8 @@ final class CommandeController extends AbstractController{
 
  // Generate a Data URI to include image data inline
  $dataUri = $result->getDataUri();
+
+
         return $this->render('commande/show.html.twig', [
             'commande' => $commande,
             'qr' => $dataUri
@@ -220,3 +230,4 @@ if ($this->isGranted("ROLE_ADMIN")) {
 
 }
 }
+    

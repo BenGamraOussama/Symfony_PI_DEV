@@ -1,5 +1,4 @@
 {% extends 'basePatient.html.twig' %}
- 
 
 {% block title %}Mon panier{% endblock %}
 
@@ -22,28 +21,91 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="cart-body">
             {% for item in cart %}
-                <tr>
+                <tr id="row-{{ item.produit.id }}">
                     <td><img src="{{ asset('uploads/' ~ item.produit.image) }}" width="50" height="50" alt="{{ item.produit.nom }}"></td>
                     <td>{{ item.produit.nom }}</td>
-                    <td>{{ item.produit.Prix }} TND</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.produit.Prix * item.quantity }} TND</td>
+                    <td>{{ item.produit.prix|number_format(2, ',', ' ') }} TND</td>
                     <td>
-                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                        <button onclick="updateQuantity({{ item.produit.id }}, 'decrease')" class="btn btn-secondary btn-sm">-</button>
+                        <span id="quantity-{{ item.produit.id }}">{{ item.quantity }}</span>
+                        <button onclick="updateQuantity({{ item.produit.id }}, 'increase')" class="btn btn-secondary btn-sm">+</button>
+                    </td>
+                    <td id="subtotal-{{ item.produit.id }}">{{ (item.produit.prix * item.quantity)|number_format(2, ',', ' ') }} TND</td>
+                    <td>
+                        <button onclick="removeFromCart({{ item.produit.id }})" class="btn btn-danger btn-sm">Supprimer</button>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right"><strong>Total Général</strong></td>
+                <td colspan="2" id="total">{{ total|number_format(2, ',', ' ') }} TND</td>
+            </tr>
+        </tfoot>
     </table>
     <a href="{{ path('cart_clear') }}" class="btn btn-warning">Vider le panier</a>
+    <a href="{{ path('cart_confirmation') }}" class="btn btn-success">valider panier</a>
 {% endif %}
-<a href="/cart/valider" class="btn btn-success">passer commande</a>
 
+<script>
+    // Fonction pour mettre à jour la quantité
+    function updateQuantity(productId, action) {
+        const route = action === 'increase' 
+            ? "{{ path('cart_increase', {'id': 'PRODUCT_ID'}) }}" 
+            : "{{ path('cart_decrease', {'id': 'PRODUCT_ID'}) }}";
+        const url = route.replace('PRODUCT_ID', productId);
 
+        fetch(url, {
+            method: 'POST',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Mettre à jour la quantité affichée
+                document.getElementById(`quantity-${productId}`).textContent = data.quantity;
 
- 
+                // Mettre à jour le sous-total
+                document.getElementById(`subtotal-${productId}`).textContent = 
+                    `${(data.subtotal).toFixed(2).replace('.', ',')} TND`;
 
+                // Mettre à jour le total général
+                document.getElementById('total').textContent = 
+                    `${(data.total).toFixed(2).replace('.', ',')} TND`;
 
- {% endblock %}
+                // Si la quantité est 0, supprimer la ligne
+                if (data.quantity === 0) {
+                    document.getElementById(`row-${productId}`).remove();
+                }
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+
+    // Fonction pour supprimer un produit du panier
+    function removeFromCart(productId) {
+        const url = "{{ path('cart_remove', {'id': 'PRODUCT_ID'}) }}".replace('PRODUCT_ID', productId);
+
+        fetch(url, {
+            method: 'POST',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Supprimer la ligne du tableau
+                document.getElementById(`row-${productId}`).remove();
+
+                // Mettre à jour le total général
+                document.getElementById('total').textContent = 
+                    `${(data.total).toFixed(2).replace('.', ',')} TND`;
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+</script>
+
+{% endblock %}
