@@ -52,7 +52,7 @@
 <div class="col-md-8">
     <div class="card mb-4 shadow-sm">
         <div class="card-header bg-info text-white">
-            <h3 class="h5 mb-0">Exercise Question</h3>
+            <h3 class="h5 mb-0">Question D'exercice</h3>
         </div>
         <div class="card-body">
             <div class="alert alert-light border">
@@ -73,8 +73,8 @@
             const responseText = inputField.value.toLowerCase();
             for (let word of badWords) {
                 if (responseText.includes(word)) {
-                    alert("Your response contains inappropriate words and cannot be submitted.");
-                    event.preventDefault(); // Stop form submission
+                    alert("Votre réponse contient des mots inappropriés et ne peut pas être soumise..");
+                    event.preventDefault(); 
                     return;
                 }
             }
@@ -93,41 +93,11 @@
                 </button>
             </form>
             {% else %}
-            <div class="alert alert-warning">
-                You need to be logged in as a patient to submit answers
-            </div>
             {% endif %}
         </div>
     </div>
 </div>
 
-<!-- Response Statistics -->
-<div class="col-md-4">
-    <div class="card shadow-sm border-primary">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Response Insights</h5>
-        </div>
-        <div class="card-body">
-            <div class="text-center mb-3">
-                <span class="display-4">{{ exercice.reponses|length }}</span>
-                <p class="text-muted mb-0">Total Responses</p>
-            </div>
-            <hr>
-            <div class="list-group">
-                <div class="list-group-item d-flex justify-content-between">
-                    <span>Latest Response</span>
-                    <strong>
-                        {% if exercice.reponses|length > 0 %}
-                            {{ exercice.reponses|last.dateCreation|date('M d, Y') }}
-                        {% else %}
-                            N/A
-                        {% endif %}
-                    </strong>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 
 <!-- Responses List -->
@@ -165,7 +135,7 @@
 </div>
 {% else %}
 <div class="alert alert-info">
-    <i class="bi bi-info-circle me-2"></i>No responses yet
+    <i class="bi bi-info-circle me-2"></i>Pas De Reponse
 </div>
 {% endif %}
 </div>
