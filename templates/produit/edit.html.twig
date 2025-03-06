@@ -4,7 +4,7 @@
     {{ parent() }}
     <style>
         /* Centrer le formulaire et lui donner un fond clair */
-        form {
+        .form-container {
             margin: 2rem auto;
             max-width: 600px;
             background: #f9f9f9;
@@ -21,18 +21,17 @@
         }
 
         /* Style général des labels */
-        form label {
-            display: block;
+        label {
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         /* Style général des champs de formulaire */
-        form input[type="text"],
-        form input[type="number"],
-        form input[type="file"],
-        form textarea,
-        form select {
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea,
+        select {
             width: 100%;
             padding: 0.75rem;
             margin-bottom: 1rem;
@@ -41,14 +40,8 @@
             font-size: 0.95rem;
         }
 
-        /* Pour checkbox ou radio (s'ils existent) */
-        form input[type="checkbox"],
-        form input[type="radio"] {
-            margin-right: 0.5rem;
-        }
-
         /* Bouton principal */
-        button.btn.btn-primary {
+        .btn-primary {
             display: block;
             width: 100%;
             background-color: #007bff;
@@ -61,13 +54,14 @@
             transition: background-color 0.3s ease;
         }
 
-        button.btn.btn-primary:hover {
+        .btn-primary:hover {
             background-color: #0056b3;
         }
 
-        /* Bouton/lien secondaire */
-        a.btn.btn-secondary {
-            display: inline-block;
+        /* Bouton secondaire */
+        .btn-secondary {
+            display: block;
+            text-align: center;
             margin-top: 1rem;
             background-color: #6c757d;
             color: #fff;
@@ -77,8 +71,13 @@
             transition: background-color 0.3s ease;
         }
 
-        a.btn.btn-secondary:hover {
+        .btn-secondary:hover {
             background-color: #5a6268;
+        }
+
+        /* Centrer le bouton de retour */
+        .text-center {
+            margin-top: 1rem;
         }
     </style>
 {% endblock %}
@@ -86,20 +85,23 @@
 {% block title %}Modifier le produit{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Modifier le produit</h1>
+    <div class="form-container">
+        <h1 class="text-center">Modifier le produit</h1>
 
-    {{ form_start(form) }}
-    {{ form_row(form.nom) }}
-    {{ form_row(form.prix) }}
-    {{ form_row(form.image) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.disponible) }}
-    {{ form_row(form.categorie) }}
+        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.prix) }}
+            {{ form_row(form.image) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.categorie) }}
+            {{ form_row(form.quantite) }} {# Ajout du champ quantité si nécessaire #}
+            {{ form_row(form.disponible) }}
 
-    <button class="btn btn-primary">Enregistrer</button>
-    {{ form_end(form) }}
+            <button type="submit" class="btn btn-primary">💾 Enregistrer</button>
+        {{ form_end(form) }}
 
-    <div class="text-center">
-        <a href="{{ path('produit_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        <div class="text-center">
+            <a href="{{ path('produit_index') }}" class="btn btn-secondary">↩ Retour à la liste</a>
+        </div>
     </div>
 {% endblock %}
