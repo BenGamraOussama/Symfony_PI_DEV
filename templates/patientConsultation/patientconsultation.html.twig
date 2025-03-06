@@ -1,0 +1,33 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Consultations{% endblock %}
+
+{% block body %}
+<section class="services-details-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="services-details-desc">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="services-details-info">
+                            <ul class="services-list">
+                               {% if consultation.psychiatre is defined and consultation.psychiatre|length > 0 %}
+    {% for psy in consultation.psychiatre %}
+        <h5 class="card-title">{{ psy.firstName }} {{ psy.lastName }}</h5>
+    {% endfor %}
+{% else %}
+    {% if consultation.creator is defined %}
+        <p class="text-muted">Created by: {{ consultation.creator.firstName }} {{ consultation.creator.lastName }}</p>
+    {% else %}
+        <p class="text-muted">No psychiatrist assigned</p>
+    {% endif %}
+{% endif %}
+                             
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </section>
+{% endblock %}

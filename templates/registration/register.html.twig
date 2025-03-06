@@ -1,0 +1,232 @@
+{% extends 'basePatient.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<style>
+  #contentRegister {
+      width: 40%;
+      margin: auto;
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #logo {
+      background: #8e54e9;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      font-weight: bold;
+  }
+
+  .nav-tabs .nav-link {
+      border: none;
+      color: #495057;
+      font-weight: bold;
+      margin-top: -20px;
+  }
+
+  .nav-tabs .nav-link.active {
+      border-bottom: 3px solid #8e54e9;
+      color: #8e54e9;
+  }
+
+  .form-control {
+      border-radius: 10px;
+      border: 1px solid #ced4da;
+      padding: 10px;
+  }
+
+  .btn-warning {
+      background-color: #8e54e9;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+  }
+
+  .btn-warning:hover {
+      background-color: #8e54e9;
+  }
+
+  .text-danger {
+      color: #dc3545;
+      font-size: 0.9rem;
+  }
+
+  .card-header {
+      background-color: #fff;
+      border-bottom: 1px solid #dee2e6;
+      text-align: center;
+  }
+
+  .card-body {
+      padding: 0px;
+  }
+</style>
+
+<div class="page-banner-with-full-image item-bg4">
+    <div class="container">
+        <div class="page-banner-content-two">
+            <h2>Register</h2>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>Register</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="register-area ptb-100">
+    <div class="container">
+        <div class="register-form">
+            <h2>Register</h2>
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="patient-tab" data-bs-toggle="tab" data-bs-target="#patient" type="button" role="tab" aria-controls="patient" aria-selected="true"><b>Patient</b></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="psychiatre-tab" data-bs-toggle="tab" data-bs-target="#psychiatre" type="button" role="tab" aria-controls="psychiatre" aria-selected="false"><b>Psychiatre</b></button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="fournisseur-tab" data-bs-toggle="tab" data-bs-target="#fournisseur" type="button" role="tab" aria-controls="fournisseur" aria-selected="false"><b>Fournisseur</b></button>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-3" id="myTabContent">
+                    <!-- Onglet Patient -->
+                    <div class="tab-pane fade show active" id="patient" role="tabpanel" aria-labelledby="patient-tab">
+                        {{ form_start(patientFormType, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="form-group">
+                            <label>First Name</label>
+                            {{ form_widget(patientFormType.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(patientFormType.firstName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            {{ form_widget(patientFormType.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(patientFormType.lastName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            {{ form_widget(patientFormType.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(patientFormType.email) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            {{ form_widget(patientFormType.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password', 'minlength': '8', 'required': 'required'}}) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(patientFormType.plainPassword) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Dossier Medicale</label>
+                            {{ form_widget(patientFormType.dossierMedical, { 'attr': {'class': 'form-control', 'placeholder': 'Dossier Medicale'} }) }}
+                        </div>
+                        <button type="submit" class="btn btn-warning">Register Now</button>
+                        <div class="col-12 mt-3">
+                            <p>Already have an account? <a href="{{ path('app_login') }}">Sign In</a></p>
+                        </div>
+                        {{ form_end(patientFormType) }}
+                    </div>
+
+                    <!-- Onglet Psychiatre -->
+                    <div class="tab-pane fade" id="psychiatre" role="tabpanel" aria-labelledby="psychiatre-tab">
+                        {{ form_start(psychiatreType, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="form-group">
+                            <label>First Name</label>
+                            {{ form_widget(psychiatreType.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(psychiatreType.firstName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            {{ form_widget(psychiatreType.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(psychiatreType.lastName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            {{ form_widget(psychiatreType.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(psychiatreType.email) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            {{ form_widget(psychiatreType.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password', 'minlength': '8', 'required': 'required'}}) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(psychiatreType.plainPassword) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Specialite</label>
+                            {{ form_widget(psychiatreType.specialite, { 'attr': {'class': 'form-control', 'placeholder': 'Specialite', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(psychiatreType.specialite) }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Register Now</button>
+                        <div class="col-12 mt-3">
+                            <p>Already have an account? <a href="{{ path('app_login') }}">Sign In</a></p>
+                        </div>
+                        {{ form_end(psychiatreType) }}
+                    </div>
+
+                    <!-- Onglet Fournisseur -->
+                    <div class="tab-pane fade" id="fournisseur" role="tabpanel" aria-labelledby="fournisseur-tab">
+                        {{ form_start(fournissuerType, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="form-group">
+                            <label>First Name</label>
+                            {{ form_widget(fournissuerType.firstName, { 'attr': {'class': 'form-control', 'placeholder': 'First Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(fournissuerType.firstName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            {{ form_widget(fournissuerType.lastName, { 'attr': {'class': 'form-control', 'placeholder': 'Last Name', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(fournissuerType.lastName) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            {{ form_widget(fournissuerType.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email', 'required': 'required'} }) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(fournissuerType.email) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            {{ form_widget(fournissuerType.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password', 'minlength': '8', 'required': 'required'}}) }}
+                            <div class="text-danger mb-3">
+                                {{ form_errors(fournissuerType.plainPassword) }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Register Now</button>
+                        <div class="col-12 mt-3">
+                            <p>Already have an account? <a href="{{ path('app_login') }}">Sign In</a></p>
+                        </div>
+                        {{ form_end(fournissuerType) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

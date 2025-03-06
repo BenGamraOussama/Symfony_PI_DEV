@@ -1,0 +1,10 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+google_meet:
+    path: /consultation/google_meet/{id}
+    controller: App\Controller\ConsultationController::googleMeet
+    methods: [GET]
