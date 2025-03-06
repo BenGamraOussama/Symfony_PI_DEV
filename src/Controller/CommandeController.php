@@ -155,10 +155,10 @@ final class CommandeController extends AbstractController{
     $data =  $user->getFirstName() . ' | Commande passé le : ' .  $commande->getDateCommande()->format('d/m/Y H:i:s') .'prix : '.$commande->getMontantTotal();
 
     $result = Builder::create()
-    ->writer(new PngWriter())
+    ->writer(new SvgWriter())
     ->data($data)
      ->encoding(new Encoding('UTF-8'))
-     ->errorCorrectionLevel(ErrorCorrectionLevel::Low)
+     ->errorCorrectionLevel(ErrorCorrectionLevel::Medium)
      ->size(300)
     // ->logoPath($logoPath) // Add logo
      //->logoPunchoutBackground(true)
