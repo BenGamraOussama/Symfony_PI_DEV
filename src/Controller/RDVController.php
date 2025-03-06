@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\RDV;
 use App\Form\RDVType;
 use App\Repository\RDVRepository;

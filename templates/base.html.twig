@@ -123,9 +123,7 @@
                                                     <li class="nav-link">
                                                         <a href="page-account-settings.html">Account Settings</a>
                                                     </li>
-                                                    <li class="nav-link">
-                                                        <a href="page-clients.html">Clients</a>
-                                                    </li>
+                                                    <li><a href="{{ path('app_activite_index') }}" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Activities & Exercices</span> </a></li></li>
                                                     <li class="nav-link">
                                                         <a href="page-contacts.html">Contacts</a>
                                                     </li>
@@ -492,122 +490,124 @@
             </header>
 
     {% endblock %}
-    {% block sidebar %}
-    <div class="light-sidebar">
-        <aside class="app-navbar">
-    <!-- begin sidebar-nav -->
-    <div class="sidebar-nav scrollbar scroll_Dark">
-        <ul class="metismenu " id="sidebarNav">
-            <li class="nav-static-title">Personal</li>
-            <li>
-                <a href="{{path('app_admin')}}" aria-expanded="false">
-                    <i class="nav-icon ti ti-home"></i>
-                    <span class="nav-title">Tableau de bord</span>
-    
-                </a>
-            </li>
-            {% if is_granted('ROLE_ADMIN') %}
-            <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
-            <li><a href='{{path('app_traitement_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Traitement</span></a> </li>
-            <li><a href='{{path('app_consultation_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Consultation</span></a> </li>
+   {% block sidebar %}
+    <aside class="app-navbar light-sidebar">
+        <div class="sidebar-nav scrollbar scroll_dark">
+            <ul class="metismenu" id="sidebarNav">
+                <li class="nav-static-title">Personal</li>
+                <li>
+                    <a href="{{ path('app_admin') }}">
+                        <i class="nav-icon ti ti-home"></i>
+                        <span class="nav-title">Tableau de bord</span>
+                    </a>
+                </li>
 
-            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-            <i class="nav-icon ti ti-user"></i>
-            <span class="nav-title">Psychiatre</span></a>
-                <ul aria-expanded="false">
-                    <li> 
-                        <a href='{{path('app_admin_ajouterpsychiatre')}}'>Ajouter Psychiatre</a> </li>
-                    <li> <a href='{{path('app_admin_listpsychiatre')}}'>List Psychiatre</a> </li>
-                        </ul>
-            </li>
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                <i class="bi bi-people"></i>
-                <span class="nav-title">Fournisseur</span> </a>
-                <ul aria-expanded="false">
-                    <li> <a href='{{path('app_admin_ajouterfournisseur')}}'>Ajouter Fournisseur</a> </li>
-                    <li> <a href='{{path('app_admin_listfournisseur')}}'>List Fournisseur</a> </li>
-                </ul>
-
-            </li>
-              {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-
-            <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Patient</span> </a>
-                <ul aria-expanded="false">
-                    <li> <a href='{{path('app_patient_new')}}'>Ajouter Patient</a> </li>
-                    <li> <a href='{{path('list_patient_index')}}'>List Patient</a> </li>
-                </ul>
-            </li>
-            {% endif %}
-            <li><a href="listclient" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Client</span></a> </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li>
+                    <a href="{{ path('app_rendez__vous_admin') }}">
+                        <i class="bi bi-calendar-check"></i>
+                        <span class="nav-title">Rendez-vous</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_traitement_index') }}">
+                        <i class="bi bi-capsule"></i>
+                        <span class="nav-title">Traitement</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_consultation_index') }}">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                        <span class="nav-title">Consultation</span>
+                    </a>
+                </li>
 
                 <li>
-                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Produit</span> </a>
+                    <a class="has-arrow" href="#">
+                        <i class="ti ti-user"></i>
+                        <span class="nav-title">Psychiatre</span>
+                    </a>
+                    <ul>
+                        <li><a href="{{ path('app_admin_ajouterpsychiatre') }}">Ajouter Psychiatre</a></li>
+                        <li><a href="{{ path('app_admin_listpsychiatre') }}">Liste Psychiatres</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="has-arrow" href="#">
+                        <i class="bi bi-truck"></i>
+                        <span class="nav-title">Fournisseur</span>
+                    </a>
+                    <ul>
+                        <li><a href="{{ path('app_admin_ajouterfournisseur') }}">Ajouter Fournisseur</a></li>
+                        <li><a href="{{ path('app_admin_listfournisseur') }}">Liste Fournisseurs</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="has-arrow" href="#">
+                        <i class="bi bi-person"></i>
+                        <span class="nav-title">Patient</span>
+                    </a>
+                    <ul>
+                        <li><a href="{{ path('app_patient_new') }}">Ajouter Patient</a></li>
+                        <li><a href="{{ path('list_patient_index') }}">Liste Patients</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{{ path('app_activite_index') }}">
+                        <i class="bi bi-activity"></i>
+                        <span class="nav-title">Activités & Exercices</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="has-arrow" href="#">
+                        <i class="bi bi-box"></i>
+                        <span class="nav-title">Produits</span>
+                    </a>
+                    <ul>
+                        <li><a href="{{ path('produit_index') }}">Liste Produits</a></li>
+                        <li><a href="{{ path('produit_add') }}">Ajouter Produit</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="has-arrow" href="#">
+                        <i class="bi bi-tags"></i>
+                        <span class="nav-title">Catégories des Produits</span>
+                    </a>
+                    <ul>
+                        <li><a href="{{ path('produit_categories_index') }}">Liste Catégories</a></li>
+                        <li><a href="{{ path('ajouter_categorie') }}">Ajouter Catégorie</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="affcom">
+                        <i class="bi bi-cart"></i>
+                        <span class="nav-title">Commandes</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="nav-icon ti ti-truck"></i>
+                        <span class="nav-title">Ressources</span>
+                    </a>
                     <ul aria-expanded="false">
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('produit_index') }}">
-                                    Liste Produit
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('produit_add') }}">
-                                    Ajouter Produit
-                                </a>
-                            
-                       
+                        <li><a href="{{ path('app_category_index') }}">List Category</a></li>
+                        <li><a href="{{ path('app_category_new') }}">Add Category</a></li>
+                        <li><a href="{{ path('app_article_index') }}">List product</a></li>
                     </ul>
                 </li>
-                <a href="listcolis" aria-expanded="false"><i class="bi bi-box"></i> <span class="nav-title">Colis</span></a>
-            </li>
-            <li><a href="affcom" aria-expanded="false"><i class="bi bi-command"></i><span class="nav-title">Commandes</span></a></li>           
-            <li><a href="listcontact" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Reclamation</span></a></li>        
-                <li><a href="{{ path('app_activite_index') }}" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Activities & Exercices</span> </a></li>
-               
-            </li>
-        </ul>
-       
+            </ul>
+        </div>
+    </aside>
+{% endblock %}
 
-
-                    </ul>
-                </li>
-            <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">catégorie des produits</span> </a>
-                <ul aria-expanded="false">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('produit_categories_index') }}">
-                            Liste des catégories
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('ajouter_categorie') }}">
-                            ajouter catégories
-                        </a>
-
-
-                </ul>
-            </li>
-                <a href="listcolis" aria-expanded="false"><i class="bi bi-box"></i> <span class="nav-title">Colis</span></a>
-            </li>
-            <li><a href="affcom" aria-expanded="false"><i class="bi bi-command"></i><span class="nav-title">Commandes</span></a></li>
-            <li><a href="listcontact" aria-expanded="false"><i class="nav-icon ti ti-email"></i><span class="nav-title">Reclamation</span></a></li>
-                <li><a href="{{ path('app_activite_index') }}" aria-expanded="false"><i class="bi bi-people"></i><span class="nav-title">Activities & Exercices</span> </a></li>
-
-            </li>
-        </ul>
-
-    </div>
-    <!-- end sidebar-nav -->
-  </aside>
-  </div>
-    {% endblock %}
     {% block body %}
     {% endblock %}
     {% block myfooter %}

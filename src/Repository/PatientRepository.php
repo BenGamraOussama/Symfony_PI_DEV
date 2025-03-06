@@ -24,9 +24,16 @@ class PatientRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-//    /**
-//     * @return Patient[] Returns an array of Patient objects
-//     */
+    /**
+     * @return Patient[] Returns an array of Patient objects
+     */
+    public function findAllPatients(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('p')
