@@ -504,25 +504,6 @@
 
                 {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('app_rendez__vous_admin') }}">
-                        <i class="bi bi-calendar-check"></i>
-                        <span class="nav-title">Rendez-vous</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_traitement_index') }}">
-                        <i class="bi bi-capsule"></i>
-                        <span class="nav-title">Traitement</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_consultation_index') }}">
-                        <i class="bi bi-clipboard2-pulse"></i>
-                        <span class="nav-title">Consultation</span>
-                    </a>
-                </li>
-
-                <li>
                     <a class="has-arrow" href="#">
                         <i class="ti ti-user"></i>
                         <span class="nav-title">Psychiatre</span>
@@ -554,6 +535,26 @@
                         <li><a href="{{ path('list_patient_index') }}">Liste Patients</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ path('app_rendez__vous_admin') }}">
+                        <i class="bi bi-calendar-check"></i>
+                        <span class="nav-title">Rendez-vous</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_traitement_index') }}">
+                        <i class="bi bi-capsule"></i>
+                        <span class="nav-title">Traitement</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_consultation_index') }}">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                        <span class="nav-title">Consultation</span>
+                    </a>
+                </li>
+
+                
                 {% endif %}
 
                 <li>

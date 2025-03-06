@@ -28,6 +28,10 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: LigneCommande::class, cascade: ['persist', 'remove'])]
 private Collection $lignes;
 
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
 public function __construct()
 {
     $this->lignes = new ArrayCollection();
@@ -101,6 +105,18 @@ public function removeLigne(LigneCommande $ligne): static
     public function setMontantTotal(float $montant_total): static
     {
         $this->montant_total = $montant_total;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -40,4 +40,17 @@ class CommandeRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findByUser($user): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('c.date_commande', 'DESC') // Tri par date décroissante
+            ->getQuery()
+            ->getResult();
+    }
+    
+
+
 }

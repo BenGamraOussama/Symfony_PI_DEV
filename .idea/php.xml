@@ -143,11 +143,6 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
-<<<<<<< HEAD
-    </include_path>
-  </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
-=======
       <path value="$PROJECT_DIR$/vendor/twig/string-extra" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
@@ -156,7 +151,9 @@
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
->>>>>>> 8a39ff5bd8313d0c3897c90f4e228014f255549c
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

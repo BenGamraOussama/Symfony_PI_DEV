@@ -20,6 +20,7 @@
                 {% endif %}
             {% endfor %}
         </div>
+<<<<<<< HEAD
 
         <div class="btn-group" role="group">
             {% set uniqueStatuses = [] %}
@@ -39,10 +40,13 @@
                 </button>
             {% endfor %}
         </div>
+=======
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
     </div>
 
     <div class="row g-4">
         {% for activity in patientActivities %}
+<<<<<<< HEAD
             {% set activityStatus = activity.type == 'exercise' 
                 ? (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0 ? 'Répondu' : 'En attente') 
                 : activity.status %}
@@ -95,6 +99,57 @@
     </div>
 
     {# Modal #}
+=======
+        <div class="col-md-4 activity-item" data-type="{{ activity.type }}">
+            <div class="card h-100 shadow activity-card" 
+                 data-bs-toggle="modal" 
+                 data-bs-target="#activityModal"
+                 data-activity-id="{{ activity.id }}"
+                 data-title="{{ activity.titre }}"
+                 data-description="{{ activity.description }}"
+                 data-status="{{ activity.status }}"
+                 data-is-exercise="{{ activity.type == 'exercise' ? 'true' : 'false' }}"
+                 data-exercise-id="{{ activity.exercice ? activity.exercice.id : '' }}"
+                 data-question="{{ activity.exercice ? activity.exercice.question : '' }}"
+                 data-has-response="{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'true' : 'false' }}">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        {{ activity.titre }}
+                        <div class="badge-container">
+                            <span class="badge bg-info me-2">
+                                <i class="bi 
+                                    {% if activity.type == 'exercise' %}bi-question-circle
+                                    {% else %}bi-clipboard-check
+                                    {% endif %} me-1"></i>
+                                {{ activity.type|capitalize }}
+                            </span>
+                            {% if activity.type == 'exercise' %}
+                                <span class="badge bg-{{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'success' : 'warning' }}">
+                                    {{ (activity.exercice and app.user.patient and activity.exercice.reponses|filter(r => r.patient == app.user.patient)|length > 0) ? 'Answered' : 'Pending' }}
+                                </span>
+                            {% else %}
+                                <span class="badge 
+                                    {% if activity.status == 'not_started' %}bg-secondary
+                                    {% elseif activity.status == 'in_progress' %}bg-warning text-dark
+                                    {% elseif activity.status == 'completed' %}bg-success
+                                    {% endif %}">
+                                    {{ activity.status|replace({'_': ' '})|title }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">No activities assigned yet.</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# Activity Modal #}
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
     <div class="modal fade" id="activityModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -110,29 +165,49 @@
 
                     <div id="exerciseSection" style="display: none;">
                         <div class="mb-3">
+<<<<<<< HEAD
                             <h6>Question de l'exercice</h6>
+=======
+                            <h6>Exercise Question</h6>
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                             <p id="activityModalQuestion" class="text-muted fst-italic"></p>
                         </div>
                         
                         <div id="responseContainer">
+<<<<<<< HEAD
                             <h6>Votre réponse</h6>
+=======
+                            <h6>Your Response</h6>
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                             <div id="existingResponses"></div>
                             <div id="responseFormContainer" style="display: none;">
                                 {% if app.user and app.user.patient %}
                                 <form id="responseForm" method="POST">
                                     <div class="mb-3">
                                         <textarea name="reponse" class="form-control" rows="3" 
+<<<<<<< HEAD
                                                   placeholder="Écrivez votre réponse ici..." required></textarea>
+=======
+                                                  placeholder="Type your answer here..." required></textarea>
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                                     </div>
                                     <input type="hidden" name="exercise_id" id="exerciseId">
                                     <input type="hidden" name="_token" value="{{ csrf_token('response') }}">
                                     <button type="submit" class="btn btn-success">
+<<<<<<< HEAD
                                         <i class="bi bi-send me-2"></i>Envoyer la réponse
+=======
+                                        <i class="bi bi-send me-2"></i>Submit Answer
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                                     </button>
                                 </form>
                                 {% else %}
                                 <div class="alert alert-danger">
+<<<<<<< HEAD
                                     Profil patient non trouvé. Impossible de soumettre une réponse.
+=======
+                                    Patient profile not found. Cannot submit response.
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                                 </div>
                                 {% endif %}
                             </div>
@@ -143,11 +218,19 @@
                     <div id="statusUpdateSection" style="display: none;">
                         <form id="statusUpdateForm" method="POST">
                             <div class="mb-3">
+<<<<<<< HEAD
                                 <label class="form-label">Mettre à jour le statut</label>
                                 <select name="status" class="form-select" id="statusSelect">
                                     <option value="Pas commencé">Pas commencé</option>
                                     <option value="En cours">En cours</option>
                                     <option value="Complété">Complété</option>
+=======
+                                <label class="form-label">Update Status</label>
+                                <select name="status" class="form-select" id="statusSelect">
+                                    <option value="not_started">Not Started</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                                 </select>
                             </div>
                             <input type="hidden" name="activity_id" id="activityId">
@@ -156,9 +239,15 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+<<<<<<< HEAD
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="button" class="btn btn-primary" id="statusUpdateButton" style="display: none;">
                         Sauvegarder
+=======
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="statusUpdateButton" style="display: none;">
+                        Save Status
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                     </button>
                 </div>
             </div>
@@ -168,6 +257,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD
     // Filtres
     let selectedType = 'all';
     let selectedStatus = 'all';
@@ -203,6 +293,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Modal
+=======
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter');
+    const activityItems = document.querySelectorAll('.activity-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterValue = this.dataset.filter;
+            
+            activityItems.forEach(item => {
+                if (filterValue === 'all' || item.dataset.type === filterValue) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Modal functionality
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
     const modal = document.getElementById('activityModal');
     const responseForm = document.getElementById('responseForm');
     const statusUpdateSection = document.getElementById('statusUpdateSection');
@@ -222,6 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('activityModalTitle').textContent = card.dataset.title;
         document.getElementById('activityModalDescription').textContent = card.dataset.description;
+<<<<<<< HEAD
 
         // Vérifier si l'élément existe avant de définir sa valeur
         const activityIdElement = document.getElementById('activityId');
@@ -233,6 +349,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (exerciseIdElement) {
             exerciseIdElement.value = exerciseId;
         }
+=======
+        document.getElementById('activityId').value = card.dataset.activityId;
+        document.getElementById('exerciseId').value = exerciseId;
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
 
         if (isExercise) {
             document.getElementById('exerciseSection').style.display = 'block';
@@ -248,7 +368,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="card-body">
                                     <p class="card-text">{{ response.contenu }}</p>
                                     <small class="text-muted">
+<<<<<<< HEAD
                                         Répondu le {{ response.dateCreation|date('Y-m-d H:i') }}
+=======
+                                        Answered on {{ response.dateCreation|date('Y-m-d H:i') }}
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                                     </small>
                                 </div>
                             </div>`;
@@ -269,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if(responseForm) {
+<<<<<<< HEAD
     responseForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(this);
@@ -289,6 +414,34 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
     });
 }
+=======
+        responseForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const exerciseId = formData.get('exercise_id');
+            
+            const url = responseUrlTemplate.replace('__id__', exerciseId);
+            
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if(response.ok) {
+                    document.getElementById('responseFormContainer').style.display = 'none';
+                    document.getElementById('existingResponses').innerHTML = `
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="card-text">${formData.get('reponse')}</p>
+                                <small class="text-muted">Answered just now</small>
+                            </div>
+                        </div>`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    }
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
 
     statusUpdateButton.addEventListener('click', function() {
         const formData = new FormData(document.getElementById('statusUpdateForm'));
@@ -300,11 +453,27 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if(response.ok) {
                 location.reload();
+<<<<<<< HEAD
+=======
+                const activityId = document.getElementById('activityId').value;
+                const newStatus = document.getElementById('statusSelect').value;
+                const badge = document.querySelector(`[data-activity-id="${activityId}"] .badge:last-child`);
+                
+                badge.textContent = newStatus.replace('_', ' ').toTitleCase();
+                badge.className = `badge ${
+                    newStatus === 'not_started' ? 'bg-secondary' :
+                    newStatus === 'in_progress' ? 'bg-warning text-dark' :
+                    'bg-success'
+                }`;
+                
+                bootstrap.Modal.getInstance(modal).hide();
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
             }
         })
         .catch(error => console.error('Error:', error));
     });
 });
+<<<<<<< HEAD
 </script>
 
 <style>
@@ -312,14 +481,32 @@ document.addEventListener('DOMContentLoaded', function() {
     transition: all 0.2s ease;
 }
 .filter.active, .status-filter.active {
+=======
+
+String.prototype.toTitleCase = function() {
+    return this.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+};
+</script>
+
+<style>
+.filter {
+    transition: all 0.2s ease;
+}
+.filter.active {
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
     background-color: #0d6efd;
     color: white !important;
     border-color: #0d6efd;
 }
+<<<<<<< HEAD
 .btn-group {
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
 }
+=======
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
 .activity-card {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -349,6 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-wrap: wrap;
     justify-content: flex-end;
 }
+<<<<<<< HEAD
 .card-img-top {
     height: 200px;
     object-fit: cover;
@@ -363,5 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .fst-italic {
     font-style: italic;
 }
+=======
+>>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
 </style>
 {% endblock %}

@@ -16,8 +16,7 @@ class LigneCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lignes')]
-
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
     private ?Commande $commande = null;
 
@@ -32,6 +31,10 @@ class LigneCommande
     #[Assert\Positive(message: "champ doit etre positive")]
     #[Assert\GreaterThan(0)]
     private ?float $prix_unitaire = null;
+
+    #[ORM\ManyToOne(inversedBy: 'ligneCommandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Produit $produit = null;
 
 
 
@@ -72,6 +75,18 @@ class LigneCommande
     public function setPrixUnitaire(float $prix_unitaire): static
     {
         $this->prix_unitaire = $prix_unitaire;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): static
+    {
+        $this->produit = $produit;
 
         return $this;
     }

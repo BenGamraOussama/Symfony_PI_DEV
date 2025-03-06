@@ -1,4 +1,4 @@
-{% extends 'basePatient.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Commande{% endblock %}
 
@@ -56,10 +56,6 @@
                                                 <td>{{ commande.id }}</td>
                                             </tr>
                                             <tr>
-                                                <th>par</th>
-                                                <td>{{ commande.user.lastName}} {{ commande.user.firstName}}</td>
-                                            </tr>
-                                              <tr>
                                                 <th>Date de Commande</th>
                                                 <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d H:i:s') : 'N/A' }}</td>
                                             </tr>
@@ -69,10 +65,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="col-md-2 text-center">
-                Scanner moi !! 
-                <img src="{{qr}}" width="100px" height="100px" alt="">
-                </div>                                    <!-- Lignes de Commande -->
+
+                                    <!-- Lignes de Commande -->
                                     <h3 class="mt-4">Lignes de Commande</h3>
                                     <table class="table table-striped">
                                         <thead>

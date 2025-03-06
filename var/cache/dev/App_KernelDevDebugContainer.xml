@@ -27,6 +27,7 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -84,6 +85,10 @@
       <parameter key="KnpPaginatorBundle" type="collection">
         <parameter key="path">C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\knplabs\knp-paginator-bundle</parameter>
         <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
+      <parameter key="KnpSnappyBundle" type="collection">
+        <parameter key="path">C:/Users/OUSSAMA BEN GAMRA/OneDrive/Desktop/symfony/symfony_pi_dev/vendor/knplabs/knp-snappy-bundle/src</parameter>
+        <parameter key="namespace">Knp\Bundle\SnappyBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -277,6 +282,12 @@
     <parameter key="knp_paginator.page_limit">null</parameter>
     <parameter key="knp_paginator.page_name">page</parameter>
     <parameter key="knp_paginator.remove_first_page_param">false</parameter>
+    <parameter key="knp_snappy.pdf.binary">%env(WKHTMLTOPDF_PATH)%</parameter>
+    <parameter key="knp_snappy.pdf.options" type="collection"/>
+    <parameter key="knp_snappy.pdf.env" type="collection"/>
+    <parameter key="knp_snappy.image.binary">%env(WKHTMLTOIMAGE_PATH)%</parameter>
+    <parameter key="knp_snappy.image.options" type="collection"/>
+    <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -439,6 +450,13 @@
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\BlockController"/>
+      </call>
+    </service>
+    <service id="App\Controller\CartController" class="App\Controller\CartController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.O2p6Lk7.App\Controller\CartController"/>
       </call>
     </service>
     <service id="App\Controller\CategoryController" class="App\Controller\CategoryController" public="true" autowire="true" autoconfigure="true">
@@ -863,7 +881,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.617AeMo"/>
+      <argument type="service" id=".service_locator.vNrDoLb"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2895,6 +2913,7 @@
           <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\security-bundle/translations</argument>
           <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\monolog-bundle/translations</argument>
           <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\maker-bundle/translations</argument>
+          <argument>C:/Users/OUSSAMA BEN GAMRA/OneDrive/Desktop/symfony/symfony_pi_dev/vendor/knplabs/knp-snappy-bundle/src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2916,6 +2935,7 @@
             <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\security-bundle/translations</argument>
             <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\monolog-bundle/translations</argument>
             <argument>C:\Users\OUSSAMA BEN GAMRA\OneDrive\Desktop\symfony\symfony_pi_dev\vendor\symfony\maker-bundle/translations</argument>
+            <argument>C:/Users/OUSSAMA BEN GAMRA/OneDrive/Desktop/symfony/symfony_pi_dev/vendor/knplabs/knp-snappy-bundle/src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -3885,7 +3905,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.617AeMo"/>
+      <argument type="service" id=".service_locator.vNrDoLb"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7877,6 +7897,24 @@
       <argument>page</argument>
       <argument>false</argument>
     </service>
+    <service id="knp_snappy.pdf" class="Knp\Snappy\Pdf" public="true">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>%env(WKHTMLTOPDF_PATH)%</argument>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="knp_snappy.image" class="Knp\Snappy\Image" public="true">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>%env(WKHTMLTOIMAGE_PATH)%</argument>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
+    </service>
     <service id=".instanceof.Twig\Extension\ExtensionInterface.0.App\Twig\AppExtension" class="App\Twig\AppExtension" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Twig\AppExtension" class="App\Twig\AppExtension" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CreateTestPatientCommand" class="App\Command\CreateTestPatientCommand" autowire="true" abstract="true"/>
@@ -7898,6 +7936,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BlockController" class="App\Controller\BlockController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CartController" class="App\Controller\CartController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CartController" class="App\Controller\CartController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CartController" class="App\Controller\CartController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -8640,6 +8681,19 @@
         <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
+    <service id=".service_locator.dBX4G6u" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="produitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.vRUAr7Q" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="produitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
+      </argument>
+    </service>
     <service id=".service_locator.3opkxl5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8658,6 +8712,22 @@
       <argument type="collection">
         <argument key="articleRepository" type="service_closure" id="App\Repository\ArticleRepository"/>
         <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.76IN..J" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="dr" type="service_closure" id="App\Repository\CommandeRepository"/>
+        <argument key="pdf" type="service_closure" id="knp_snappy.pdf"/>
+        <argument key="twig" type="service_closure" id="twig"/>
+      </argument>
+    </service>
+    <service id=".service_locator.rSaHG5J" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="commandeRepository" type="service_closure" id="App\Repository\CommandeRepository"/>
+        <argument key="paginator" type="service_closure" id="knp_paginator"/>
+        <argument key="userRepo" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.RXaRRrV" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8963,7 +9033,7 @@
         <argument key="traitement" type="service_closure" id=".errored..service_locator.KLRrT53.App\Entity\Traitement"/>
       </argument>
     </service>
-    <service id=".service_locator.617AeMo" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.vNrDoLb" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\ActiviteController::delete" type="service_closure" id=".service_locator.DgVI9c3"/>
@@ -8995,6 +9065,11 @@
         <argument key="App\Controller\ArticleController::rateArticle" type="service_closure" id=".service_locator.ELdHc_7"/>
         <argument key="App\Controller\ArticleController::show" type="service_closure" id=".service_locator.1Czx5uA"/>
         <argument key="App\Controller\ArticleController::showFront" type="service_closure" id=".service_locator.1Czx5uA"/>
+        <argument key="App\Controller\CartController::confirmation" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController::decreaseQuantity" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController::increaseQuantity" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController::showCart" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController::valider" type="service_closure" id=".service_locator.dBX4G6u"/>
         <argument key="App\Controller\CategoryController::articlesByCategory" type="service_closure" id=".service_locator.aK.YDLu"/>
         <argument key="App\Controller\CategoryController::articlesByCategoryFront" type="service_closure" id=".service_locator.aK.YDLu"/>
         <argument key="App\Controller\CategoryController::delete" type="service_closure" id=".service_locator.WoAniWU"/>
@@ -9002,9 +9077,12 @@
         <argument key="App\Controller\CategoryController::index" type="service_closure" id=".service_locator.3opkxl5"/>
         <argument key="App\Controller\CategoryController::index2" type="service_closure" id=".service_locator.3opkxl5"/>
         <argument key="App\Controller\CategoryController::new" type="service_closure" id=".service_locator.9kKwU2t"/>
+        <argument key="App\Controller\CommandeController::adminshow" type="service_closure" id=".service_locator.TqIg1ou"/>
         <argument key="App\Controller\CommandeController::ajout2" type="service_closure" id=".service_locator.iR5i4O4"/>
+        <argument key="App\Controller\CommandeController::andexadmin" type="service_closure" id=".service_locator.rSaHG5J"/>
         <argument key="App\Controller\CommandeController::delete" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController::edit" type="service_closure" id=".service_locator.iR5i4O4"/>
+        <argument key="App\Controller\CommandeController::imprimer" type="service_closure" id=".service_locator.76IN..J"/>
         <argument key="App\Controller\CommandeController::index" type="service_closure" id=".service_locator.RXaRRrV"/>
         <argument key="App\Controller\CommandeController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\CommandeController::show" type="service_closure" id=".service_locator.TqIg1ou"/>
@@ -9113,6 +9191,11 @@
         <argument key="App\Controller\ArticleController:rateArticle" type="service_closure" id=".service_locator.ELdHc_7"/>
         <argument key="App\Controller\ArticleController:show" type="service_closure" id=".service_locator.1Czx5uA"/>
         <argument key="App\Controller\ArticleController:showFront" type="service_closure" id=".service_locator.1Czx5uA"/>
+        <argument key="App\Controller\CartController:confirmation" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController:decreaseQuantity" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController:increaseQuantity" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController:showCart" type="service_closure" id=".service_locator.vRUAr7Q"/>
+        <argument key="App\Controller\CartController:valider" type="service_closure" id=".service_locator.dBX4G6u"/>
         <argument key="App\Controller\CategoryController:articlesByCategory" type="service_closure" id=".service_locator.aK.YDLu"/>
         <argument key="App\Controller\CategoryController:articlesByCategoryFront" type="service_closure" id=".service_locator.aK.YDLu"/>
         <argument key="App\Controller\CategoryController:delete" type="service_closure" id=".service_locator.WoAniWU"/>
@@ -9120,9 +9203,12 @@
         <argument key="App\Controller\CategoryController:index" type="service_closure" id=".service_locator.3opkxl5"/>
         <argument key="App\Controller\CategoryController:index2" type="service_closure" id=".service_locator.3opkxl5"/>
         <argument key="App\Controller\CategoryController:new" type="service_closure" id=".service_locator.9kKwU2t"/>
+        <argument key="App\Controller\CommandeController:adminshow" type="service_closure" id=".service_locator.TqIg1ou"/>
         <argument key="App\Controller\CommandeController:ajout2" type="service_closure" id=".service_locator.iR5i4O4"/>
+        <argument key="App\Controller\CommandeController:andexadmin" type="service_closure" id=".service_locator.rSaHG5J"/>
         <argument key="App\Controller\CommandeController:delete" type="service_closure" id=".service_locator.iR5i4O4"/>
         <argument key="App\Controller\CommandeController:edit" type="service_closure" id=".service_locator.iR5i4O4"/>
+        <argument key="App\Controller\CommandeController:imprimer" type="service_closure" id=".service_locator.76IN..J"/>
         <argument key="App\Controller\CommandeController:index" type="service_closure" id=".service_locator.RXaRRrV"/>
         <argument key="App\Controller\CommandeController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\CommandeController:show" type="service_closure" id=".service_locator.TqIg1ou"/>
@@ -9718,6 +9804,16 @@
       </call>
       <configurator service="debug.debug_logger_configurator" method="pushDebugLogger"/>
     </service>
+    <service id="monolog.logger.snappy" class="Monolog\Logger">
+      <argument>snappy</argument>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+      <configurator service="debug.debug_logger_configurator" method="pushDebugLogger"/>
+    </service>
     <service id="monolog.logger.deprecation" class="Monolog\Logger" public="true">
       <argument>deprecation</argument>
       <call method="pushHandler">
@@ -9924,6 +10020,12 @@
     <service id=".service_locator.O2p6Lk7.App\Controller\BlockController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\BlockController"/>
       <argument>App\Controller\BlockController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.O2p6Lk7" method="withContext"/>
+    </service>
+    <service id=".service_locator.O2p6Lk7.App\Controller\CartController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\CartController"/>
+      <argument>App\Controller\CartController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.O2p6Lk7" method="withContext"/>
     </service>
@@ -10253,6 +10355,7 @@
           <argument>App\Controller\ArticleController</argument>
           <argument>App\Controller\AuthenticatorController</argument>
           <argument>App\Controller\BlockController</argument>
+          <argument>App\Controller\CartController</argument>
           <argument>App\Controller\CategoryController</argument>
           <argument>App\Controller\ClientController</argument>
           <argument>App\Controller\CommandeController</argument>
@@ -11777,9 +11880,11 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
+    <service id="Knp\Snappy\Pdf" alias="knp_snappy.pdf"/>
+    <service id="Knp\Snappy\Image" alias="knp_snappy.image"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.617AeMo"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.vNrDoLb"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -11799,6 +11904,7 @@
     <service id="Psr\Log\LoggerInterface $doctrineLogger" alias="monolog.logger.doctrine"/>
     <service id="Psr\Log\LoggerInterface $debugLogger" alias="monolog.logger.debug"/>
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
+    <service id="Psr\Log\LoggerInterface $snappyLogger" alias="monolog.logger.snappy"/>
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
@@ -11813,6 +11919,8 @@
     <service id=".service_locator.3eFlpyB" alias=".service_locator.UVjNdd7"/>
     <service id=".service_locator.gcBWF2w" alias=".service_locator.QuqKjQZ"/>
     <service id=".service_locator.4m_U.no" alias=".service_locator.aK.YDLu"/>
+    <service id=".service_locator.6dHKI7o" alias=".service_locator.76IN..J"/>
+    <service id=".service_locator.IlxAHlB" alias=".service_locator.rSaHG5J"/>
     <service id=".service_locator.IjLAl66" alias=".service_locator.0NP03bD"/>
     <service id=".service_locator.C0Qi.jl" alias=".service_locator.acTpigy"/>
     <service id=".service_locator.bWImZDr" alias=".service_locator.6DpIc9s"/>
@@ -11827,7 +11935,7 @@
     <service id=".service_locator.2s4tdHP" alias=".service_locator.RemeMO_"/>
     <service id=".service_locator.e3WRFf3" alias=".service_locator.8jrKVuW"/>
     <service id=".service_locator.toj1_eq" alias=".service_locator.KLRrT53"/>
-    <service id=".service_locator.Zx4bATX" alias=".service_locator.617AeMo"/>
+    <service id=".service_locator.eJNTFAE" alias=".service_locator.vNrDoLb"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.uKQjDBS" alias=".service_locator.O8udK._"/>
     <service id=".service_locator.0QQWV8a" alias=".service_locator.QlrmRfg"/>
@@ -11874,9 +11982,13 @@
     <service id=".service_locator.ct6Q_Tx" alias=".service_locator.zwPUnYq"/>
     <service id=".service_locator.CRDtpSJ" alias=".service_locator.1Czx5uA"/>
     <service id=".service_locator.szzbIAp" alias=".service_locator.ELdHc_7"/>
+    <service id=".service_locator.FXgjuqn" alias=".service_locator.dBX4G6u"/>
+    <service id=".service_locator.6O1FQxc" alias=".service_locator.vRUAr7Q"/>
     <service id=".service_locator.js1hwUF" alias=".service_locator.3opkxl5"/>
     <service id=".service_locator.dprCpov" alias=".service_locator.WoAniWU"/>
     <service id=".service_locator.ZsTFJzy" alias=".service_locator.aK.YDLu"/>
+    <service id=".service_locator.OnE3rdJ" alias=".service_locator.76IN..J"/>
+    <service id=".service_locator.FEKnYPo" alias=".service_locator.rSaHG5J"/>
     <service id=".service_locator.aNfPEkG" alias=".service_locator.RXaRRrV"/>
     <service id=".service_locator.rfMZyXG" alias=".service_locator.iR5i4O4"/>
     <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
