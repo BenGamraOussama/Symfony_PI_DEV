@@ -1,5 +1,4 @@
-
-       {% extends 'basePatient.html.twig' %}
+{% extends 'basePatient.html.twig' %}
 
 {% block title %}New Rendez-vous{% endblock %}
 
@@ -70,25 +69,42 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="book-online-form bg-top">
-                    <h3>Book Our Online Session</h3>
+                   <h3>Book Our Online Session</h3>
 
-                    {{ form_start(form) }}
-                        <div class="form-group">
-                            {{ form_row(form.patient, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_row(form.psychiatre, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_row(form.heure, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="form-group">
-                            {{ form_row(form.priorite, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                        <div class="book-online-btn">
-                            <button type="submit" class="default-btn">Book Online <i class="flaticon-pointer"></i></button>
-                        </div>
-                    {{ form_end(form) }}
+{{ form_start(form, {'attr': {'id': 'addRDVForm', 'novalidate': 'novalidate'}}) }}
+   
+    <div class="form-group">
+        {{ form_label(form.psychiatre, 'Psychiatre') }}
+        {{ form_widget(form.psychiatre, {'attr': {'class': 'form-control', 'placeholder': 'Psychiatre', 'id': 'psychiatre'}}) }}
+       
+    </div>
+    <div class="form-group">
+        {{ form_label(form.heure, 'Heure') }}
+        {{ form_widget(form.heure, {'attr': {'class': 'form-control', 'placeholder': 'Heure', 'id': 'heure'}}) }}
+       
+    </div>
+    <div class="form-group">
+                    {{ form_label(form.date) }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                   
+                </div>
+
+    <div class="book-online-btn">
+        <button type="submit" class="default-btn">Book Online <i class="flaticon-pointer"></i></button>
+    </div>
+               <div class="book-online-btn">
+    <a href="{{ path('app_consultation_patient') }}" class="default-btn">
+        Show consultation <i class="flaticon-pointer"></i>
+    </a>
+</div>
+<!-- QR Code du psychiatre sélectionné -->
+<div class="form-group">
+    <h4>Scanner pour accéder à l'adresse</h4>
+    <img id="qrCode" src="" alt="QR Code du psychiatre" style="width: 300px; display: none;">
+</div>
+{{ form_end(form) }}
+
+                                     
                 </div>
             </div>
 
@@ -123,10 +139,12 @@
                                 </div>
                             </div>
                         </form>
+         
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- End Subscribe Area -->
 
        
@@ -137,46 +155,20 @@
         <div class="go-top">
             <i class="flaticon-up-arrow"></i>
         </div>
-        <!-- End Go Top Area -->
+        <!-- End Go Top Area -->ù
         
-        <!-- Jquery Slim JS -->
-        <script src="assets/js/jquery.min.js"></script>
-        <!-- Bootstrap Bundle JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <!-- Meanmenu JS -->
-        <script src="assets/js/jquery.meanmenu.js"></script>
-        <!-- Owl Carousel JS -->
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <!-- Jquery Appear JS -->
-        <script src="assets/js/jquery.appear.js"></script>
-        <!-- Odometer JS -->
-        <script src="assets/js/odometer.min.js"></script>
-        <!-- Slick Min JS -->
-        <script src="assets/js/slick.min.js"></script>
-        <!-- Nice Select JS -->
-        <script src="assets/js/nice-select.min.js"></script>
-        <!-- Magnific Popup JS -->
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <!-- Fancybox JS -->
-        <script src="assets/js/fancybox.min.js"></script>
-        <!-- Ajaxchimp JS -->
-		<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-		<!-- Form Validator JS -->
-		<script src="assets/js/form-validator.min.js"></script>
-		<!-- Contact JS -->
-        <script src="assets/js/contact-form-script.js"></script>
-        <!-- Wow JS -->
-        <script src="assets/js/wow.min.js"></script>
-        <!-- Custom JS -->
-        <script src="assets/js/main.js"></script><a href="https://themeforest.net/checkout/from_item/30387585?license=regular&amp;support=bundle_6month&amp;_ga=2.245508931.634514020.1646539215-1425290503.1590986634" target="_blank" class="buy-now-btn">Buy Now</a><div class="switch-box"><label id="switch" class="switch"><input type="checkbox" onchange="toggleTheme()" id="slider"><span class="slider round"></span></label></div>
-    
-		<!-- Form Validator JS -->
-		<script src="assets/js/form-validator.min.js"></script>
-		<!-- Contact JS -->
-        <script src="assets/js/contact-form-script.js"></script>
-        <!-- Wow JS -->
-        <script src="assets/js/wow.min.js"></script>
-        <!-- Custom JS -->
-        <script src="assets/js/main.js"></script><a href="https://themeforest.net/checkout/from_item/30387585?license=regular&amp;support=bundle_6month&amp;_ga=2.245508931.634514020.1646539215-1425290503.1590986634" target="_blank" class="buy-now-btn">Buy Now</a><div class="switch-box"><label id="switch" class="switch"><input type="checkbox" onchange="toggleTheme()" id="slider"><span class="slider round"></span></label></div>
-    
+        
+<script>
+    document.getElementById('psychiatre').addEventListener('change', function () {
+        var psychiatreId = this.value;
+        console.log("Psychiatre sélectionné:", psychiatreId); // Afficher l'ID dans la console
+        if (psychiatreId) {
+            document.getElementById('qrCode').src = '/qr-code/' + psychiatreId;
+            document.getElementById('qrCode').style.display = 'block';
+        } else {
+            document.getElementById('qrCode').style.display = 'none';
+        }
+    });
+</script>
+
 {% endblock %}

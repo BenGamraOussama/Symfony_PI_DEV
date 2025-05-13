@@ -4,6 +4,8 @@ namespace App\Enum;
 enum EtatEnum: string
 {
     case EN_ATTENTE = 'En attente';
+    case ACCEPTED = 'Accepted';     
+    case CANCELED = 'Canceled';     
     case PAYE = 'Paye';
     case ANNULE = 'Annulé';
     case REMBOURSE = 'Remboursé';

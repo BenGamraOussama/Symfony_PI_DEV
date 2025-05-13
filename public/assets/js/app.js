@@ -10866,13 +10866,9 @@ $(function(){
         var dataTable = jQuery(".datatable-wrapper");
         if (dataTable.length > 0) {
             $('#datatable').DataTable({
-<<<<<<< HEAD
+
                 "bLengthChange": true,
                 "searching": true,
-=======
-                "bLengthChange": false,
-                "searching": false,
->>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                 "bPaginate":true,
                 "bSortable": true
                 });

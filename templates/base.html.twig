@@ -501,9 +501,16 @@
                         <span class="nav-title">Tableau de bord</span>
                     </a>
                 </li>
+                {% if is_granted('ROLE_PSYCHIATRE') %}
+                <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
+            <li><a href='{{path('app_consultation_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Consultation</span></a> </li>
+            
+                 <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">List rendez-vous</span></a> </li>
+                {% endif %}
+
 
                 {% if is_granted('ROLE_ADMIN') %}
-                <li>
+                 <li>
                     <a class="has-arrow" href="#">
                         <i class="ti ti-user"></i>
                         <span class="nav-title">Psychiatre</span>
@@ -512,9 +519,9 @@
                         <li><a href="{{ path('app_admin_ajouterpsychiatre') }}">Ajouter Psychiatre</a></li>
                         <li><a href="{{ path('app_admin_listpsychiatre') }}">Liste Psychiatres</a></li>
                     </ul>
-                </li>
+                  </li>
 
-                <li>
+                  <li>
                     <a class="has-arrow" href="#">
                         <i class="bi bi-truck"></i>
                         <span class="nav-title">Fournisseur</span>
@@ -523,9 +530,9 @@
                         <li><a href="{{ path('app_admin_ajouterfournisseur') }}">Ajouter Fournisseur</a></li>
                         <li><a href="{{ path('app_admin_listfournisseur') }}">Liste Fournisseurs</a></li>
                     </ul>
-                </li>
+                   </li>
 
-                <li>
+                   <li>
                     <a class="has-arrow" href="#">
                         <i class="bi bi-person"></i>
                         <span class="nav-title">Patient</span>
@@ -534,25 +541,16 @@
                         <li><a href="{{ path('app_patient_new') }}">Ajouter Patient</a></li>
                         <li><a href="{{ path('list_patient_index') }}">Liste Patients</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="{{ path('app_rendez__vous_admin') }}">
-                        <i class="bi bi-calendar-check"></i>
-                        <span class="nav-title">Rendez-vous</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('app_traitement_index') }}">
-                        <i class="bi bi-capsule"></i>
-                        <span class="nav-title">Traitement</span>
-                    </a>
-                </li>
-                <li>
+                  </li>
+                   <li>
+                    <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
+            <li><a href='{{path('app_consultation_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Consultation</span></a> </li>
+                  <li>
                     <a href="{{ path('app_consultation_index') }}">
                         <i class="bi bi-clipboard2-pulse"></i>
                         <span class="nav-title">Consultation</span>
                     </a>
-                </li>
+                  </li>
 
                 
                 {% endif %}

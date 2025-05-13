@@ -1,0 +1,15 @@
+{# filepath: /c:/Users/IDRISS/Downloads/Symfony_PI_DEV-gestion_consultation (1)/Symfony_PI_DEV-gestion_consultation/templates/consultation/add_to_todoist.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation{% endblock %}
+
+{% block body %}
+    <h1>Consultation avec {{ consultation.patient.name }}</h1>
+    <p>Date: {{ consultation.date|date('Y-m-d H:i') }}</p>
+    <p>Description: {{ consultation.description }}</p>
+
+    <form action="{{ path('app_consultation_todoist', {id: consultation.id}) }}" method="post">
+        <button type="submit">Ajouter à Todoist</button>
+    </form>
+{% endblock %}

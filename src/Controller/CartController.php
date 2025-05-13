@@ -25,10 +25,6 @@ final class CartController extends AbstractController
         $session = $request->getSession();
         $cart = $session->get('cart', []);
     
-        if (empty($cart)) {
-            $this->addFlash('warning', 'Votre panier est vide.');
-            return $this->redirectToRoute('cart_show');
-        }
     
         $commande = new Commande();
         $commande->setDateCommande(new \DateTime());

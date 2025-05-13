@@ -31,6 +31,7 @@
                                             <th>Date</th>
                                             <th>Heure</th>
                                             <th>Prix</th>
+                                            <th>Patient</th>
                                             <th>Mode de Consultation</th>
                                             <th>État</th>
                                             <th>Actions</th>
@@ -42,9 +43,20 @@
                                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ consultation.date ? consultation.date|date('Y-m-d') : '' }}</strong></td>
                                                 <td>{{ consultation.heure ? consultation.heure|date('H:i:s') : '' }}</td>
                                                 <td>{{ consultation.prix }}</td>
+                                                <td>
+                                                    {% if consultation.patient %}
+                                                        {{ consultation.patient.firstName }} <!-- Display patient's name -->
+                                                    {% else %}
+                                                        Aucune information
+                                                    {% endif %}
+                                                </td>
                                                 <td>{{ consultation.modeconsultation }}</td>
                                                 <td>{{ consultation.etaenum.value }}</td>
                                                 <td>
+
+<form action="{{ path('app_consultation_todoist', {id: consultation.id}) }}" method="post">
+        <button type="submit">Ajouter à Todoist</button>
+    </form>
                                                     <!-- Bouton d'édition -->
                                                         <a class="btn btn-warning btn-action" href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">
                                                             <i class="dripicons dripicons-pencil"></i> Modifier
@@ -53,6 +65,18 @@
                                                         <button class="btn btn-danger btn-action" data-toggle="modal" data-target="#deleteModal{{ consultation.id }}">
                                                             <i class="dripicons dripicons-trash"></i> Supprimer
                                                         </button>
+
+<a class="btn btn-primary btn-action" href="{{ path('app_traitement_new', {'consultation_id': consultation.id}) }}">
+
+                                                            <i class="dripicons dripicons-plus"></i>
+ Add Traittement
+                                                        </a>
+
+
+<a class="btn btn-warning btn-action" href="{{ path('app_traitement_index', {'consultation_id': consultation.id}) }}">
+
+                                                            <i class="dripicons dripicons-pencil"></i> List Traittements
+                                                        </a>
                                                 </td>
                                             </tr>
 
@@ -87,6 +111,28 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="mt-4 mb-3">
+    <div class="pagination d-flex justify-content-center align-items-center gap-2">
+        {% if current_page > 1 %}
+            <a href="{{ path('app_consultation_index', {'page': current_page - 1}) }}" class="btn btn-outline-secondary rounded-pill px-4">
+                <i class="bx bx-chevron-left"></i> Previous
+            </a>
+        {% endif %}
+
+        {% for page in range(1, total_pages) %}
+            <a href="{{ path('app_consultation_index', {'page': page}) }}" 
+               class="btn btn-outline-primary rounded-pill {{ page == current_page ? 'active  text-white' : '' }}">
+                {{ page }}
+            </a>
+        {% endfor %}
+
+        {% if current_page < total_pages %}
+            <a href="{{ path('app_consultation_index', {'page': current_page + 1}) }}" class="btn btn-outline-secondary rounded-pill px-4">
+                Next <i class="bx bx-chevron-right"></i>
+            </a>
+        {% endif %}
+    </div>
+    </div>
                         </div>
                     </div>
                 </div>
@@ -122,6 +168,9 @@
                 <div class="input-group mb-3">
                     {{ form_widget(form.etaenum, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'État', 'id': 'consultation_etaenum'} }) }}
                 </div>
+                <div class="input-group mb-3">
+                    {{ form_widget(form.meetLink, { 'attr': {'class': 'form-control form-control-lg bg-light fs-6', 'placeholder': 'meet', 'id': 'consultation_meet'} }) }}
+                </div>
                 <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">
                     <b>Ajouter</b>
                 </button>
@@ -130,6 +179,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Inclure jQuery (si ce n'est pas déjà fait) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

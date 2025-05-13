@@ -6,9 +6,6 @@ use App\Entity\Consultation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Consultation>
- */
 class ConsultationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,6 +13,8 @@ class ConsultationRepository extends ServiceEntityRepository
         parent::__construct($registry, Consultation::class);
     }
 
+ 
+   
     //    /**
     //     * @return Consultation[] Returns an array of Consultation objects
     //     */
@@ -40,4 +39,25 @@ class ConsultationRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findWithPatient(int $id): ?Consultation
+    {
+    return $this->createQueryBuilder('c')
+    ->leftJoin('c.patient', 'p')
+    ->addSelect('p')
+    ->where('c.id = :id')
+    ->setParameter('id', $id)
+    ->getQuery()
+    ->getOneOrNullResult();
+    }
+
+
+    public function findAllWithPsychiatre(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.psychiatre', 'p')
+            ->addSelect('p')
+            ->getQuery()
+            ->getResult();
+    }
+    
 }

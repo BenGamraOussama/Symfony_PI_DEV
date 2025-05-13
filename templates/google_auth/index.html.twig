@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier des Rendez-vous{% endblock %}
+{% block body %}
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="assets/img/loader/loader.svg" alt="loader">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            <header class="app-header top-bar">
+                
+            </header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+               
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-md-12 m-b-30">
+                                <!-- begin page title -->
+                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                    <div class="page-title mb-2 mb-sm-0">
+                                        <h1>Calendar</h1>
+                                    </div>
+                                    <div class="ml-auto d-flex align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb p-0 m-b-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="index.html"><i class="ti ti-home"></i></a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    Calendar
+                                                </li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Full Calendar</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card card-statistics">
+                                    <div class="card-header">
+                                        <div class="card-heading">
+                                            <h4 class="card-title">Event Calendar</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div id="external-events">
+<button type="button" class="btn btn-success" id="saveToGoogle">Save to Google Calendar</button>
+                                                    <p class="mt-3">
+                                                        Drag and drop your event or click in the calendar.
+                                                    </p>
+                                                    {# Loop through the rdvs variable #}
+                 {% for rdv in rdvs %}
+        <div class="fc-event fc-event-primary" data-color="fc-event-primary">
+            <span></span>{% if rdv.patient %}
+            {{ rdv.patient.id }} {# Afficher le nom du patient #}
+        {% else %}
+            Patient non défini {# Message de débogage #}
+        {% endif %} {# Ensure rdv.heure exists #}
+        </div>
+    {% endfor %}
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                        <label class="form-check-label" for="defaultCheck1">
+                                                            Remove After Drop
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-9">
+                                                <div class="event-calendar">
+                                                    <div id="event-calendar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <!-- event Modal -->
+                        <div class="modal fade" id="eventModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="verticalCenterTitle">Add New Event</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>Event Name</label>
+                                                <input type="email" class="form-control" id="eventname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Choose Event Color</label>
+                                                <select class="form-control">
+                                                    <option>Primary</option>
+                                                    <option>Warning</option>
+                                                    <option>Success</option>
+                                                    <option>Danger</option>
+                                                </select>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+                <!-- end app-main -->
+            </div>
+            <!-- end app-container -->
+            <!-- begin footer -->
+            <footer class="footer">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p>&copy; Copyright 2019. All rights reserved.</p>
+                    </div>
+                    <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
+                        <p>Hand-crafted made with <i class="fa fa-heart text-danger mx-1"></i> by Potenza</p>
+                    </div>
+                </div>
+            </footer>
+            <!-- end footer -->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+
+<script>
+    document.getElementById('saveToGoogle').addEventListener('click', function () {
+        // Récupérer les détails de l'événement
+        let eventName = document.getElementById('eventname').value;
+        let eventDate = new Date().toISOString(); // Mettre ici la vraie date sélectionnée
+
+        // Charger le SDK Google
+        gapi.load('client:auth2', function () {
+            gapi.client.init({
+                apiKey: 'VOTRE_API_KEY',
+                clientId: 'VOTRE_CLIENT_ID',
+                discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+                scope: "https://www.googleapis.com/auth/calendar.events"
+            }).then(function () {
+                gapi.auth2.getAuthInstance().signIn().then(function () {
+                    let event = {
+                        'summary': eventName,
+                        'start': { 'dateTime': eventDate, 'timeZone': 'UTC' },
+                        'end': { 'dateTime': eventDate, 'timeZone': 'UTC' }
+                    };
+
+                    gapi.client.calendar.events.insert({
+                        'calendarId': 'primary',
+                        'resource': event
+                    }).then(function (response) {
+                        alert("Événement ajouté à Google Calendar !");
+                    });
+                });
+            });
+        });
+    });
+</script>
+<script src="https://apis.google.com/js/api.js"></script>
+
+   
+{% endblock %}

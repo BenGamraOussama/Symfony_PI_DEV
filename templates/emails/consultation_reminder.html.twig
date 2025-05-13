@@ -1,0 +1,15 @@
+{# templates/email/consultation_reminder.html.twig #}
+
+<p>Bonjour {{ patient.firstName }},</p>
+
+<p>Nous vous rappelons que votre consultation a été ajoutée à Todoist. Voici les détails :</p>
+
+<ul>
+    <li><strong>Date :</strong> {{ consultation.date|date('d/m/Y H:i') }}</li>
+
+    <li><strong>Meet :</strong> {{ consultation.meetLink}}</li>
+</ul>
+
+<p>Vérifiez votre compte Todoist pour plus de détails et restez à jour avec vos rendez-vous.</p>
+<a href=" https://todoist.com">aa</a>
+<p>Cordialement,</p>

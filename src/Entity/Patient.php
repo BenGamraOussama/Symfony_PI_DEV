@@ -6,6 +6,7 @@ use App\Repository\PatientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\RDV;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 class Patient extends User
@@ -52,6 +53,17 @@ class Patient extends User
     #[ORM\OneToOne(inversedBy: 'patient', targetEntity: User::class, cascade: ['remove'])]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?User $user = null;
+    /**
+     * @var Collection<int, RDV>
+     */
+    #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
+    private Collection $rdv;
+
+    /**
+     * @var Collection<int, Consultation>
+     */
+    #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'patient')]
+    private Collection $consultation;
 
     
     public function __construct()
@@ -110,6 +122,30 @@ class Patient extends User
     public function getRdvs(): Collection
     {
         return $this->rdvs;
+        $this->rdv = new ArrayCollection();
+        $this->consultation = new ArrayCollection();
+    }
+
+
+
+    public function getDossierMedical(): ?string
+    {
+        return $this->dossierMedical;
+    }
+
+    public function setDossierMedical(string $dossierMedical): static
+    {
+        $this->dossierMedical = $dossierMedical;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RDV>
+     */
+    public function getRdv(): Collection
+    {
+        return $this->rdv;
     }
 
     public function addRdv(RDV $rdv): static
@@ -118,17 +154,25 @@ class Patient extends User
             $this->rdvs->add($rdv);
             $rdv->setPatient($this);
         }
+        if (!$this->rdv->contains($rdv)) {
+            $this->rdv->add($rdv);
+            $rdv->setPatient($this);
+        }
+
         return $this;
     }
 
     public function removeRdv(RDV $rdv): static
     {
         if ($this->rdvs->removeElement($rdv)) {
+        if ($this->rdv->removeElement($rdv)) {
+            // set the owning side to null (unless already changed)
             if ($rdv->getPatient() === $this) {
                 $rdv->setPatient(null);
             }
         }
         return $this;
+    }
     }
 
     public function getDossierMedicalPath(): ?string
@@ -258,4 +302,39 @@ public function removeActivite(Activite $activite): static
         $this->badWordAttempts = $badWordAttempts;
         return $this;
     }
+
+    /**
+     * @return Collection<int, Consultation>
+     */
+    public function getConsultation(): Collection
+    {
+        return $this->consultation;
+    }
+
+    public function addConsultation(Consultation $consultation): static
+    {
+        if (!$this->consultation->contains($consultation)) {
+            $this->consultation->add($consultation);
+            $consultation->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsultation(Consultation $consultation): static
+    {
+        if ($this->consultation->removeElement($consultation)) {
+            // set the owning side to null (unless already changed)
+            if ($consultation->getPatient() === $this) {
+                $consultation->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+  
+
+
+
 }

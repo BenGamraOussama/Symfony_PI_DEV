@@ -5,6 +5,8 @@ parameters:
     twilio.sid: '%env(TWILIO_SID)%'
     twilio.token: '%env(TWILIO_AUTH_TOKEN)%'
     twilio.phone_number: '%env(TWILIO_PHONE_NUMBER)%'
+    google_calendar_credentials: '%kernel.project_dir%/config/credentials.json'
+
 
 services:
     App\Enum\ExerciceStatus: ~
@@ -74,3 +76,8 @@ twig:
                     $security: '@security.helper'
                     services:
                         App\Service\EmailService: ~
+
+
+    # App\Service\GoogleCalendarService:
+    #     arguments:
+    #         $credentialsPath: '%google_calendar_credentials%'

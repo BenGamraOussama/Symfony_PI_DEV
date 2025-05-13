@@ -26,7 +26,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_traitement_index') }}">back to list</a>
+       <a href="{{ path('app_traitement_index', {'consultation_id': consultation.id}) }}" class="btn btn-secondary">Retour à la liste</a>
+
 
     <a href="{{ path('app_traitement_edit', {'id': traitement.id}) }}">edit</a>
 

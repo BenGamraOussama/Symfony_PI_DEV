@@ -4,259 +4,173 @@
 
 {% block body %}
 <style>
-.form-check{position:relative;display:block;padding-left:1.25rem}.form-check-input{position:absolute;margin-top:.3rem;margin-left:-1.25rem}.form-check-input:disabled~.form-check-label{color:#6c757d}.form-check-label{margin-bottom:0}.form-check-inline{display:inline-flex;align-items:center;padding-left:0;margin-right:.75rem}.form-check-inline .form-check-input{position:static;margin-top:0;margin-right:.3125rem;margin-left:0}
-.modal {
-  display: none; /* Masquée par défaut */
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Contenu de la modal */
-.modal-content {
-  position: relative;
-  background-color: #fff;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  animation: slideIn 0.5s ease-out;
-}
-
-/* Animation d'entrée de la modal */
-@keyframes slideIn {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Bouton de fermeture */
-.close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #ff6b6b;
-  transition: color 0.3s ease;
-}
-
-.close:hover {
-  color: #ff4757;
-}
-
-/* Conteneur pour les cœurs */
-.hearts-container {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 50px;
-}
-
-/* Style des cœurs */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff6b6b;
-  transform: rotate(-45deg);
-  animation: float 5s infinite ease-in-out;
-}
-
-.heart::before,
-.heart::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff6b6b;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: 10px;
-}
-
-/* Animation de flottement des cœurs */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(-45deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(-45deg);
-  }
-}
-
-/* Positionnement des cœurs */
-.heart:nth-child(1) {
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.heart:nth-child(2) {
-  left: 30%;
-  animation-delay: 1s;
-}
-
-.heart:nth-child(3) {
-  left: 50%;
-  animation-delay: 2s;
-}
-
-.heart:nth-child(4) {
-  left: 70%;
-  animation-delay: 3s;
-}
-
-.heart:nth-child(5) {
-  left: 90%;
-  animation-delay: 4s;
-}
-    </style>
+    .form-check {
+        position: relative;
+        display: block;
+        padding-left: 1.25rem;
+    }
+    .form-check-input {
+        position: absolute;
+        margin-top: .3rem;
+        margin-left: -1.25rem;
+    }
+    .form-check-input:disabled~.form-check-label {
+        color: #6c757d;
+    }
+    .form-check-label {
+        margin-bottom: 0;
+    }
+    .form-check-inline {
+        display: inline-flex;
+        align-items: center;
+        padding-left: 0;
+        margin-right: .75rem;
+    }
+    .form-check-inline .form-check-input {
+        position: static;
+        margin-top: 0;
+        margin-right: .3125rem;
+        margin-left: 0;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+        position: relative;
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.5s ease-out;
+    }
+    @keyframes slideIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #ff6b6b;
+        transition: color 0.3s ease;
+    }
+    .close:hover {
+        color: #ff4757;
+    }
 </style>
-        <div class="search-overlay">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="search-overlay-layer"></div>
-                    <div class="search-overlay-layer"></div>
-                    <div class="search-overlay-layer"></div>
-                    
-                    <div class="search-overlay-close">
-                        <span class="search-overlay-close-line"></span>
-                        <span class="search-overlay-close-line"></span>
-                    </div>
 
-                    <div class="search-overlay-form">
-                        <form>
-                            <input type="text" class="input-search" placeholder="Search here...">
-                            <button type="submit"><i class='flaticon-search'></i></button>
-                        </form>
-                    </div>
-                </div>
+<div class="search-overlay">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="search-overlay-layer"></div>
+            <div class="search-overlay-layer"></div>
+            <div class="search-overlay-layer"></div>
+            <div class="search-overlay-close">
+                <span class="search-overlay-close-line"></span>
+                <span class="search-overlay-close-line"></span>
+            </div>
+            <div class="search-overlay-form">
+                <form>
+                    <input type="text" class="input-search" placeholder="Search here...">
+                    <button type="submit"><i class='flaticon-search'></i></button>
+                </form>
             </div>
         </div>
-        <!-- End Search Layout -->
-        
-        <!-- Start Page Banner Area -->
-        <div class="page-banner-with-full-image item-bg1">
-            <div class="container">
-                <div class="page-banner-content-two">
-                    <h2>Account Settings</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Accueil</a>
-                        </li>
-                        <li>Account Settings</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- End Page Banner Area -->
+    </div>
+</div>
 
-        <!-- Start My Account Area -->
-        <section class="my-account-area ptb-100">
-            <div class="container">
-                <div class="row">
-                    <!-- Modifier mes informations -->
-                    <div class="col-md-6">
-                        <div class="card p-4">
-                            <h4 class="mb-3">Modifier mes informations</h4>
-                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    <div class="mb-3">
-        <div class="form-check">
-        <label class="form-check-label" for="form_gener">Genre</label>
-            {{ form_widget(form.gener, {'attr': {'class': 'form-check'}}) }}
+<div class="page-banner-with-full-image item-bg1">
+    <div class="container">
+        <div class="page-banner-content-two">
+            <h2>Account Settings</h2>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li>Account Settings</li>
+            </ul>
         </div>
     </div>
+</div>
 
-    <div class="mb-3">
-        {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.firstName) }}
-        </div>
-    </div>
-    <div class="mb-3">
-        {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.lastName) }}
-        </div>
-    </div>
-    <div class="mb-3">
-        {{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Localité'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.adresse) }}
-        </div>
-    </div>
-
-    <div class="mb-3 d-flex">
-        <select>
-            <option>+216</option>
-        </select>
-        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de mobile'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.phone) }}
-        </div>
-    </div>
-    <div class="mb-3">
-        {{ form_widget(form.dossierMedical, {'attr': {'class': 'form-control', 'placeholder': 'Dossier Medical'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.dossierMedical) }}
-        </div>
-    </div>
-    <div class="mb-3">
-        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-        <div class="text-danger">
-            {{ form_errors(form.email) }}
-        </div>
-    </div>
-
-    <button type="submit" value="Save" class="btn btn-primary">{{ button_label|default('Save') }}</button>
-<<<<<<< HEAD
-    {{ form_end(form) }}
-=======
-{{ form_end(form) }}
->>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
+<section class="my-account-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <!-- Modifier mes informations -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h4 class="mb-3">Modifier mes informations</h4>
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <label class="form-check-label" for="form_gener">Genre</label>
+                            {{ form_widget(form.gener, {'attr': {'class': 'form-check'}}) }}
                         </div>
                     </div>
-            
-                    <!-- Modifier mon mot de passe -->
-                    <div class="col-md-6">
-                        <div class="card p-4">
-                            <h4 class="mb-3">Modifier mon mot de passe</h4>
-                            {{ form_start(formP, {'attr': {'id': 'passwordForm', 'novalidate': 'novalidate'}}) }}
-                                <div class="mb-3">
-                                    {{ form_widget(formP.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
-                                    <div class="text-danger">
-                                        {{ form_errors(formP.plainPassword) }}
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
-                            {{ form_end(formP) }}
-                        </div>
-<<<<<<< HEAD
-                        <div class="card p-4 mt-4">
+                    <div class="mb-3">
+                        {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                        <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                        <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Localité'}}) }}
+                        <div class="text-danger">{{ form_errors(form.adresse) }}</div>
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <select>
+                            <option>+216</option>
+                        </select>
+                        {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de mobile'}}) }}
+                        <div class="text-danger">{{ form_errors(form.phone) }}</div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(form.dossierMedical, {'attr': {'class': 'form-control', 'placeholder': 'Dossier Medical'}}) }}
+                        <div class="text-danger">{{ form_errors(form.dossierMedical) }}</div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        <div class="text-danger">{{ form_errors(form.email) }}</div>
+                    </div>
+                    <button type="submit" value="Save" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <!-- Modifier mon mot de passe -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h4 class="mb-3">Modifier mon mot de passe</h4>
+                    {{ form_start(formP, {'attr': {'id': 'passwordForm', 'novalidate': 'novalidate'}}) }}
+                    <div class="mb-3">
+                        {{ form_widget(formP.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Nouveau mot de passe'}}) }}
+                        <div class="text-danger">{{ form_errors(formP.plainPassword) }}</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    {{ form_end(formP) }}
+                </div>
+                <div class="card p-4 mt-4">
                         <h4 class="mb-3">Authenticator 2FA</h4>
         <button class="btn btn-primary" id="openModal5">Pair</button>
                         <h4 class="mb-3 mt-4">Verifier</h4>
@@ -272,13 +186,10 @@
         <p>{{ result == true ? 'Le code est correct' : 'Incorrect' }}</p>
     {% endif %}
                     </div>
-=======
->>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
                     </div>
                 </div>
             </div>
         </section>
-<<<<<<< HEAD
 <div id="myModal" class="modal">
            <div class="modal-content">
            <span class="close" id="closeModal">&#10006;</span>
@@ -338,8 +249,8 @@
             }
         }
      </script>
-=======
-
->>>>>>> c5aebb6232b12bff2e487f1e3064b0b0693f63e8
-        <!-- Script pour la validation des mots de passe -->
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

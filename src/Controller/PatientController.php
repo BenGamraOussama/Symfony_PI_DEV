@@ -305,4 +305,9 @@ final class PatientController extends AbstractController
             'status' => $activity->getStatus(),
         ]);
     }
+    #[Route('/patient/consultation', name: 'patient_consultation')]
+    public function consultation(): Response
+    {
+        return $this->render('patient/consultation.html.twig');
+    }
 }

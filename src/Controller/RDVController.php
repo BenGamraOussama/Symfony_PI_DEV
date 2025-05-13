@@ -19,8 +19,12 @@ final class RDVController extends AbstractController
     {
         $user = $this->getUser();
         $rdv = new RDV();
+        $rdv->setPatient($user);
         $form = $this->createForm(RDVType::class, $rdv);
         $form->handleRequest($request);
+        
+        // Set the patient if the user is logged in and is a Patient
+       
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($rdv);
@@ -43,6 +47,8 @@ final class RDVController extends AbstractController
         $rdv = new RDV();
         $form = $this->createForm(RDVType::class, $rdv);
         $form->handleRequest($request);
+        // Set the patient if the user is logged in and is a Patient
+        $rdv->setPatient($user);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($rdv);
@@ -53,7 +59,7 @@ final class RDVController extends AbstractController
 
         return $this->render('rdv/new.html.twig', [
             'rdv' => $rdv,
-            'form' => $form->createView(), // Ensure the form is passed as a view
+            'form' => $form->createView(),
             'user' => $user,
         ]);
     }
@@ -83,7 +89,7 @@ final class RDVController extends AbstractController
 
         return $this->render('rdv/edit.html.twig', [
             'rdv' => $rdv,
-            'form' => $form->createView(), // Ensure the form is passed as a view
+            'form' => $form->createView(),
             'user' => $user,
         ]);
     }
@@ -98,5 +104,4 @@ final class RDVController extends AbstractController
 
         return $this->redirectToRoute('app_rendez__vous_admin', [], Response::HTTP_SEE_OTHER);
     }
-    
 }

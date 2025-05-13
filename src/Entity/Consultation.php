@@ -44,6 +44,12 @@ class Consultation
     #[ORM\OneToMany(targetEntity: Traitement::class, mappedBy: 'consultation')]
     private Collection $traitement;
 
+    #[ORM\ManyToOne(inversedBy: 'consultation')]
+    private ?Patient $patient = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $meetLink = null;
+
     public function __construct()
     {
         $this->psychiatre = new ArrayCollection();
@@ -174,4 +180,43 @@ class Consultation
 
         return $this;
     }
+
+    public function getNsc(): ?string
+    {
+        return $this->nsc;
+    }
+
+    public function setNsc(string $nsc): static
+    {
+        $this->nsc = $nsc;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getMeetLink(): ?string
+    {
+        return $this->meetLink;
+    }
+
+    public function setMeetLink(string $meetLink): static
+    {
+        $this->meetLink = $meetLink;
+
+        return $this;
+    }
+
+   
+
 }

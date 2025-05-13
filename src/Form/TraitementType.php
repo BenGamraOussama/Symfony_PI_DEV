@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TraitementType extends AbstractType
 {
@@ -17,11 +18,9 @@ class TraitementType extends AbstractType
             ->add('type')
             ->add('medicament')
             ->add('suivi')
-            ->add('consultation', EntityType::class, [
-                'class' => Consultation::class,
-                'choice_label' => 'id',
-            ])
-        ;
+            ->add('consultation', HiddenType::class, [
+                'mapped' => false, // Ce champ est géré dans le contrôleur
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
