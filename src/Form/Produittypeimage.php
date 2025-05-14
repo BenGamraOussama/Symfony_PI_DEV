@@ -11,20 +11,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Validator\Constraints\File;
 
-class ProduitType extends AbstractType
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
+class Produittypeimage extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('image', FileType::class, [
-                'label' => 'Image du produit',
-                'mapped' => false,
-                'required' => false,
-            ])
             ->add('nom', TextType::class, [
                 'label' => 'Nom du produit',
                 'attr' => ['class' => 'form-control']

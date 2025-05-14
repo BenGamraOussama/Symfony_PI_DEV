@@ -3,7 +3,6 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        /* Centrer le formulaire et lui donner un fond clair */
         .form-container {
             margin: 2rem auto;
             max-width: 600px;
@@ -13,20 +12,17 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        /* Titre du formulaire */
         h1 {
             text-align: center;
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
         }
 
-        /* Style général des labels */
         label {
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        /* Style général des champs de formulaire */
         input[type="text"],
         input[type="number"],
         input[type="file"],
@@ -40,7 +36,6 @@
             font-size: 0.95rem;
         }
 
-        /* Bouton principal */
         .btn-primary {
             display: block;
             width: 100%;
@@ -58,7 +53,6 @@
             background-color: #0056b3;
         }
 
-        /* Bouton secondaire */
         .btn-secondary {
             display: block;
             text-align: center;
@@ -75,7 +69,6 @@
             background-color: #5a6268;
         }
 
-        /* Centrer le bouton de retour */
         .text-center {
             margin-top: 1rem;
         }
@@ -88,13 +81,21 @@
     <div class="form-container">
         <h1 class="text-center">Modifier le produit</h1>
 
-        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+        {{ form_start(form) }}
+
+            {# Display global form errors #}
             {{ form_row(form.nom) }}
+
             {{ form_row(form.prix) }}
-            {{ form_row(form.image) }}
+
+            <!-- Optional: Image preview -->
+
             {{ form_row(form.description) }}
+
             {{ form_row(form.categorie) }}
-            {{ form_row(form.quantite) }} {# Ajout du champ quantité si nécessaire #}
+
+            {{ form_row(form.quantite) }}
+
             {{ form_row(form.disponible) }}
 
             <button type="submit" class="btn btn-primary">💾 Enregistrer</button>

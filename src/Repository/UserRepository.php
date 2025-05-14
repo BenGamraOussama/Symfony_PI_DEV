@@ -58,37 +58,46 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //        ;
     //    }
     public function countUsers(): int
-{
-    return $this->createQueryBuilder('u')
-        ->select('COUNT(u.id)')
-        ->getQuery()
-        ->getSingleScalarResult() - 1;
-}
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult() - 1;
+    }
     public function countPatients(): int
-{
-    return $this->createQueryBuilder('u')
-        ->select('COUNT(u.id)')
-        ->where('u.roles LIKE :role')
-        ->setParameter('role', '%ROLE_PATIENT%')
-        ->getQuery()
-        ->getSingleScalarResult();
-}
-public function countPsychiatres(): int
-{
-    return $this->createQueryBuilder('u')
-        ->select('COUNT(u.id)')
-        ->where('u.roles LIKE :role')
-        ->setParameter('role', '%ROLE_PSYCHIATRE%')
-        ->getQuery()
-        ->getSingleScalarResult();
-}
-public function countFournisseurs(): int
-{
-    return $this->createQueryBuilder('u')
-        ->select('COUNT(u.id)')
-        ->where('u.roles LIKE :role')
-        ->setParameter('role', '%ROLE_FOURNISSEUR%')
-        ->getQuery()
-        ->getSingleScalarResult();
-}
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_PATIENT%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function countPsychiatres(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_PSYCHIATRE%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function countFournisseurs(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.roles LIKE :role')
+            ->setParameter('role', '%ROLE_FOURNISSEUR%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function findOneByPhoneNumber(string $phoneNumber): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.phoneNumber = :phoneNumber')
+            ->setParameter('phoneNumber', $phoneNumber)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

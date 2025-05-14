@@ -51,20 +51,19 @@ class ProduitCategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/produit-categorie/show/{id}', name: 'produit_categorie_show', methods: ['GET'])]
-    public function show(int $id, ProduitCategoriesRepository $produitCategoriesRepository): Response
-    {
-        $produitCategorie = $produitCategoriesRepository->find($id);
+   #[Route('/produit-categorie/show/{id}', name: 'produit_categorie_show', methods: ['GET'])]
+public function show(int $id, ProduitCategoriesRepository $produitCategoriesRepository): Response
+{
+    $produitCategorie = $produitCategoriesRepository->find($id);
 
-        if (!$produitCategorie) {
-            throw $this->createNotFoundException("Catégorie introuvable.");
-        }
-
-        return $this->render('produit_categories/show.html.twig', [
-            'produitCategorie' => $produitCategorie,
-        ]);
+    if (!$produitCategorie) {
+        throw $this->createNotFoundException("Catégorie introuvable.");
     }
 
+    return $this->render('produit_categories/show.html.twig', [
+        'produitCategorie' => $produitCategorie,  // Changed to camelCase
+    ]);
+}
     #[Route('/produit-categorie/edit/{id}', name: 'produit_categories_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ProduitCategories $produitCategorie, EntityManagerInterface $entityManager): Response
     {

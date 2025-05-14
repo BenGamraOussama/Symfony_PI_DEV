@@ -5,6 +5,7 @@ namespace App\Controller;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Form\Produittypeimage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,18 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Core\Security;
 
+
+use App\Form\RatingType;
+
 final class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'produit_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager, Security $security): Response
     {
-        // Récupérer l'utilisateur connecté
         $user = $security->getUser();
 
         // Récupérer les produits depuis la base de données
         $produits = $entityManager->getRepository(Produit::class)->findAll();
 
-        // Passer l'utilisateur et les produits à la vue
         return $this->render('produit/index.html.twig', [
             'user' => $user,
             'produits' => $produits,
@@ -41,24 +43,27 @@ final class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
+                $imageFile = $form->get('image')->getData();
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+if ($imageFile) {
+    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+    $safeFilename = $slugger->slug($originalFilename);
+    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
 
-                try {
-                    $imageFile->move(
-                        $this->getParameter('uploads_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    throw new \Exception('Impossible de déplacer l\'image.');
-                }
+    try {
+        $imageFile->move(
+            $this->getParameter('uploads_directory'),
+            $newFilename
+        );
+    } catch (FileException $e) {
+        throw new \Exception('Impossible de déplacer l\'image.');
+    }
 
-                $produit->setImage($newFilename);
-            }
+    $produit->setImage($newFilename);
+} else {
+    // Set default image if no image uploaded
+    $produit->setImage('default-product.png');
+}
 
             $entityManager->persist($produit);
             $entityManager->flush();
@@ -73,60 +78,32 @@ final class ProduitController extends AbstractController
     }
 
     #[Route('/produit/{id}/edit', name: 'produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, int $id, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $user = $this->getUser();
-        $produit = $entityManager->getRepository(Produit::class)->find($id);
-
-        if (!$produit) {
-            throw $this->createNotFoundException('Produit non trouvé.');
-        }
-
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(Produittypeimage::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('image')->getData();
+            // If no new image uploaded, keep the current image
 
-            if ($imageFile) {
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter('uploads_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    throw new \Exception('Impossible de déplacer l\'image.');
-                }
-
-                // Supprimer l'ancienne image si elle existe
-                if ($produit->getImage()) {
-                    $oldImagePath = $this->getParameter('uploads_directory') . '/' . $produit->getImage();
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
-                    }
-                }
-
-                $produit->setImage($newFilename);
-            }
-
+            $entityManager->persist($produit);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Produit mis à jour avec succès.');
+
             return $this->redirectToRoute('produit_index');
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            // Log or dump form errors for debugging
+            dump($form->getErrors(true, false));
         }
 
         return $this->render('produit/edit.html.twig', [
-            'produit' => $produit,
             'form' => $form->createView(),
-            'user' => $user,
         ]);
     }
 
     #[Route('/produit/{id}', name: 'produit_show', methods: ['GET'])]
-    public function show(int $id, EntityManagerInterface $entityManager): Response
+    public function show(int $id, EntityManagerInterface $entityManager, Request $request): Response
     {
         $user = $this->getUser();
         $produit = $entityManager->getRepository(Produit::class)->find($id);
@@ -135,9 +112,13 @@ final class ProduitController extends AbstractController
             throw $this->createNotFoundException('Produit non trouvé.');
         }
 
+        $form = $this->createForm(RatingType::class);
+        // Pas besoin d'appeler handleRequest ici car c'est juste pour rendre le formulaire
+
         return $this->render('produit/show.html.twig', [
             'produit' => $produit,
             'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -154,7 +135,7 @@ final class ProduitController extends AbstractController
         if ($produit->getImage()) {
             $imagePath = $this->getParameter('uploads_directory') . '/' . $produit->getImage();
             if (file_exists($imagePath)) {
-                unlink($imagePath);  // Supprimer l'image
+                unlink($imagePath); // Supprimer l'image
             }
         }
 
@@ -163,19 +144,18 @@ final class ProduitController extends AbstractController
 
         return $this->redirectToRoute('produit_index');
     }
-// src/Controller/ProduitController.php
 
     #[Route('/produit/{id}/noter', name: 'produit_noter', methods: ['POST'])]
     public function noter(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(NoteType::class);
+        $form = $this->createForm(RatingType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $note = $form->getData();
-            $note->setProduit($produit);
+            $rating = $form->getData();
+            $rating->setProduit($produit);
 
-            $entityManager->persist($note);
+            $entityManager->persist($rating);
             $entityManager->flush();
 
             // Recalculer la note moyenne
@@ -200,5 +180,4 @@ final class ProduitController extends AbstractController
         $entityManager->persist($produit);
         $entityManager->flush();
     }
-
 }

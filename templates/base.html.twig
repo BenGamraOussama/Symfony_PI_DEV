@@ -545,12 +545,6 @@
                    <li>
                     <li><a href='{{path('app_rendez__vous_admin')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Rendez-vous</span></a> </li>
             <li><a href='{{path('app_consultation_index')}}' aria-expanded="false"><i class="bi bi-calendar-check"></i><span class="nav-title">Consultation</span></a> </li>
-                  <li>
-                    <a href="{{ path('app_consultation_index') }}">
-                        <i class="bi bi-clipboard2-pulse"></i>
-                        <span class="nav-title">Consultation</span>
-                    </a>
-                  </li>
 
                 
                 {% endif %}
@@ -585,7 +579,7 @@
                 </li>
 
                 <li>
-                    <a href="affcom">
+                    <a href="{{ path('app_commande_index_admin') }}">
                         <i class="bi bi-cart"></i>
                         <span class="nav-title">Commandes</span>
                     </a>

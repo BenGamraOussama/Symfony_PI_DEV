@@ -58,12 +58,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(targetEntity: Patient::class, mappedBy: 'user')]
     private ?Patient $patient = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
+    private $commandes;
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $secret = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $confirmationToken = null;
+
+    public function __construct()
+    {
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     public function getSecret(): ?string
     {
@@ -201,6 +209,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPatient(?Patient $patient): self
     {
         $this->patient = $patient;
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

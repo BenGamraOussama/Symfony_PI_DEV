@@ -45,7 +45,7 @@
                 <a href="{{ path('app_produit_categorie_edit', {'id': produit_categorie.id}) }}" class="btn btn-warning">Modifier</a>
             </div>
 
-            {{ include('produit_categorie/_delete_form.html.twig') }}
+            {{ include('produit_categorie/_delete_form.html.twig', {'produit_categorie': produit_categorie}) }}
         </div>
     </div>
 {% endblock %}

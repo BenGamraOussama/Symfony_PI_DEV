@@ -2,6 +2,7 @@
 namespace App\Service;
 
 use Twilio\Rest\Client;
+use Twilio\Http\CurlClient;
 
 class TwilioService
 {
@@ -10,14 +11,20 @@ class TwilioService
 
     public function __construct(string $sid, string $token, string $twilioNumber)
     {
-        $this->twilio = new Client($sid, $token);
+        $curlClient = new CurlClient([
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+        ]);
+
+        // The 4th argument is region, 5th is HttpClient
+        $this->twilio = new Client($sid, $token, null, null, $curlClient);
         $this->twilioNumber = $twilioNumber;
     }
 
     public function sendSms(string $to, string $message): void
     {
         $to = preg_replace('/[^0-9+]/', '', $to); 
-        if (strpos($to, '+216') !== 0) {
+        if (strpos($to, '+216') === false) {
             $to = '+216' . $to; 
         }
 

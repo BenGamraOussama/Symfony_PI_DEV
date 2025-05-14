@@ -26,14 +26,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
 
-#[Route('/commande')]
+#[Route('commande')]
 final class CommandeController extends AbstractController{
 
- 
-    
-
-
-    #[Route('/imprimer/{id}', name: 'imprimer_dossier')]
+    #[Route('/commande/imprimer/{id}', name: 'imprimer_dossier')]
     public function imprimer(Pdf $pdf, int $id,CommandeRepository $dr , Environment $twig): Response
     {
     $html = $twig->render('cart/pdf.html.twig', [
@@ -50,7 +46,7 @@ final class CommandeController extends AbstractController{
     ]);
 }
 
-     #[Route('/admin', name: 'app_commande_index_admin')]
+     #[Route('/affcom', name: 'app_commande_index_admin')]
     public function andexadmin( UserRepository $userRepo,CommandeRepository $commandeRepository,Request $request ,PaginatorInterface $paginator): Response
     {
 

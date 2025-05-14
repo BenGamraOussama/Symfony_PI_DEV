@@ -37,7 +37,7 @@ return [
         '/category/patient' => [[['_route' => 'app_category_front', '_controller' => 'App\\Controller\\CategoryController::index2'], null, ['GET' => 0], null, false, false, null]],
         '/category/new' => [[['_route' => 'app_category_new', '_controller' => 'App\\Controller\\CategoryController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/client' => [[['_route' => 'app_client', '_controller' => 'App\\Controller\\ClientController::index'], null, null, null, false, false, null]],
-        '/commande/admin' => [[['_route' => 'app_commande_index_admin', '_controller' => 'App\\Controller\\CommandeController::andexadmin'], null, null, null, false, false, null]],
+        '/commande/affcom' => [[['_route' => 'app_commande_index_admin', '_controller' => 'App\\Controller\\CommandeController::andexadmin'], null, null, null, false, false, null]],
         '/commande' => [[['_route' => 'app_commande_index', '_controller' => 'App\\Controller\\CommandeController::index'], null, ['GET' => 0], null, false, false, null]],
         '/commande/new' => [[['_route' => 'app_commande_new', '_controller' => 'App\\Controller\\CommandeController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/consultation' => [[['_route' => 'app_consultation_index', '_controller' => 'App\\Controller\\ConsultationController::index'], null, null, null, false, false, null]],
@@ -169,117 +169,117 @@ return [
                     .')'
                     .'|o(?'
                         .'|mmande/(?'
-                            .'|imprimer/([^/]++)(*:974)'
+                            .'|commande/imprimer/([^/]++)(*:983)'
                             .'|([^/]++)(?'
                                 .'|/(?'
                                     .'|a(?'
-                                        .'|jout/ligne/commande(*:1020)'
-                                        .'|dmin(*:1033)'
+                                        .'|jout/ligne/commande(*:1029)'
+                                        .'|dmin(*:1042)'
                                     .')'
-                                    .'|edit(*:1047)'
+                                    .'|edit(*:1056)'
                                 .')'
-                                .'|(*:1057)'
+                                .'|(*:1066)'
                             .')'
                         .')'
                         .'|n(?'
                             .'|sultation/(?'
                                 .'|([^/]++)(?'
-                                    .'|/edit(*:1101)'
-                                    .'|(*:1110)'
+                                    .'|/edit(*:1110)'
+                                    .'|(*:1119)'
                                 .')'
                                 .'|consultation(?'
-                                    .'|/([^/]++)/add\\-to\\-calendar(*:1162)'
-                                    .'|patient(*:1178)'
+                                    .'|/([^/]++)/add\\-to\\-calendar(*:1171)'
+                                    .'|patient(*:1187)'
                                 .')'
-                                .'|todo/([^/]++)/add\\-to\\-todoist(*:1218)'
+                                .'|todo/([^/]++)/add\\-to\\-todoist(*:1227)'
                                 .'|([^/]++)/traitement(?'
-                                    .'|(*:1249)'
+                                    .'|(*:1258)'
                                     .'|/(?'
-                                        .'|new(*:1265)'
+                                        .'|new(*:1274)'
                                         .'|([^/]++)(?'
-                                            .'|(*:1285)'
+                                            .'|(*:1294)'
                                             .'|/(?'
-                                                .'|edit(*:1302)'
-                                                .'|delete(*:1317)'
+                                                .'|edit(*:1311)'
+                                                .'|delete(*:1326)'
                                             .')'
                                         .')'
                                     .')'
                                 .')'
                             .')'
-                            .'|firm\\-email/([^/]++)(*:1351)'
+                            .'|firm\\-email/([^/]++)(*:1360)'
                         .')'
                     .')'
                 .')'
                 .'|/exercice/([^/]++)(?'
-                    .'|(*:1384)'
-                    .'|/edit(*:1398)'
-                    .'|(*:1407)'
+                    .'|(*:1393)'
+                    .'|/edit(*:1407)'
+                    .'|(*:1416)'
                 .')'
                 .'|/fournisseur/([^/]++)(?'
-                    .'|(*:1441)'
-                    .'|/edit(*:1455)'
-                    .'|(*:1464)'
+                    .'|(*:1450)'
+                    .'|/edit(*:1464)'
+                    .'|(*:1473)'
                 .')'
                 .'|/ligne/commande/([^/]++)(?'
-                    .'|(*:1501)'
-                    .'|/edit(*:1515)'
-                    .'|(*:1524)'
+                    .'|(*:1510)'
+                    .'|/edit(*:1524)'
+                    .'|(*:1533)'
                 .')'
-                .'|/supprimer\\-du\\-panier/([^/]++)(*:1565)'
-                .'|/modifier\\-quantite/([^/]++)(*:1602)'
+                .'|/supprimer\\-du\\-panier/([^/]++)(*:1574)'
+                .'|/modifier\\-quantite/([^/]++)(*:1611)'
                 .'|/p(?'
                     .'|atient/(?'
-                        .'|produit/([^/]++)(*:1642)'
+                        .'|produit/([^/]++)(*:1651)'
                         .'|([^/]++)(?'
-                            .'|/edit(*:1667)'
-                            .'|(*:1676)'
+                            .'|/edit(*:1676)'
+                            .'|(*:1685)'
                         .')'
-                        .'|patient/([^/]++)/activites(*:1712)'
-                        .'|(\\d+)(*:1726)'
+                        .'|patient/([^/]++)/activites(*:1721)'
+                        .'|(\\d+)(*:1735)'
                     .')'
                     .'|roduit(?'
                         .'|\\-categorie/(?'
-                            .'|show/([^/]++)(*:1773)'
-                            .'|edit/([^/]++)(*:1795)'
-                            .'|delete/([^/]++)(*:1819)'
+                            .'|show/([^/]++)(*:1782)'
+                            .'|edit/([^/]++)(*:1804)'
+                            .'|delete/([^/]++)(*:1828)'
                         .')'
                         .'|/([^/]++)(?'
                             .'|/(?'
-                                .'|edit(*:1849)'
-                                .'|delete(*:1864)'
-                                .'|noter(*:1878)'
-                                .'|rate(*:1891)'
+                                .'|edit(*:1858)'
+                                .'|delete(*:1873)'
+                                .'|noter(*:1887)'
+                                .'|rate(*:1900)'
                             .')'
-                            .'|(*:1901)'
+                            .'|(*:1910)'
                         .')'
                     .')'
                     .'|sychiatre/([^/]++)(?'
-                        .'|(*:1933)'
-                        .'|/edit(*:1947)'
-                        .'|(*:1956)'
+                        .'|(*:1942)'
+                        .'|/edit(*:1956)'
+                        .'|(*:1965)'
                     .')'
                 .')'
                 .'|/q(?'
-                    .'|r\\-code/([^/]++)(*:1988)'
+                    .'|r\\-code/([^/]++)(*:1997)'
                     .'|uestion/([^/]++)(?'
-                        .'|(*:2016)'
-                        .'|/edit(*:2030)'
-                        .'|(*:2039)'
+                        .'|(*:2025)'
+                        .'|/edit(*:2039)'
+                        .'|(*:2048)'
                     .')'
                 .')'
                 .'|/r(?'
                     .'|dv/(?'
                         .'|([^/]++)(?'
-                            .'|(*:2072)'
-                            .'|/edit(*:2086)'
-                            .'|(*:2095)'
+                            .'|(*:2081)'
+                            .'|/edit(*:2095)'
+                            .'|(*:2104)'
                         .')'
-                        .'|accept/([^/]++)(*:2120)'
-                        .'|cancel/([^/]++)(*:2144)'
+                        .'|accept/([^/]++)(*:2129)'
+                        .'|cancel/([^/]++)(*:2153)'
                     .')'
                     .'|es(?'
-                        .'|et\\-password/reset(?:/([^/]++))?(*:2191)'
-                        .'|ponse/exercise/([^/]++)/new(*:2227)'
+                        .'|et\\-password/reset(?:/([^/]++))?(*:2200)'
+                        .'|ponse/exercise/([^/]++)/new(*:2236)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -326,63 +326,63 @@ return [
         874 => [[['_route' => 'app_category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
         900 => [[['_route' => 'app_articles_by_category', '_controller' => 'App\\Controller\\CategoryController::articlesByCategory'], ['id'], ['GET' => 0], null, false, true, null]],
         933 => [[['_route' => 'app_articles_by_category_front', '_controller' => 'App\\Controller\\CategoryController::articlesByCategoryFront'], ['id'], ['GET' => 0], null, false, true, null]],
-        974 => [[['_route' => 'imprimer_dossier', '_controller' => 'App\\Controller\\CommandeController::imprimer'], ['id'], null, null, false, true, null]],
-        1020 => [[['_route' => 'app_commande_add_ligne_de_commande', '_controller' => 'App\\Controller\\CommandeController::ajout2'], ['id'], null, null, false, false, null]],
-        1033 => [[['_route' => 'app_commande_show_admin', '_controller' => 'App\\Controller\\CommandeController::adminshow'], ['id'], ['GET' => 0], null, false, false, null]],
-        1047 => [[['_route' => 'app_commande_edit', '_controller' => 'App\\Controller\\CommandeController::edit'], ['id'], null, null, false, false, null]],
-        1057 => [
+        983 => [[['_route' => 'imprimer_dossier', '_controller' => 'App\\Controller\\CommandeController::imprimer'], ['id'], null, null, false, true, null]],
+        1029 => [[['_route' => 'app_commande_add_ligne_de_commande', '_controller' => 'App\\Controller\\CommandeController::ajout2'], ['id'], null, null, false, false, null]],
+        1042 => [[['_route' => 'app_commande_show_admin', '_controller' => 'App\\Controller\\CommandeController::adminshow'], ['id'], ['GET' => 0], null, false, false, null]],
+        1056 => [[['_route' => 'app_commande_edit', '_controller' => 'App\\Controller\\CommandeController::edit'], ['id'], null, null, false, false, null]],
+        1066 => [
             [['_route' => 'app_commande_show', '_controller' => 'App\\Controller\\CommandeController::show'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => 'app_commande_delete', '_controller' => 'App\\Controller\\CommandeController::delete'], ['id'], ['POST' => 0], null, false, true, null],
         ],
-        1101 => [[['_route' => 'app_consultation_edit', '_controller' => 'App\\Controller\\ConsultationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1110 => [[['_route' => 'app_consultation_delete', '_controller' => 'App\\Controller\\ConsultationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1162 => [[['_route' => 'app_consultation_calendar', '_controller' => 'App\\Controller\\ConsultationController::addToCalendar'], ['id'], ['POST' => 0], null, false, false, null]],
-        1178 => [[['_route' => 'app_consultation_patient', '_controller' => 'App\\Controller\\ConsultationController::indexpatient'], [], null, null, false, false, null]],
-        1218 => [[['_route' => 'app_consultation_todoist', '_controller' => 'App\\Controller\\ConsultationController::addToTodoist'], ['id'], ['POST' => 0], null, false, false, null]],
-        1249 => [[['_route' => 'app_traitement_index', '_controller' => 'App\\Controller\\TraitementController::index'], ['consultation_id'], null, null, false, false, null]],
-        1265 => [[['_route' => 'app_traitement_new', '_controller' => 'App\\Controller\\TraitementController::new'], ['consultation_id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1285 => [[['_route' => 'app_traitement_show', '_controller' => 'App\\Controller\\TraitementController::show'], ['consultation_id', 'id'], ['GET' => 0], null, false, true, null]],
-        1302 => [[['_route' => 'app_traitement_edit', '_controller' => 'App\\Controller\\TraitementController::edit'], ['consultation_id', 'id'], null, null, false, false, null]],
-        1317 => [[['_route' => 'app_traitement_delete', '_controller' => 'App\\Controller\\TraitementController::delete'], ['consultation_id', 'id'], ['POST' => 0], null, false, false, null]],
-        1351 => [[['_route' => 'app_confirm_email', '_controller' => 'App\\Controller\\RegistrationController::confirmEmail'], ['token'], null, null, false, true, null]],
-        1384 => [[['_route' => 'app_exercice_show', '_controller' => 'App\\Controller\\ExerciceController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1398 => [[['_route' => 'app_exercice_edit', '_controller' => 'App\\Controller\\ExerciceController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1407 => [[['_route' => 'app_exercice_delete', '_controller' => 'App\\Controller\\ExerciceController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1441 => [[['_route' => 'app_fournisseur_show', '_controller' => 'App\\Controller\\FournisseurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1455 => [[['_route' => 'app_fournisseur_edit', '_controller' => 'App\\Controller\\FournisseurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1464 => [[['_route' => 'app_fournisseur_delete', '_controller' => 'App\\Controller\\FournisseurController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1501 => [[['_route' => 'app_ligne_commande_show', '_controller' => 'App\\Controller\\LigneCommandeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1515 => [[['_route' => 'app_ligne_commande_edit', '_controller' => 'App\\Controller\\LigneCommandeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1524 => [[['_route' => 'app_ligne_commande_delete', '_controller' => 'App\\Controller\\LigneCommandeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1565 => [[['_route' => 'supprimer_du_panier', '_controller' => 'App\\Controller\\PanierController::supprimerDuPanier'], ['id'], null, null, false, true, null]],
-        1602 => [[['_route' => 'modifier_quantite_panier', '_controller' => 'App\\Controller\\PanierController::modifierQuantite'], ['id'], ['POST' => 0], null, false, true, null]],
-        1642 => [[['_route' => 'produit_show_patient', '_controller' => 'App\\Controller\\PatientController::showProduit'], ['id'], null, null, false, true, null]],
-        1667 => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\PatientController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1676 => [[['_route' => 'app_patient_delet', '_controller' => 'App\\Controller\\PatientController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1712 => [[['_route' => 'app_patient_activites', '_controller' => 'App\\Controller\\PatientController::viewActivities'], ['patientId'], null, null, false, false, null]],
-        1726 => [[['_route' => 'app_patient_show', '_format' => 'html', '_controller' => 'App\\Controller\\PatientController::show'], ['id'], null, null, false, true, null]],
-        1773 => [[['_route' => 'produit_categorie_show', '_controller' => 'App\\Controller\\ProduitCategoriesController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1795 => [[['_route' => 'produit_categories_edit', '_controller' => 'App\\Controller\\ProduitCategoriesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        1819 => [[['_route' => 'produit_categories_delete', '_controller' => 'App\\Controller\\ProduitCategoriesController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1849 => [[['_route' => 'produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1864 => [[['_route' => 'produit_delete', '_controller' => 'App\\Controller\\ProduitController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
-        1878 => [[['_route' => 'produit_noter', '_controller' => 'App\\Controller\\ProduitController::noter'], ['id'], ['POST' => 0], null, false, false, null]],
-        1891 => [[['_route' => 'produit_rate', '_controller' => 'App\\Controller\\RatingController::rate'], ['id'], null, null, false, false, null]],
-        1901 => [[['_route' => 'produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1933 => [[['_route' => 'app_psychiatre_show', '_controller' => 'App\\Controller\\PsychiatreController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1947 => [[['_route' => 'app_psychiatre_edit', '_controller' => 'App\\Controller\\PsychiatreController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1956 => [[['_route' => 'app_psychiatre_delete', '_controller' => 'App\\Controller\\PsychiatreController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1988 => [[['_route' => 'qr_code', '_controller' => 'App\\Controller\\QrCodeController::generateQrCode'], ['id'], null, null, false, true, null]],
-        2016 => [[['_route' => 'app_question_show', '_controller' => 'App\\Controller\\QuestionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        2030 => [[['_route' => 'app_question_edit', '_controller' => 'App\\Controller\\QuestionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        2039 => [[['_route' => 'app_question_delete', '_controller' => 'App\\Controller\\QuestionController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        2072 => [[['_route' => 'app_rdv_show', '_controller' => 'App\\Controller\\RDVController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        2086 => [[['_route' => 'app_rdv_edit', '_controller' => 'App\\Controller\\RDVController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        2095 => [[['_route' => 'app_rdv_delete', '_controller' => 'App\\Controller\\RDVController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        2120 => [[['_route' => 'app_rdv_accept', '_controller' => 'App\\Controller\\RendezVousController::accept'], ['id'], ['POST' => 0], null, false, true, null]],
-        2144 => [[['_route' => 'app_rdv_cancel', '_controller' => 'App\\Controller\\RendezVousController::cancel'], ['id'], ['POST' => 0], null, false, true, null]],
-        2191 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
-        2227 => [
+        1110 => [[['_route' => 'app_consultation_edit', '_controller' => 'App\\Controller\\ConsultationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1119 => [[['_route' => 'app_consultation_delete', '_controller' => 'App\\Controller\\ConsultationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1171 => [[['_route' => 'app_consultation_calendar', '_controller' => 'App\\Controller\\ConsultationController::addToCalendar'], ['id'], ['POST' => 0], null, false, false, null]],
+        1187 => [[['_route' => 'app_consultation_patient', '_controller' => 'App\\Controller\\ConsultationController::indexpatient'], [], null, null, false, false, null]],
+        1227 => [[['_route' => 'app_consultation_todoist', '_controller' => 'App\\Controller\\ConsultationController::addToTodoist'], ['id'], ['POST' => 0], null, false, false, null]],
+        1258 => [[['_route' => 'app_traitement_index', '_controller' => 'App\\Controller\\TraitementController::index'], ['consultation_id'], null, null, false, false, null]],
+        1274 => [[['_route' => 'app_traitement_new', '_controller' => 'App\\Controller\\TraitementController::new'], ['consultation_id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1294 => [[['_route' => 'app_traitement_show', '_controller' => 'App\\Controller\\TraitementController::show'], ['consultation_id', 'id'], ['GET' => 0], null, false, true, null]],
+        1311 => [[['_route' => 'app_traitement_edit', '_controller' => 'App\\Controller\\TraitementController::edit'], ['consultation_id', 'id'], null, null, false, false, null]],
+        1326 => [[['_route' => 'app_traitement_delete', '_controller' => 'App\\Controller\\TraitementController::delete'], ['consultation_id', 'id'], ['POST' => 0], null, false, false, null]],
+        1360 => [[['_route' => 'app_confirm_email', '_controller' => 'App\\Controller\\RegistrationController::confirmEmail'], ['token'], null, null, false, true, null]],
+        1393 => [[['_route' => 'app_exercice_show', '_controller' => 'App\\Controller\\ExerciceController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1407 => [[['_route' => 'app_exercice_edit', '_controller' => 'App\\Controller\\ExerciceController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1416 => [[['_route' => 'app_exercice_delete', '_controller' => 'App\\Controller\\ExerciceController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1450 => [[['_route' => 'app_fournisseur_show', '_controller' => 'App\\Controller\\FournisseurController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1464 => [[['_route' => 'app_fournisseur_edit', '_controller' => 'App\\Controller\\FournisseurController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1473 => [[['_route' => 'app_fournisseur_delete', '_controller' => 'App\\Controller\\FournisseurController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1510 => [[['_route' => 'app_ligne_commande_show', '_controller' => 'App\\Controller\\LigneCommandeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1524 => [[['_route' => 'app_ligne_commande_edit', '_controller' => 'App\\Controller\\LigneCommandeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1533 => [[['_route' => 'app_ligne_commande_delete', '_controller' => 'App\\Controller\\LigneCommandeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1574 => [[['_route' => 'supprimer_du_panier', '_controller' => 'App\\Controller\\PanierController::supprimerDuPanier'], ['id'], null, null, false, true, null]],
+        1611 => [[['_route' => 'modifier_quantite_panier', '_controller' => 'App\\Controller\\PanierController::modifierQuantite'], ['id'], ['POST' => 0], null, false, true, null]],
+        1651 => [[['_route' => 'produit_show_patient', '_controller' => 'App\\Controller\\PatientController::showProduit'], ['id'], null, null, false, true, null]],
+        1676 => [[['_route' => 'app_profile_edit', '_controller' => 'App\\Controller\\PatientController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1685 => [[['_route' => 'app_patient_delet', '_controller' => 'App\\Controller\\PatientController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1721 => [[['_route' => 'app_patient_activites', '_controller' => 'App\\Controller\\PatientController::viewActivities'], ['patientId'], null, null, false, false, null]],
+        1735 => [[['_route' => 'app_patient_show', '_format' => 'html', '_controller' => 'App\\Controller\\PatientController::show'], ['id'], null, null, false, true, null]],
+        1782 => [[['_route' => 'produit_categorie_show', '_controller' => 'App\\Controller\\ProduitCategoriesController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1804 => [[['_route' => 'produit_categories_edit', '_controller' => 'App\\Controller\\ProduitCategoriesController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        1828 => [[['_route' => 'produit_categories_delete', '_controller' => 'App\\Controller\\ProduitCategoriesController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1858 => [[['_route' => 'produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1873 => [[['_route' => 'produit_delete', '_controller' => 'App\\Controller\\ProduitController::delete'], ['id'], ['POST' => 0], null, false, false, null]],
+        1887 => [[['_route' => 'produit_noter', '_controller' => 'App\\Controller\\ProduitController::noter'], ['id'], ['POST' => 0], null, false, false, null]],
+        1900 => [[['_route' => 'produit_rate', '_controller' => 'App\\Controller\\RatingController::rate'], ['id'], null, null, false, false, null]],
+        1910 => [[['_route' => 'produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1942 => [[['_route' => 'app_psychiatre_show', '_controller' => 'App\\Controller\\PsychiatreController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1956 => [[['_route' => 'app_psychiatre_edit', '_controller' => 'App\\Controller\\PsychiatreController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1965 => [[['_route' => 'app_psychiatre_delete', '_controller' => 'App\\Controller\\PsychiatreController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1997 => [[['_route' => 'qr_code', '_controller' => 'App\\Controller\\QrCodeController::generateQrCode'], ['id'], null, null, false, true, null]],
+        2025 => [[['_route' => 'app_question_show', '_controller' => 'App\\Controller\\QuestionController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        2039 => [[['_route' => 'app_question_edit', '_controller' => 'App\\Controller\\QuestionController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        2048 => [[['_route' => 'app_question_delete', '_controller' => 'App\\Controller\\QuestionController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        2081 => [[['_route' => 'app_rdv_show', '_controller' => 'App\\Controller\\RDVController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        2095 => [[['_route' => 'app_rdv_edit', '_controller' => 'App\\Controller\\RDVController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        2104 => [[['_route' => 'app_rdv_delete', '_controller' => 'App\\Controller\\RDVController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        2129 => [[['_route' => 'app_rdv_accept', '_controller' => 'App\\Controller\\RendezVousController::accept'], ['id'], ['POST' => 0], null, false, true, null]],
+        2153 => [[['_route' => 'app_rdv_cancel', '_controller' => 'App\\Controller\\RendezVousController::cancel'], ['id'], ['POST' => 0], null, false, true, null]],
+        2200 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        2236 => [
             [['_route' => 'app_reponse_new', '_controller' => 'App\\Controller\\ReponseController::new'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],

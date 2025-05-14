@@ -32,8 +32,8 @@ class Patient extends User
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $suspendedUntil = null;
 
-    #[ORM\Column(type: 'integer', options: ['default' => 0])]
-    private int $badWordAttempts = 0;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $badWordAttempts = 0;
 
     #[ORM\OneToMany(targetEntity: RDV::class, mappedBy: 'patient')]
     private Collection $rdvs;
